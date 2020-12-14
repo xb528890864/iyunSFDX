@@ -1,0 +1,300 @@
+﻿@using System.Configuration
+@using IYun.Common
+@using IYun.Models
+@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@model PagedList<YD_Fee_StuFeeTb>
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+    var man = (int)SexEnum.Man;
+    var woman = (int)SexEnum.WoMan;
+    const int yes = (int)YesOrNo.Yes;
+    const int no = (int)YesOrNo.No;
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+        <script type="text/javascript" src="js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+        <script type="text/javascript" src="js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    @*<script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>*@
+    <script src="~/Content/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="~/Scripts/MvcPager.js"></script>
+    <script src="~/Content/IYun/js/jquery.editable-select.min.js"></script>
+    <link href="~/Content/IYun/style/jquery.editable-select.min.css" rel="stylesheet" />
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });
+
+    </script>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        <div id="main-tl">
+            <div class="left-t">经费管理</div>
+            <div class="left-c">
+                @{
+                    foreach (var modulePower in modulePowers)
+                    {
+                        if (modulePower.y_url.ToLower() == "/Expense/FeeManage".ToLower())
+                        {
+                            <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                        else
+                        {
+                            <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div id="main-tr" class="tb-chk">
+            <form id="searchForm" action="/Expense/FeeManage" name="searchForm" method="post">
+                <div class="zc-head">
+                    <div class="zc-inn">
+                        <span>缴费年份</span>
+
+                        @Html.Action("EnrollYear", "Helper", new HelperParameterM { id = "year", name = "year", style = "width:80px;" })
+                    </div>
+                    <div class="zc-inn">
+                        <span>入学年份</span>
+                        @Html.Action("EnrollYear", "Helper", new HelperParameterM { id = "inYear", name = "inYear", style = "width:80px;" })
+                    </div>
+
+                    <div class="zc-inn">
+                        <span>层次</span>
+                        @Html.Action("EduType", "Helper", new HelperParameterM { name = "eduType", style = "width:80px;" })
+                    </div>
+                    @*<div class="zc-inn">
+                <span>学习形式</span>
+                @Html.Action("StuType", "Helper", new HelperParameterM { name = "stuType", style = "width:80px;" })
+            </div>*@
+                    <div class="zc-inn">
+                        <span>学年</span>
+                        <select class="cx-sel" name="term" id="term" style="width: 60px;">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div class="zc-inn">
+                        <span>函授站</span>
+                        @Html.Action("SubSchool", "Helper", new HelperParameterM { name = "subSchool", style = "width:120px;" })
+                    </div>
+                    <div class="zc-inn">
+                        <span>专业</span>
+                        @Html.Action("MajorLibrary", "Helper", new HelperParameterM { name = "major", style = "width:100px;" })
+                    </div>
+                    <div class="zc-inn">
+                        <span>缴费注册</span>
+
+                        <select class="cx-sel" name="isFee" style="width: 80px;">
+                            <option value="0">全部</option>
+                            <option value="1">已申请注册</option>
+                            <option value="2" selected="selected">未申请注册</option>
+                        </select>
+                    </div>
+                    <div class="zc-inn">
+                        <span>注册审核</span>
+
+                        <select class="cx-sel" name="isCheck" style="width: 80px;">
+                            <option value="0">全部</option>
+                            <option value="1">已审核注册</option>
+                            <option value="2">未审核注册</option>
+                        </select>
+                    </div>
+                    <div class="zc-inn">
+                        <span>姓名</span>
+                        <input type="text" name="name" class="cx-inp" style="width: 50px"  />
+                    </div>
+                    @*<div class="zc-inn">
+                <span>缴费年度</span>
+                <select class="cx-sel" name="feeYear" id="feeYear" style="width:100px;">
+                    <option value="1">第一学年</option>
+                    <option value="2">第二学年</option>
+                    <option value="3">第三学年</option>
+                    <option value="4">第四学年</option>
+                    <option value="5">第五学年</option>
+                </select>
+            </div>*@
+
+                    @*<a class="cx-sub" href="javascript:registerzSome()" style="margin-top:10px; height:32px; line-height:30px;">申请注册</a>
+            <a class="cx-sub"  href="javascript:registersomeno()" style="margin-top:10px; height:32px; line-height:30px;">取消申请</a>*@
+                </div>
+                    <div class="zc-head">
+                        <a class="cx-sub" href="javascript:DownFeeManage()" style="margin-top:10px; height:32px; float: right; line-height:30px;">数据导出</a>
+                        <input style="margin-top: 10px; height: 32px; margin-left: 400px; line-height: 30px; float:right" class="cx-sub" type="submit" value="过滤" />
+                        <div class="show-bg"></div>
+                    </div>
+            </form>
+            <div id="loadingDiv" style="display:none"><img src="~/Content/images/loading.gif" /></div>
+            <div id="ajaxtable">
+                @Html.Partial("FeeManageList", Model, ViewData)
+            </div>
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+</body>
+</html>
+<script>
+  
+    function register() {
+        $.ajax({
+            type: "POST",
+            url: "/Student/Register",
+            data: form2Json("searchForm"),
+            success: function (data) {
+                if (data == "ok") {
+                    alert("注册成功");
+                    location.reload();
+                } else {
+                    alert(data);
+                }
+            },
+            error: function (msg) { alert("未知错误！==" + msg); }
+        });
+
+    }
+    function form2Json(id) {
+        var arr = $("#" + id).serializeArray();
+        var jsonStr = "";
+        jsonStr += '{';
+        for (var i = 0; i < arr.length; i++) {
+            jsonStr += '"' + arr[i].name + '":"' + arr[i].value + '",';
+        }
+        jsonStr = jsonStr.substring(0, (jsonStr.length - 1));
+        jsonStr += '}';
+        var json = JSON.parse(jsonStr);
+        return json;
+    }
+    function registerzSome() {
+        var cbs = $(".mycb");
+        if (cbs.length <= 0) {
+            alert("请先选择学生");
+            return;
+        }
+
+        var ids = "";
+        for (var i = 0; i < cbs.length; i++) {
+            if (cbs[i].checked) {
+                ids += $(cbs[i]).attr("data-id");
+                if (i + 1 < cbs.length) {
+                    ids += ",";
+                }
+            }
+        }
+        var term = $("#term").val();
+        if (term == "") {
+            alert("未选择学年");
+            return;
+        }
+        $.ajax({
+            type: "post",
+            url: "/Expense/StuFeeSome",
+            data: {
+                ids: ids,
+                term: term
+
+            },
+            success: function (data) {
+                if (data == "ok") {
+                    alert("申请注册成功");
+                    location.reload(true);
+                } else {
+                    alert(data);
+                }
+            },
+            error: function (data) {
+                alert("未知错误");
+            }
+        });
+    }
+    function registersomeno() {
+        var cbs = $(".mycb");
+        if (cbs.length <= 0) {
+            alert("请先选择学生");
+            return;
+        }
+        var term = $("#term").val();
+        if (term == "") {
+            alert("未选择学年");
+            return;
+        }
+        var ids = "";
+        for (var i = 0; i < cbs.length; i++) {
+            if (cbs[i].checked) {
+                ids += $(cbs[i]).attr("data-id");
+                if (i + 1 < cbs.length) {
+                    ids += ",";
+                }
+            }
+        }
+        $.ajax({
+            type: "post",
+            url: "/Expense/StuFeeSomeno",
+            data: {
+                ids: ids,
+                term: term
+            },
+            success: function (data) {
+                if (data == "ok") {
+                    alert("取消申请成功");
+                    location.reload(true);
+                } else {
+                    alert(data);
+                }
+            },
+            error: function (msg) {
+                alert("未知错误");
+            }
+        });
+    }
+    function DownFeeManage() {
+
+        $.ajax({
+            type: "post",
+            url: "/Expense/DownloadFeeManage",
+            data: $("#searchForm").serialize(),
+            success: function (data) {
+                if (data.indexOf("xls") > 0) {
+                    location.href = data;
+                } else {
+                    eval(data);
+                }
+            },
+            error: function (msg) {
+                alert("未知错误");
+            }
+        });
+    }
+</script>

@@ -1,0 +1,65 @@
+﻿@using System.Configuration
+@using IYun.Common
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YD_Sts_StuInfo>
+@{
+    var admin = ViewBag.admin;
+    var schoolname = ConfigurationManager.AppSettings["SchoolName"];
+
+}
+<div id="dytable">
+    <style>
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 10px
+        }
+
+        th, td {
+            height: 40px;
+        }
+
+        th {
+            font-size: 30px;
+            font-weight: 100;
+        }
+
+        td {
+            font-size: 15px;
+        }
+    </style>
+
+
+    <table>
+        <tr><th colspan="8" style="text-align:center">毕业生登记表</th></tr>
+        <tr>
+            <th>学号</th>
+            <th>考生号</th>
+            <th>毕业证号</th>
+            <th>姓名</th>
+            <th>学习中心</th>
+            <th>专业</th>
+            <th>入学年度</th>
+            <th>状态</th>
+
+        </tr>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td class="td1">@student.y_stuNum</td>
+                <td class="td2">@student.y_examNum</td>
+                <td class="td3">@student.y_graduateNumber</td>
+                <td class="td4">@student.y_name</td>
+                <td class="td5">@student.YD_Sys_SubSchool.y_name</td>
+                <td class="td6">@student.YD_Edu_Major.y_name</td>
+                <td class="td7">@student.y_inYear</td>
+                <td class="td8">@student.YD_Edu_StuState.y_name</td>
+            </tr>
+        }
+    </table>
+</div>

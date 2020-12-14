@@ -1,0 +1,53 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YD_Sys_File>
+@{ 
+    var roleid = ViewBag.adminroleid;
+}
+<table class="xx-table ydong-tab">
+    <tr>
+        <th>文件名</th>
+        <th>创建人</th>
+        <th>创建时间</th>
+        <th>基本操作</th>
+    </tr>
+    @{
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.y_name</td>
+                <td>@item.y_createdName</td>
+                <td>@item.y_time</td>
+                <td>
+                    <a class="bfont2" href="/FileManager/DownloadFile/@item.id">下载</a>
+                    @if (roleid != 4 || roleid != 5)
+                    {
+                        <a class="bfont2" href="javascript:deleteFile(@item.id)">删除</a>
+                    }
+                </td>
+            </tr>
+        }
+    }
+</table>
+<script>
+    function deleteFile(id) {
+        if (confirm("确认删除此文件？")) {
+            $.ajax({
+                type: "post",
+                url: "/FileManager/FileDelete/"+id,
+                success: function (data) {
+                    if (data == true) {
+                        alert("删除成功");
+                        location.reload();
+                    } else {
+                        alert(data);
+                    }
+                },
+                error: function (msg) {
+                    alert("未知错误");
+                }
+            });
+        }
+    }
+
+</script>

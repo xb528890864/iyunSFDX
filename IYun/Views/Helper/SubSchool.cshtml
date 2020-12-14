@@ -1,0 +1,70 @@
+﻿@using IYun.Models;
+@using IYun.Object
+@using IYun.Common
+@using System.Configuration
+@{
+    Layout = null;
+    var data = ViewData["data"] as List<YD_Sys_SubSchool>;
+    data = data ?? new List<YD_Sys_SubSchool>();
+    var para = ViewData["para"] as HelperParameterM;
+    para = para ?? new HelperParameterM();
+    var schoolname = ConfigurationManager.AppSettings["SchoolName"];
+    if (string.IsNullOrWhiteSpace(para.className))
+    {
+        para.className = "dl-sel";                    //默认样式CLASS
+    }
+    if (string.IsNullOrWhiteSpace(para.id))
+    {
+        para.id = "SubSchool";                        //默认ID
+    }
+    if (string.IsNullOrWhiteSpace(para.name))
+    {
+        para.name = "SubSchool";                     //默认name
+    }
+    if (!para.index.HasValue)
+    {
+        para.index = 0;                               //默认选中
+    }
+}
+<select class="@para.className"  id="@para.id" name="@para.name" style="@para.style" onchange="SchoolChange()">
+
+    <option value='0'>全部</option>
+    
+    @foreach (var school in data)
+    {
+        if (school.id == para.index)
+        {
+            if (schoolname != ComEnum.SchoolName.JXLG.ToString())
+            {
+            <option value='@school.id' selected="selected">@school.y_name</option>
+            }
+            else
+            {
+                <option value='@school.id' selected="selected">@school.y_nameabbreviation</option>
+            }
+        }
+        else
+        {
+            if (schoolname != ComEnum.SchoolName.JXLG.ToString())
+            {
+            <option value='@school.id'>@school.y_name</option>
+            }
+            else
+            {
+                <option value='@school.id'>@school.y_nameabbreviation</option>
+            }
+        }
+    }
+</select>
+<script type="text/javascript">
+    function SchoolChange() {
+        try {
+            if (typeof (eval('schoolchangeComple')) == "function") {
+                var id = $("#@para.id").val();
+                schoolchangeComple(id);
+            }
+        } catch (e) {
+            //alert("not function");
+        }
+    }
+</script>

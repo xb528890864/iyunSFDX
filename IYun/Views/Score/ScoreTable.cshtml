@@ -1,0 +1,38 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<VW_ScoreFirst>
+
+<table class="xx-table ydong-tab">
+    <tr>
+        <th width="100">学号</th>
+        <th>姓名</th>
+        @*<th>学习中心</th>*@
+        <th>专业</th>
+        <th>查看成绩</th>
+        @*<th>课程</th>
+        <th>学期</th>
+        <th>平时总分</th>
+        <th>期末总分</th>
+        <th>总评分</th>*@
+        @*<th width="80">操作</th>*@
+    </tr>
+    @{
+        foreach (var ydSysAdmin in Model)
+        {
+            <tr>@{Write("");}
+                <td style="padding-left: 35px;">@ydSysAdmin.y_stuNum</td>
+                <td>@ydSysAdmin.y_stuName</td>
+                @*<td>@ydSysAdmin.schoolName</td>*@
+                <td>@ydSysAdmin.majorName</td>
+                <td><a class="bfont2" href="/Score/ScoreFirst/@ydSysAdmin.y_stuId">查看成绩</a></td>
+                @*<td>@ydSysAdmin.y_courseName</td>
+                <td>@ydSysAdmin.y_term</td>
+                <td>@ydSysAdmin.y_normalScore</td>
+                <td>@ydSysAdmin.y_termScore</td>
+                <td>@ydSysAdmin.y_totalScore</td>*@
+                @*<td><a class="bfont2" href="/Score/ScoreEditPage/@ydSysAdmin.id">修改</a><a class="bfont2" href="javascript:deleteScore(@ydSysAdmin.id)">删除</a></td>*@
+            </tr>
+        }
+    }
+</table>
+

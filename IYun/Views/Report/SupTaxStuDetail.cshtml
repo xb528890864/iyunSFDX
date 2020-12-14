@@ -1,0 +1,122 @@
+﻿@{
+    Layout = null;
+}
+@using System.Configuration
+@using IYun.Models
+@model List<VW_StuInfo>
+@{
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <script src="~/Content/js/jquery-1.9.1.min.js"></script>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <script type="text/javascript" src="~/Content/manage/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    <style>
+        .xx-table td {
+            border: 1px solid black;
+        }
+
+        .dc-t {
+            color: #333333;
+            font-size: 24px;
+            text-align: center;
+            margin-top: 35px;
+            line-height: 26px;
+        }
+
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        <div id="main-tl">
+            <div class="left-t">统计报表</div>
+            <div class="left-c">
+                @{
+                    foreach (var modulePower in modulePowers)
+                    {
+                        if (modulePower.y_url.ToLower() == "/report/SupTaxReport".ToLower())
+                        {
+                            <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                        else
+                        {
+                            <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div id="main-tr">
+            <div class="zc-head show-par">
+                <a class="fhui" href="#" style="margin-right: 10px; margin-top: 10px;" onclick="history.go(-1)">返回</a>
+                <a style="height: 32px; line-height: 30px; float: right; margin: 20px 20px 0 0;" class="zc-sub2" onclick="exportToExcel()">数据导出</a><br />
+            </div>
+            <div>
+                <table class="xx-table ydong-tab" style="width: 60%; min-width: 800px;" align="center">
+                    <tr>
+                        <td>学号</td>
+                        <td>姓名</td>
+                        <td>入学年份</td>
+                        <td>函授站</td>
+                        <td>身份证</td>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.y_stuNum</td>
+                            <td>@item.y_name</td>
+                            <td>@item.y_inYear</td>
+                            <td>@item.schoolName</td>
+                            <td>@item.y_cardId</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+</body>
+</html>
+<script>
+        function exportToExcel() {
+            $.ajax({
+                type: "post",
+                url: "/Report/DownloadSupTaxDetail",
+                data: {
+                    isSuped:`@ViewBag.isSuped`,
+                    year:`@ViewBag.year`,
+                    subschool:`@ViewBag.subschool`,
+                },
+                success: function (data) {
+                    if (data.indexOf("xls") > 0) {
+                        location.href = data;
+                    } else {
+                        eval(data);
+                    }
+                },
+                error: function () {
+                    alert("未知错误");
+                }
+            });
+        }
+</script>

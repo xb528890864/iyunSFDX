@@ -1,0 +1,281 @@
+﻿@using System.Configuration
+@using IYun.Models
+@using IYun.Object
+@using IYun.Common
+@using Webdiyer.WebControls.Mvc
+@model YD_Sts_StuInfo
+@{
+    Layout = null;
+    var xinshenyear = Convert.ToInt32(ConfigurationManager.AppSettings["xinsheng"]);
+    var schoolname = ConfigurationManager.AppSettings["SchoolName"];
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css?v=1" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <script type="text/javascript" src="~/Content/manage/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    @*<script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>*@
+    <script src="~/Content/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="~/Content/manage/ComboboxBind.js?v=1"></script> 
+    <script src="~/Content/EasyUI/easyloader.js"></script>
+    <link href="~/Content/EasyUI/combo.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/combobox.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/panel.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/textbox.css" rel="stylesheet" />
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });
+
+    </script>
+</head>
+
+<body>
+    @Html.Action("Top1", "StudentAccount")
+    <div class="main center">
+
+
+        <div id="main-tr">
+            <div class="right-nav">
+                <form >
+
+                    <div class="zc-head">
+                        <a class="cx-sub" href="javascript:enterGrad()" style="margin-top: 10px; height: 32px; line-height: 30px; float: right">申请毕业</a>
+                    </div>
+                    <div class="show-bg"></div>
+                </form>
+            </div>
+
+            <div id="loadingDiv" style="display: none">
+                <img src="~/Content/images/loading(1).gif" style="margin-top:30px;width: 600px;" />
+            </div>
+                <table class="xx-table ydong-tab" id="datatable">
+                    <tr>
+                        <th>学号</th>
+                        <th>考生号 </th>
+                        <th>姓名</th>
+                        <th>专业</th>
+                        <th>入学年份</th>
+                        <th>是否达到毕业年份</th>
+                        <th>是否学年都注册</th>
+                        @if (schoolname == ComEnum.SchoolName.JXSFDX.ToString())
+                        {
+                            <th>成绩是否审核通过</th>
+                        }
+                        else
+                        {
+                            <th>是否成绩合格</th>
+                        }
+                        @if (schoolname != ComEnum.SchoolName.JXSFDX.ToString())
+                        {
+                            <th>是否有照片</th>
+                        }
+                        <th>是否允许毕业</th>
+                        <th>是否申请毕业</th>
+                    </tr>
+                    @{
+
+                    <tr>
+                        <td >@Model.y_stuNum</td>
+                        <td>@Model.y_examNum</td>
+                        <td>@Model.y_name</td>
+                        <td>@Model.YD_Edu_Major.y_name</td>
+                        <td>@Model.y_inYear</td>
+                        @if (Model.y_degreeOK == 1)//是否达到毕业年份
+                        {
+                            <td>是</td>
+                        }
+                        else if (Model.y_degreeOK == 0)
+                        {
+                            <td>否</td>
+                        }
+                        @if (Model.y_applyOK == 1)//是否都年都注册
+                        {
+                            <td>是</td>
+                        }
+                        else if (Model.y_applyOK == 0)
+                        {
+                            <td>否</td>
+                        }
+                        @if (schoolname == ComEnum.SchoolName.JXSFDX.ToString())
+                        {
+                            if (Model.y_scoreOk == 1)
+                            {
+                                <td>是</td>
+                            }
+                            else
+                            {
+                                <td>否</td>
+                            }
+                        }
+                        else
+                        {
+                            if (Model.y_isChangePlan == 1)//是否成绩合格
+                            {
+                                <td>是</td>
+                            }
+                            else if (Model.y_isChangePlan == 0)
+                            {
+                                <td>否</td>
+                            }
+                        }
+                        @if (schoolname != ComEnum.SchoolName.JXSFDX.ToString())
+                        {
+                            if (Model.y_img != null)//是否有照片
+                            {
+                                <td>是</td>
+                            }
+                            else if (Model.y_img == null)
+                            {
+                                <td>否</td>
+                            }
+                        }
+                        @if (Model.y_isdel == 1)//是否允许毕业
+                        {
+                            <td>是</td>
+                        }
+                        else if (Model.y_isdel == 0)
+                        {
+                            <td>否</td>
+                        }
+                        @if (Model.y_isgraduate == true)  //是否已申请毕业
+                        {
+                            <td>已申请</td>
+                        }
+                        else
+                        {
+                            <td>未申请</td>
+                        }
+                    </tr>
+                      }
+                </table>
+            </div>
+
+        </div>
+    @Html.Action("Foot", "AdminBase")
+    <script>
+        function enterGrad() {
+            data = {};
+            var len = $("#datatable").find("tr").find("td").length;
+            if (len == 11) {
+                var y_degreeOK = $('#datatable tr:eq(1) td:eq(5)').html();
+                var y_applyOK = $('#datatable tr:eq(1) td:eq(6)').html();
+                var y_scoreOk = $('#datatable tr:eq(1) td:eq(7)').html();
+                var y_img = $('#datatable tr:eq(1) td:eq(8)').html();
+                var y_isdel = $('#datatable tr:eq(1) td:eq(9)').html();
+                var y_isgraduate = $('#datatable tr:eq(1) td:eq(10)').html();
+                if (y_isgraduate == "已申请") {
+                    alert("您已经申请毕业，请勿重复申请");
+                    return;
+                }
+                if (y_degreeOK == "否") {
+                    alert("您尚未达到毕业年份");
+                    return;
+                }
+                if (y_applyOK == "否") {
+                    alert("您学年没有全注册");
+                    return;
+                }
+                if (y_scoreOk == "否") {
+                    alert("您没有上传学籍照片");
+                    return;
+                }
+                if (y_isChangePlan == "否") {
+                    alert("您还有课程未及格");
+                    return;
+                }
+                if (y_isdel == "是") {
+                    $.ajax({
+                        type: "post",
+                        url: "/StudentAccount/StuGradInfoSome",
+                        success: function (data) {
+                            if (data == "ok") {
+                                alert("上报成功");
+                                $("#searchForm").submit();
+
+                            } else {
+                                alert(data);
+                            }
+                            $('#ajaxtable').fadeIn('10');
+                            $('#loadingDiv').hide();
+                        },
+                        error: function () {
+                            $('#ajaxtable').fadeIn('10');
+                            $('#loadingDiv').hide();
+                            alert("未知错误");
+                        }
+                    });
+                }
+            }
+            else if (len = 10) {
+                var y_degreeOK = $('#datatable tr:eq(1) td:eq(5)').html();
+                var y_applyOK = $('#datatable tr:eq(1) td:eq(6)').html();
+                var y_isChangePlan = $('#datatable tr:eq(1) td:eq(7)').html();
+                var y_isdel = $('#datatable tr:eq(1) td:eq(9)').html();
+                var y_isgraduate = $('#datatable tr:eq(1) td:eq(10)').html();
+                if (y_isgraduate == "已申请") {
+                    alert("您已经申请毕业，请勿重复申请");
+                    return;
+                }
+                if (y_degreeOK == "否") {
+                    alert("您尚未达到毕业年份");
+                    return;
+                }
+                if (y_applyOK == "否") {
+                    alert("您学年没有全注册");
+                    return;
+                }
+                if (y_isChangePlan == "否") {
+                    alert("您还有课程未及格");
+                    return;
+                }
+                if (y_isdel == "是") {
+                    $.ajax({
+                        type: "post",
+                        url: "/StudentAccount/StuGradInfoSome",
+                        success: function (data) {
+                            if (data == "ok") {
+                                alert("上报成功");
+                                $("#searchForm").submit();
+
+                            } else {
+                                alert(data);
+                            }
+                            $('#ajaxtable').fadeIn('10');
+                            $('#loadingDiv').hide();
+                        },
+                        error: function () {
+                            $('#ajaxtable').fadeIn('10');
+                            $('#loadingDiv').hide();
+                            alert("未知错误");
+                        }
+                    });
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+.w3cbbs { page-break-after:always;}
+body {
+ margin: 0;
+ padding: 0;
+ background-color: #FAFAFA;
+ font: 12pt "ºÚÌå" ,xx-large;
+}
+* {
+ box-sizing: border-box;
+ -moz-box-sizing: border-box;
+}
+.page {
+                width: 21cm;
+                height: 29.7cm;
+ margin: 0 auto;
+
+ border-radius: 0px;
+ background: white;
+ box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+}
+.subpage {
+
+ border: 0px red solid;
+ height: 100%;
+ 
+}

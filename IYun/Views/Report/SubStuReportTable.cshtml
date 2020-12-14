@@ -1,0 +1,89 @@
+﻿@using IYun.Object
+@using System.Configuration
+@using IYun.Models
+@using IYun.Common
+@model List<SubStuReport>
+@{
+    var stuList = (List<SubStuReport>)ViewBag.substulist;
+}
+
+@{
+    if (stuList != null && stuList.Count > 0)
+    {
+        <table class="xx-table ydong-tab">
+            <tr>
+
+                @{
+                    if (!string.IsNullOrWhiteSpace(stuList[0].schoolName))
+                    {
+                        <th>函授站</th>
+                    }
+                        <th>入学年份</th>
+                    if (stuList[0].zaidu != null)
+                    {
+                        <th>在读</th>
+                    }
+                    if (stuList[0].tuixue != null)
+                    {
+                        <th>退学</th>
+                    }
+                    if (stuList[0].weizhuce != null)
+                    {
+                        <th>未注册</th>
+                    }
+                    if (stuList[0].zhuedaishenhe != null)
+                    {
+                        <th>注册待审核</th>
+                    }
+                    if (stuList[0].xiuxue != null)
+                    {
+                        <th>休学</th>
+                    }
+
+                }
+            </tr>
+            @{
+                foreach (var stuInfoReport in stuList)
+                {
+            <tr>
+                @{
+                    if (!string.IsNullOrWhiteSpace(stuInfoReport.schoolName))
+                    {
+                        if (ConfigurationManager.AppSettings["SchoolName"] == ComEnum.SchoolName.JXLG.ToString()|| ConfigurationManager.AppSettings["SchoolName"] == ComEnum.SchoolName.ZYYDX.ToString())
+                        {
+                            <th style="color:#1ec679;"><a href="~/Student/StudentInfo/?SubSchoolName=@stuInfoReport.schoolName&EnrollYear=@stuInfoReport.y_inyear">@stuInfoReport.schoolName</a></th>
+                        }
+                        else
+                        {
+                            <th>@stuInfoReport.schoolName</th>
+                        }
+                    }
+                    <th>@stuInfoReport.y_inyear</th>
+                    if (stuList[0].zaidu != null)
+                    {
+                        <th style="color:#1ec679;"><a href="~/Student/StudentInfo/?SubSchoolName=@stuInfoReport.schoolName&EnrollYear=@stuInfoReport.y_inyear&stuState=1">@stuInfoReport.zaidu</a></th>
+                    }
+                    if (stuList[0].tuixue != null)
+                    {
+                        <th style="color:#1ec679;"><a href="~/Student/StudentInfo/?SubSchoolName=@stuInfoReport.schoolName&EnrollYear=@stuInfoReport.y_inyear&stuState=4">@stuInfoReport.tuixue</a></th>
+                    }
+                    if (stuList[0].weizhuce != null)
+                    {
+                        <th style="color:#1ec679;"><a href="~/Student/StudentInfo/?SubSchoolName=@stuInfoReport.schoolName&EnrollYear=@stuInfoReport.y_inyear&stuState=8">@stuInfoReport.weizhuce</a></th>
+                    }
+                    if (stuList[0].zhuedaishenhe != null)
+                    {
+                        <th style="color:#1ec679;"><a href="~/Student/StudentInfo/?SubSchoolName=@stuInfoReport.schoolName&EnrollYear=@stuInfoReport.y_inyear&stuState=9">@stuInfoReport.zhuedaishenhe</a></th>
+                        }
+                        if (stuList[0].xiuxue != null)
+                        {
+                        <th style="color:#1ec679;"><a href="~/Student/StudentInfo/?SubSchoolName=@stuInfoReport.schoolName&EnrollYear=@stuInfoReport.y_inyear&stuState=8">@stuInfoReport.xiuxue<a></th>
+                        }
+                        }
+                    </tr>
+                }
+            }
+
+        </table>
+    }
+}

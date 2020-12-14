@@ -1,0 +1,29 @@
+﻿@using IYun.Common;
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YD_Sts_SubStuTemp>
+@{
+    foreach (var teachPlantemp in Model)
+    {
+        <div class="xx-js">
+            @{
+                if (teachPlantemp.y_name == "")
+                {
+                    <div class="x-js1">&nbsp;&nbsp;</div>
+                }
+                else
+                {
+                    <div class="x-js1">@teachPlantemp.y_name</div>
+                }
+            }
+
+            <div class="td-drop">
+                <span style="padding-left: 30px;"><b>学生姓名：</b>@teachPlantemp.y_name</span>
+                <span style="padding-left: 30px;"><b>考生号：</b>@teachPlantemp.y_examNum</span>           
+                <span style="padding-left: 30px;"><b>身份证：</b>@teachPlantemp.y_cardId</span>
+            </div>
+            <a class="gr_edit" @*href="javascript:;"*@ onclick="StudentInfoGetEdit(this);">展开</a>
+
+        </div>
+                }
+}

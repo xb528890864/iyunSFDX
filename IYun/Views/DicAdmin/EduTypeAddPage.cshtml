@@ -1,0 +1,122 @@
+﻿@using System.Configuration
+@using IYun.Models
+@using IYun.Object
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+        <script type="text/javascript" src="~/Views/SysAdmin/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+        <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    <script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });
+
+    </script>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        <div id="main-tl">
+            <div class="left-t">基础配置</div>
+            <div class="left-c">
+                @{
+                    foreach (var modulePower in modulePowers)
+                    {
+                        if (modulePower.y_url.ToLower() == "/dicadmin/edutype".ToLower())
+                        {
+                            <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                        else
+                        {
+                            <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div id="main-tr">
+            <div class="tjia"><span>添加层次</span><a class="fhui" href="/dicadmin/edutype">返回</a></div>
+            <form action="/dicadmin/edutypeAdd" method="post">
+                <table class="cx-table">
+                    <tr>
+                        <td class="td1">层次名</td>
+                        <td><input type="text" class="cx-inp" id="y_name" ></td>
+                    </tr>
+                    <tr>
+                        <td class="td1">代码</td>
+                        <td><input type="text" class="cx-inp" id="y_eduTypeCode" ></td>
+                    </tr>
+                    <tr>
+                        <td class="td1">&nbsp;</td>
+                        <td><input class="cx-sub" type="button" onclick="save()" value="保存"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+</body>
+
+</html>
+<script type="text/javascript">
+    function save() {
+        var y_name = $("#y_name").val();
+        if (y_name == "") {
+            alert("名称必填");
+            return;
+        }
+
+        var y_eduTypeCode = $("#y_eduTypeCode").val();
+        if (y_eduTypeCode == "") {
+            alert("代码必填");
+            return;
+        }
+
+        $.ajax({
+            type: "post",
+            url: "/DicAdmin/EduTypeAdd",
+            data: {
+                y_name: y_name,
+                y_eduTypeCode: y_eduTypeCode
+            },
+            success: function (data) {
+                if (data == "ok") {
+                    alert("添加成功");
+                    window.location.href = '/DicAdmin/EduType';
+                } else {
+                    alert(data);
+                }
+            },
+            error: function (msg) {
+                alert("未知错误");
+            }
+        });
+    }
+</script>

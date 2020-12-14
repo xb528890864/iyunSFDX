@@ -1,0 +1,173 @@
+﻿@using IYun.Common
+@using IYun.Object
+@using System.Configuration
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YD_Graduate_StudentApply>
+@{
+    var adminroled = ViewBag.admin;
+    var schoolname = ConfigurationManager.AppSettings["SchoolName"];
+}
+<table class="xx-table ydong-tab">
+    <tr>
+        <th style="padding-left: 25px; width: 210px; text-align: left;">函授站</th>
+        @if (schoolname != ComEnum.SchoolName.JXSFDX.ToString())
+        {
+            <th>毕业年份</th>
+        }
+        else
+        {
+            <th>入学年份</th>
+        }
+        <th>函授站提交人数</th>
+        <th>提交时间</th>
+        <th>状态</th>
+        <th>操作</th>
+    </tr>
+    @{
+        foreach (var stu in Model)
+        {
+            <tr>
+                <td style="padding-left: 25px; text-align: left;">@stu.SchoolName</td>
+                <td>@stu.y_inyear</td>
+                <td>@stu.totalcount</td>
+                <td>@stu.y_time.ToString("yyyy-MM-dd")</td>
+                @{
+                    if (stu.y_check == 1)
+                    {
+                        <td>审核通过</td>
+                    }
+                    else if (stu.y_check == 2)
+                    {
+                        <td>审核不通过</td>
+                    }
+                    else
+                    {
+                        <td>待审核</td>
+
+                    }
+                }
+                @{
+                    if (adminroled != 4 && stu.y_check == 0)
+                    {
+                        <td>
+                            <a class="bfont2" target="_blank" href="/Graduate/StuGradCheckDes/@stu.id">查看名单</a>
+                            <a class="bfont2" href="javascript:ApplyGradCheckSome(@stu.id)">审核通过</a>
+                            <a class="bfont2" href="javascript:ApplyGradCheckSomeno(@stu.id)">审核不通过</a>
+                        </td>
+                    }
+                    else if (adminroled != 4 && stu.y_check != 0)
+                    {
+                        <td>
+                            <a class="bfont2" target="_blank" href="/Graduate/StuGradCheckDes/@stu.id">查看名单</a>
+                            <a class="bfont2" href="javascript:RevocationGradCheck(@stu.id)">撤销</a>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <a class="bfont2" target="_blank" href="/Graduate/StuGradCheckDes/@stu.id">查看名单</a>
+                        </td>
+                    }
+                }
+            </tr>
+                    }
+    }
+</table>
+<script>
+    //审核函授站提交名单允许毕业
+    function ApplyGradCheckSome(id) {
+        if (confirm("确认是否允许毕业？")) {
+            $('#ajaxtable').fadeOut('10');
+            $('#loadingDiv').show();
+            $.ajax({
+                type: "post",
+                url: "/Graduate/StuGradInfoCheckSome",
+                data: {
+                    id: id
+                },
+                success: function (data) {
+                    $('#ajaxtable').fadeIn('10');
+                    $('#loadingDiv').hide();
+                    if (data == "ok") {
+                        alert("操作成功");
+                        $("#searchForm").submit();
+                    } else {
+                        alert(data);
+                    }
+                },
+                error: function () {
+                    $('#ajaxtable').fadeIn('10');
+                    $('#loadingDiv').hide();
+                    alert("未知错误");
+                }
+            });
+        }
+    }
+    //审核函授站提交名单不允许毕业
+    function ApplyGradCheckSomeno(id) {
+        if (confirm("确认是否审核？")) {
+            $('#ajaxtable').fadeOut('10');
+            $('#loadingDiv').show();
+            $.ajax({
+                type: "post",
+                url: "/Graduate/StuGradInfoCheckSomeNo",
+                data: {
+                    id: id
+                },
+                success: function (data) {
+                    $('#ajaxtable').fadeIn('10');
+                    $('#loadingDiv').hide();
+
+                    if (data == "ok") {
+                        $('#ajaxtable').fadeIn('10');
+                        $('#loadingDiv').hide();
+                        alert("操作成功");
+                        $("#searchForm").submit();
+                    } else {
+                        alert(data);
+                    }
+                },
+                error: function () {
+                    $('#ajaxtable').fadeIn('10');
+                    $('#loadingDiv').hide();
+                    alert("未知错误");
+                }
+            });
+        }
+    }
+
+    //撤销审核操作失误的名单
+    function RevocationGradCheck(id) {
+        if (confirm("确认是否撤销审核通过名单？")) {
+            $('#ajaxtable').fadeOut('10');
+            $('#loadingDiv').show();
+            $.ajax({
+                type: "post",
+                url: "/Graduate/StuGradInfoRevocationCheck",
+                data: {
+                    id: id
+                },
+                success: function (data) {
+                    $('#ajaxtable').fadeIn('10');
+                    $('#loadingDiv').hide();
+
+                    if (data == "ok") {
+                        $('#ajaxtable').fadeIn('10');
+                        $('#loadingDiv').hide();
+                        alert("操作成功");
+                        $("#searchForm").submit();
+                    } else {
+                        alert(data);
+                    }
+                },
+                error: function () {
+                    $('#ajaxtable').fadeIn('10');
+                    $('#loadingDiv').hide();
+                    alert("未知错误");
+                }
+            });
+        }
+    }
+
+</script>

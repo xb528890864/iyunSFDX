@@ -1,0 +1,22 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YD_Edu_CourseType>
+
+<table class="xx-table ydong-tab">
+    <tr>
+        <th>课程类型</th>
+        <th>课程类型代码</th>
+        <th>操作</th>
+    </tr>
+    @{
+        foreach (var ydSysAdmin in Model)
+        {
+            <tr>
+                <td>@ydSysAdmin.y_name</td>
+                <td>@ydSysAdmin.y_courseTypeCode</td>
+                <td><a class="bfont2" href="/DicAdmin/CourseTypeEditPage/@ydSysAdmin.id">修改</a><a class="bfont2" href="javascript:deleteCourseType(@ydSysAdmin.id)">删除</a></td>
+            </tr>
+        }
+    }
+</table>
+

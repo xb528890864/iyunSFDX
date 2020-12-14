@@ -1,0 +1,19 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YD_Edu_Course>
+
+<table class="xx-table ydong-tab">
+    <tr>
+        <th>课程名称</th>
+        <th>课程代码</th>
+    </tr>
+    @{
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.y_name</td>
+                <td>@item.y_code</td>
+            </tr>
+        }
+    }
+</table>

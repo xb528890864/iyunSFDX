@@ -1,0 +1,111 @@
+﻿@using System.Configuration
+@using IYun.Common
+@using IYun.Models
+@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <script src="~/Content/IYun/js/jquery-1.9.1.min.js"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/bootstrap.js"></script>
+
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        <div id="main-tl">
+            <div class="left-t">新增工具</div>
+            <div class="left-c">
+                @{
+                    foreach (var modulePower in modulePowers)
+                    {
+                        if (modulePower.y_url.ToLower() == "/FileManager/UpLoadFile".ToLower())
+                        {
+                            <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                        else
+                        {
+                            <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div id="main-tr">
+            <div class="right-nav">
+                <div class="tjia"><span>上传文件</span><a class="fhui" href="/FileManager/FileList">返回</a></div>
+                <form id="fileForm">
+                    <table class="cx-table">
+                        <tr>
+                            <td class="td1">文件名</td>
+                            <td><input type="text" class="dl-sel" id="filename" placeholder="文件名" /></td>
+                        </tr>
+                        <tr>
+                            <td class="td1">角色(默认即所有人可见)</td>
+                            <td>
+                                @Html.Action("Role", "Helper")
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td1">&nbsp;</td>
+                            <td><input type="file" id="file" name="file" /></td>
+                        </tr>
+
+                        <tr>
+                            <td class="td1">&nbsp;</td>
+                            <td><input class="cx-sub" type="button" onclick="Upload()" value="上传" /></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+    <script>
+    function Upload() {
+        var filename = $("#filename").val();
+        if (filename == "") {
+            alert("文件名不能为空");
+        }
+        var role = $("#Role").val();
+        var formData = new FormData();
+        formData.append("myfile", document.getElementById('file').files[0]);
+        formData.append("filename", filename);
+        formData.append("role", role);
+        $.ajax({
+            url: "@Url.Action("Upload","FileManager")",
+            type: "post",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                if (data == true) {
+                    alert("上传成功");
+                    window.location.href = "FileManager/FileList";
+                }
+                else {
+                    alert(data);
+                }
+            },
+            error: function (msg) {
+                alert("未知错误");
+            }
+        })
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+#imgTitle {
+FILTER: ALPHA(opacity=70); LEFT: 0px; OVERFLOW: hidden; POSITION: relative; TEXT-ALIGN: left;
+}
+#imgTitle_up {
+LEFT: 0px; HEIGHT: 1px; TEXT-ALIGN: left
+}
+#imgTitle_down {
+LEFT: 0px; TEXT-ALIGN: center; padding-right:5px;
+}
+.imgClass {
+BORDER-RIGHT: #000 0px solid; BORDER-TOP: #000 0px solid; BORDER-LEFT: #000 0px solid; BORDER-BOTTOM: #000 0px solid
+}
+#txtFrom {
+VERTICAL-ALIGN: middle; TEXT-ALIGN: center
+}
+.button {
+PADDING-RIGHT: 4px; PADDING-LEFT: 4px; BACKGROUND: #dbdbdd; MARGIN: 0px; FONT: bold 10px arial; BORDER-LEFT: #fff 1px solid; WIDTH: 16px; HEIGHT: 16px; TEXT-DECORATION: none
+}
+A.button, A.button:link ,A.button:visited,A.button:hover{
+COLOR: #000; TEXT-DECORATION: none
+}
+.buttonDiv {
+BACKGROUND: #000000; FLOAT: left; VERTICAL-ALIGN: middle; WIDTH: 21px; HEIGHT: 1px; TEXT-ALIGN: center
+}
+.trans {
+FILTER: progid:DXImageTransform.Microsoft.Alpha(startX=0, startY=0, finishX=100, finishY=100,style=1,opacity=0,finishOpacity=40); WIDTH: 90px; BACKGROUND-COLOR: #000}

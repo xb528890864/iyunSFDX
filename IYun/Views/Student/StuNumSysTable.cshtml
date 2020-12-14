@@ -1,0 +1,45 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@using System.Configuration
+@using IYun.Common
+@model PagedList<VW_StuInfo>
+    @{
+        var schoolname = ConfigurationManager.AppSettings["SchoolName"];
+    }
+
+<table class="xx-table">
+    <tr>
+        <th style="padding-left: 25px;">入学年份</th>
+        <th>姓名</th>
+        <th>学号</th>
+        <th>考生号</th>
+        <th>函授站</th>
+        <th>层次</th>
+        <th>学习形式</th>
+        <th>专业</th>
+        <th>状态</th>
+    </tr>
+
+    @foreach (VW_StuInfo student in Model)
+    {
+        <tr>
+            <td style="padding-left:25px;">@student.y_inYear</td>
+            <td>@student.y_name</td>
+            <td>@student.y_stuNum</td>
+            <td>@student.y_examNum</td>
+            @if (schoolname == ComEnum.SchoolName.JXLG.ToString())
+            {
+                <td>@student.y_nameabbreviation</td>
+            }
+            else
+            {
+                <td>@student.schoolName</td>
+            }
+            <td>@student.eduTypeName</td>
+            <td>@student.stuTypeName</td>
+            <td>@student.majorLibraryName</td>
+            <td>@student.stuStateName</td>
+            
+        </tr>
+    }
+</table>

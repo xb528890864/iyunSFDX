@@ -1,0 +1,61 @@
+﻿@using System.Configuration
+@using IYun.Common
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YD_Graduate_StudentScore>
+
+<table class="xx-table">
+    <tr>
+        <th style="padding-left:25px; ">通过时间</th>
+        <th>准考证号</th>
+        <th>姓名</th>
+        <th>拼音</th>
+        @*<th>性别</th>*@
+        <th>年级</th>     
+        <th>专业</th>
+        <th>站点</th>
+        <th>身份证号</th>
+        <th>总分</th>
+        <th>主观分</th>       
+        <th>结论</th>
+        <th width="160">操作</th>
+    </tr>
+
+    @foreach (YD_Graduate_StudentScore student in Model)
+    {
+        <tr>
+            <td style="padding-left:25px;">@student.y_adopttime</td>
+            <td>@student.y_admissionNum</td>
+            <td>@student.y_stuname</td>
+            <td>@student.y_namePinyin</td>
+            @*@{
+                if (student.y_sex == 0)
+                {
+                    <td>男</td>
+                }
+                else
+                {
+                    <td>女</td>
+                }
+            }*@
+            <td>@student.y_inYear</td>          
+            <td>@student.YD_Sts_StuInfo.YD_Edu_Major.y_name</td>
+           <td>@student.YD_Sts_StuInfo.YD_Sys_SubSchool.y_name</td>
+            <td>@student.y_cardId</td>
+            <td>@student.y_sumsore</td>
+            <td>@student.y_subjectivitysore</td>
+           
+           @{
+                if (student.y_verdict ==0)
+                {
+                    <td>未通过</td>
+                }
+                else
+                {
+                    <td>通过</td>
+                }
+            }
+            <td><a class="bfont2" href="/Graduate/EditEnglishScore/@student.id">编辑</a><a class="bfont2" href="javascript:delstuEnglishScore(@student.id)">删除</a></td>
+        </tr>
+    }
+</table>

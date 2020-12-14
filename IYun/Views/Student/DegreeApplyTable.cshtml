@@ -1,0 +1,25 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<VW_StuInfo>
+
+<table class="xx-table">
+    <tr>
+        <th style=" padding-left:25px;">学号</th>
+        <th>姓名</th>
+        <th>专业</th>
+        <th>入学年份</th>
+        <th>状态</th>
+        <th width="180">申请&nbsp;&nbsp;&nbsp;<input id="allCheckBox" class="rad cktb" type="checkbox"></th>
+    </tr>
+    @foreach (var student in Model)
+    {
+        <tr>
+            <td style="padding-left:25px;">@student.y_stuNum</td>
+            <td>@student.y_name</td>
+            <td>@student.majorName</td>
+            <td>@student.y_inYear</td>
+            <td>@student.stuStateName</td>
+            <td><input data-id="@student.id" name="applyCheckBox" class="rad cktb mycb" type="checkbox"><a class="bfont2" href="/Student/StuStatusScore/@student.id">学籍表</a><a class="bfont2" href="/Student/StuInfoChangeApply/@student.id">异动</a></td>
+        </tr>
+    }
+</table>

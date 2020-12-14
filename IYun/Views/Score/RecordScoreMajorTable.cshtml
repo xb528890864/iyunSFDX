@@ -1,0 +1,21 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<VW_StuInfo>
+
+<table class="xx-table ydong-tab">
+    <tr>
+        <th>年度</th>
+        <th>专业名称</th>
+        <th>操作</th>
+    </tr>
+    @{
+        foreach (var ydSysAdmin in Model)
+        {
+            <tr>
+                <td>@ViewData["year"]</td>
+                <td>@ydSysAdmin.majorName</td>
+                <td><a class="bfont2" href="/Score/RecordScoreCourse/?year=@ViewData["year"]&subId=@ViewData["subId"]&majorId=@ydSysAdmin.y_majorId">选择科目</a></td>
+            </tr>
+        }
+    }
+</table>

@@ -1,0 +1,276 @@
+﻿@using System.Configuration
+@using IYun.Common
+@using IYun.Models
+@using IYun.Object
+@{
+    Layout = null;
+
+    var student = ViewData["student"] as VW_StuInfo;
+    var strange = ViewBag.strange as VW_Strange;
+    strange = strange ?? new VW_Strange();  //异动信息
+    student = student ?? new VW_StuInfo();
+    var man = (int)SexEnum.Man;
+    var woman = (int)SexEnum.WoMan;
+
+
+    var changetag = "";
+    if (strange.y_strangeType == 1)
+    {
+        var majorid = Convert.ToInt32(strange.y_contentA);
+        changetag = new IYunEntities().YD_Edu_Major.Find(majorid).y_name;
+    }
+    if (strange.y_strangeType == 2)
+    {
+        var schoolid = Convert.ToInt32(strange.y_contentA);
+        changetag = new IYunEntities().YD_Sys_SubSchool.Find(schoolid).y_name;
+    }
+    var changetagB = "";
+    if (strange.y_strangeType == 1)
+    {
+        var majorid = Convert.ToInt32(strange.y_contentB);
+        changetagB = new IYunEntities().YD_Edu_Major.Find(majorid).y_name;
+    }
+    if (strange.y_strangeType == 2)
+    {
+        var schoolid = Convert.ToInt32(strange.y_contentB);
+        changetagB = new IYunEntities().YD_Sys_SubSchool.Find(schoolid).y_name;
+    }
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <scripttype="text/javascript" src="js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    <script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/kindeditor-4.1.10/themes/default/default.css" rel="stylesheet" />
+    <script src="~/Content/kindeditor-4.1.10/kindeditor-min.js"></script>
+    <script src="~/Content/kindeditor-4.1.10/lang/zh_CN.js"></script>
+    <script type="text/javascript">
+        EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });
+    </script>
+    <style>
+        .td1 {
+            width: 170px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        KindEditor.ready(function (K) {
+            var editor = K.editor({
+                allowFileManager: true,
+                uploadJson: '../../Content/kindeditor-4.1.10/asp.net/upload_json.ashx',
+                fileManagerJson: '../../Content/kindeditor-4.1.10/asp.net/file_manager_json.ashx',
+                imageSizeLimit: '10MB',
+                imageUploadLimit: 10
+            });
+            K('#txButton').click(function () {
+                editor.loadPlugin('image', function () {
+                    editor.plugin.imageDialog({
+                        showRemote: false,
+                        imageUrl: $('#y_img').val(),
+                        afterUpload: function (url, data, name) {
+
+                        },
+                        clickFn: function (url) {
+                            $('#y_img').val(url);
+                            $('#imgtx').attr('src', url);
+                            editor.hideDialog();
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+    @Html.Action("Top1", "StudentAccount")
+    <div class="main center">
+            <div id="main-tr">
+                <div class="tjia"><span>个人信息</span></div>
+                <table class="cx-table">
+                    <tr>
+                        <td class="td1">学号</td>
+                        <td>@student.y_stuNum</td>
+                    </tr>
+                    <tr>
+                        <td id="stuid" style="display:none">@student.id </td>
+                        <td class="td1">姓名</td>
+                        <td>
+                            @student.y_name
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1">身份证</td>
+                        <td>@student.y_cardId</td>
+                    </tr>
+                    <tr>
+                        <td class="td1">身份证类型</td>
+                        <td>@student.y_cardType</td>
+                    </tr>
+                    <tr>
+                        <td class="td1">学籍状态</td>
+                        <td>
+                            <text>@student.stuStateName</text>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1">性别</td>
+                        <td>
+                            @Html.Raw(student.y_sex == 1 ? "女" : "男")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1">民族</td>
+                        <td>
+                            @student.nationName
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1">政治面貌</td>
+                        <td>
+                            @student.politicsName
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1">出生日期</td>
+                        <td>@student.y_birthday.ToString("yyyy-MM-dd")</td>
+                    </tr>
+                    <tr>
+                        <td class="td1">电话</td>
+                        <td>@student.y_tel</td>
+                    </tr>
+                    <tr>
+                        <td class="td1">邮箱</td>
+                        <td>@student.y_mail</td>
+                    </tr>
+                    <tr>
+                        <td class="td1">住址</td>
+                        <td>@student.y_address</td>
+                    </tr>
+                    @*<tr>
+                        <td class="td1">一寸照</td>
+                        <td>
+                            @{
+                                var img = string.IsNullOrWhiteSpace(student.y_img) ? "../../Content/manage/images/toux.jpg" : student.y_img;
+                            }
+                            @{
+                                if (ConfigurationManager.AppSettings["SchoolName"] == ComEnum.SchoolName.JXSFDX.ToString())
+                                {
+                                    <img id="imgtx" class="toux2" src="@KeyValue.UpdateStudentImg(student.y_examNum)" />
+                                    <input id="txButton" style="margin-top: 50px;" type="button" value="上传照片" />
+                                    <input type="hidden" id="y_img" name="y_img" value="@student.y_img" />
+                                }
+                                else
+                                {
+                                    <img id="imgtx" class="toux2" src="@img" />
+                                    <input id="txButton" style="margin-top: 50px;" type="button" value="上传照片" />
+                                    <input type="hidden" id="y_img" name="y_img" value="@student.y_img" />
+                                }
+                            }
+                            <input id="txSave" onclick="saveimg()" style="margin-top: 50px;" type="button" value="保存" />
+                        </td>
+                    </tr>*@
+                    <tr>
+                        <td class="td1">考号</td>
+                        <td>@student.y_examNum</td>
+                    </tr>
+                    <tr>
+                        <td class="td1">学习中心</td>
+                        <td>
+                            @student.schoolName
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1">入学年份</td>
+                        <td>
+                            @student.y_inYear
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1">专业</td>
+                        <td>
+                            @student.majorName
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1">学籍变动</td>
+                        @{
+                            if (strange != null)
+                            {
+                                <td colspan="9">
+                                    @if (strange.y_strangeType == 1)
+                                    {
+                                        <text>&nbsp;&nbsp;&nbsp;转出专业：</text>
+                                        @changetagB<text>&nbsp;&nbsp;&nbsp; 转入专业：</text>
+                                        @changetag
+                                    }
+                                    @if (strange.y_strangeType == 2)
+                                    {
+                                        <text>&nbsp;&nbsp;&nbsp;转出函授站：</text>
+                                        @changetagB<text>&nbsp;&nbsp;&nbsp; 转入函授站：</text>
+                                        @changetag
+                                    }
+                                </td>
+                            }
+                            else
+                            {
+                                <td colspan="9">&nbsp;</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td class="td1">&nbsp;</td>
+                        @*<td><a class="cx-sub" href="/StudentAccount/EditStudent/@student.id">编辑</a></td>*@
+                    </tr>
+                </table>
+            </div>
+    </div>
+    <script>
+        function saveimg() {
+            var img = $('#imgtx')[0].src;
+            var stuid = $('#stuid').eq(0).text();
+
+            $.ajax({
+                type: "post",
+                url: "/Student/SaveStudentImg",
+                data: {
+                    img: img,
+                    stuid: stuid
+                },
+                success: function (data) {
+                    if (data == "ok") {
+                        alert("保存成功");
+                    }
+                },
+                error: function () {
+
+                    alert("未知错误");
+                }
+            });
+        }
+    </script>
+    @Html.Action("Foot", "AdminBase")
+</body >
+</html >

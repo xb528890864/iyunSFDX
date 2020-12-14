@@ -1,0 +1,108 @@
+﻿@using System.Configuration
+@using IYun.Models
+@{
+    Layout = null;
+    var power = (YD_Sys_Power)ViewBag.power;
+    const int able = (int)PowerState.Able;
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>power</title>
+    <link href="~/Content/EasyUI-1.4/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI-1.4/themes/icon.css" rel="stylesheet" />
+    <script src="~/Content/EasyUI-1.4/jquery.min.js"></script>
+    <link href="~/Content/EasyUI-1.4/demo/demo.css" rel="stylesheet" />
+    <script src="~/Content/EasyUI-1.4/jquery.easyui.min.js"></script>
+    <script src="~/Content/EasyUI-1.4/locale/easyui-lang-zh_CN.js"></script>
+    <style>
+        .panel {
+            overflow: visible;
+        }
+
+        .panel-header, .panel-body {
+            width: auto !important;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            overflow: hidden;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <div style="height: 94%;padding: 10px;">
+        <table id="dg"></table>
+    </div>
+    <script type="text/javascript">
+        //消息提醒框
+        function message(mes) {
+            $.messager.show({
+                title: '消息',
+                msg: mes,
+                timeout: 5000,
+                showType: 'slide'
+            });
+        }
+    </script>
+    <script>
+        $('#dg').datagrid({
+            url: '/SysAdmin/RoleListPage',
+            method: 'post',
+            rownumbers: true,
+            title: "权限管理",
+            fit: true,
+            pagination: true,
+            pageSize: 20,
+            loadFilter: function (data) {
+                if (data.message) {
+                    if (data.message == "未登录") {
+                        parent.window.openLoginDiv();
+                    } else {
+                        message(data.message);
+                    }
+                } else {
+                    return data;
+                }
+            },
+            pageList: [5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000],
+            remoteSort: true,
+            multiSort: true,
+            columns: [[
+                {
+                    field: 'ck', checkbox: true, width: 100
+                },
+                {
+                    field: 'y_roleName', title: '角色名', width: 100, sortable: true
+                },
+                { field: 'y_siteName', title: '所属站点', width: 100, sortable: true },
+                {
+                    field: 'action', title: '操作', width: 200, align: 'center',
+                    formatter: function (value, row, index) {
+                        var a = "";
+                        if ("@power.y_update" == "@able") {
+                            a = '<a href="javascript:jumpRight(\'/SysAdmin/PowerAdmin/?id=' + row.id + '\',\'角色具体权限管理*\')"> 权限管理</a>';
+                        }
+                        return a;
+
+                    }
+                }
+            ]]
+        });
+
+        function jumpRight(url, moduleName) {
+            parent.window.addTabs(url, moduleName);
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,733 @@
+﻿@{
+    Layout = null;
+}
+@using System.Configuration
+@using IYun.Models
+@using IYun.Common
+@using IYun.Object
+@model List<IYun.Controllers.ControllerObject.ScoreListDto>
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+
+    var year = Convert.ToInt32(ViewData["year"]);
+    var school = Convert.ToInt32(ViewData["school"]);
+    var major = Convert.ToInt32(ViewData["major"]);
+    var term = Convert.ToInt32(ViewData["term"]);
+    var schoolname = ViewBag.schoolname;
+    var majorname = ViewBag.majorname;
+
+    var role = ViewBag.role;
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <script type="text/javascript" src="js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    <script src="~/Content/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="~/Content/manage/ComboboxBind.js?v=1"></script>
+    <script src="~/Content/EasyUI/easyloader.js"></script>
+    <link href="~/Content/EasyUI/combo.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/combobox.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/panel.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/textbox.css" rel="stylesheet" />
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+        });
+
+        function myPrint(obj) {
+            var newWindow = window.open("/Score/ClassScoreListPrint", "_blank");//打印窗口要换成页面的url
+            $("#prev").hide();
+            var docStr = obj.innerHTML;
+            newWindow.document.write(docStr);
+            newWindow.document.close();
+            newWindow.print();
+            newWindow.close();
+            $("#prev").show();
+        }
+
+        function yanzheng() {
+            if ($('#EnrollYear2').val() == 0) {
+                alert("请选择入学年份");
+                return false;
+            }
+            if ($('#SubSchool').combobox('getValue') == 0) {
+                alert("请选择函授站");
+                return false;
+            }
+            if ($('#Major').combobox('getValue') == 0) {
+                alert("请选择专业");
+                return false;
+            }
+            return true;
+        }
+        function allScoreOK() {
+            if (yanzheng) {
+                var rows = $('#StuForm').serializeObject();
+                var ids = "";
+                if (!Array.isArray(rows.id)) {
+                    ids = rows.id;
+                }
+                else {
+                    for (var i = 0; i < rows.id.length; i++) {
+                        ids += rows.id[i];
+                        if (i + 1 < rows.id.length) {
+                            ids += ",";
+                        }
+                    }
+                }
+                $.ajax({
+                    url: '@Url.Action("ClassScoreOk", "TeaPlan")',
+                    data: { Ids: ids },
+                        type: 'post',
+                        dataType: 'json',
+                        success: function(data) {
+                            if (data.status == "ok") {
+                                alert(data.msg);
+                            } else {
+                               alert(data.msg);
+                            }
+                        }
+                    });
+            }
+        }
+        function allRollback() {
+            if (yanzheng) {
+                var rows = $('#StuForm').serializeObject();
+                var ids = "";
+                if (!Array.isArray(rows.id)) {
+                    ids = rows.id;
+                }
+                else {
+                    for (var i = 0; i < rows.id.length; i++) {
+                        ids += rows.id[i];
+                        if (i + 1 < rows.id.length) {
+                            ids += ",";
+                        }
+                    }
+                }
+
+                 $.ajax({
+                        url: '@Url.Action("ClassAllRollback", "TeaPlan")',
+                        data: { Ids: ids },
+                        type: 'post',
+                        dataType: 'json',
+                        success: function(data) {
+                            if (data.status == "ok") {
+                                alert(data.msg);
+                            } else {
+                               alert(data.msg);
+                            }
+                        }
+                    });
+            }
+        }
+        function scoreOk(id) {
+            if (yanzheng) {
+                 $.ajax({
+                    url: '@Url.Action("ScoreOk", "TeaPlan")',
+                    data: { Id: id },
+                    type: 'post',
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.status == "ok") {
+                            alert(data.msg);
+                            location.reload();
+                        } else {
+                            alert(data.msg);
+                        }
+                    }
+                });
+            }
+        }
+
+        function scoreBack(id) {
+            if (yanzheng) {
+                 $.ajax({
+                    url: '@Url.Action("ScoreBack", "TeaPlan")',
+                    data: {id:id},
+                    type: 'post',
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.status == "ok") {
+                            alert(data.msg);
+                            location.reload();
+                        } else {
+                            alert(data.msg);
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+    <style>
+        .xx-table td {
+            border: 1px solid #e9e9e9;
+        }
+
+        thead tr td {
+            width: 50px;
+        }
+        /*.inputscore {
+            width:30px;
+            border:0px;
+        }*/
+    </style>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        <div id="main-tl">
+            <div class="left-t">成绩管理</div>
+            <div class="left-c">
+                @{
+                    foreach (var modulePower in modulePowers)
+                    {
+                        if (modulePower.y_url.ToLower() == "/Score/ClassScoreList".ToLower())
+                        {
+                            <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                        else
+                        {
+                            <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div id="main-tr" style="overflow-x: scroll;">
+            <form action="@Url.Action("ClassScoreList", "Score")" id="searchForm" method="post">
+                <div class="cli">
+                    <div class="zc-inn">
+                        <span style="margin-left: 20px;">年份</span>
+                        @Html.Action("EnrollYear2", "Helper", new HelperParameterM { style = "width:200px;font-size: 18px;", index = year })
+                    </div>
+                    <div class="zc-inn">
+                        <span style="margin-left: 20px;">函授站</span>
+                        @Html.Action("SubSchool", "Helper", new HelperParameterM { className = "easyui-combobox" })
+                    </div>
+                    <div class="zc-inn">
+                        <span style="margin-left: 20px;">专业</span>
+                        @Html.Action("Major", "Helper", new HelperParameterM { className = "easyui-combobox" })
+                    </div>
+                    <div class="zc-inn">
+                        <span style="margin-left: 20px;">学期</span>
+                        <select class="dl-sel" id="term" name="term" style="width:100px;font-size: 18px;">
+                            <option value="0">全部</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="cli">
+                    <div class="zc-head">
+                        <a class="cx-sub" style="margin-top: 10px; height: 32px; line-height: 30px; float: right;"
+                           onclick="printNotice()" id="prev">数据打印</a>
+                        <input style="margin-top: 10px; height: 32px; line-height: 30px; float: right; width: 48px;" class="cx-sub" type="button" onclick="exceldown()" value="导出" />
+                        <input style="margin-top: 10px; height: 32px; line-height: 30px; float: right; width: 48px;" class="cx-sub" type="submit" onclick="return yanzheng()" value="查找" />
+                        @if (role < 4)
+                        {
+                            <input style="margin-top: 10px; height: 32px; line-height: 30px; float: right; width: 100px;" class="cx-sub" type="submit" onclick="return allRollback()" value="审核不通过" />
+                            <input style="margin-top: 10px; height: 32px; line-height: 30px; float: right; width: 100px;" class="cx-sub" type="submit" onclick="return allScoreOK()" value="审核通过" />
+                        }
+                    </div>
+                </div>
+            </form>
+
+            <form action="/Score/ClassScoreListPrint/" style="display: none" id="searForm" target="_blank" method="post">
+                <input type="hidden" id="MajorLibraryspl" name="Major" value="@major" />
+                <input type="hidden" id="SubSchoolspl" name="SubSchool" value="@school" />
+                <input type="hidden" id="EnrollYear2spl" name="EnrollYear2" value="@year" />
+                <input type="hidden" id="termspl" name="term2" value="@term" />
+            </form>
+
+            @if (Model.Any() && Model.All(u => u.CourseId != null))
+            {
+
+                var termlist = Model.GroupBy(u => new
+                {
+                    u.CourseId,
+                    u.CourseName,
+                    u.Team
+
+                }).Select(u => u.Key).GroupBy(u => u.Team).OrderBy(u => u.Key).ToList();
+
+                var stulist = Model.OrderBy(u => u.StuId).GroupBy(u => new
+                {
+                    u.StuId,
+                    u.StuName,
+                    u.stunum,
+                    u.ScoreOk
+
+                }).ToList();
+                <script>
+                    console.log('@termlist.Max(e => e.Key)');
+                </script>
+
+                <div id="print">
+
+                    <h2 style="text-align:center;font-size:21px">@year &nbsp;&nbsp;  @schoolname &nbsp;&nbsp;  @majorname &nbsp;&nbsp; 班级成绩单</h2>
+                    <p style="text-align:center; margin-top:10px;font-size:21px"> 总人数：@stulist.Count &nbsp;&nbsp; 制表时间：@DateTime.Now.ToString()</p>
+                    <form id="StuForm">
+
+                        <table class="xx-table ydong-tab" style="border-collapse: collapse;border-spacing: 0; border-color: grey;display: table; text-align:center;font-size:20px;">
+                            <thead>
+                                @{
+                                    var index = 0;
+                                }
+                                <tr style="border:1px dashed #808080">
+                                    <td rowspan="2" style="border: 1px solid #e9e9e9;line-height: 24px;">序号</td>
+                                    @if (ConfigurationManager.AppSettings["SchoolName"].ToString() == ComEnum.SchoolName.JXSFDX.ToString() && (role == 1 || role == 3))
+                                    {
+                                        <td rowspan="2" style="border: 1px solid #e9e9e9;line-height: 24px;"><input onclick="selectAll()" type="checkbox" value="1" id="All" /> 全选</td>
+                                        @*<td rowspan="2" style="border: 1px solid #e9e9e9;line-height: 24px;">操作</td>*@
+                                        <td rowspan="2" style="border: 1px solid #e9e9e9;line-height: 24px;">是否合格</td>
+                                        <td rowspan="2" style="border: 1px solid #e9e9e9;line-height: 24px;">审核状态</td>
+                                    }
+                                    <td rowspan="2" style="border: 1px solid #e9e9e9;line-height: 24px;">学号</td>
+                                    <td rowspan="2" style="width:80px;border: 1px solid #e9e9e9;line-height: 24px;">姓名</td>
+                                    @foreach (var item in termlist)
+                                    {
+                                        if (item.Key == 1)
+                                        {
+                                            <td colspan="@item.Count()" style="width:80px;border: 1px solid #e9e9e9;line-height: 24px;"> 第一学期</td>
+                                        }
+                                        if (item.Key == 2)
+                                        {
+                                            <td colspan="@item.Count()" style="width:80px;border: 1px solid #e9e9e9;line-height: 24px;"> 第二学期</td>
+                                        }
+                                        if (item.Key == 3)
+                                        {
+                                            <td colspan="@item.Count()" style="width:80px;border: 1px solid #e9e9e9;line-height: 24px;"> 第三学期</td>
+                                        }
+                                        if (item.Key == 4)
+                                        {
+                                            <td colspan="@item.Count()" style="width:80px;border: 1px solid #e9e9e9;line-height: 24px;"> 第四学期</td>
+                                        }
+                                        if (item.Key == 5)
+                                        {
+                                            <td colspan="@item.Count()" style="width:80px;border: 1px solid #e9e9e9;line-height: 24px;"> 第五学期</td>
+                                        }
+                                        if (item.Key == 6)
+                                        {
+                                            <td colspan="@item.Count()" style="width:80px;border: 1px solid #e9e9e9;line-height: 24px;"> 第六学期</td>
+                                        }
+                                        if (item.Key == 7)
+                                        {
+                                            <td colspan="@item.Count()" style="width:80px;border: 1px solid #e9e9e9;line-height: 24px;"> 第七学期</td>
+                                        }
+                                        if (item.Key == 8)
+                                        {
+                                            <td colspan="@item.Count()" style="width:80px;border: 1px solid #e9e9e9;line-height: 24px;"> 第八学期</td>
+                                        }
+                                        if (item.Key == 9)
+                                        {
+                                            <td colspan="@item.Count()" style="width:80px;border: 1px solid #e9e9e9;line-height: 24px;"> 第九学期</td>
+                                        }
+
+                                        if (item.Key == 10)
+                                        {
+                                            <td colspan="@item.Count()" style="width:80px;border: 1px solid #e9e9e9;line-height: 24px;"> 第十学期</td>
+                                        }
+
+                                    }
+                                </tr>
+
+                                <tr style="border:1px dashed #808080">
+                                    @foreach (var item in termlist)
+                                    {
+                                        foreach (var iaa in item.ToList())
+                                        {
+                                            <td style="border: 1px solid #e9e9e9;line-height: 24px;">@iaa.CourseName</td>
+                                        }
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var stu in stulist)
+                                {
+
+                                <tr style="border:1px dashed #808080">
+                                    <td style="border: 1px solid #e9e9e9;line-height: 24px;">@{Write(index + 1);}</td>
+                                    @if (ConfigurationManager.AppSettings["SchoolName"].ToString() == ComEnum.SchoolName.JXSFDX.ToString() && (role == 1 || role == 3))
+                                    {
+                                        <td><input name="id" type="checkbox" value="@stu.Key.StuId" /></td>
+
+                                        bool isScorePass = true;
+                                        bool haveDistinct = false;
+                                        foreach (var item in termlist)
+                                        {
+                                            foreach (var iaa in item.ToList())
+                                            {
+
+                                                var score = stu.First(u => u.Team == iaa.Team && u.CourseId == iaa.CourseId);
+
+                                                if (score.ScoreId != null)
+                                                {
+                                                    if (score.TotalScore >= 100 || score.TotalScore < 60)
+                                                    {
+
+                                                        isScorePass = false;
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    isScorePass = false;
+                                                }
+                                            }
+                                        }
+                                        //获得成绩去重后的成绩项数，然后和成绩项数判断，如果不同即为有重复
+                                        for (int i = 1; i < termlist.Max(e => e.Key); i++)
+                                        {
+
+                                            IEnumerable<decimal> stuScores = stu.Where(e => e.TotalScore != (decimal)0 && e.Team == i).Select(e => e.TotalScore);
+                                            int scorePassCount = stuScores.Distinct().Count();
+                                            if (stuScores.Count() - scorePassCount > 2)
+                                            {
+                                                haveDistinct = true;
+                                                break;
+                                            }
+                                        }
+                                        if (haveDistinct)
+                                        {
+                                            <td style="color: red;border: 1px solid #e9e9e9;line-height: 24px;">成绩雷同</td>
+                                        }
+                                        else
+                                        {
+                                            if (isScorePass == true)
+                                            {
+                                                <td style="border: 1px solid #e9e9e9;line-height: 24px;">合格</td>
+                                            }
+                                            else
+                                            {
+                                                <td style="color: red;border: 1px solid #e9e9e9;line-height: 24px;">
+                                                    不合格
+                                                </td>
+                                            }
+                                        }
+
+                                        <td style="border: 1px solid #e9e9e9;line-height: 24px;">@stu.Key.ScoreOk </td>
+                                        @*if (stu.Key.ScoreOk == "通过")
+            {
+                <td><text>已通过</text></td>
+            }
+            else
+            {
+                <td><a href="javascript:" style="color:blue" onclick="return scoreOk(@stu.Key.StuId)">审核通过</a></td>
+            }
+            <td><a href="javascript:" style="color:blue" onclick="return scoreBack(@stu.Key.StuId)">撤销</a></td>*@
+                                    }
+
+                                    <td style="border: 1px solid #e9e9e9;line-height: 24px;">@stu.Key.stunum</td>
+                                    <td style="border: 1px solid #e9e9e9;line-height: 24px;">@stu.Key.StuName</td>
+                                    @foreach (var item in termlist)
+                                    {
+                                        foreach (var iaa in item.ToList())
+                                        {
+
+                                            var score = stu.First(u => u.Team == iaa.Team && u.CourseId == iaa.CourseId);
+                                            @*if (score.HasPermission)
+                {
+                    if (score.ScoreId != null)
+                    {
+                        if (score.TotalScore >= 100 || score.TotalScore < 60)
+                        {
+                             <td><input style="color: red;" class="inputscore" value="@S(score.TotalScore)"/></td>
+                        }
+                        else
+                        {
+                            <td><input class="inputscore" value="@S(score.TotalScore)"/></td>
+                        }
+                    }
+                    else
+                    {
+                        <td><input style="color:red;" class="inputscore" value="0"/></td>
+                    }
+                }
+                else
+                {*@
+                                            if (score.ScoreId != null)
+                                            {
+                                                //((iaa.CourseName.Contains("毕业设计") || iaa.CourseName.Contains("毕业论文") || iaa.CourseName.Contains("毕业实习")) && score.TotalScore >= 90)
+                                                if (ConfigurationManager.AppSettings["SchoolName"].ToString() == ComEnum.SchoolName.ZYYDX.ToString())
+                                                {
+                                                    if (score.TotalScore > 100 || score.TotalScore < 59)
+                                                    {
+
+                                                        <td style="color: red;border: 1px solid #e9e9e9;line-height: 24px;">@C(score.TotalScore, iaa.CourseName)</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td style="border: 1px solid #e9e9e9;line-height: 24px;">@C(score.TotalScore, iaa.CourseName)</td>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    if (score.TotalScore >= 100 || score.TotalScore < 60)
+                                                    {
+                                                        if (ConfigurationManager.AppSettings["SchoolName"].ToString() == ComEnum.SchoolName.JXLG.ToString())
+                                                        {
+                                <td style="border: 1px solid #e9e9e9;line-height: 24px;">@C(score.TotalScore, iaa.CourseName)</td>
+                                                        }
+                                                        else
+                                                        {
+                                <td style="color: red;border: 1px solid #e9e9e9;line-height: 24px;">@C(score.TotalScore, iaa.CourseName)</td>
+                                                        }
+
+                                                    }
+                                                    else
+                                                    {
+                                <td style="border: 1px solid #e9e9e9;line-height: 24px;">@C(score.TotalScore, iaa.CourseName)</td>
+                                                    }
+                                                }
+
+                                            }
+                                            else
+                                            {
+                                                <td style="color: red;border: 1px solid #e9e9e9;line-height: 24px;">0</td>
+                                            }
+                                        }
+                                    }
+                                </tr>
+                                    index++;
+                                }
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            }
+            else
+            {
+                if (school != 0 && major != 0 && year != 0)
+                {
+                    <div style="position: relative; top: 10px; font-size: 35px; color: red; text-align: center;">未找到教学计划</div>
+                }
+
+            }
+
+
+
+
+        </div>
+    </div>
+    <script>
+            $(document).ready(function () {
+                $("#uploadsub").click(function () {
+                    $(".show-c").css('display', 'none');
+                    $(".upload").click(function () {
+                        $(this).parents(".nava1").find(".show-bg").stop().fadeTo(500, 1);
+                        $(this).parents(".nava1").find(".show-c").css("display", "block");
+                    });
+                    $(".close").click(function () {
+                        $(this).parents(".nava1").find(".show-bg").css('display', 'none');
+                        $(this).parents(".nava1").find(".show-c").css("display", "none");
+                    });
+                });
+
+                if ($('#EnrollYear2').find("option").eq(0).val() == 0) {
+                    $('#EnrollYear2').find("option").eq(0).remove();  //除去年度中的全部
+                }
+
+                $('#term').val('@term');
+
+                @if (term == 0)
+                {
+                    @:$('.xx-table.ydong-tab').css("width","1500px");
+                }
+            });
+         function printNotice() {
+            $('#Majorspl').val($('#Major').combobox('getValue'));
+            $('#EnrollYear2spl').val($('#EnrollYear2').val());
+            $('#SubSchoolspl').val($('#SubSchool').combobox('getValue'));
+            $("#termspl").val($('#term').val());
+            //$("#searForm").attr({ target: "_blank", action: "/Student/NewPrintNotice" });
+            $("#searForm").submit();
+        }
+         function yearchangeComple2() {
+                SearchSubschool();
+            }
+
+            function schoolchangeComple() {
+                SearchMajor();
+        }
+
+
+            function SearchSubschool() {
+                var year = $('#EnrollYear2').val();
+                $('#SubSchool').combobox("disable");
+                $.ajax({
+                    async: false,
+                    url: '@Url.Action("GetSchoolByYear_Stu", "Helper")',
+                    data:
+                    {
+                        year: year
+                    },
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (data) {
+                        LoadCombobox('#SubSchool', data, 'y_subSchoolId', 'schoolName');
+                    },
+                    error: function () {
+                        $('#SubSchool').combobox("enable");
+                    }
+                });
+            }
+
+            function SearchMajor() {
+                var schoolId = $('#SubSchool').combobox('getValue');
+                var year = $('#EnrollYear2').val();
+
+                $('#Major').combobox("disable");
+                $.ajax({
+                    async: false,
+                    url: '@Url.Action("GetMajor_Stu", "Helper")',
+                    data:
+                    {
+                        schoolId: schoolId,
+                        year: year
+                    },
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (data) {
+                        LoadCombobox('#Major',data,'id','majorName');
+                    },
+                    error: function () {
+                        $('#Major').combobox("enable");
+                    }
+                });
+            }
+
+            $(document).ready(function () {
+                //设置面板长度
+                $('select.easyui-combobox').attr("panelHeight", "400");
+                //设置面板宽度
+                $('select.easyui-combobox').css("width", "250px");
+
+                easyloader.css = false;
+
+                easyloader.load('combobox', function () { // 加载指定模块
+                    $('select.easyui-combobox').combobox({
+                        onHidePanel: function () {
+                            if (isNaN($(this).combobox('getValue'))) {
+                                var $this = $(this);
+
+                                var valueField = $this.combobox('options').valueField;
+                                var textField = $this.combobox('options').textField;
+
+                                var text = $this.combobox('getValue');
+                                var data = $this.combobox('getData');
+
+                                $.each(data, function (i, n) {
+                                    if (eval('n.' + textField).indexOf(text) >= 0) {
+                                        $this.combobox('setValue', eval('n.' + valueField));
+                                        return false;
+                                    }
+                                });
+
+                                if (isNaN($(this).combobox('getValue'))) {
+                                    $this.combobox('setValue', 0);
+                                }
+
+                            }
+                        }
+                    });
+
+                    $(".combo").click(function() {
+                        if ($(this).prev().combobox("panel").is(":visible")) {
+                            //$(this).prev().combobox("hidePanel");
+                        } else {
+                            $(this).prev().combobox("showPanel");
+                        }
+                    });
+
+                    //注册联动
+                    $('#SubSchool').combobox({
+                        onChange: function () {
+                            if (!isNaN($(this).combobox('getValue'))) {
+                                SearchMajor();
+                            }
+                        }
+                    });
+
+                    $('#EnrollYear2').combobox({
+                        onChange: function () {
+                            if (!isNaN($(this).combobox('getValue'))) {
+                                SearchSubschool();
+                            }
+                        }
+                    });
+                });
+
+                easyloader.onLoad = function (name){
+                    if (name.length == 1 &&name[0] == "combobox") {
+
+                        //赋初始值 (赋值时会触发onchange事件)
+                        $('#SubSchool').combobox('setValue', @school);
+                        $('#Major').combobox('setValue', @major);
+                    }
+                }
+            });
+            function exceldown() {
+                if (yanzheng()) {
+                    $.ajax({
+                        url: '@Url.Action("ClassScoreDown", "TeaPlan")',
+                        data: $('#searchForm').serializeObject(),
+                        type: 'post',
+                        dataType: 'json',
+                        success: function(data) {
+                            if (data.IsOk) {
+                                location.href = data.Message;
+                                //window.open(data.Message);
+                            } else {
+                               alert(data.Message);
+                            }
+                        }
+                    });
+                }
+            }
+
+
+        function selectAll() {
+            var a = $('#All').prop("checked");
+            if ($('#All').prop("checked")) {
+                $("input[type='checkbox']").prop("checked", true);
+            } else {
+                $("input[type='checkbox']").prop("checked",false);
+            }
+        }
+    </script>
+    @Html.Action("Foot", "AdminBase")
+</body>
+</html>

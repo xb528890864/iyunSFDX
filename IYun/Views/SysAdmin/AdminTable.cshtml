@@ -1,0 +1,30 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<VW_Admin>
+
+<table class="xx-table ydong-tab">
+    <tr>
+        <th>登录名</th>
+        <th>角色名</th>
+        <th>姓名</th>
+        <th>手机</th>
+        <th>操作</th>
+    </tr>
+    @{
+        foreach (var ydSysAdmin in Model)
+        {
+            <tr>
+                <td>@ydSysAdmin.y_adminName</td>
+                <td>@ydSysAdmin.y_roleName</td>
+                <td>@ydSysAdmin.y_realName</td>
+                <td>@ydSysAdmin.y_phone</td>
+                <td><a class="bfont2" href="/SysAdmin/AdminSubLinkPage/?adminId=@ydSysAdmin.id">函授站</a>
+                    <a class="bfont2" href="/SysAdmin/AdminCourseLinkPage/?adminId=@ydSysAdmin.id">课程</a>
+                    @*<a class="bfont2" href="/SysAdmin/AdminMajorLinkPage/?adminId=@ydSysAdmin.id">专业</a>*@
+                    <a class="bfont2" href="/SysAdmin/AdminEditPage/@ydSysAdmin.id">修改</a>
+                <a class="bfont2" href="javascript:deleteAdmin(@ydSysAdmin.id)">删除</a></td>
+            </tr>
+        }
+    }
+</table>
+

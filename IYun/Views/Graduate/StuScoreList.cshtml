@@ -1,0 +1,163 @@
+﻿@{
+    Layout = null;
+}
+@using System.Configuration
+@using IYun.Controllers.ControllerObject
+@using IYun.Models
+@using IYun.Common
+@model List<ScoreStatistics_Course>
+@{
+    var stu = ViewBag.stu as YD_Sts_StuInfo;
+    stu = stu ?? new YD_Sts_StuInfo();
+    var adminrole = ViewBag.adminrole;
+
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <script src="~/Content/js/jquery-1.9.1.min.js"></script>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <script type="text/javascript" src="~/Content/manage/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    <style>
+        .xx-table td {
+            border: 1px solid black;
+        }
+
+        .dc-t {
+            color: #333333;
+            font-size: 24px;
+            text-align: center;
+            margin-top: 35px;
+            line-height: 26px;
+        }
+
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        <div id="main-tl">
+            <div class="left-t">毕业管理</div>
+            <div class="left-c">
+                @{
+                    foreach (var modulePower in modulePowers)
+                    {
+                        if (modulePower.y_url.ToLower() == "/Graduate/StudentGradInfo".ToLower())
+                        {
+                            <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                        else
+                        {
+                            <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+
+        <div id="main-tr">
+            @*<a class="fhui" href="#" style="margin-right: 10px; margin-top: 10px;" onclick="history.go(-1)">返回</a>*@
+            <div>
+
+                <div class="dc-t" style="text-align: center;">
+                    @stu.y_inYear @stu.YD_Edu_Major.y_name @stu.YD_Sys_SubSchool.y_name @stu.y_name
+                    @if (ConfigurationManager.AppSettings["SchoolName"] == ComEnum.SchoolName.JXSFDX.ToString()&& adminrole <4)
+                    {
+                        if (stu.y_scoreOk == 1)
+                        {
+
+                            <input onclick="return btnback(@stu.id)" style="margin-top: 10px; height: 32px; line-height: 30px; float: right" id="scoreNo_btn" class="cx-sub" type="button" value="撤回审核" />
+                        }
+                        else
+                        {
+                            <input onclick="return btnOk(@stu.id)" style="margin-top: 10px; height: 32px; line-height: 30px; float: right" id="scoreOk_btn" class="cx-sub" type="button" value="审核通过" />
+                        }
+                    }
+                </div>
+                @if (Model.Count > 0)
+                {
+                    <table class="xx-table ydong-tab" style="width: 60%; min-width: 800px;" align="center">
+                        <tr>
+                            <td>学期</td>
+                            <td>课程</td>
+                            <td>总分</td>
+                        </tr>
+
+                        @foreach (ScoreStatistics_Course item in Model)
+                        {
+                            <tr>
+                                <td>@item.Term</td>
+                                <td>@item.CourseName</td>
+                                @if (!item.TotalScore.HasValue)
+                                {
+
+                                    <td class="red">0</td>
+                                }
+                                else if (item.TotalScore.Value < 60 || item.TotalScore.Value == 100)
+                                {
+                                    <td class="red">@S(item.TotalScore.Value)</td>
+                                }
+                                else
+                                {
+                                    <td>@S(item.TotalScore.Value)</td>
+                                }
+                            </tr>
+                        }
+
+                    </table>
+                }
+                else
+                {
+                    <div style="position:relative; top:10px;font-size: 35px; color: red; text-align: center;">该学生没有教学计划</div>
+
+                }
+            </div>
+
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+</body>
+</html>
+<script>
+    function btnOk(id) {
+        $.ajax({
+            url: "/Teaplan/ScoreOk/" + id,
+            type:"post",
+            success: function (data) {
+                if (data.status == "ok") {
+                    alert(data.msg);
+                    location.reload();
+                }
+            }
+        });
+    }
+    function btnback(id) {
+        $.ajax({
+            url: "/Teaplan/ScoreBack/" + id,
+            type:"post",
+            success: function (data) {
+                if (data.status == "ok") {
+                    alert(data.msg);
+                    location.reload();
+                }
+            }
+        });
+    }
+</script>

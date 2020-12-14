@@ -1,0 +1,153 @@
+﻿@using System.Configuration
+@using IYun.Common
+@using IYun.Models
+@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@model PagedList<VW_StuInfo>
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+    var man = (int)SexEnum.Man;
+    var woman = (int)SexEnum.WoMan;
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <script type="text/javascript" src="~/Content/manage/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    @*<script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>*@
+    <script src="~/Content/IYun/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="~/Scripts/MvcPager.js"></script>
+    <link href="~/Content/kindeditor-4.1.10/themes/default/default.css" rel="stylesheet" />
+    <script src="~/Content/kindeditor-4.1.10/kindeditor-min.js"></script>
+    <script src="~/Content/kindeditor-4.1.10/lang/zh_CN.js"></script>
+    <script src="~/Content/manage/ComboboxBind.js"></script>
+    <link href="~/Content/IYun/style/jquery.editable-select.min.css" rel="stylesheet" />
+    <script src="~/Content/IYun/js/jquery.editable-select.min.js"></script>
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });
+        KindEditor.ready(function (K) {
+            var editor = K.editor({
+                allowFileManager: true,
+                uploadJson: '../../Content/kindeditor-4.1.10/asp.net/excelUpload.ashx',//文件处理程序
+                fileManagerJson: '../../Content/kindeditor-4.1.10/asp.net/file_manager_json.ashx',
+                imageSizeLimit: '10MB',
+                imageUploadLimit: 10
+            });
+            K('#insertfile').click(function () {
+                editor.loadPlugin('insertfile', function () {
+                    editor.plugin.fileDialog({
+                        fileUrl: K('#url').val(),
+                        clickFn: function (url, title) {
+                            K('#url').val(url);
+                            editor.hideDialog();
+                        }
+                    });
+                });
+            });
+            //$("#searchForm").keydown(function() {
+            //    if (event.keyCode == "13") {
+            //        $("#bsubmit").trigger("click");
+            //    }
+            //});
+        });
+    </script>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        @Html.Partial("../AdminBase/PartialModuleView", "/student/NewlyUploadStudent")
+
+        <div id="main-tr">
+            <div class="right-nav">            
+                @*<div class="nava1">
+                    <a class="nava2" href="javascript:;">批量导入</a>
+                    <div class="show-bg"></div>
+                    <div class="show-c">
+                        <div class="tbt">批量添加学生</div>
+                        <a class="close close8" href="javascript:;"></a>*@
+                        <div class="dr-c">
+                            <input type="text" id="url" value="" /> <input type="button" id="insertfile" value="选择文件" />
+                            <p>导入格式说明：</p>
+                            <p>文件类型：xls或者xlsx</p>
+                            <p>第一行为列名，共有14列，分别是:姓名,性别,考生号,入学年份, 学习形式,层次,专业名,学籍状态,电话,地址,身份证号,出生日期,民族,政治面貌。</p>
+                            <p>除学号、电话、地址外都为必填项</p>
+                            <p>学习状态有：在读，毕业，休学，已毕业</p>
+                            <p><a href="~/File/mould/%e5%ad%a6%e7%94%9f%e4%bf%a1%e6%81%af%e5%af%bc%e5%85%a5%e6%a8%a1%e6%9d%bf.xlsx"><font color="green">学生信息导入模板.xlsx</font></a></p>
+                        </div>
+                        <div class="cx-bom">
+                            <a class="cx-sub" style="margin-right:480px;" href="javascript:uploadExcel()">开始导入</a>@*<a class="cx-set close" href="javascript:;">取消</a>*@
+                        </div>
+                    </div>
+                </div>            
+            </div>
+        @*</div>
+    </div>*@
+    @Html.Action("Foot", "AdminBase")
+    <script>
+      
+        function uploadExcel() {
+            var fileName = $("#url").val();
+            window.location.href = "/Student/UploadStudentTerm/?fileName=" + fileName;
+        }
+        function butOnClick() {
+            if (event.keyCode == "13") {
+                document.form1.submint();
+            }
+      }
+        @*function uploadExcel() {
+            var fileName = $("#url").val();
+            $.ajax({
+                url: '@Url.Action("UploadStudentTerm", "Student")',
+                data: { fileName: fileName },
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    if (data.IsOk) {
+                        alert('Excel验证失败，点击确认获取Excel错误提示！');
+                        window.open(data.Message);
+                    } else {
+                        if (isNaN(data.Message)) {
+                            alert(data.Message);
+                        } else {
+                            alert('导入成功！成功导入'+ data.Message + '学生');
+                            window.location.href = '/Student/NewlyStudentInfo';
+
+                        }
+                    }
+                }
+
+            });
+        }*@
+    
+    </script>
+</body>
+</html>

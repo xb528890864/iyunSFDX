@@ -1,0 +1,405 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@using System.Configuration
+@using IYun.Common
+@model PagedList<YD_Sts_StuInfo>
+@{
+    var adminrole = ViewBag.adminrole;
+    var schoolname = ConfigurationManager.AppSettings["SchoolName"];
+}
+<table class="xx-table">
+    <tr>
+        @if (adminrole == 4)
+        {
+            <label><input id="allstu" type="checkbox" onclick="checkboxAll(this)">全部选中</label>
+            <label><input id="allstuno" type="checkbox" onclick="checkboxAllNO(this)">全部取消</label>
+            <th style="padding-left: 25px;"><label>@*<input id="all" class="rad cktb zz8" type="checkbox">*@学号</label></th>
+        }
+        else
+        {
+            <th style="padding-left: 25px;"><label>学号</label></th>
+        }
+        <th>考生号</th>
+        <th>姓名</th>
+        <th>专业</th>
+        <th>入学年份</th>
+        <th>是否达到毕业年份</th>
+        <th>是否学年都注册</th>
+        @if (schoolname == ComEnum.SchoolName.JXSFDX.ToString())
+        {
+            <th>成绩是否审核通过</th>
+        }
+        else
+        {
+            <th>是否成绩合格</th>
+        }
+        <th>是否有照片</th>
+        <th>是否允许毕业</th>
+        <th>是否申请毕业</th>
+    </tr>
+    @if (Model != null)
+    {
+        foreach (var student in Model)
+        {
+    <tr>
+        @if (adminrole == 4)
+        {
+            <td style="padding-left: 25px;">
+                <input data-id="@student.id" data-isok="@student.y_isgraduate" data-imgok="@(student.y_img!=null&& student.y_img.Contains("181026"))" data-isscoreok="@student.y_scoreOk" data-isdel="@student.y_isdel" type="checkbox" name="check" class="mycb" @*onclick="checkboxOnclick(this)"*@
+                       @if (student.isCheckForSchool == true) { Write("checked='checked'"); } />
+                @student.y_stuNum
+            </td>
+        }
+        else
+        {
+            <td style="padding-left: 25px;">@student.y_stuNum</td>
+        }
+        <td>@student.y_examNum</td>
+        <td>@student.y_name</td>
+        <td>@student.YD_Edu_Major.y_name</td>
+        <td>@student.y_inYear</td>
+        @if (student.y_degreeOK == 1)
+        {
+            <td>是</td>
+        }
+        else if (student.y_degreeOK == 0)
+        {
+            <td>否</td>
+        }
+        @if (student.y_applyOK == 1)
+        {
+            <td>是</td>
+        }
+        else if (student.y_applyOK == 0)
+        {
+            <td><a style="color: blue" target="_blank" href="/Graduate/StuGradInfoRester/@student.id">否</a></td>
+        }
+        @if (schoolname == ComEnum.SchoolName.JXSFDX.ToString())
+        {
+            if (student.y_scoreOk == 1)
+            {
+                <td>是</td>
+            }
+            else
+            {
+                <td><a style="color: blue" target="_blank" href="/Graduate/StuScoreList/@student.id">否</a></td>
+            }
+        }
+        else
+        {
+            if (student.y_isChangePlan == 1)
+            {
+                <td>是</td>
+            }
+            else if (student.y_isChangePlan == 0)
+            {
+                <td><a style="color: blue" target="_blank" href="/Graduate/StuScoreList/@student.id">否</a></td>
+            }
+        }
+        @*毕业生需要毕业照片，但是能够手动上传，因为没有空余的照片字段，所以在这里规定181026文件下，或者手动上传带有181026关键字才能判断为毕业照片*@
+        @if (schoolname == ComEnum.SchoolName.JXSFDX.ToString())
+        {
+            if (student.y_img != null && student.y_img.Contains("181026"))
+            {
+                <td>是</td>
+            }
+            else
+            {
+                <td>否</td>
+            }
+        }
+        else
+        {
+            if (student.y_img != null)
+            {
+                <td>是</td>
+            }
+            else
+            {
+                <td>否</td>
+            }
+        }
+        @if (schoolname == ComEnum.SchoolName.JXSFDX.ToString())
+        {
+            if (student.y_scoreOk == 1 && student.y_isdel == 1 && student.y_scoreOk == 1 && student.y_applyOK == 1 && student.y_degreeOK == 1 && student.y_img != null)
+            {
+                <td>是</td>
+            }
+            else
+            {
+                <td><a href="#" style="color: red">否</a></td>
+            }
+        }
+        else
+        {
+            if (student.y_isdel == 1)
+            {
+                <td>是</td>
+            }
+            else if (student.y_isdel == 0)
+            {
+                <td><a href="#" style="color: red">否</a></td>
+            }
+        }
+        @if (student.y_isgraduate == true)
+        {
+            <td>已申请</td>
+        }
+        else
+        {
+            <td>未申请</td>
+        }
+    </tr>
+        }
+    }
+</table>
+
+<script>
+    //全选或取消全选功能
+    $(function () {
+        $(".mycb").click(function () {
+            var bl = $(".mycb").length == $(".mycb:checked").length;
+            $("#all").attr("checked", bl);
+        });
+        $(".zz8").click(function () {
+            var checkedStatus = this.checked;
+            var checkbox = $(this).parents('table').find('tr td input:checkbox');
+            checkbox.each(function () {
+                this.checked = checkedStatus;
+            });
+        });
+        //勾选学生或者取消学生
+        //勾选学生或者取消学生
+        $(".mycb").change(function (e) {
+            var ids = $(this).attr("data-id");
+            if (ids == null) {
+                e.target.checked = false;
+                alert("未获取学生id");
+                return;
+            }
+            var isdel = $(this).attr("data-isdel");
+            if (isdel == 0) {
+                e.target.checked = false;
+                alert("不能选择没有资格申报的学生");
+                return;
+            }
+            var isScoreOk = $(this).attr("data-isscoreok");
+            if (isScoreOk != 1) {
+                e.target.checked = false;
+                alert("不能选择成绩未审核通过的学生");
+                return;
+            }
+            var isImgOk = $(this).attr("data-imgok");
+            if (isImgOk == 'False') {
+                e.target.checked = false;
+                alert("不能选择没有照片的学生");
+                return;
+            }
+            var isok = $(this).attr("data-isok");
+            if (isok == 'True') {
+                e.target.checked = false;
+                alert("不能选择已申报的学生");
+                return;
+            }
+            if (e.target.checked) {
+                changeok(ids);
+            } else {
+                changeNOok(ids);
+            }
+        });
+
+    });
+    function changeok(ids) {
+        $.ajax({
+            type: "post",
+            url: "/Graduate/StuGradInfoCheckOk",
+            data: {
+                ids: ids
+            },
+            success: function (data) {
+                if (data == "ok") {
+                } else {
+                    alert(data);
+                }
+            },
+            error: function () {
+                alert("未知错误");
+            }
+        });
+    }
+
+    function changeNOok(ids) {
+        $.ajax({
+            type: "post",
+            url: "/Graduate/StuGradInfoCheckno",
+            data: {
+                ids: ids
+            },
+            success: function (data) {
+                if (data == "ok") {
+                } else {
+                    alert(data);
+                }
+            },
+            error: function () {
+                alert("未知错误");
+            }
+        });
+    }
+    //勾选学生或者取消学生
+    //function checkboxOnclick(checkbox) {
+    //    if (checkbox.checked == true) {
+    //        var cbs = $(".mycb");
+    //        if (cbs.length <= 0) {
+    //            alert("请先选择学生");
+    //            return;
+    //        }
+    //        var ids = "";
+    //        var isdel = ""; //是否允许申请
+    //        var isok = ""; //是否已申请注册
+    //        for (var i = 0; i < cbs.length; i++) {
+    //            if (cbs[i].checked) {
+    //                ids += $(cbs[i]).attr("data-id");
+    //                if (i + 1 < cbs.length) {
+    //                    ids += ",";
+    //                }
+    //                isdel += $(cbs[i]).attr("data-isdel");
+    //                if (isdel == 0) {
+    //                    cbs[i].checked = false;
+    //                    alert("不能选择没有资格毕业的学生");
+    //                    return;
+    //                }
+    //                isok += $(cbs[i]).attr("data-isok");
+    //                if (isok == 'True') {
+    //                    cbs[i].checked = false;
+    //                    alert("不能选择已申请毕业的学生");
+    //                    return;
+    //                }
+    //            }
+    //        }
+    //        $.ajax({
+    //            type: "post",
+    //            url: "/Graduate/StuGradInfoCheckOk",
+    //            data: {
+    //                ids: ids
+    //            },
+    //            success: function (data) {
+    //                if (data == "ok") {
+    //                } else {
+    //                    alert(data);
+    //                }
+    //            },
+    //            error: function () {
+    //                alert("未知错误");
+    //            }
+    //        });
+
+    //    }
+    //    else {
+    //        var cbs = $(".mycb");
+    //        if (cbs.length <= 0) {
+    //            alert("请先选择学生");
+    //            return;
+    //        }
+    //        var ids = "";
+    //        var isdel = ""; //是否允许申请
+    //        var isok = ""; //是否已申请注册
+    //        for (var i = 0; i < cbs.length; i++) {
+    //            ids += $(cbs[i]).attr("data-id");
+    //            if (i + 1 < cbs.length) {
+    //                ids += ",";
+    //            }
+    //            isdel += $(cbs[i]).attr("data-isdel");
+    //            if (isdel == 0) {
+    //                alert("不能选择没有资格毕业的学生");
+    //                return;
+    //            }
+    //            isok += $(cbs[i]).attr("data-isok");
+    //            if (isok == 'True') {
+    //                alert("不能选择已申请毕业的学生");
+    //                return;
+    //            }
+    //        }
+    //        $.ajax({
+    //            type: "post",
+    //            url: "/Graduate/StuGradInfoCheckno",
+    //            data: {
+    //                ids: ids
+    //            },
+    //            success: function (data) {
+    //                if (data == "ok") {
+    //                } else {
+    //                    alert(data);
+    //                }
+    //            },
+    //            error: function () {
+    //                alert("未知错误");
+    //            }
+    //        });
+    //    }
+    //}
+    //全部选中本站点所有学生
+    function checkboxAll(checkbox) {
+        if (checkbox.checked == true) {
+            $('#ajaxtable').fadeOut('10');
+            $('#loadingDiv').show();
+            $.ajax({
+                type: "POST",
+                url: "/Graduate/AllStuGradCheck",
+                data: form2Json("searchForm"),
+                success: function (data) {
+                    if (data == "ok") {
+                        $("#searchForm").submit();
+                    } else {
+                        alert(data);
+                    }
+                    $('#ajaxtable').fadeIn('10');
+                    $('#loadingDiv').hide();
+                },
+                error: function () {
+                    $('#ajaxtable').fadeIn('10');
+                    $('#loadingDiv').hide();
+                    alert("未知错误！==");
+                }
+            });
+        }
+    }
+    //全部取消选中的本站点所有学生
+    function checkboxAllNO(checkbox) {
+        if (checkbox.checked == true) {
+            $('#ajaxtable').fadeOut('10');
+            $('#loadingDiv').show();
+            $.ajax({
+                type: "POST",
+                url: "/Graduate/AllStuGradCheckNo",
+                data: form2Json("searchForm"),
+                success: function (data) {
+                    if (data == "ok") {
+                        $("#searchForm").submit();
+                    } else {
+                        alert(data);
+                    }
+                    $('#ajaxtable').fadeIn('10');
+                    $('#loadingDiv').hide();
+                },
+                error: function () {
+                    $('#ajaxtable').fadeIn('10');
+                    $('#loadingDiv').hide();
+                    alert("未知错误！==");
+                }
+            });
+        }
+    }
+    function form2Json(id) {
+        var arr = $("#" + id).serializeArray();
+        var jsonStr = "";
+        jsonStr += '{';
+        for (var i = 0; i < arr.length; i++) {
+            jsonStr += '"' + arr[i].name + '":"' + arr[i].value + '",';
+        }
+        jsonStr = jsonStr.substring(0, (jsonStr.length - 1));
+        jsonStr += '}';
+        var json = JSON.parse(jsonStr);
+        return json;
+    }
+</script>

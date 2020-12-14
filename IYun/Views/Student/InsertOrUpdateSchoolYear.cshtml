@@ -1,0 +1,125 @@
+﻿@using System.Configuration
+@using IYun.Models
+@using IYun.Object
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+
+
+    var Retime = ViewBag.YT_RegisterSettings  as YT_RegisterSettings ;
+    if (Retime == null) { Retime = new YT_RegisterSettings(); }
+
+
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+        <script type="text/javascript" src="~/Views/SysAdmin/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+        <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    <script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });
+
+    </script>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        @Html.Partial("../AdminBase/PartialModuleView", "/student/SchoolYear")
+        <div id="main-tr">
+            <div class="tjia"><span>添加学籍状态</span><a class="fhui" href="javascript:history.go(-1)">返回</a></div>
+            <form>
+                <table class="cx-table">
+                    <tr>
+                        <td class="td1">学年</td>
+                        <td><input type="text" class="cx-inp" id="schoolYear" value="@Retime.y_inyear" required=required placeholder="学年" />
+                        <input type="hidden" id="id" value="@Retime.id"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1">开始日期</td>
+                        <td><input type="date" class="cx-inp" id="startTime" required=required placeholder="开始日期" /></td>
+                    </tr>
+                    <tr>
+                        <td class="td1">结束日期</td>
+                        <td><input type="date" class="cx-inp" id="endTime" required=required placeholder="结束日期" /></td>
+                    </tr>
+                    <tr>
+                        <td class="td1">备注</td>
+                        <td><input type="text" class="cx-inp" id="describe" required=required placeholder="备注" value="@Retime.y_Remarks"/></td>
+                    </tr>
+                    <tr>
+                        <td class="td1">&nbsp;</td>
+                        <td><input class="cx-sub" type="button" onclick="save()" value="保存" /></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+</body>
+
+</html>
+<script type="text/javascript">
+
+    $('#startTime').val('@( Retime.y_starttime == null ? "": Retime.y_starttime.Value.ToString("yyyy-MM-dd"))');
+    $('#endTime').val('@(Retime.y_endtime == null ? "": Retime.y_endtime.Value.ToString("yyyy-MM-dd"))');
+
+
+    function save() {
+        var id = $('#id').val();
+        var schoolYear = $('#schoolYear').val();
+        var startTime = $('#startTime').val();
+        var endTime = $('#endTime').val();
+        var describe = $('#describe').val();
+        if (schoolYear == "" || startTime == "" || endTime == "") {
+            alert('必填项为空');
+            return;
+        }
+        $.ajax({
+            type: "post",
+            url: "/Student/InsertOrUpdateSchoolYear",
+            data: {
+                id:id,
+                schoolYear: schoolYear,
+                startTime: startTime,
+                endTime: endTime,
+                describe: describe
+            },
+            success: function (data) {
+                if (data.status == "ok") {
+                    alert("成功");
+                    window.location.href = '/Student/SchoolYear';
+                } else {
+                    alert(data.msg);
+                }
+            },
+            error: function (msg) {
+                alert("未知错误");
+            }
+        });
+    }
+</script>

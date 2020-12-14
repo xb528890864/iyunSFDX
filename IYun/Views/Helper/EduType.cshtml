@@ -1,0 +1,51 @@
+﻿@using IYun.Models;
+@using IYun.Object
+@{
+    Layout = null;
+    var data = ViewData["data"] as List<YD_Edu_EduType>;
+    data = data ?? new List<YD_Edu_EduType>();
+    var para = ViewData["para"] as HelperParameterM;
+    para = para ?? new HelperParameterM();
+    if (string.IsNullOrWhiteSpace(para.className))
+    {
+        para.className = "dl-sel";                       //默认样式CLASS
+    }
+    if (string.IsNullOrWhiteSpace(para.id))
+    {
+        para.id = "EduType";                            //默认ID
+    }
+    if (string.IsNullOrWhiteSpace(para.name))
+    {
+        para.name = "EduType";                          //默认name
+    }
+    if (!para.index.HasValue)
+    {
+        para.index = 0;                                 //默认选中
+    }
+}
+<select class="@para.className" id="@para.id" name="@para.name" style="@para.style" onchange="changeEduType()">
+    <option value="0">全部</option>
+    @foreach (var eduType in data)
+    {
+        if (eduType.id == para.index)
+        {
+            <option value='@eduType.id' selected="selected">@eduType.y_name</option>
+        }
+        else
+        {
+            <option value='@eduType.id'>@eduType.y_name</option>
+        }
+    }
+</select>
+<script>
+    function changeEduType() {
+        try {   //回调
+            if (typeof (eval('eduTypechangeComple')) == "function") {
+                var id = $("#@para.id").val();
+                eduTypechangeComple(id);
+            }
+        } catch (e) {
+            //alert("not function");
+        }
+    }
+</script>

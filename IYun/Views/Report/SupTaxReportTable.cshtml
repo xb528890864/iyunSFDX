@@ -1,0 +1,60 @@
+﻿@using IYun.Object
+@model List<SubStuSupStuReport>
+@{
+    var stuList = (List<SubStuSupStuReport>)ViewBag.substulist;
+}
+
+@{
+    if (stuList != null && stuList.Count > 0)
+    {
+        <table class="xx-table ydong-tab">
+            <tr>
+
+                @{
+                    if (!string.IsNullOrWhiteSpace(stuList[0].schoolName))
+                    {
+                        <th>函授站</th>
+                    }
+                    if (stuList[0].y_inyear != null)
+                    {
+                        <th>入学年份</th>
+                    }
+                    if (stuList[0].isSuped != null)
+                    {
+                        <th>已补录</th>
+                    }
+                    if (stuList[0].notSuped != null)
+                    {
+                        <th>未补录</th>
+                    }
+                }
+            </tr>
+            @{
+                foreach (var stuInfoReport in stuList.OrderByDescending(e=>e.y_inyear))
+                {
+                    <tr>
+                        @{
+                            if (!string.IsNullOrWhiteSpace(stuInfoReport.schoolName))
+                            {
+                                <th>@stuInfoReport.schoolName</th>
+                            }
+                            if (stuList[0].y_inyear != null)
+                            {
+                                <th>@stuInfoReport.y_inyear</th>
+                            }
+                            if (stuList[0].isSuped != null)
+                            {
+                                <th><a style="color:blue" href="/Report/SupTaxStuDetail?year=@(stuInfoReport.y_inyear)&subschool=@(stuInfoReport.schoolName)&isSuped=1">@stuInfoReport.isSuped</a></th>
+                            }
+                            if (stuList[0].notSuped != null)
+                            {
+                                <th><a style="color:blue" href="/Report/SupTaxStuDetail?year=@(stuInfoReport.y_inyear)&subschool=@(stuInfoReport.schoolName)&isSuped=0">@stuInfoReport.notSuped</a></th>
+                            }
+                        }
+                    </tr>
+                }
+            }
+
+        </table>
+    }
+}

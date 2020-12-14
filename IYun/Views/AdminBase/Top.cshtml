@@ -1,0 +1,61 @@
+﻿
+@using System.Configuration
+@using IYun.Common
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@{
+    Layout = null;
+    var modulePowers = (List<ModulePower>)ViewBag.modulePowers;
+    var adminName = ViewBag.adminName as string;
+
+    var schoolname = ConfigurationManager.AppSettings["SchoolName"].ToString();
+    var roleId = ViewBag.admin;
+}
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=0.78, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<div class="head">
+    <a href="javascript:;"><img class="logo" src="~/Content/manage/images/logo.png" /></a>
+    <ul class="nav">
+        @if (ConfigurationManager.AppSettings["SchoolName"] == ComEnum.SchoolName.JXLG.ToString()|| ConfigurationManager.AppSettings["SchoolName"] == ComEnum.SchoolName.ZYYDX.ToString())
+        {
+            <li class="navlev"><a href="/report/SubStuReport">首 页</a></li>
+        }
+        else
+        {
+            <li class="navlev"><a href="/Edu/Shouye">首 页</a></li>
+        }
+        @{
+            foreach (var modulePower in modulePowers)
+            {
+                <li class="navlev">
+                    <a href="/AdminBase/ModuleAction/@modulePower.y_moduleID">
+                        @modulePower.y_moudleName
+                    </a>
+                </li>
+            }
+        }
+        @if (ComEnum.SchoolName.JXSFDX.ToString() == schoolname || ComEnum.SchoolName.HDJTDX.ToString() == schoolname || ComEnum.SchoolName.DHLGDX.ToString() == schoolname)
+        {
+            <li class="navlev"><a href="/SysAdmin/GoToQinshu">学习平台</a></li>
+        }
+    </ul>
+    <div class="top-news">
+        <a href="/Student/StudentInfoChangeAll">
+            <span>@ViewBag.stranges</span>
+        </a>
+    </div>
+    <div class="hd-me navlev">
+        <a href="#"><img src="~/Content/manage/images/gl.png">@adminName<em></em></a>
+        <div class="hd-drop lev2">
+            @if (ComEnum.SchoolName.JXSFDX.ToString() != schoolname)
+            {
+                <a target="_blank" href="/SysAdmin/GoToQinshu">跳转青书</a>
+            }
+            <a href="/Student/UpdatePassword">修改密码</a>
+            <a href="/AdminBase/Exit">注销</a>
+        </div>
+    </div>
+    @*<a class="navlev hd-xx" href="javascript:;"><em></em></a>*@
+</div>
+<div class="hei80"></div>

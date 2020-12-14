@@ -1,0 +1,44 @@
+﻿@using System.Configuration
+@using IYun.Common
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YD_Sts_StuInfo>
+@{
+    var admin = ViewBag.admin;
+    var schoolname = ConfigurationManager.AppSettings["SchoolName"];
+}
+<table class="xx-table">
+    <tr>
+        <th style="padding-left: 25px;">学号</th>
+        <th>考生号</th>
+        <th>毕业证号</th>           
+        <th>姓名</th>
+        <th>学习中心</th>
+        <th>专业</th>
+        <th>入学年份</th>
+        <th>状态</th>
+        <th>操作</th>
+       
+    </tr>
+    @foreach (var student in Model)
+    {
+        <tr>
+            <td style="padding-left: 25px;">@student.y_stuNum</td>
+            <td>@student.y_examNum</td>
+            <td>@student.y_graduateNumber</td>
+            <td>@student.y_name</td>
+            @if (schoolname == ComEnum.SchoolName.JXLG.ToString())
+            {
+                <td>@student.YD_Sys_SubSchool.y_nameabbreviation</td>
+            }
+            else
+            {
+                <td>@student.YD_Sys_SubSchool.y_name</td>
+            }
+            <td>@student.YD_Edu_Major.y_name</td>
+            <td>@student.y_inYear</td>
+            <td>@student.YD_Edu_StuState.y_name</td>
+            <td><a class="bfont2" onclick="CancelGradute(@(student.id))">撤销毕业</a></td>
+        </tr>
+    }
+</table>

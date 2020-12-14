@@ -1,0 +1,1192 @@
+
+ 
+记录时间：2020-01-09 12:25:48,073 
+线程ID:[6] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：文件“C:\Users\云端002\Desktop\江西师范大学\工作簿1.xlsx”正由另一进程使用，因此该进程无法访问此文件。
+ 
+
+ 
+记录时间：2020-01-09 12:25:48,208 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /Student/UploadStudentTerm/?fileName=
+ 
+
+ 
+记录时间：2020-01-09 12:25:48,219 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  fileName=
+ 
+
+ 
+记录时间：2020-01-09 12:25:48,220 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.IO.IOException: 文件“C:\Users\云端002\Desktop\江西师范大学\工作簿1.xlsx”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access)
+   在 IYun.Controllers.StudentController.UploadStudentTerm(String fileName) 位置 G:\江西师范大学\trunk\IYun\Controllers\StudentController.cs:行号 9569
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-01-09 13:02:04,349 
+线程ID:[15] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：更新条目时出错。有关详细信息，请参阅内部异常。
+ 
+
+ 
+记录时间：2020-01-09 13:02:04,349 
+线程ID:[15] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /Student/UploadStudentTerm/?fileName=
+ 
+
+ 
+记录时间：2020-01-09 13:02:04,349 
+线程ID:[15] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  fileName=
+ 
+
+ 
+记录时间：2020-01-09 13:02:04,349 
+线程ID:[15] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.Data.Entity.Infrastructure.DbUpdateException: 更新条目时出错。有关详细信息，请参阅内部异常。 ---> System.Data.Entity.Core.UpdateException: 更新条目时出错。有关详细信息，请参阅内部异常。 ---> System.Data.SqlClient.SqlException: 在从服务器接收结果时发生传输级错误。 (provider: Session Provider, error: 19 - 物理连接不可用)
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   在 System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   在 System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   在 System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   在 System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 StackExchange.Profiling.Data.ProfiledDbCommand.ExecuteDbDataReader(CommandBehavior behavior) 位置 d:\Files\GitHub\miniprofiler\dotnet\StackExchange.Profiling\Data\ProfiledDbCommand.cs:行号 246
+   在 System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TInterceptionContext,TResult](Func`1 operation, TInterceptionContext interceptionContext, Action`1 executing, Action`1 executed)
+   在 System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   在 System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.Execute(Dictionary`2 identifierValues, List`1 generatedValues)
+   在 System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
+   在 System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   在 System.Data.Entity.Core.Objects.ObjectContext.SaveChangesToStore(SaveOptions options, IDbExecutionStrategy executionStrategy)
+   在 System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   在 System.Data.Entity.Core.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   在 System.Data.Entity.Internal.InternalContext.SaveChanges()
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Data.Entity.Internal.InternalContext.SaveChanges()
+   在 IYun.Controllers.CoreFunction.UploadTrueStu(List`1 list) 位置 G:\江西师范大学\trunk\IYun\Controllers\ControllerObject\CoreFunction\CoreFunction.cs:行号 2373
+   在 IYun.Controllers.StudentController.UploadStudentTerm(String fileName) 位置 G:\江西师范大学\trunk\IYun\Controllers\StudentController.cs:行号 9637
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-01-09 13:02:35,606 
+线程ID:[39] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：基础提供程序在 Open 上失败。
+ 
+
+ 
+记录时间：2020-01-09 13:02:35,607 
+线程ID:[39] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /Student/UploadStudentTerm/Error
+ 
+
+ 
+记录时间：2020-01-09 13:02:35,607 
+线程ID:[39] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-01-09 13:02:35,607 
+线程ID:[39] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.Data.Entity.Core.EntityException: 基础提供程序在 Open 上失败。 ---> System.Data.SqlClient.SqlException: 在与 SQL Server 建立连接时出现与网络相关的或特定于实例的错误。未找到或无法访问服务器。请验证实例名称是否正确并且 SQL Server 已配置为允许远程连接。 (provider: Named Pipes Provider, error: 40 - 无法打开到 SQL Server 的连接) ---> System.ComponentModel.Win32Exception: 找不到网络路径。
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling, SqlAuthenticationProviderManager sqlAuthProviderManager)
+   在 System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   在 System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.<>c__DisplayClass1.<Execute>b__0()
+   在 System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   在 System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   在 System.Data.Entity.Core.Objects.ObjectContext.EnsureConnection()
+   在 System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   在 System.Data.Entity.Core.Objects.ObjectContext.<>c__DisplayClass20.<ExecuteStoreCommand>b__1e()
+   在 System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   在 IYun.Controllers.CoreFunction.StudentTempletValidate(Int32& errorCount, ISheet sheet, ICellStyle errorStyle) 位置 G:\江西师范大学\trunk\IYun\Controllers\ControllerObject\CoreFunction\CoreFunction.cs:行号 455
+   在 IYun.Controllers.StudentController.UploadStudentTerm(String fileName) 位置 G:\江西师范大学\trunk\IYun\Controllers\StudentController.cs:行号 9608
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-01-09 21:15:37,854 
+线程ID:[7] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：无法将类型“int”隐式转换为“bool”
+ 
+
+ 
+记录时间：2020-01-09 21:15:38,099 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /Student/NewlyPrintNotice
+ 
+
+ 
+记录时间：2020-01-09 21:15:38,099 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-01-09 21:15:38,100 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+Microsoft.CSharp.RuntimeBinder.RuntimeBinderException: 无法将类型“int”隐式转换为“bool”
+   在 CallSite.Target(Closure , CallSite , Object )
+   在 System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   在 ASP._Page_Views_Student_NewlyPrintNotice_cshtml.Execute() 位置 g:\江西师范大学\trunk\IYun\Views\Student\NewlyPrintNotice.cshtml:行号 109
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   在 System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-01-09 22:07:13,480 
+线程ID:[6] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,528 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /AdminBase/ModuleAction/
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,528 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,529 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.ArgumentException: 对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+   在 System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   在 System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   在 System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   在 System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-01-09 22:07:13,682 
+线程ID:[6] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,682 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /AdminBase/ModuleAction/Error
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,682 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,682 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.ArgumentException: 对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+   在 System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   在 System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   在 System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   在 System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-01-09 22:07:13,707 
+线程ID:[7] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,708 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /AdminBase/ModuleAction/Error
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,708 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,708 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.ArgumentException: 对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+   在 System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   在 System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   在 System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   在 System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-01-09 22:07:13,726 
+线程ID:[7] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,726 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /AdminBase/ModuleAction/Error
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,726 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,727 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.ArgumentException: 对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+   在 System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   在 System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   在 System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   在 System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-01-09 22:07:13,742 
+线程ID:[6] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,742 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /AdminBase/ModuleAction/Error
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,742 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,742 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.ArgumentException: 对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+   在 System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   在 System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   在 System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   在 System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-01-09 22:07:13,779 
+线程ID:[7] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,779 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /AdminBase/ModuleAction/Error
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,779 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,779 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.ArgumentException: 对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+   在 System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   在 System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   在 System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   在 System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-01-09 22:07:13,825 
+线程ID:[7] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,825 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /AdminBase/ModuleAction/Error
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,825 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,825 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.ArgumentException: 对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+   在 System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   在 System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   在 System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   在 System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-01-09 22:07:13,847 
+线程ID:[6] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,847 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /AdminBase/ModuleAction/Error
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,847 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,847 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.ArgumentException: 对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+   在 System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   在 System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   在 System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   在 System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-01-09 22:07:13,924 
+线程ID:[7] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,924 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /AdminBase/ModuleAction/Error
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,925 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,925 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.ArgumentException: 对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+   在 System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   在 System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   在 System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   在 System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-01-09 22:07:13,932 
+线程ID:[7] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,932 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /AdminBase/ModuleAction/Error
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,932 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,932 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.ArgumentException: 对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+   在 System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   在 System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   在 System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   在 System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-01-09 22:07:13,944 
+线程ID:[7] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,944 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /AdminBase/ModuleAction/Error
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,944 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,944 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.ArgumentException: 对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+   在 System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   在 System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   在 System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   在 System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-01-09 22:07:13,963 
+线程ID:[7] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,963 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /AdminBase/ModuleAction/Error
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,963 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-01-09 22:07:13,963 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.ArgumentException: 对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+   在 System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   在 System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   在 System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   在 System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-01-09 22:07:14,058 
+线程ID:[7] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+ 
+
+ 
+记录时间：2020-01-09 22:07:14,058 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /AdminBase/ModuleAction/Error
+ 
+
+ 
+记录时间：2020-01-09 22:07:14,058 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-01-09 22:07:14,058 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.ArgumentException: 对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+   在 System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   在 System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   在 System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   在 System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-01-09 22:07:14,147 
+线程ID:[7] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+ 
+
+ 
+记录时间：2020-01-09 22:07:14,147 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /AdminBase/ModuleAction/Error
+ 
+
+ 
+记录时间：2020-01-09 22:07:14,147 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-01-09 22:07:14,147 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.ArgumentException: 对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+   在 System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   在 System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   在 System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   在 System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-01-09 22:07:14,182 
+线程ID:[7] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+ 
+
+ 
+记录时间：2020-01-09 22:07:14,182 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /AdminBase/ModuleAction/Error
+ 
+
+ 
+记录时间：2020-01-09 22:07:14,182 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-01-09 22:07:14,182 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.ArgumentException: 对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+   在 System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   在 System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   在 System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   在 System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-01-09 22:07:14,200 
+线程ID:[7] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+ 
+
+ 
+记录时间：2020-01-09 22:07:14,200 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /AdminBase/ModuleAction/Error
+ 
+
+ 
+记录时间：2020-01-09 22:07:14,200 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-01-09 22:07:14,200 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.ArgumentException: 对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+   在 System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   在 System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   在 System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   在 System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-01-09 22:07:14,309 
+线程ID:[6] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+ 
+
+ 
+记录时间：2020-01-09 22:07:14,310 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /AdminBase/ModuleAction/Error
+ 
+
+ 
+记录时间：2020-01-09 22:07:14,310 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-01-09 22:07:14,310 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.ArgumentException: 对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+   在 System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   在 System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   在 System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   在 System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-01-09 22:07:14,362 
+线程ID:[7] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+ 
+
+ 
+记录时间：2020-01-09 22:07:14,362 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /AdminBase/ModuleAction/Error
+ 
+
+ 
+记录时间：2020-01-09 22:07:14,362 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-01-09 22:07:14,364 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.ArgumentException: 对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+   在 System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   在 System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   在 System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   在 System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-01-09 22:07:14,427 
+线程ID:[6] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+ 
+
+ 
+记录时间：2020-01-09 22:07:14,427 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /AdminBase/ModuleAction/Error
+ 
+
+ 
+记录时间：2020-01-09 22:07:14,427 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-01-09 22:07:14,427 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.ArgumentException: 对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+   在 System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   在 System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   在 System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   在 System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-01-09 22:07:14,436 
+线程ID:[6] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+ 
+
+ 
+记录时间：2020-01-09 22:07:14,436 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /AdminBase/ModuleAction/Error
+ 
+
+ 
+记录时间：2020-01-09 22:07:14,436 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-01-09 22:07:14,436 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.ArgumentException: 对于“IYun.Controllers.AdminBaseController”中方法“System.Web.Mvc.ActionResult ModuleAction(Int32)”的不可以为 null 的类型“System.Int32”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+   在 System.Web.Mvc.ActionDescriptor.ExtractParameterFromDictionary(ParameterInfo parameterInfo, IDictionary`2 parameters, MethodInfo methodInfo)
+   在 System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   在 System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   在 System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)

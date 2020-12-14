@@ -1,0 +1,300 @@
+﻿@using IYun.Common
+@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YD_Fee_StuFeeTb>
+@{
+    const int yes = (int)YesOrNo.Yes;
+    const int no = (int)YesOrNo.No;
+}
+
+<table class="xx-table ydong-tab">
+    <tr>
+        <th style="padding-left: 25px; width: 210px; text-align: left;"><label>
+            @*<input onclick="AllSel(this)" class="rad cktb zz8" type="checkbox">*@学号
+        </label></th>
+        <th>姓名</th>
+        <th>入学时间</th>
+        <th>站点</th>
+        @if (KeyValue.StuedutypeAnDyear.Contains(ViewData["SchoolName"].ToString()))
+        {
+            <th>学习形式</th>
+            <th>培养层次</th>
+            <th>学制</th>
+        }
+        <th>缴费学年</th>
+        <th>缴费状态</th>
+        <th>审核状态</th>
+    </tr>
+    @{
+        foreach (var stu in Model)
+        {
+            <tr>
+                <td style="padding-left:25px; text-align:left;">
+                    <label>
+                        @*<input data-id="@stu.id" class="rad cktb mycb" type="checkbox" onclick="checkboxOnclick(this)" @if (stu.isCheckForSchool)
+                        {
+                        Write("checked='checked'");
+                        } />*@
+                        @stu.y_stuNum
+                    </label>
+                </td>
+                <td>@stu.y_name</td>
+                <td>@stu.y_inYear</td>
+                <td>@stu.schoolName</td>
+                @if (KeyValue.StuedutypeAnDyear.Contains(ViewData["SchoolName"].ToString()))
+                {
+                    <td>@stu.stuTypeName</td>
+                    <td>@stu.eduTypeName</td>
+                    <td>@stu.y_stuYear</td>
+                }
+
+                <td>第 @stu.y_feeYear 学年</td>
+                @{
+            var feeid = "fee" + stu.id;
+            var checkedid = "checked" + stu.id;
+            if (stu.y_isUp == yes)
+            {
+                <td>
+                    已申请注册                     
+                </td>
+            }
+            else
+            {
+                <td>
+                    未申请注册
+                </td>
+            }
+            if (stu.y_isCheckFee == yes)
+            {
+                <td>
+                    已审核
+                       
+                </td>
+            }
+            else
+            {
+                <td>
+                  未审核
+                </td>
+            }
+
+                }
+
+            </tr>
+        }
+    }
+
+</table>
+<div class="zc-bom">
+    @*<label><input onclick="AllSel(this)" class="rad cktb" type="checkbox">全选</label>*@
+    @*<a class="zc-sub2" href="javascript:registerzSome()">申请注册</a>
+    <a class="zc-sub2"   href="javascript:registersomeno()">取消申请</a>*@
+</div>
+<script>
+    //全选或取消全选功能
+    $(function () {
+        $(".mycb").click(function () {
+            var bl = $(".mycb").length == $(".mycb:checked").length;
+            $("#all").attr("checked", bl);
+        });
+        $(".zz8").click(function () {
+            var checkedStatus = this.checked;
+            var checkbox = $(this).parents('table').find('tr td input:checkbox');
+            checkbox.each(function () {
+                this.checked = checkedStatus;
+            });
+        });
+    });
+    //勾选学生或者取消学生
+    function checkboxOnclick(checkbox) {
+        if (checkbox.checked == true) {
+            var cbs = $(".mycb");
+            if (cbs.length <= 0) {
+                alert("请先选择学生");
+                return;
+            }
+            var ids = "";
+            for (var i = 0; i < cbs.length; i++) {
+                if (cbs[i].checked) {
+                    ids += $(cbs[i]).attr("data-id");
+                    if (i + 1 < cbs.length) {
+                        ids += ",";
+                    }
+                }
+            }
+            $.ajax({
+                type: "post",
+                url: "/Expense/StuFeeCheck",
+                data: {
+                    ids: ids
+                },
+                success: function (data) {
+                    if (data == "ok") {
+                    } else {
+                        alert(data);
+                    }
+                },
+                error: function (msg) {
+                    alert("未知错误");
+                }
+            });
+
+        }
+        else {
+            var cbs = $(".mycb");
+            if (cbs.length <= 0) {
+                alert("请先选择学生");
+                return;
+            }
+            var ids = "";
+            for (var i = 0; i < cbs.length; i++) {
+                ids += $(cbs[i]).attr("data-id");
+                if (i + 1 < cbs.length) {
+                    ids += ",";
+                }
+            }
+            $.ajax({
+                type: "post",
+                url: "/Expense/StuFeeCheckno",
+                data: {
+                    ids: ids
+                },
+                success: function (data) {
+                    if (data == "ok") {
+                    } else {
+                        alert(data);
+                    }
+                },
+                error: function (msg) {
+                    alert("未知错误");
+                }
+            });
+        }
+    }
+
+    //function registerzSome() {
+    //    var cbs = $(".mycb");
+    //    if (cbs.length <= 0) {
+    //        alert("请先选择学生");
+    //        return;
+    //    }
+       
+    //    var ids = "";
+    //    for (var i = 0; i < cbs.length; i++) {
+    //        if (cbs[i].checked) {
+    //            ids += $(cbs[i]).attr("data-id");
+    //            if (i + 1 < cbs.length) {
+    //                ids += ",";
+    //            }
+    //        }
+    //    }
+    //    var term = $("#term").val();
+    //    if (term == "") {
+    //        alert("未选择学年");
+    //        return;
+    //    }
+    //    $.ajax({
+    //        type: "post",
+    //        url: "/Expense/StuFeeSome",
+    //        data: {
+    //            ids: ids,
+    //            term: term
+
+    //        },
+    //        success: function (data) {
+    //            if (data == "ok") {
+    //                alert("申请注册成功");
+    //                location.reload(true);
+    //            } else {
+    //                alert(data);
+    //            }
+    //        },
+    //        error: function (data) {
+    //            alert("未知错误");
+    //        }
+    //    });
+    //}
+    //function registersomeno() {
+    //    var cbs = $(".mycb");
+    //    if (cbs.length <= 0) {
+    //        alert("请先选择学生");
+    //        return;
+    //    }
+    //    var term = $("#term").val();
+    //    if (term == "") {
+    //        alert("未选择学年");
+    //        return;
+    //    }
+    //    var ids = "";
+    //    for (var i = 0; i < cbs.length; i++) {
+    //        if (cbs[i].checked) {
+    //            ids += $(cbs[i]).attr("data-id");
+    //            if (i + 1 < cbs.length) {
+    //                ids += ",";
+    //            }
+    //        }
+    //    }
+    //    $.ajax({
+    //        type: "post",
+    //        url: "/Expense/StuFeeSomeno",
+    //        data: {
+    //            ids: ids,
+    //            term: term
+    //        },
+    //        success: function (data) {
+    //            if (data == "ok") {
+    //                alert("取消申请成功");
+    //                location.reload(true);
+    //            } else {
+    //                alert(data);
+    //            }
+    //        },
+    //        error: function (msg) {
+    //            alert("未知错误");
+    //        }
+    //    });
+    //}
+    //注释掉没用上的代码
+    function noregisterSome() {
+        var cbs = $(".mycb");
+        if (cbs.length <= 0) {
+            alert("请先选择学生");
+            return;
+        }
+        //var term = $("#term");
+
+        //if (term == "") {
+        //    alert("未选择学期");
+        //    return;
+        //}
+        var ids = "";
+        for (var i = 0; i < cbs.length; i++) {
+            if (cbs[i].checked) {
+                ids += $(cbs[i]).attr("data-id");
+                if (i + 1 < cbs.length) {
+                    ids += ",";
+                }
+            }
+        }
+        $.ajax({
+            type: "post",
+            url: "/Student/StuRegisterSomeNo",
+            data: {
+                ids: ids
+                //term: term
+            },
+            success: function (data) {
+                if (data == "ok") {
+                    alert("取消注册成功");
+                    location.reload(true);
+                } else {
+                    alert(data);
+                }
+            },
+            error: function (msg) {
+                alert("未知错误");
+            }
+        });
+    }
+</script>

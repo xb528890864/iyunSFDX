@@ -1,0 +1,51 @@
+﻿@using IYun.Models;
+@using IYun.Object
+@{
+    Layout = null;
+    var data = ViewData["data"] as List<YD_Edu_Major>;
+    data = data ?? new List<YD_Edu_Major>();
+    var para = ViewData["para"] as HelperParameterM;
+    para = para ?? new HelperParameterM();
+    if (string.IsNullOrWhiteSpace(para.className))
+    {
+        para.className = "dl-sel";                       //默认样式CLASS
+    }
+    if (string.IsNullOrWhiteSpace(para.id))
+    {
+        para.id = "Major";                            //默认ID
+    }
+    if (string.IsNullOrWhiteSpace(para.name))
+    {
+        para.name = "Major";                          //默认name
+    }
+    if (!para.index.HasValue)
+    {
+        para.index = 0;                                 //默认选中
+    }
+}
+<select class="@para.className" id="@para.id" name="@para.name" style="@para.style" onchange="change_Major()">
+    <option value="0">全部</option>
+    @foreach (var major in data)
+    {
+        if (major.id == para.index)
+        {
+            <option value='@major.id' selected="selected">@major.y_name</option>
+        }
+        else
+        {
+            <option value='@major.id'>@major.y_name</option>
+        }
+    }
+</select>
+<script type="text/javascript">
+    function change_Major() {
+        try {   //回调
+            if (typeof (eval('Majorchange_Comple')) == "function") {
+                var id = $("#@para.id").val();
+                Majorchange_Comple(id);
+            }
+        } catch (e) {
+            //alert("not function");
+        }
+    }
+</script>

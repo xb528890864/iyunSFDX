@@ -1,0 +1,35 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@using System.Configuration
+@using IYun.Common
+@model PagedList<YD_TeaPlan_Class>
+    @{ 
+        var schoolname = ConfigurationManager.AppSettings["SchoolName"];
+    }
+
+<table class="xx-table ydong-tab">
+    <tr>
+        <th>函授站</th>
+        <th>专业名</th>
+        <th>年度</th>
+        <th>教学计划</th>
+    </tr>
+    @{
+        foreach (var item in Model)
+        {
+            <tr>
+                @if (schoolname == ComEnum.SchoolName.JXLG.ToString())
+                {
+                    <td>@item.YD_Sys_SubSchool.y_nameabbreviation</td>
+                }
+                else
+                {
+                    <td>@item.YD_Sys_SubSchool.y_name</td>
+                }
+                <td>@item.YD_Edu_Major.y_name</td>
+                <td>@item.y_year</td>
+                <td><a class="bfont2" target="_blank" href="@Url.Action("SubTeaPlanTempletDes", "TeaPlan", new {item.id})">查看教学计划</a></td>
+            </tr>
+        }
+    }
+</table>

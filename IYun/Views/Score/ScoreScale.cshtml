@@ -1,0 +1,152 @@
+﻿@using System.Configuration
+@using IYun.Models
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+    var entity = (YD_Edu_ScoreScale)ViewBag.entity;
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+        <script type="text/javascript" src="~/Views/Student/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+        <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    <script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="~/Content/IYun/js/jquery.editable-select.min.js"></script>
+    <link href="~/Content/IYun/style/jquery.editable-select.min.css" rel="stylesheet" />
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });
+
+    </script>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        <div id="main-tl">
+            <div class="left-t">成绩管理</div>
+            <div class="left-c">
+                @{
+                    foreach (var modulePower in modulePowers)
+                    {
+                        if (modulePower.y_url.ToLower() == "/score/scorescale".ToLower())
+                        {
+                            <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                        else
+                        {
+                            <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div id="main-tr">
+            <div style=" color:#555; margin:20px 0 0 25px; font-size:14px;">当前比例：平时分 @entity.y_normalScale 考试分 @entity.y_termScale<a class="fhui" href="javascript:;" onclick="history.go(-1)" @*href="javascript:goback()"*@>返回</a> </div>
+            <input type="hidden" id="id" value="@entity.id" />
+            <table class="cx-table" style="margin-top:10px;">
+                <tr>
+                    <td>
+                        <select class="dl-sel" id="y_normalScale" style="width:220px;">
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="40">40</option>
+                            <option value="50">50</option>
+                            <option value="60">60</option>
+                            <option value="70">70</option>
+                            <option value="80">80</option>
+                            <option value="90">90</option>
+                            <option value="100">100</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select class="dl-sel" id="y_termScale" style="width:220px;">
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="40">40</option>
+                            <option value="50">50</option>
+                            <option value="60">60</option>
+                            <option value="70">70</option>
+                            <option value="80">80</option>
+                            <option value="90">90</option>
+                            <option value="100">100</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input class="cx-sub" type="button" onclick="save()" value="设置"></td>
+                </tr>
+            </table>
+
+
+
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        $('#y_normalScale').val('@entity.y_normalScale');
+        $('#y_termScale').val('@entity.y_termScale');
+    });
+
+    function save() {
+        var y_normalScale = $("#y_normalScale").val();
+        var y_termScale = $("#y_termScale").val();
+        var id = $("#id").val();
+
+        if (Number(y_normalScale) + Number(y_termScale) != 100) {
+            alert("两项相加必须为100");
+            return;
+        }
+
+        $.ajax({
+            type: "post",
+            url: "/Score/SetScoreScale",
+            data: {
+                id: id,
+                y_normalScale: y_normalScale,
+                y_termScale: y_termScale
+            },
+            success: function (data) {
+                if (data == "ok") {
+                    alert("设置成功");
+                    location.reload();
+                } else {
+                    alert(data);
+                }
+            },
+            error: function (msg) {
+                alert("未知错误");
+            }
+        });
+    }
+</script>

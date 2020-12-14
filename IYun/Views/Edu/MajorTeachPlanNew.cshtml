@@ -1,0 +1,106 @@
+﻿@using System.Configuration
+@using IYun.Models
+@using IYun.Object;
+@model List<TeachPlanNew>
+@{
+    Layout = null;
+    var team = Model.Count(u => u.courseId == Model[0].courseId);
+    var coursecount = Model.Count/team;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!-- 使得ie6789支持CSS3样式 -->
+    @*<script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>*@
+    <script src="~/Content/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="~/Scripts/MvcPager.js"></script>
+    <link href="~/Content/kindeditor-4.1.10/themes/default/default.css" rel="stylesheet" />
+    <script src="~/Content/kindeditor-4.1.10/kindeditor-min.js"></script>
+    <script src="~/Content/kindeditor-4.1.10/lang/zh_CN.js"></script>
+</head>
+<body>
+    @Html.Action("Top", "AdminBase")
+<div class="main center">
+    <div id="main-tl">
+        <div class="left-t">教务管理</div>
+        <div class="left-c">
+            @{
+                foreach (var modulePower in modulePowers)
+                {
+
+                    if (modulePower.y_url.ToLower() == "/edu/teachplan".ToLower())
+                    {
+                        <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                    }
+                    else
+                    {
+                        <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                    }
+
+
+                }
+            }
+        </div>
+    </div>
+    <div id="main-tr">
+        <div id="loadingDiv" style="display: none"><img src="~/Content/images/loading.gif"/>
+        </div>
+        <div id="ajaxtable">
+            <table class="xx-table ydong-tab">
+                <tr>
+                    <td rowspan="2">课程名称</td>
+                    @for (int i = 1; i <= team; i++)
+                    {
+                        <td colspan="3">
+                            第@{ Write(i);}学期
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    @for (int i = 1; i <= team; i++)
+                    {
+                        <td>自学</td>
+                        <td>面授</td>
+                        <td>作业</td>
+                    }
+
+                </tr>
+                @for (int i = 0; i < coursecount; i++)
+                {
+                    <tr>
+                        <td>@Model[i*team].name</td>
+                    </tr>
+                    <tr>
+                        @for (int j = 0; j < team; j++)
+                        {
+                            <td>
+                                @Model[i*team + j].stuTime
+                            </td>
+                            <td></td>
+                            if (Model[i*team + j].faceTime1 != null || @Model[i*team + j].faceTime2 != null)
+                            {
+                                <td>@Model[i*team + j].faceTime1/@Model[i*team + j].faceTime2</td>
+                            }
+                            <td>@Model[i*team + j].task</td>
+                        }
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+    @Html.Action("Foot", "AdminBase")
+</body>
+</html>

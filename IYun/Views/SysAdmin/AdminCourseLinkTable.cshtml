@@ -1,0 +1,37 @@
+﻿@using IYun.Controllers
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YD_Edu_Course>
+@{
+    var adminId = Convert.ToInt32(ViewData["adminId"]);
+}
+
+<table class="xx-table ydong-tab">
+    <tr>
+        <th>分配</th>
+        <th>课程名</th>
+    </tr>
+    @{
+        foreach (var ydSysAdmin in Model)
+        {
+            <tr class="sub">
+                <td>
+                    @{
+
+            if (AdminBaseController.IsAdminCourseLink(adminId, ydSysAdmin.id))
+            {
+                <input class="cb" checked="checked" type="checkbox" />
+            }
+            else
+            {
+                <input class="cb" type="checkbox" />
+            }
+                    }
+                    <input class="id" type="hidden" value="@ydSysAdmin.id" />
+                </td>
+                <td>@ydSysAdmin.y_name</td>
+            </tr>
+        }
+    }
+</table>
+

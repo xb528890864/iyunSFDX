@@ -1,0 +1,55 @@
+﻿@using System.Configuration
+@using IYun.Object
+@{
+    var xinshen = ConfigurationManager.AppSettings["xinsheng"];
+    int edutypeid = ViewBag.edutypeid;
+}
+
+@model List<IYun.Controllers.NewStuStatistics>
+<table border="1">
+    <thead>
+        <tr>
+            <td colspan="6">
+                <h1>@ConfigurationManager.AppSettings["SchoolTable"]成人高等学历教育新生已注册人数统计表</h1>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <h4>录取年份:@xinshen</h4>
+            </td>
+            <td colspan="2">
+                <h5>
+                    层次:
+                    @Html.Action("EduType", "Helper", new HelperParameterM {name = "subSchool", style = "width:120px;", index = edutypeid})
+                </h5>
+            </td>
+            <td colspan="2">
+                <p>总人数：@ViewBag.count</p>
+                <h4>统计时间: @DateTime.Now.ToString("yyyy-MM-dd HH:mm")</h4>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 10%">序号</td>
+            <td style="width: 15%">层次</td>
+            <td style="width: 35%">专业</td>
+            <td style="width: 10%">学习形式</td>
+            <td style="width: 10%">人数</td>
+            <td style="width: 20%">备注</td>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            var item = Model[i];
+            var index = i + 1;
+            <tr>
+                <td>@index</td>
+                <td>@item.cc</td>
+                <td>@item.zy</td>
+                <td>@item.xs</td>
+                <td>@item.counts</td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>

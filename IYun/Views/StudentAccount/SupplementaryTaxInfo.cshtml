@@ -1,0 +1,232 @@
+﻿@model int
+@using System.Configuration
+@using IYun.Common
+@using IYun.Models
+@using IYun.Object
+@{
+    Layout = null;
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <scripttype="text/javascript" src="js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    @*<script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>*@
+    <script src="~/Content/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/kindeditor-4.1.10/themes/default/default.css" rel="stylesheet" />
+    <script src="~/Content/kindeditor-4.1.10/kindeditor-min.js"></script>
+    <script src="~/Content/kindeditor-4.1.10/lang/zh_CN.js"></script>
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });
+    </script>
+    <style>
+        .td1 {
+            width: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        function SendSuccess(data) {
+            alert(data.msg);
+            if (data.isok) {
+                location.href = "/StudentAccount/StudentInfo"
+            }
+        }
+        function checkData() {
+            var pN = document.getElementById("ParentName1").value;
+            var pN2 = document.getElementById("ParentCard1").value;
+            var index = document.getElementById("ParentCardType1").selectedIndex;
+            var pN3 = document.getElementById("ParentCardType1").options[index].text;            
+            var IsWorking = $("#IsWorking").prop("checked");
+            if (pN == "" || pN2 == "" || pN3 == "") {
+                $('#ParentName1').focus();
+                alert('需填写父母或监护人1三项信息');
+                return false;
+            }
+            if ($('#cardType').val() == "") {
+                $('#y_cardId').focus();
+                alert('身份证类型不能为空');
+                return false;
+            }
+            $('#StuForm').submit();
+        }
+    </script>
+    @Html.Action("Top1", "StudentAccount")
+    <div class="main center">
+        @using (Ajax.BeginForm("SupplementaryTax", "StudentAccount", new { }, new AjaxOptions { OnSuccess = "SendSuccess" }, new { id = "StuForm" }))
+        {
+            <input type="hidden" value="@Model" name="id" id="id" />
+            <div id="main-tr">
+                <div class="tjia"><span>补录个税专项扣除信息</span><a class="fhui" href="/StudentAccount/StudentInfo">返回</a></div>
+                <table class="cx-table">
+                    <tr>
+                        <td class="td1"><a style="color:red">请核对:</a>姓名</td>
+                        <td><input id="y_cardId" type="text" class="dl-inp" placeholder="姓名" value="@ViewBag.stuName" readonly=readonly /></td>
+                    </tr>
+                    <tr>
+                        <td class="td1"><a style="color:red">请核对:</a>学号</td>
+                        <td><input id="y_cardId" type="text" class="dl-inp" placeholder="学号" value="@ViewBag.stuNum" readonly=readonly /></td>
+                    </tr>
+                    <tr>
+                        <td class="td1"><a style="color:red">请核对:</a>身份证</td>
+                        <td><input id="y_cardId" type="text" class="dl-inp" placeholder="身份证" value="@ViewBag.stuCardId" readonly=readonly /></td>
+                    </tr>
+                    <tr>
+                        <td class="td1">身份证类型</td>
+                        <td>
+                            <select class="dl-sel" id="cardType" name="CardType">
+                                <option>居民身份证</option>
+                                <option>护照</option>
+                                <option>香港特区护照/身份证明</option>
+                                <option>澳门特区护照/身份证明</option>
+                                <option>台湾居民来往大陆通行证</option>
+                                <option>境外永久居住证</option>
+                                <option>港澳台居民居住证</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1">是否在职</td>
+                        <td><input class="checkbox" type="checkbox" id="IsWorking" name="IsWorking" /></td>
+                    </tr>
+                    <tr>
+                        <td class="td1">父母或监护人1姓名</td>
+                        <td><input id="ParentName1" name="ParentName1" type="text" class="dl-inp" /></td>
+                    </tr>
+                    <tr>
+                        <td class="td1">父母或监护人1证件号码</td>
+                        <td><input id="ParentCard1" name="ParentCard1" type="text" class="dl-inp" /></td>
+                    </tr>
+                    <tr>
+                        <td class="td1">父母或监护人1证件类型</td>
+                        <td>
+                            <select class="dl-sel" id="ParentCardType1" name="ParentCardType1">
+                                <option></option>
+                                <option>居民身份证</option>
+                                <option>护照</option>
+                                <option>香港特区护照/身份证明</option>
+                                <option>澳门特区护照/身份证明</option>
+                                <option>台湾居民来往大陆通行证</option>
+                                <option>境外永久居住证</option>
+                                <option>港澳台居民居住证</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1">父母或监护人2姓名</td>
+                        <td><input id="ParentName2" name="ParentName2" type="text" class="dl-inp" /></td>
+                    </tr>
+                    <tr>
+                        <td class="td1">父母或监护人2证件号码</td>
+                        <td><input id="ParentCard2" name="ParentCard2" type="text" class="dl-inp" /></td>
+                    </tr>
+                    <tr>
+                        <td class="td1">父母或监护人2证件类型</td>
+                        <td>
+                            <select class="dl-sel" id="ParentCardType2" name="ParentCardType2">
+                                <option></option>
+                                <option>居民身份证</option>
+                                <option>护照</option>
+                                <option>香港特区护照/身份证明</option>
+                                <option>澳门特区护照/身份证明</option>
+                                <option>台湾居民来往大陆通行证</option>
+                                <option>境外永久居住证</option>
+                                <option>港澳台居民居住证</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1">&nbsp;</td>
+                        <td><input class="cx-sub" type="button" value="保存" onclick="return checkData() " /></td>
+                    </tr>
+                </table>
+            </div>
+        }
+    </div>
+    @Html.Action("Foot", "AdminBase")
+
+    <script>
+
+        //将form转为AJAX提交
+        function ajaxSubmit(frm, fn, dataType) {            
+            let dataPara = getFormJson(frm);
+            let Id =  document.getElementById("id").value;
+            let CardType = document.getElementById("cardType").value;
+            let IsWorking = document.getElementById("IsWorking").checked;
+            let ParentName1 = document.getElementById("ParentName1").value;
+            let ParentCard1 = document.getElementById("ParentCard1").value;
+            let ParentCardType1 = document.getElementById("ParentCardType1").value;
+            let ParentName2 = document.getElementById("ParentName2").value;
+            let ParentCard2 = document.getElementById("ParentCard2").value;
+            let ParentCardType2 = document.getElementById("ParentCardType2").value;
+            $.ajax({                
+                url: "/StudentAccount/SupplementaryTax",
+                type: "post",
+                data: {
+                        Id: Id,
+                        CardType: CardType,
+                        IsWorking: IsWorking,
+                        ParentName1: ParentName1,
+                        ParentCard1: ParentCard1,
+                        ParentCardType1: ParentCardType1,
+                        ParentName2: ParentName2,
+                        ParentCard2: ParentCard2,
+                        ParentCardType2: ParentCardType2
+                },
+                dataType: dataType,
+                success: fn
+            });
+        }
+
+        //将form中的值转换为键值对。
+        function getFormJson(frm) {
+            var o = {};
+            var a = $(frm).serializeArray();
+            $.each(a, function () {
+                if (o[this.name] !== undefined) {
+                    if (!o[this.name].push) {
+                        o[this.name] = [o[this.name]];
+                    }
+                    o[this.name].push(this.value || '');
+                } else {
+                    o[this.name] = this.value || '';
+                }
+            });
+
+            return o;
+        }
+        
+        $(document).ready(function () {
+            $('#StuForm').bind('submit', function () {
+                ajaxSubmit(this, SendSuccess, 'json');
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>

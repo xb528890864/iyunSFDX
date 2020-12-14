@@ -1,0 +1,182 @@
+﻿@using System.Configuration
+@using IYun.Models
+@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+    @model PagedList<VW_MajorTeachPlan>
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+      var teachPlanId = (string)ViewBag.teachPlanId;
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <script type="text/javascript" src="~/Views/Edu/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    @*<script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>*@
+    <script src="~/Content/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="~/Scripts/MvcPager.js"></script>
+    <link href="~/Content/kindeditor-4.1.10/themes/default/default.css" rel="stylesheet" />
+    <script src="~/Content/kindeditor-4.1.10/kindeditor-min.js"></script>
+    <script src="~/Content/kindeditor-4.1.10/lang/zh_CN.js"></script>
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+        });
+        KindEditor.ready(function (K) {
+            var editor = K.editor({
+                allowFileManager: true,
+                uploadJson: '../../Content/kindeditor-4.1.10/asp.net/excelUpload.ashx',//文件处理程序
+                fileManagerJson: '../../Content/kindeditor-4.1.10/asp.net/file_manager_json.ashx',
+                imageSizeLimit: '10MB',
+                imageUploadLimit: 10
+            });
+            K('#insertfile').click(function () {
+                editor.loadPlugin('insertfile', function () {
+                    editor.plugin.fileDialog({
+                        fileUrl: K('#url').val(),
+                        clickFn: function (url, title) {
+                            K('#url').val(url);
+                            editor.hideDialog();
+                        }
+                    });
+                });
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        <div id="main-tl">
+            <div class="left-t">教务管理</div>
+            <div class="left-c">
+                @{
+                    foreach (var modulePower in modulePowers)
+                    {
+
+                        if (modulePower.y_url.ToLower() == "/edu/teachplan".ToLower())
+                        {
+                            <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                        else
+                        {
+                            <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+
+
+                    }
+                }
+            </div>
+        </div>
+        <div id="main-tr">
+            <form action="/Edu/TeachPlan" id="searchForm" method="post">
+                <div class="cli">
+                    &nbsp;&nbsp;&nbsp;&nbsp;年度：@Html.Action("EnrollYear", "Helper", new HelperParameterM { name = "year", style = "margin-top:13px;margin-left:5px;width:100px;" })
+                    <div class="zc-inn">
+                        <span>修课学期</span>
+                        <select class="cx-sel" name="y_term" style="width:130px;">
+                            <option value="0">请选择</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                    <div class="zc-inn">
+                        <span>专业</span>
+                        @Html.Action("Major", "Helper", new HelperParameterM { style = "width:170px;" })
+                    </div>
+                    <input style="height:32px; line-height:30px; float:right; margin:20px 12px 0 0;" type="submit" class="zc-sub2" value="查找" />
+                </div>
+            </form>
+            <div class="cli"></div>
+            <div class="nava1">
+                <a class="nava2 zc-sub" href="javascript:;" style="height:32px; line-height:30px; float:right; width:120px; margin:20px 12px 0 0;">导入教学计划</a>
+                <div class="show-bg"></div>
+                <div class="show-c">
+                    <div class="tbt">导入教学计划</div>
+                    <a class="close close8" href="javascript:;"></a>
+                    <div class="dr-c">
+                        <input type="text" id="url" value="" /> <input type="button" id="insertfile" value="选择文件" />
+                        <p>导入格式说明：</p>
+                        <p>文件类型：xls或者xlsx</p>
+                        <p>第一行为列名，共有10列，分别是:专业名，层次，学习形式，学期，课程名，课程类型，学时，及格分数，教学计划类型，入学年份。</p>
+                        <p>都为必填项</p>
+                        <p>教学计划类型：1为学籍教学计划，2为正常上课教学计划</p>
+                        <p><a href="~/File/mould/%e6%95%99%e5%ad%a6%e8%ae%a1%e5%88%92%e5%af%bc%e5%85%a5%e8%a1%a8.xlsx"><font color="green">教学计划导入模板.xlsx</font></a></p>
+                    </div>
+                    <div class="cx-bom">
+                        <a class="cx-sub" href="javascript:uploadExcel()">开始导入</a><a class="cx-set close" href="javascript:;">取消</a>
+                    </div>
+                </div>
+            </div>
+            <div id="loadingDiv" style="display:none"><img src="~/Content/images/loading.gif" /></div>
+            <div id="ajaxtable">
+                @Html.Partial("TeachPlanList", Model)
+            </div>
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+</body>
+</html>
+
+<script>
+    function deleteTeachPlan(id) {
+        if (confirm("确认删除此课程信息？")) {
+        $.ajax({
+            type: "post",
+            url: "/Edu/TeachPlanDelete",
+            data: {
+                id: id
+            },
+            success: function (data) {
+                if (data == "ok") {
+                    location.reload();
+                } else {
+                    alert(data);
+                }
+            },
+            error: function (msg) {
+                alert("未知错误");
+            }
+        });
+        }
+        }
+    function uploadExcel() {
+        var fileName = $("#url").val();
+        window.location.href = "/Edu/UploadTeachPlan/?filename=" + fileName;
+    }
+</script>

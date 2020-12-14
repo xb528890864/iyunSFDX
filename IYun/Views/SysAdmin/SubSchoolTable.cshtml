@@ -1,0 +1,36 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using System.Configuration
+@using IYun.Models;
+@using IYun.Common
+@model PagedList<VW_SubschoolAdmin>
+@{
+    int adminid = ViewBag.adminid;
+    var schoolname = ConfigurationManager.AppSettings["SchoolName"];
+}
+<table class="xx-table ydong-tab">
+    <tr>
+        <th>函授站</th>
+        @if (schoolname == ComEnum.SchoolName.JXLG.ToString())
+        {
+            <th>函授站简称</th>
+        }
+        <th>函授站代码</th>
+        <th>函授站账号</th>
+        <th>操作</th>
+    </tr>
+    @{
+        foreach (var ydSysAdmin in Model)
+        {
+            <tr>
+                <td>@ydSysAdmin.y_name</td>
+                @if (schoolname == ComEnum.SchoolName.JXLG.ToString())
+                {
+                    <td>@ydSysAdmin.y_nameabbreviation</td>
+                }
+                <td>@ydSysAdmin.y_code</td>
+                <td>@ydSysAdmin.y_adminName</td>
+                <td><a class="bfont2" href="/sysadmin/SubSchoolEditPage/@ydSysAdmin.id">修改</a><a class="bfont2" href="javascript:deleteSubSchool(@ydSysAdmin.id)">删除</a></td>
+            </tr>
+        }
+    }
+</table>

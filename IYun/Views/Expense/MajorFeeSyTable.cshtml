@@ -1,0 +1,28 @@
+﻿@using System.Configuration
+@using IYun.Common
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@using NPOI.OpenXml4Net.OPC
+@model PagedList<VW_Major>
+
+<table class="xx-table ydong-tab">
+    <tr>
+        <th>专业名</th>
+        <th>层次</th>
+        <th>学习形式</th>
+        <th>缴费金额</th>
+    </tr>
+    @{
+        foreach (var ydSysAdmin in Model)
+        {
+            <tr>
+                <td>@ydSysAdmin.majorLibraryName</td>
+                <td>@ydSysAdmin.eduTypeName</td>
+                <td>@ydSysAdmin.stuTypeName</td>
+                <td>@ydSysAdmin.y_needFee</td>
+            </tr>
+        }
+    }
+
+</table>
+

@@ -1,0 +1,85 @@
+﻿@using System.Configuration
+@using IYun.Common
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<VW_StuInfo>
+@{
+    var adminroleid = ViewBag.adminroleid;
+    var schoolname = ConfigurationManager.AppSettings["SchoolName"].ToString();
+}
+<form id="StuForm">
+    <table class="xx-table">
+        <tr>
+            <th style="padding-left:25px;"><input onclick="selectAll()" type="checkbox" value="1" id="All" />&nbsp;&nbsp; 姓名</th>
+            <th>学号</th>
+            <th>考生号</th>
+            <th>专业</th>
+            <th>层次</th>
+            <th>学习形式</th>
+            @{
+                if (adminroleid != 4)
+                {
+                    <th>学习中心</th>
+                }
+            }
+            <th>入学年份</th>
+            <th>是否审核</th>
+            <th width="160">操作</th>
+        </tr>
+
+        @foreach (VW_StuInfo student in Model)
+        {
+        <tr>
+            <td style="padding-left:25px;"><input name="id" type="checkbox" value="@student.id" />&nbsp;&nbsp;@student.y_name</td>
+            <td>@student.y_stuNum</td>
+            <td>@student.y_examNum</td>
+            <td>@student.majorLibraryName</td>
+            <td>@student.eduTypeName</td>
+            <td>@student.stuTypeName</td>
+            @{
+                if (adminroleid != 4)
+                {
+                    if (student.y_isPay == 1)
+                    {
+                        <td><a style="color: red;" target="_blank" href="@Url.Action("HandSubSchool",new{student.id})">函授站有争议</a></td>
+                    }
+                    else
+                    {
+                        if (ComEnum.SchoolName.JXLG.ToString() == schoolname && student.y_nameabbreviation != null)
+                        {
+                            <td>@student.y_nameabbreviation</td>
+                        }
+                        else
+                        {
+                            <td>@student.schoolName</td>
+                        }
+                    }
+                }
+            }
+            <td>@student.y_inYear</td>
+
+            <td>@if (student.y_scoreOk == 1) { Write("已通过审核"); } else if (student.y_scoreOk == 0) { Write("未通过审核"); } else if (student.y_scoreOk != 0 && student.y_scoreOk != 1) { Write("未审核"); }</td>
+            @*<td>
+            <a class="bfont2" target="_blank" href="/Student/NewlyStudentDes/@student.id">查看</a>
+            @if (adminroleid == 3 && adminroleid == 1)
+            {
+                @*<a class="bfont2" href="/Student/NewlyEditStudent/@student.id">编辑</a>
+                <a class="bfont2" href="javascript:delstu(@student.id)">删除</a>
+            }
+
+        </td>*@
+            <td><a class="bfont2" target="_blank" href="/Student/StuStatusScore/@student.id">学籍表</a></td>
+        </tr>
+        }
+    </table>
+</form>
+    <script>
+        function selectAll() {
+            var a = $('#All').prop("checked");
+            if ($('#All').prop("checked")) {
+                $("input[type='checkbox']").prop("checked", true);
+            } else {
+                $("input[type='checkbox']").prop("checked", false);
+            }
+        }
+    </script>

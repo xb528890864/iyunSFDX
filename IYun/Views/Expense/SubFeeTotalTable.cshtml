@@ -1,0 +1,42 @@
+﻿@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<VW_SubFeeTotal>
+@{
+    const int yes = (int)YesOrNo.Yes;
+    const int no = (int)YesOrNo.No;
+}
+
+<table class="xx-table ydong-tab">
+    <tr>
+        <th style=" padding-left:25px; width:200px; text-align:left;">函授站</th>
+        <th>人数总计</th>
+        <th>已缴人数</th>
+        <th>未缴人数</th>
+        <th>总费用</th>
+        <th>已收费用</th>
+        <th>差额</th>
+        <th>需上缴校本部费用</th>
+    </tr>
+
+    @{
+        foreach (var stu in Model)
+        {
+            <tr>
+                <td style="padding-left:25px; text-align:left;">
+                    @{
+                        @stu.schoolName
+                    }
+                </td>
+                <td>@stu.totalStuCount</td>
+                <td>@stu.hasUpStuCount</td>
+                <td>@stu.noUpStuCount</td>
+                <td>@stu.totalFee</td>
+                <td>@stu.totalUpFee</td>
+                <td>@stu.totalFeeChae</td>
+                <td>@stu.totalNeedUpFee</td>
+            </tr>
+        }
+    }
+</table>
+

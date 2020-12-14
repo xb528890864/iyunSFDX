@@ -1,0 +1,117 @@
+﻿@using System.Configuration
+@using IYun.Common
+@{
+	Layout = null;
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/login/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/login/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/login/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <script type="text/javascript" src="js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    <script src="~/Content/IYun/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script>
+        if (self != top) top.location.href = window.location.href;
+        $(function () {
+
+
+        });
+
+        function SendLoginSuccess(data) {
+            if (data == "ok") {
+                @if (ConfigurationManager.AppSettings["SchoolName"].ToString() == ComEnum.SchoolName.JXLG.ToString()|| ConfigurationManager.AppSettings["SchoolName"].ToString() == ComEnum.SchoolName.ZYYDX.ToString())
+                {
+                    <Text>window.location.href = "/report/SubStuReport";</Text>
+                }
+                else {
+
+                     <Text>window.location.href = "/Edu/Shouye";</Text>
+                }
+                } else if (data =="ok_student"){
+                window.location.href = "/StudentAccount/Index1";
+            }
+
+            else {
+                changeCode();
+                alert(data);
+            }
+        }
+        function changeCode() {
+            var imgNode = $("#codeImg");
+            imgNode.attr("src", "/AdminBase/Code?t=" + (new Date()).valueOf());
+        }
+    </script>
+</head>
+
+<body>
+    <div class="tb-head"> <a href="javascript:;"><img class="logo"  src="~/Content/login/images/logo.png"/></a></div>
+    <div class="tb_con center">
+        <div class="log-t">用户登录</div>
+        @using (Ajax.BeginForm("LoginVerify", "SysAdmin", new { }, new AjaxOptions { OnSuccess = "SendLoginSuccess" }, new { id = "loginForm" }))
+        {
+            <table class="tb_table">
+                <tr>
+                    <td class="td1">用户名：</td>
+                    <td><input class="tb-inp zh" name="adminname"  type="text" /></td>
+                </tr>
+                <tr>
+                    <td class="td1">密码：</td>
+                    <td><input class="tb-inp mm" name="password"  type="password" /></td>
+                </tr>
+                <tr>
+                    <td class="td1">验证码：</td>
+                    <td>
+                        <input style="width:105px; float:left;" class="tb-inp"  name="code" type="text" />
+                        <img style="float:left; margin-left:12px;" src="/AdminBase/Code" id="codeImg" onclick="changeCode()" width="107" height="40" />
+                        <a style="font-size:12px; line-height:40px; margin-left:5px;" href="javascript:changeCode()">看不清，换一张</a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="td1">&nbsp;</td>
+                    <td style="padding:8px 0;"><input type="submit" class="tb-sub" value="登录" /></td>
+                </tr>
+            </table> }
+    </div>
+    <div class="foot-z">版权所有 Copyright  2015-2019，All Rights Reserved，power by <a style="color:#333333;" href="javascript:;">青书学堂</a></div>
+
+
+    <script>
+        //place
+        $(function () {
+            if (!placeholderSupport()) {   // 判断浏览器是否支持 placeholder
+                $('[placeholder]').focus(function () {
+                    var input = $(this);
+                    if (input.val() == input.attr('placeholder')) {
+                        input.val('');
+                        input.removeClass('placeholder');
+                    }
+                }).blur(function () {
+                    var input = $(this);
+                    if (input.val() == '' || input.val() == input.attr('placeholder')) {
+                        input.addClass('placeholder');
+                        input.val(input.attr('placeholder'));
+                    }
+                }).blur();
+            };
+        })
+        function placeholderSupport() {
+            return 'placeholder' in document.createElement('input');
+        }
+
+    </script>
+</body>
+</html>

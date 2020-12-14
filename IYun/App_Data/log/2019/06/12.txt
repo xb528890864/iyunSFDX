@@ -1,0 +1,8 @@
+
+ 
+记录时间：2019-06-12 14:26:58,901 
+线程ID:[11] 
+日志级别：  INFO  
+出错类：IYun.Controllers.StudentController property: [(null)] - 
+错误描述：用户ID:35,用户名：329329,审核学生是否完善信息情况,修改缴费记录,ID:77251,方法:NewlyPlanCheckOld
+ 

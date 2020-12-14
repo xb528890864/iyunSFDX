@@ -1,0 +1,110 @@
+﻿@using System.Configuration
+@using IYun.Models
+@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@model PagedList<YT_ActivityVideo>
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+
+    <script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="~/Scripts/MvcPager.js"></script>
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+        });
+       
+    </script>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        <div id="main-tl">
+            <div class="left-t">基础数据管理</div>
+            <div class="left-c">
+                @{
+                    foreach (var modulePower in modulePowers)
+                    {
+                        if (modulePower.y_url.ToLower() == "/basicdata/ActivityVideo".ToLower())
+                        {
+                            <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                        else
+                        {
+                            <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div id="main-tr">
+            <div class="right-nav">
+                <form action="/basicdata/ActivityVideo" id="searchForm" method="post">
+                    <div class="zc-inn">
+                        <span style="margin-left: 30px">活动名</span>
+                        <input name="y_name" style="width:120px;" type="text" class="cx-inp">
+                    </div>
+                    <div class="zc-inn"><input type="submit" style="margin-top:0px; height:32px; line-height:30px;" class="cx-sub" value="查找"></div>
+                </form>
+
+                <div class="cli">
+                    <a style="height:32px; line-height:30px; float:right; margin:20px 20px 0 0;" class="zc-sub2" href="/basicdata/ActivityVideoAddPage">添加</a>
+                    <div class="show-bg"></div>
+                </div>
+            </div>
+
+            <div id="loadingDiv" style="display:none"><img src="~/Content/manage/images/loading.gif" /></div>
+            <div id="ajaxtable">
+                @Html.Partial("ActivityVideoList", Model)
+            </div>
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+</body>
+</html>
+<script>
+    function deleteActivityVideo(id) {
+        if (confirm("确认删除此条记录？")) {
+            $.ajax({
+                type: "post",
+                url: "/basicdata/ActivityVideoDelete",
+                data: {
+                    id: id
+                },
+                success: function (data) {
+                    if (data == "ok") {
+                        location.reload();
+                    } else {
+                        alert(data);
+                    }
+                },
+                error: function (msg) {
+                    alert("未知错误");
+                }
+            });
+        }
+    }
+
+</script>

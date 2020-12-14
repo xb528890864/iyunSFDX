@@ -1,0 +1,45 @@
+﻿@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@using System.Configuration
+@using IYun.Common
+@model PagedList<VW_StrangeReportTotal>
+    @{ 
+        var schoolname = ConfigurationManager.AppSettings["SchoolName"];
+    }
+
+<table class="xx-table ydong-tab">
+    <tr>
+        <th style=" padding-left:25px; width:200px; text-align:left;">函授站</th>
+        <th>异动类型</th>
+        <th>异动人数</th>
+        <th>入学年份</th>
+        <th>审核情况</th>
+    </tr>
+
+    @{
+        foreach (var stu in Model)
+        {
+            <tr>
+
+                
+                  @if (schoolname == ComEnum.SchoolName.JXLG.ToString())
+                  {
+                    <td style="padding-left:25px; text-align:left;">
+                        @stu.y_nameabbreviation
+                    </td>
+                  }
+                  else
+                  {
+                    <td style="padding-left:25px; text-align:left;">
+                        @stu.schoolName
+                    </td>
+                  }
+                <td>@stu.strangeTypeName</td>
+                <td>@stu.totalStuCount</td>
+                <td>@stu.y_inYear</td>
+                <td>@stu.approvalstatus</td>
+            </tr>
+        }
+    }
+</table>

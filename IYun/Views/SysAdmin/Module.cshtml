@@ -1,0 +1,168 @@
+﻿@using System.Configuration
+@using IYun.Models
+@{
+    Layout = null;
+    const int able = (int)PowerState.Able;
+    var modules = (List<Module>)ViewBag.modules;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <script type="text/javascript" src="js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    <script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });
+
+    </script>
+
+</head>
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        <div id="main-tl">
+            <div class="left-t">系统设置</div>
+            <div class="left-c">
+                @{
+                    foreach (var modulePower in modulePowers)
+                    {
+                        if (modulePower.y_url.ToLower() == "/sysadmin/module".ToLower())
+                        {
+                            <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                        else
+                        {
+                            <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div id="main-tr">
+            <div class="tjia" style="background:#fff;"><span>权限设置</span><a style="height:32px;  line-height:30px; margin-left: 610px; margin-top: 10px;"  class="zc-sub2" href="/SysAdmin/ModuleAddPage/0">添加一级栏目</a><a class="fhui" href="javascript:;" onclick="history.go(-1)">返回</a></div>
+            <table class="xx-table ydong-tab" style="margin-top:0px;">
+                <tr>
+                    <th style="text-align:left; padding-left:80px;">栏目名称</th>
+                    <th width="200">链接</th>
+                    <th width="200">排序</th>
+                    <th width="200">操作</th>
+                </tr>
+            </table>
+            @{
+                foreach (var module in modules)
+                {
+                    <div class="le1">
+                        <div class="cli">
+                            <span class="le-sp" style="margin-right:150px">@module.y_name</span>
+                            <div class="xx-chk2 tb-chk">
+                                <span>@module.y_url</span>
+                                <span>@module.y_sort</span>
+                                <span><a class="bfont2" href="/SysAdmin/ModuleAddPage/@module.id">添加</a> <a class="bfont2" href="/SysAdmin/ModuleEditPage/@module.id">修改</a> <a class="bfont2" href="javascript:deleteModule(@module.id)">删除</a> </span>
+                            </div>
+                        </div>
+                        @{
+                            if (module.children.Count > 0)
+                            {
+                                <ul class="le-ul2">
+                                    @{
+                                        foreach (var moduleSon in module.children)
+                                        {
+                                            <li>
+                                                <font style="width: 200px">@moduleSon.y_name</font>
+                                                <div class="xx-chk2 tb-chk">
+                                                    <span>@moduleSon.y_url</span>
+                                                    <span>@moduleSon.y_sort</span>
+                                                    <span><a class="bfont2" href="/SysAdmin/ModuleAddPage/@moduleSon.id">添加</a><a class="bfont2" href="/SysAdmin/ModuleEditPage/@moduleSon.id">修改</a> <a href="javascript:deleteModule(@moduleSon.id)" class="bfont2">删除</a></span>
+                                                </div>
+                                            </li>
+                                            if (moduleSon.children.Count > 0)
+                                            {
+                                                foreach (var moduleSon2 in moduleSon.children)
+                                                {
+                                                    <li>
+                                                        <font style="width: 200px">|__ @moduleSon2.y_name</font>
+                                                        <div class="xx-chk2 tb-chk">
+                                                            <span>@moduleSon2.y_url</span>
+                                                            <span>@moduleSon2.y_sort</span>
+                                                            <span><a class="bfont2" href="/SysAdmin/ModuleEditPage/@moduleSon2.id">修改</a> <a href="javascript:deleteModule(@moduleSon2.id)" class="bfont2">删除</a></span>
+                                                        </div>
+                                                    </li>
+                                                }
+                                            }
+                                        }
+                                    }
+                                </ul>
+                                        }
+                        }
+                    </div>
+                                        }
+            }
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+    <script>
+        /***********LEFT下拉**************/
+        $(document).ready(function () {
+            $('.le-sp').click(function () {
+                $(this).parents(".le1").find(".le-ul2").slideToggle();
+                $(this).toggleClass("le-on1");
+            });
+        });
+    </script>
+    <script>
+        /***********LEFT下拉**************/
+        $(document).ready(function () {
+            $('.le-sp2').click(function () {
+                $(this).parents(".le-ul2 li").find(".le-ul3").slideToggle();
+                $(this).toggleClass("le-on2");
+            });
+        });
+
+        function deleteModule(id) {
+            if (confirm("确认删除此信息？")) {
+                $.ajax({
+                    type: "post",
+                    url: "/SysAdmin/ModuleDelete",
+                    data: {
+                        id: id
+                    },
+                    success: function (data) {
+                        if (data == "ok") {
+                            location.reload();
+                        } else {
+                            alert(msg);
+                        }
+                    },
+                    error: function (msg) {
+                        alert("未知错误");
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>

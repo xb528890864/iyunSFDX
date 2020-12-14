@@ -1,0 +1,236 @@
+﻿@using System.Collections
+@using System.Configuration
+@using IYun.Common
+@using IYun.Models
+@using IYun.Controllers.ControllerObject
+@using IYun.Controllers
+@model YD_Sys_PrintTemplate
+@{
+
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <script src="~/Content/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/js/drag.js"></script><!--拖拽控件-->
+
+    <script type="text/javascript">
+    </script>
+</head>
+<body>
+    @Html.Action("Top", "AdminBase")
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        i.hander {
+            display: block;
+            width: 100%;
+            height: 25px;
+            background: #ccc;
+            text-align: center;
+            font-size: 12px;
+            color: #333;
+            line-height: 25px;
+            font-style: normal;
+        }
+
+        .box {
+            background: #fff;
+            overflow: hidden;
+            min-height: 400pt;
+            box-shadow: 0 0 5px #e6e8eb;
+            margin: 0 auto 20px;
+            margin-top: 100px;
+            border: 5px solid #2561b4;
+            position: relative;
+        }
+    </style>
+    <div id="main-tr">
+        <div class="tjia"><span>修改模板</span><a class="fhui" href="/BasicData/PrintTemplate">返回</a></div>
+        <table class="cx-table">
+            <tr>
+                <td class="td1">模板名</td>
+                <td>
+                    <input type="text" class="cx-inp" autocomplete="off" id="y_name" name="y_name" placeholder="请输入模板名" value="@Model.y_name" />
+                </td>
+            </tr>
+            <tr>
+                <td class="td1">数据集选择</td>
+                <td>
+                    <select class="dl-sel" id="y_data" name="y_data">
+                        <option value="" selected="selected">请选择</option>
+                        @*<option value='VW_Score'>数据集1</option>*@
+                        <option value='VW_StuInfo'>数据集</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="td1">
+                    <input class="cx-sub" type="button" id="newDropDown" value="新增下拉框" />
+                </td>
+                <td>
+                    <input class="cx-sub" type="button" id="newLabel" value="新增数据框" />
+                </td>
+            </tr>
+
+        </table>
+        <input style="margin-left:25px" type="button" id="save" class="cx-sub" value="保存" />
+        <div  class="box box-4" id="print" style="width: 1000px;">
+            @foreach (var item in Model.YD_Sys_PrintCss)
+            {
+                <dl style="@item.y_range" id="@item.id">
+                    <i class="hander" >拖拽区</i>
+                    <div>
+                        <select class="fontsize" style="width:50pt">
+                            <option>12pt</option>
+                            <option>13pt</option>
+                            <option>14pt</option>
+                            <option>15pt</option>
+                            <option>16pt</option>
+                            <option>17pt</option>
+                        </select>
+                        <select class="bold" style="width:50pt;float:left">
+                            <option value="0">默认</option>
+                            <option value="bold">加粗</option>
+                        </select>
+                    </div>
+                        @if (BasicdataController.dic.ContainsKey(item.y_divdatatype))
+                        {
+                            <select style="width:100pt">
+                                @foreach(var d in BasicdataController.dic)
+                                {
+                                    if (item.y_divdatatype == d.Key)
+                                    {
+                                        <option value="@d.Key" selected="selected">@d.Value</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@d.Key">@d.Value</option>
+                                    }
+                                }
+                            </select>
+                        }
+                        else
+                        {
+                            <input style="width:100pt"value="@item.y_divdatatype" />
+                        }
+
+                </dl>
+            }
+        </div>
+        @Html.Action("Foot", "AdminBase")
+    </div>
+
+
+    <script>
+            var dic;
+
+            function init() {
+                $('.box-4 dl').each(function () {
+                    $(this).dragging({
+                        move: 'both',
+                        randomPosition: false,
+                        hander: '.hander'
+                    });
+                });
+            }
+
+
+            $("#y_data").change(function () {
+                $.ajax({
+                    type: "post",
+                    url: "/basicdata/GetDataField",
+                    data: {
+                        viewName: $(this).children('option:selected').val()
+                    },
+                    success: function (data) {
+                        dic = data;
+                        console.log(data);
+                    },
+                    error: function (msg) {
+                        alert("请先选择数据集");
+                    }
+                });
+            });
+            $(function () {
+                $("#y_data").val("@Model.y_dataview");
+                $.ajax({
+                    type: "post",
+                    url: "/basicdata/GetDataField",
+                    data: {
+                        viewName: $(this).children('option:selected').val()
+                    },
+                    success: function (data) {
+                        dic = data;
+                        console.log(data);
+                    },
+                    error: function (msg) {
+                        alert("请先选择数据集");
+                    }
+                });
+                init();
+            });
+            
+            $("#newDropDown").click(function () {
+                var str = '<dl><i class="hander">拖拽区</i><div><select class="fontsize" style="width:50pt">'
+                    + '<option>12pt</option><option>13pt</option><option>14pt</option><option>15pt</option><option>16pt</option><option>17pt</option></select>'
+                    + '<select class="bold" style="width:50pt;float:left"><option value=0>默认</option><option value=1>加粗</option></select></div><select style="width:100pt">';
+                $.each(dic, function (left, right) {
+                    str += '<option value="' + left + '">' + right + '</option>';
+                })
+                str += '</select ></dl >';
+                $("#print").append(str);
+                init();
+            });
+
+            $("#newLabel").click(function () {
+                var str = '<dl><i class="hander">拖拽区</i><div><select class="fontsize" style="width:50pt">'
+                    + '<option>12pt</option><option>13pt</option><option>14pt</option><option>15pt</option><option>16pt</option><option>17pt</option></select>'
+                    + '<select class="bold" style="width:52pt;float:left"><option value=0>默认</option><option value=1>加粗</option></select></div><input style="width:100pt"></input></dl>';
+                $("#print").append(str);
+                init();
+            });
+
+
+
+            $("#save").click(function () {
+                var object = {"id":@Model.id, "y_name": $("#y_name").val(), "y_dataview": $("#y_data").val(),"divs":[] };
+                $("dl").each(function () {
+                    var id = $(this).attr('id');
+                    var range = "position:absolute;z-index:1;left:" + $(this).css("left") + ";top:" + $(this).css("top");
+                    var fontsize = $($($(this).children().get(1)).children().get(0)).val();
+                    var bold = $($($(this).children().get(1)).children().get(1)).val();
+                    var type = $($(this).children().get(2)).val();
+                    object.divs.push({"id":id, "type": type, "range": range, "fontsize": fontsize, "bold": bold });
+                });
+                console.log(object);
+                $.ajax({
+                    type: "post",
+                    url: "/BasicData/PrintTemplateSave",
+                    dataType: "json",
+                    data: {
+                        template: JSON.stringify(object)
+                    },
+                    success: function (msg) {
+                        if (msg) {
+                            alert("保存成功");
+                        } else {
+                            console.log(msg);
+                        }
+                    },
+                    error: function (msg) {
+                        console.log(msg);
+                    }
+                });
+            })
+    </script>
+</body>
+</html>

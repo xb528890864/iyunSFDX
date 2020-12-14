@@ -1,0 +1,340 @@
+﻿@using System.Collections
+@using System.Configuration
+@using System.Globalization
+@using IYun.Common
+@using IYun.Models
+@using IYun.Controllers.ControllerObject
+@using IYun.Object
+@{
+    Layout = null;
+    var strange = ViewData["strange"] as VW_Strange;
+    strange = strange ?? new VW_Strange();
+    var sex = strange.y_sex == (int)SexEnum.Man ? "男" : "女";
+    var applyAdmin = ViewBag.applyAdmin ?? "";
+
+    var changetag = "";
+    if (strange.y_strangeType == 6 && strange.y_contentA != null)
+    {
+        var nationid = Convert.ToInt32(strange.y_contentA);
+        var ydStsNation = new IYunEntities().YD_Sts_Nation.Find(nationid);
+        if (ydStsNation != null)
+        {
+            changetag = ydStsNation.y_name;
+        }
+    }
+
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <script type="text/javascript" src="~/Content/manage/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    <script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    @*<script src="~/Content/manage/js/laydate.js"></script>*@ <!-- 日历控件 -->
+
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+            $(".dc-btn").click(function () {
+                $(".dc-btn").attr("display", "none");
+            });
+        });
+        function myPrint(obj) {
+            var newWindow = window.open("/student/PrintStuStrange", "_blank");//打印窗口要换成页面的url
+            $("#prev").hide();
+            var docStr = obj.innerHTML;
+            newWindow.document.write(docStr);
+            newWindow.document.close();
+            newWindow.print();
+            newWindow.close();
+            $("#prev").show();
+        }
+    </script>
+</head>
+<body>
+    @Html.Action("Top", "AdminBase")
+    <style>
+        .dc-box {
+            width: 1000px;
+            background: #fff;
+            overflow: hidden;
+            min-height: 400px;
+            box-shadow: 0 0 5px #e6e8eb;
+            margin: 0 auto;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .dc-t {
+            color: #333333;
+            font-size: 24px;
+            text-align: center;
+            margin-top: 35px;
+            line-height: 26px;
+        }
+
+        .dc-sp {
+            text-align: center;
+            color: #333333;
+            font-size: 14px;
+            padding: 10px 0;
+        }
+
+        .dc-btn {
+            background: #f9a717;
+            width: 78px;
+            height: 30px;
+            border: 1px solid #fcd186;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+            display: block;
+            position: absolute;
+            right: 60px;
+            top: 60px;
+            border-radius: 3px;
+            -webkit-border-radius: 3px;
+            -ms-border-radius: 3px;
+        }
+    </style>
+
+    <div class="dc-box" id="print" style="width: 1000px;">
+        <a class="dc-btn" href="javascript:myPrint(document.getElementById('print'))" id="prev">数据打印</a>
+        <div class="dc-t" style="text-align: center; font-weight: bold; font-size: 26px; margin-top: 60px; font-family: 微软雅黑;">@ConfigurationManager.AppSettings["SchoolTable"]成人高等教育学生基本信息修改申请（审批）表</div>
+        <table width="100%" border="1" class="basic-mod-table" style="margin-top: 20px; border-collapse: collapse;" cellpadding="0" >
+            <tr>
+                <td width="10%" style="text-align:center; line-height: 35px;">姓名</td>
+                <td width="15%" style="text-align:center; line-height: 35px;">@strange.studentName</td>
+                <td width="5%" style="text-align:center; line-height: 35px;">性别</td>
+                <td width="15%" style="text-align:center; line-height: 35px;">@sex</td>
+                <td width="10%" style="text-align:center; line-height: 35px;">民族</td>
+                <td width="15%" style="text-align:center; line-height: 35px;">@strange.nationName</td>
+                <td width="15%" style="text-align:center; line-height: 35px;">学号</td>
+                <td width="15%" style="text-align:center; line-height: 35px;">@strange.y_stuNum</td>
+            </tr>
+            <tr>
+                <td style="text-align:center; line-height: 35px;">入学年月</td>
+                <td style="text-align:center; line-height: 35px;">
+                    @strange.y_inYear
+                </td>
+                <td style="text-align:center; line-height: 35px;">层次</td>
+                <td style="text-align:center; line-height: 35px;">@strange.eduTypeName</td>
+                <td style="text-align:center; line-height: 35px;">专业</td>
+                <td style="text-align:center; line-height: 35px;">@strange.majorLibraryName</td>
+                <td style="text-align:center; line-height: 35px;">所在院（系）及班级</td>
+                <td style="text-align:center; line-height: 35px;">@strange.schoolName</td>
+            </tr>
+            <tr>
+                <td style="text-align:center; line-height: 35px;">考生号</td>
+                <td colspan="3" style="text-align:center; line-height: 35px;">@strange.y_examNum</td>
+                <td style="text-align:center; line-height: 35px;">身份证号</td>
+                <td colspan="3" style="text-align:center; line-height: 35px;">@strange.y_cardId</td>
+            </tr>
+            <tr>
+                <td style="text-align:center; line-height: 35px;">变更信息</td>
+                <td colspan="7">
+                    <div>
+                        <ul class="ulfloat">
+                            @if (strange.y_contentI != null && strange.y_contentJ != null)
+                            {
+                                <li style="float: left; padding-left: 20px;"><label><input name="Fruit" type="checkbox" checked="checked" disabled="disabled" value="" />姓名</label></li>
+                            }
+                            else
+                            {
+                                <li style="float: left; padding-left: 20px;"><label><input name="Fruit" type="checkbox" disabled="disabled" value="" />姓名</label></li>
+                            }
+                            @if (strange.y_contentC != null && strange.y_contentD != null)
+                            {
+                                <li style="float: left; padding-left: 20px;"><label><input name="Fruit" type="checkbox" checked="checked" disabled="disabled" value="" />性别</label></li>
+                            }
+                            else
+                            {
+                                <li style="float: left; padding-left: 20px;"><label><input name="Fruit" type="checkbox" disabled="disabled" value="" />性别</label></li>
+                            }
+                            @if (strange.y_contentE != null && strange.y_contentF != null)
+                            {
+                                <li style="float: left; padding-left: 20px;"><label><input name="Fruit" type="checkbox" checked="checked" disabled="disabled" value="" />出生日期</label></li>
+                            }
+                            else
+                            {
+                                <li style="float: left; padding-left: 20px;"><label><input name="Fruit" type="checkbox" value="" disabled="disabled" />出生日期</label></li>
+                            }
+                            @if (strange.y_contentG != null && strange.y_contentH != null)
+                            {
+                                <li style="float: left; padding-left: 20px;"><label><input name="Fruit" type="checkbox" checked="checked" disabled="disabled" value="" />身份证号</label></li>
+                            }
+                            else
+                            {
+                                <li style="float: left; padding-left: 20px;"><label><input name="Fruit" type="checkbox" disabled="disabled" value="" />身份证号</label></li>
+                            }
+                            @if (strange.y_contentA != null && strange.y_contentB != null)
+                            {
+                                <li style="float: left; padding-left: 20px;"><label><input name="Fruit" type="checkbox" checked="checked" disabled="disabled" value="" />民族</label></li>
+                            }
+                            else
+                            {
+                                <li style="float: left; padding-left: 20px;"><label><input name="Fruit" type="checkbox" disabled="disabled" value="" />民族</label></li>
+                            }
+
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:center;  line-height: 35px;">录取信息</td>
+                <td colspan="7">
+                    姓名：@strange.studentName   &nbsp; &nbsp; &nbsp; &nbsp; 性别：@sex
+                    &nbsp; &nbsp; &nbsp; &nbsp;   出生日期：@strange.y_birthday.ToString("yyyy-MM-dd") &nbsp; &nbsp; &nbsp; &nbsp; 身份证：@strange.y_cardId
+                    &nbsp; &nbsp; &nbsp; &nbsp; 民族：@strange.nationName
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:center;  line-height: 35px;">更正后信息</td>
+                <td colspan="7">
+                    @if (strange.y_contentI != null && strange.y_contentJ != null)
+                    {
+                        <text>姓名：@strange.y_contentI </text>
+                    }
+                    @if (strange.y_contentC != null && strange.y_contentD != null)
+                    {
+                        <text>&nbsp; &nbsp; &nbsp; &nbsp; 性别：@strange.y_contentC</text>
+                    }
+                    @if (strange.y_contentE != null && strange.y_contentF != null)
+                    {
+                        <text>&nbsp;&nbsp;&nbsp;&nbsp; 出生日期：@strange.y_contentE.Substring(0,10)</text>
+                    }
+                    @if (strange.y_contentG != null && strange.y_contentH != null)
+                    {
+                        <text>&nbsp; &nbsp; &nbsp;&nbsp; 身份证：@strange.y_contentG</text>
+                    }
+                    @if (strange.y_contentA != null && strange.y_contentB != null)
+                    {
+                        <text>&nbsp;&nbsp;&nbsp;&nbsp; 民族：@changetag</text>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td height="95" style="text-align:center;  line-height: 35px;">更 改 理 由</td>
+                <td colspan="7" style="line-height:35px;">
+                    （相关证明材料附后）
+                    <textarea class="textarea1" style="width: 100%;height: 100%;padding: 10px;background: none;font-size: 14px;line-height: 24px;height: 120px;border: 0;resize: none;" disabled="disabled" placeholder="">@strange.y_applyReason</textarea>
+                    <div class="basic-mod1" style="text-align: right;padding-right: 10px;">
+                        <div style="padding-right: 120px;">申请人：@strange.studentName</div>
+                        <span style="padding-right: 40px; float: right;">@(strange.y_applyTime.ToString("yyyy-MM-dd").Substring(8, 2))日</span>
+                        <span style="padding-right: 40px; float: right;">@(strange.y_applyTime.ToString("yyyy-MM-dd").Substring(5, 2))月</span>
+                        <span style="padding-right: 40px; float: right;">@strange.y_applyTime.ToString("yyyy-MM-dd").Substring(0, 4) 年</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td height="95" style="text-align: center;">学生所在院（系）或函授站（点）意见</td>
+                <td colspan="7">
+                    <textarea class="textarea1" style="display: block; width: 100%; height: 100%; padding: 10px; background: none; font-size: 14px; line-height: 24px; height: 100px; border: 0; resize: none;" disabled="disabled" placeholder=""></textarea>
+                    <ul class="ulli">
+                        <li style="margin-bottom: 20px; margin-left: 10px; float: left;">
+                            班主任：
+                        </li>
+                        <li style="float: right; padding-right: 170px;">
+                            负责人（签字、公章）：
+                        </li>
+                    </ul>
+                    <div style="padding-top: 30px;">
+                        <span style="padding-right: 40px; float: right;">日</span>
+                        <span style="padding-right: 40px; float: right;">月</span>
+                        <span style="padding-right: 40px; float: right;">年</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td height="95" style="text-align: center; line-height: 35px;">学校继教院或成教院（处部）意 见</td>
+                <td colspan="7">
+                    <textarea class="textarea1" style="display: block; width: 100%; height: 100%; padding: 10px; background: none; font-size: 14px; line-height: 24px; height: 100px; border: 0; resize: none;" disabled="disabled" placeholder=""></textarea>
+                    <ul class="ulli">
+                        <li style="margin-bottom: 20px; margin-left: 10px; float: left;">
+                            经办人：
+                        </li>
+                        <li style="float: right; padding-right: 170px;">
+                            负责人（签字、公章）：
+                        </li>
+                    </ul>
+                    <div style="padding-top: 30px;">
+                        <span style="padding-right: 40px; float: right;">日</span>
+                        <span style="padding-right: 40px; float: right;">月</span>
+                        <span style="padding-right: 40px; float: right;">年</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="8">
+                    <div class="abnormal" style="font-size: 12px;">
+                        <h2 style="padding: 5px 0px 0px 10px;">学校学籍管理部门电子数据处理结果：
+                        @if (strange.y_approvalStatus == (int)ApprovaState.HadApprova)
+                        {
+                            <span style="color:red;">通过</span>
+                        }
+                        @if (strange.y_approvalStatus == (int)ApprovaState.Return)
+                        {
+                            <span style="color:red;">不通过</span>
+                        }
+                        </h2>
+                        @if (strange.y_approvalStatus != (int)ApprovaState.WaitApprova)
+                        {
+                            <h2 style="padding-left: 40px;">
+                                该生信息修改申请已报省教育厅审核备案，并于
+                                <span style="">@strange.y_approvalTime.Value.Year 年</span>
+                                <span style="">@strange.y_approvalTime.Value.Month 月</span>
+                                <span style="">@strange.y_approvalTime.Value.Day 日</span>
+                                通过教育部学籍学历信息管理平台进行了电子标注。
+                            </h2>
+                        }
+                        else
+                        {
+                            <h2 style="padding-left: 40px;">
+                                该生信息修改申请已报省教育厅审核备案，并于
+                                <span style="padding-left: 50px;">年</span>
+                                <span style="padding-left: 50px;">月</span>
+                                <span style="padding-left: 50px;">日</span>
+                                通过教育部学籍学历信息管理平台进行了电子标注。
+                            </h2>
+                        }
+                        <div class="basic-mod1" style="text-align: right;padding-right: 10px;">
+                            <div style="padding-right: 120px;">经办人：</div>
+                            <span style="padding-right: 40px; float: right;">日</span>
+                            <span style="padding-right: 40px; float: right;">月</span>
+                            <span style="padding-right: 40px; float: right;">年</span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="abnormal-div2">
+            <h2>注：</h2>
+            １、本表一式二份，学生所在院（系）或函授站（点）、学校学籍管理部门各一份；<br />
+            ２、学生入学后，原则上不得更改信息。如有特殊原因变更姓名、身份证号（错号或重号）等关键信息的，需提供合法性证明材料（如身份证、户口及户籍证明等），并核对高考报名信息，经学校审核后报省教育厅审核备案。<br />
+            3、录取信息是指与更正信息有关的录取信息。
+        </div>
+    </div>
+
+    @Html.Action("Foot", "AdminBase")
+</body>
+</html>

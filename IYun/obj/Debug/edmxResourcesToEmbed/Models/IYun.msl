@@ -1,0 +1,1747 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="IYunStoreContainer" CdmEntityContainer="IYunEntities">
+    <EntitySetMapping Name="YD_Edu_Course">
+      <EntityTypeMapping TypeName="IYun.YD_Edu_Course">
+        <MappingFragment StoreEntitySet="YD_Edu_Course">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_code" ColumnName="y_code" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Edu_CourseCorrespondence">
+      <EntityTypeMapping TypeName="IYun.YD_Edu_CourseCorrespondence">
+        <MappingFragment StoreEntitySet="YD_Edu_CourseCorrespondence">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_inyear" ColumnName="y_inyear" />
+          <ScalarProperty Name="y_qingshuMajorlib" ColumnName="y_qingshuMajorlib" />
+          <ScalarProperty Name="y_qingshuEdutype" ColumnName="y_qingshuEdutype" />
+          <ScalarProperty Name="y_qingshuCourse" ColumnName="y_qingshuCourse" />
+          <ScalarProperty Name="y_qingshuTerm" ColumnName="y_qingshuTerm" />
+          <ScalarProperty Name="y_MajorID" ColumnName="y_MajorID" />
+          <ScalarProperty Name="y_CourseID" ColumnName="y_CourseID" />
+          <ScalarProperty Name="y_Term" ColumnName="y_Term" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Edu_CourseType">
+      <EntityTypeMapping TypeName="IYun.YD_Edu_CourseType">
+        <MappingFragment StoreEntitySet="YD_Edu_CourseType">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_courseTypeCode" ColumnName="y_courseTypeCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Edu_CultureExtent">
+      <EntityTypeMapping TypeName="IYun.YD_Edu_CultureExtent">
+        <MappingFragment StoreEntitySet="YD_Edu_CultureExtent">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_code" ColumnName="y_code" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Edu_EduType">
+      <EntityTypeMapping TypeName="IYun.YD_Edu_EduType">
+        <MappingFragment StoreEntitySet="YD_Edu_EduType">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_eduTypeCode" ColumnName="y_eduTypeCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Edu_ExamFeature">
+      <EntityTypeMapping TypeName="IYun.YD_Edu_ExamFeature">
+        <MappingFragment StoreEntitySet="YD_Edu_ExamFeature">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_code" ColumnName="y_code" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_TZF" ColumnName="y_TZF" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Edu_ForeignLanguage">
+      <EntityTypeMapping TypeName="IYun.YD_Edu_ForeignLanguage">
+        <MappingFragment StoreEntitySet="YD_Edu_ForeignLanguage">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_code" ColumnName="y_code" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Edu_FormTemp">
+      <EntityTypeMapping TypeName="IYun.YD_Edu_FormTemp">
+        <MappingFragment StoreEntitySet="YD_Edu_FormTemp">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_code" ColumnName="y_code" />
+          <ScalarProperty Name="y_nameMatch" ColumnName="y_nameMatch" />
+          <ScalarProperty Name="y_isOk" ColumnName="y_isOk" />
+          <ScalarProperty Name="y_eduTypeId" ColumnName="y_eduTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Edu_GradCondition">
+      <EntityTypeMapping TypeName="IYun.YD_Edu_GradCondition">
+        <MappingFragment StoreEntitySet="YD_Edu_GradCondition">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_isUse" ColumnName="y_isUse" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Edu_Major">
+      <EntityTypeMapping TypeName="IYun.YD_Edu_Major">
+        <MappingFragment StoreEntitySet="YD_Edu_Major">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_majorLibId" ColumnName="y_majorLibId" />
+          <ScalarProperty Name="y_stuTypeId" ColumnName="y_stuTypeId" />
+          <ScalarProperty Name="y_eduTypeId" ColumnName="y_eduTypeId" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_needFee" ColumnName="y_needFee" />
+          <ScalarProperty Name="y_code" ColumnName="y_code" />
+          <ScalarProperty Name="y_stuYear" ColumnName="y_stuYear" />
+          <ScalarProperty Name="y_majortype" ColumnName="y_majortype" />
+          <ScalarProperty Name="y_GridType" ColumnName="y_GridType" />
+          <ScalarProperty Name="y_StandardCode" ColumnName="y_StandardCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Edu_MajorLibrary">
+      <EntityTypeMapping TypeName="IYun.YD_Edu_MajorLibrary">
+        <MappingFragment StoreEntitySet="YD_Edu_MajorLibrary">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_code" ColumnName="y_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Edu_MajorTeachPlan">
+      <EntityTypeMapping TypeName="IYun.YD_Edu_MajorTeachPlan">
+        <MappingFragment StoreEntitySet="YD_Edu_MajorTeachPlan">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_year" ColumnName="y_year" />
+          <ScalarProperty Name="y_majorId" ColumnName="y_majorId" />
+          <ScalarProperty Name="y_teachPlanId" ColumnName="y_teachPlanId" />
+          <ScalarProperty Name="y_teaPlanType" ColumnName="y_teaPlanType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Edu_News">
+      <EntityTypeMapping TypeName="IYun.YD_Edu_News">
+        <MappingFragment StoreEntitySet="YD_Edu_News">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_type" ColumnName="y_type" />
+          <ScalarProperty Name="y_subSchoolId" ColumnName="y_subSchoolId" />
+          <ScalarProperty Name="y_title" ColumnName="y_title" />
+          <ScalarProperty Name="y_content" ColumnName="y_content" />
+          <ScalarProperty Name="y_appyname" ColumnName="y_appyname" />
+          <ScalarProperty Name="y_appytime" ColumnName="y_appytime" />
+          <ScalarProperty Name="y_hits" ColumnName="y_hits" />
+          <ScalarProperty Name="y_usable" ColumnName="y_usable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Edu_ProfessionType">
+      <EntityTypeMapping TypeName="IYun.YD_Edu_ProfessionType">
+        <MappingFragment StoreEntitySet="YD_Edu_ProfessionType">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_code" ColumnName="y_code" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Edu_QingCourse">
+      <EntityTypeMapping TypeName="IYun.YD_Edu_QingCourse">
+        <MappingFragment StoreEntitySet="YD_Edu_QingCourse">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_qingId" ColumnName="y_qingId" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_nid" ColumnName="y_nid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Edu_QingStuInfo">
+      <EntityTypeMapping TypeName="IYun.YD_Edu_QingStuInfo">
+        <MappingFragment StoreEntitySet="YD_Edu_QingStuInfo">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_qingId" ColumnName="y_qingId" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_stuNum" ColumnName="y_stuNum" />
+          <ScalarProperty Name="y_cardId" ColumnName="y_cardId" />
+          <ScalarProperty Name="y_nid" ColumnName="y_nid" />
+          <ScalarProperty Name="y_qingSubId" ColumnName="y_qingSubId" />
+          <ScalarProperty Name="y_qingMajorId" ColumnName="y_qingMajorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Edu_RecruitType">
+      <EntityTypeMapping TypeName="IYun.YD_Edu_RecruitType">
+        <MappingFragment StoreEntitySet="YD_Edu_RecruitType">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_code" ColumnName="y_code" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_ZJTD" ColumnName="y_ZJTD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Edu_Score">
+      <EntityTypeMapping TypeName="IYun.YD_Edu_Score">
+        <MappingFragment StoreEntitySet="YD_Edu_Score">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_stuId" ColumnName="y_stuId" />
+          <ScalarProperty Name="y_term" ColumnName="y_term" />
+          <ScalarProperty Name="y_normalScore" ColumnName="y_normalScore" />
+          <ScalarProperty Name="y_termScore" ColumnName="y_termScore" />
+          <ScalarProperty Name="y_workScore" ColumnName="y_workScore" />
+          <ScalarProperty Name="y_totalScore" ColumnName="y_totalScore" />
+          <ScalarProperty Name="y_courseId" ColumnName="y_courseId" />
+          <ScalarProperty Name="y_type" ColumnName="y_type" />
+          <ScalarProperty Name="y_time" ColumnName="y_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Edu_ScoreScale">
+      <EntityTypeMapping TypeName="IYun.YD_Edu_ScoreScale">
+        <MappingFragment StoreEntitySet="YD_Edu_ScoreScale">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_normalScale" ColumnName="y_normalScale" />
+          <ScalarProperty Name="y_termScale" ColumnName="y_termScale" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Edu_ScoreTemp">
+      <EntityTypeMapping TypeName="IYun.YD_Edu_ScoreTemp">
+        <MappingFragment StoreEntitySet="YD_Edu_ScoreTemp">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_stuId" ColumnName="y_stuId" />
+          <ScalarProperty Name="y_stuNum" ColumnName="y_stuNum" />
+          <ScalarProperty Name="y_examNum" ColumnName="y_examNum" />
+          <ScalarProperty Name="y_term" ColumnName="y_term" />
+          <ScalarProperty Name="y_courseId" ColumnName="y_courseId" />
+          <ScalarProperty Name="y_course" ColumnName="y_course" />
+          <ScalarProperty Name="y_normalScore" ColumnName="y_normalScore" />
+          <ScalarProperty Name="y_termScore" ColumnName="y_termScore" />
+          <ScalarProperty Name="y_workScore" ColumnName="y_workScore" />
+          <ScalarProperty Name="y_totalScore" ColumnName="y_totalScore" />
+          <ScalarProperty Name="y_stuName" ColumnName="y_stuName" />
+          <ScalarProperty Name="y_isOk" ColumnName="y_isOk" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Edu_ScoreTest">
+      <EntityTypeMapping TypeName="IYun.YD_Edu_ScoreTest">
+        <MappingFragment StoreEntitySet="YD_Edu_ScoreTest">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_stuId" ColumnName="y_stuId" />
+          <ScalarProperty Name="y_term" ColumnName="y_term" />
+          <ScalarProperty Name="y_normalScore" ColumnName="y_normalScore" />
+          <ScalarProperty Name="y_termScore" ColumnName="y_termScore" />
+          <ScalarProperty Name="y_workScore" ColumnName="y_workScore" />
+          <ScalarProperty Name="y_totalScore" ColumnName="y_totalScore" />
+          <ScalarProperty Name="y_courseId" ColumnName="y_courseId" />
+          <ScalarProperty Name="y_type" ColumnName="y_type" />
+          <ScalarProperty Name="y_time" ColumnName="y_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Edu_SmallPower">
+      <EntityTypeMapping TypeName="IYun.YD_Edu_SmallPower">
+        <MappingFragment StoreEntitySet="YD_Edu_SmallPower">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_year" ColumnName="y_year" />
+          <ScalarProperty Name="y_adminId" ColumnName="y_adminId" />
+          <ScalarProperty Name="y_subSchoolId" ColumnName="y_subSchoolId" />
+          <ScalarProperty Name="y_majorId" ColumnName="y_majorId" />
+          <ScalarProperty Name="y_courseType" ColumnName="y_courseType" />
+          <ScalarProperty Name="y_courseId" ColumnName="y_courseId" />
+          <ScalarProperty Name="y_scorelimit" ColumnName="y_scorelimit" />
+          <ScalarProperty Name="y_endTime" ColumnName="y_endTime" />
+          <ScalarProperty Name="y_createTime" ColumnName="y_createTime" />
+          <ScalarProperty Name="y_term" ColumnName="y_term" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Edu_StuState">
+      <EntityTypeMapping TypeName="IYun.YD_Edu_StuState">
+        <MappingFragment StoreEntitySet="YD_Edu_StuState">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_stuStateCode" ColumnName="y_stuStateCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Edu_StuType">
+      <EntityTypeMapping TypeName="IYun.YD_Edu_StuType">
+        <MappingFragment StoreEntitySet="YD_Edu_StuType">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_stuTypeCode" ColumnName="y_stuTypeCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Edu_TeachPlan">
+      <EntityTypeMapping TypeName="IYun.YD_Edu_TeachPlan">
+        <MappingFragment StoreEntitySet="YD_Edu_TeachPlan">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_teaPlanName" ColumnName="y_teaPlanName" />
+          <ScalarProperty Name="y_term" ColumnName="y_term" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Edu_TeachplanDes">
+      <EntityTypeMapping TypeName="IYun.YD_Edu_TeachplanDes">
+        <MappingFragment StoreEntitySet="YD_Edu_TeachplanDes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_teaPlanId" ColumnName="y_teaPlanId" />
+          <ScalarProperty Name="y_courseId" ColumnName="y_courseId" />
+          <ScalarProperty Name="y_courseTypeId" ColumnName="y_courseTypeId" />
+          <ScalarProperty Name="y_stuTime" ColumnName="y_stuTime" />
+          <ScalarProperty Name="y_score" ColumnName="y_score" />
+          <ScalarProperty Name="y_faceTime1" ColumnName="y_faceTime1" />
+          <ScalarProperty Name="y_faceTime2" ColumnName="y_faceTime2" />
+          <ScalarProperty Name="y_task" ColumnName="y_task" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Edu_TeachPlanTemp">
+      <EntityTypeMapping TypeName="IYun.YD_Edu_TeachPlanTemp">
+        <MappingFragment StoreEntitySet="YD_Edu_TeachPlanTemp">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_year" ColumnName="y_year" />
+          <ScalarProperty Name="y_majorId" ColumnName="y_majorId" />
+          <ScalarProperty Name="y_major" ColumnName="y_major" />
+          <ScalarProperty Name="y_majorLibId" ColumnName="y_majorLibId" />
+          <ScalarProperty Name="y_majorLib" ColumnName="y_majorLib" />
+          <ScalarProperty Name="y_majorNameMatch" ColumnName="y_majorNameMatch" />
+          <ScalarProperty Name="y_stuTypeId" ColumnName="y_stuTypeId" />
+          <ScalarProperty Name="y_stuTypeName" ColumnName="y_stuTypeName" />
+          <ScalarProperty Name="y_eduTypeId" ColumnName="y_eduTypeId" />
+          <ScalarProperty Name="y_eduTypeName" ColumnName="y_eduTypeName" />
+          <ScalarProperty Name="y_term" ColumnName="y_term" />
+          <ScalarProperty Name="y_courseId" ColumnName="y_courseId" />
+          <ScalarProperty Name="y_courseName" ColumnName="y_courseName" />
+          <ScalarProperty Name="y_courseNameMatch" ColumnName="y_courseNameMatch" />
+          <ScalarProperty Name="y_courseTypeId" ColumnName="y_courseTypeId" />
+          <ScalarProperty Name="y_courseType" ColumnName="y_courseType" />
+          <ScalarProperty Name="y_stuTime" ColumnName="y_stuTime" />
+          <ScalarProperty Name="y_teachPlanType" ColumnName="y_teachPlanType" />
+          <ScalarProperty Name="y_score" ColumnName="y_score" />
+          <ScalarProperty Name="y_isok" ColumnName="y_isok" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Fee_AllBili">
+      <EntityTypeMapping TypeName="IYun.YD_Fee_AllBili">
+        <MappingFragment StoreEntitySet="YD_Fee_AllBili">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_inYear" ColumnName="y_inYear" />
+          <ScalarProperty Name="y_stuTypeId" ColumnName="y_stuTypeId" />
+          <ScalarProperty Name="y_eduTypeId" ColumnName="y_eduTypeId" />
+          <ScalarProperty Name="y_feeYear" ColumnName="y_feeYear" />
+          <ScalarProperty Name="y_bili" ColumnName="y_bili" />
+          <ScalarProperty Name="y_time" ColumnName="y_time" />
+          <ScalarProperty Name="y_Visible" ColumnName="y_Visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Fee_AllFeeSys">
+      <EntityTypeMapping TypeName="IYun.YD_Fee_AllFeeSys">
+        <MappingFragment StoreEntitySet="YD_Fee_AllFeeSys">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_inYear" ColumnName="y_inYear" />
+          <ScalarProperty Name="y_feeYear" ColumnName="y_feeYear" />
+          <ScalarProperty Name="y_stuTypeId" ColumnName="y_stuTypeId" />
+          <ScalarProperty Name="y_eduTypeId" ColumnName="y_eduTypeId" />
+          <ScalarProperty Name="y_stuFee" ColumnName="y_stuFee" />
+          <ScalarProperty Name="y_bookFee" ColumnName="y_bookFee" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Fee_MajorLiFeeSys">
+      <EntityTypeMapping TypeName="IYun.YD_Fee_MajorLiFeeSys">
+        <MappingFragment StoreEntitySet="YD_Fee_MajorLiFeeSys">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_majorlivraryid" ColumnName="y_majorlivraryid" />
+          <ScalarProperty Name="y_inYear" ColumnName="y_inYear" />
+          <ScalarProperty Name="y_feeYear" ColumnName="y_feeYear" />
+          <ScalarProperty Name="y_stuTypeId" ColumnName="y_stuTypeId" />
+          <ScalarProperty Name="y_eduTypeId" ColumnName="y_eduTypeId" />
+          <ScalarProperty Name="y_StuFee" ColumnName="y_StuFee" />
+          <ScalarProperty Name="y_bookFee" ColumnName="y_bookFee" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Fee_StuFeeTb">
+      <EntityTypeMapping TypeName="IYun.YD_Fee_StuFeeTb">
+        <MappingFragment StoreEntitySet="YD_Fee_StuFeeTb">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_stuId" ColumnName="y_stuId" />
+          <ScalarProperty Name="y_feeYear" ColumnName="y_feeYear" />
+          <ScalarProperty Name="y_isUp" ColumnName="y_isUp" />
+          <ScalarProperty Name="y_isCheckFee" ColumnName="y_isCheckFee" />
+          <ScalarProperty Name="y_needFee" ColumnName="y_needFee" />
+          <ScalarProperty Name="y_needUpFee" ColumnName="y_needUpFee" />
+          <ScalarProperty Name="y_planconductOK" ColumnName="y_planconductOK" />
+          <ScalarProperty Name="y_NoplanconductReason" ColumnName="y_NoplanconductReason" />
+          <ScalarProperty Name="y_invoiceOK" ColumnName="y_invoiceOK" />
+          <ScalarProperty Name="y_invoiceMoney" ColumnName="y_invoiceMoney" />
+          <ScalarProperty Name="y_invoiceUp" ColumnName="y_invoiceUp" />
+          <ScalarProperty Name="y_invoiceCheck" ColumnName="y_invoiceCheck" />
+          <ScalarProperty Name="y_createtime" ColumnName="y_createtime" />
+          <ScalarProperty Name="y_registerYear" ColumnName="y_registerYear" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Fee_StuInvoicee">
+      <EntityTypeMapping TypeName="IYun.YD_Fee_StuInvoicee">
+        <MappingFragment StoreEntitySet="YD_Fee_StuInvoicee">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_subSchoolId" ColumnName="y_subSchoolId" />
+          <ScalarProperty Name="schoolCode" ColumnName="schoolCode" />
+          <ScalarProperty Name="schoolName" ColumnName="schoolName" />
+          <ScalarProperty Name="totalcount" ColumnName="totalcount" />
+          <ScalarProperty Name="needtotal" ColumnName="needtotal" />
+          <ScalarProperty Name="y_stuid" ColumnName="y_stuid" />
+          <ScalarProperty Name="y_time" ColumnName="y_time" />
+          <ScalarProperty Name="y_check" ColumnName="y_check" />
+          <ScalarProperty Name="y_feeyear" ColumnName="y_feeyear" />
+          <ScalarProperty Name="y_inyear" ColumnName="y_inyear" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Fee_StuRegistrBatch">
+      <EntityTypeMapping TypeName="IYun.YD_Fee_StuRegistrBatch">
+        <MappingFragment StoreEntitySet="YD_Fee_StuRegistrBatch">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_subSchoolId" ColumnName="y_subSchoolId" />
+          <ScalarProperty Name="schoolCode" ColumnName="schoolCode" />
+          <ScalarProperty Name="schoolName" ColumnName="schoolName" />
+          <ScalarProperty Name="totalcount" ColumnName="totalcount" />
+          <ScalarProperty Name="needtotal" ColumnName="needtotal" />
+          <ScalarProperty Name="y_stuid" ColumnName="y_stuid" />
+          <ScalarProperty Name="y_time" ColumnName="y_time" />
+          <ScalarProperty Name="y_check" ColumnName="y_check" />
+          <ScalarProperty Name="y_feeyear" ColumnName="y_feeyear" />
+          <ScalarProperty Name="y_inyear" ColumnName="y_inyear" />
+          <ScalarProperty Name="tuitiontotal" ColumnName="tuitiontotal" />
+          <ScalarProperty Name="governorName" ColumnName="governorName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Fee_SubFeeBili">
+      <EntityTypeMapping TypeName="IYun.YD_Fee_SubFeeBili">
+        <MappingFragment StoreEntitySet="YD_Fee_SubFeeBili">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_inYear" ColumnName="y_inYear" />
+          <ScalarProperty Name="y_subSchoolId" ColumnName="y_subSchoolId" />
+          <ScalarProperty Name="y_stuTypeId" ColumnName="y_stuTypeId" />
+          <ScalarProperty Name="y_eduTypeId" ColumnName="y_eduTypeId" />
+          <ScalarProperty Name="y_feeYear" ColumnName="y_feeYear" />
+          <ScalarProperty Name="y_bili" ColumnName="y_bili" />
+          <ScalarProperty Name="y_time" ColumnName="y_time" />
+          <ScalarProperty Name="y_Visible" ColumnName="y_Visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Fee_SubFeeSys">
+      <EntityTypeMapping TypeName="IYun.YD_Fee_SubFeeSys">
+        <MappingFragment StoreEntitySet="YD_Fee_SubFeeSys">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_subSchoolId" ColumnName="y_subSchoolId" />
+          <ScalarProperty Name="y_inYear" ColumnName="y_inYear" />
+          <ScalarProperty Name="y_feeYear" ColumnName="y_feeYear" />
+          <ScalarProperty Name="y_stuTypeId" ColumnName="y_stuTypeId" />
+          <ScalarProperty Name="y_eduTypeId" ColumnName="y_eduTypeId" />
+          <ScalarProperty Name="y_StuFee" ColumnName="y_StuFee" />
+          <ScalarProperty Name="y_bookFee" ColumnName="y_bookFee" />
+          <ScalarProperty Name="y_majorid" ColumnName="y_majorid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Graduate_Bachelor">
+      <EntityTypeMapping TypeName="IYun.YD_Graduate_Bachelor">
+        <MappingFragment StoreEntitySet="YD_Graduate_Bachelor">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_SubSchoolId" ColumnName="y_SubSchoolId" />
+          <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+          <ScalarProperty Name="totalcount" ColumnName="totalcount" />
+          <ScalarProperty Name="y_stuid" ColumnName="y_stuid" />
+          <ScalarProperty Name="y_inyear" ColumnName="y_inyear" />
+          <ScalarProperty Name="y_time" ColumnName="y_time" />
+          <ScalarProperty Name="y_check" ColumnName="y_check" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Graduate_EnglishScoreTemp">
+      <EntityTypeMapping TypeName="IYun.YD_Graduate_EnglishScoreTemp">
+        <MappingFragment StoreEntitySet="YD_Graduate_EnglishScoreTemp">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_examtime" ColumnName="y_examtime" />
+          <ScalarProperty Name="y_admissionNum" ColumnName="y_admissionNum" />
+          <ScalarProperty Name="y_stuname" ColumnName="y_stuname" />
+          <ScalarProperty Name="y_sex" ColumnName="y_sex" />
+          <ScalarProperty Name="y_inYear" ColumnName="y_inYear" />
+          <ScalarProperty Name="y_cardId" ColumnName="y_cardId" />
+          <ScalarProperty Name="y_subjectivitysore" ColumnName="y_subjectivitysore" />
+          <ScalarProperty Name="y_sumsore" ColumnName="y_sumsore" />
+          <ScalarProperty Name="y_explain" ColumnName="y_explain" />
+          <ScalarProperty Name="y_verdict" ColumnName="y_verdict" />
+          <ScalarProperty Name="y_remark" ColumnName="y_remark" />
+          <ScalarProperty Name="y_isOk" ColumnName="y_isOk" />
+          <ScalarProperty Name="y_stuId" ColumnName="y_stuId" />
+          <ScalarProperty Name="y_adopttime" ColumnName="y_adopttime" />
+          <ScalarProperty Name="y_namePinyin" ColumnName="y_namePinyin" />
+          <ScalarProperty Name="y_subschoolname" ColumnName="y_subschoolname" />
+          <ScalarProperty Name="y_createtime" ColumnName="y_createtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Graduate_SampleExamScore">
+      <EntityTypeMapping TypeName="IYun.YD_Graduate_SampleExamScore">
+        <MappingFragment StoreEntitySet="YD_Graduate_SampleExamScore">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_stuId" ColumnName="y_stuId" />
+          <ScalarProperty Name="y_courseId" ColumnName="y_courseId" />
+          <ScalarProperty Name="y_totalScore" ColumnName="y_totalScore" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Graduate_StudentApply">
+      <EntityTypeMapping TypeName="IYun.YD_Graduate_StudentApply">
+        <MappingFragment StoreEntitySet="YD_Graduate_StudentApply">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_SubSchoolId" ColumnName="y_SubSchoolId" />
+          <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+          <ScalarProperty Name="totalcount" ColumnName="totalcount" />
+          <ScalarProperty Name="y_stuid" ColumnName="y_stuid" />
+          <ScalarProperty Name="y_inyear" ColumnName="y_inyear" />
+          <ScalarProperty Name="y_time" ColumnName="y_time" />
+          <ScalarProperty Name="y_check" ColumnName="y_check" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Graduate_StudentScore">
+      <EntityTypeMapping TypeName="IYun.YD_Graduate_StudentScore">
+        <MappingFragment StoreEntitySet="YD_Graduate_StudentScore">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_examtime" ColumnName="y_examtime" />
+          <ScalarProperty Name="y_admissionNum" ColumnName="y_admissionNum" />
+          <ScalarProperty Name="y_stuname" ColumnName="y_stuname" />
+          <ScalarProperty Name="y_sex" ColumnName="y_sex" />
+          <ScalarProperty Name="y_inYear" ColumnName="y_inYear" />
+          <ScalarProperty Name="y_cardId" ColumnName="y_cardId" />
+          <ScalarProperty Name="y_subjectivitysore" ColumnName="y_subjectivitysore" />
+          <ScalarProperty Name="y_sumsore" ColumnName="y_sumsore" />
+          <ScalarProperty Name="y_explain" ColumnName="y_explain" />
+          <ScalarProperty Name="y_verdict" ColumnName="y_verdict" />
+          <ScalarProperty Name="y_remark" ColumnName="y_remark" />
+          <ScalarProperty Name="y_isdel" ColumnName="y_isdel" />
+          <ScalarProperty Name="y_stuId" ColumnName="y_stuId" />
+          <ScalarProperty Name="y_adopttime" ColumnName="y_adopttime" />
+          <ScalarProperty Name="y_namePinyin" ColumnName="y_namePinyin" />
+          <ScalarProperty Name="y_subschoolname" ColumnName="y_subschoolname" />
+          <ScalarProperty Name="y_createtime" ColumnName="y_createtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Sts_Nation">
+      <EntityTypeMapping TypeName="IYun.YD_Sts_Nation">
+        <MappingFragment StoreEntitySet="YD_Sts_Nation">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_code" ColumnName="y_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Sts_Politics">
+      <EntityTypeMapping TypeName="IYun.YD_Sts_Politics">
+        <MappingFragment StoreEntitySet="YD_Sts_Politics">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_code" ColumnName="y_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Sts_StrangeType">
+      <EntityTypeMapping TypeName="IYun.YD_Sts_StrangeType">
+        <MappingFragment StoreEntitySet="YD_Sts_StrangeType">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_viewUrl" ColumnName="y_viewUrl" />
+          <ScalarProperty Name="y_applyNotice" ColumnName="y_applyNotice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Sts_StuInfo">
+      <EntityTypeMapping TypeName="IYun.YD_Sts_StuInfo">
+        <MappingFragment StoreEntitySet="YD_Sts_StuInfo">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_stuNum" ColumnName="y_stuNum" />
+          <ScalarProperty Name="y_examNum" ColumnName="y_examNum" />
+          <ScalarProperty Name="y_sex" ColumnName="y_sex" />
+          <ScalarProperty Name="y_inYear" ColumnName="y_inYear" />
+          <ScalarProperty Name="y_cardId" ColumnName="y_cardId" />
+          <ScalarProperty Name="y_majorId" ColumnName="y_majorId" />
+          <ScalarProperty Name="y_subSchoolId" ColumnName="y_subSchoolId" />
+          <ScalarProperty Name="y_stuStateId" ColumnName="y_stuStateId" />
+          <ScalarProperty Name="y_img" ColumnName="y_img" />
+          <ScalarProperty Name="y_tel" ColumnName="y_tel" />
+          <ScalarProperty Name="y_mail" ColumnName="y_mail" />
+          <ScalarProperty Name="y_address" ColumnName="y_address" />
+          <ScalarProperty Name="y_registerState" ColumnName="y_registerState" />
+          <ScalarProperty Name="y_isChangePlan" ColumnName="y_isChangePlan" />
+          <ScalarProperty Name="y_changePlanId" ColumnName="y_changePlanId" />
+          <ScalarProperty Name="y_loginName" ColumnName="y_loginName" />
+          <ScalarProperty Name="y_password" ColumnName="y_password" />
+          <ScalarProperty Name="y_stuStrange" ColumnName="y_stuStrange" />
+          <ScalarProperty Name="y_isdel" ColumnName="y_isdel" />
+          <ScalarProperty Name="y_nationId" ColumnName="y_nationId" />
+          <ScalarProperty Name="y_politicsId" ColumnName="y_politicsId" />
+          <ScalarProperty Name="y_birthday" ColumnName="y_birthday" />
+          <ScalarProperty Name="y_graduationdata" ColumnName="y_graduationdata" />
+          <ScalarProperty Name="y_graduationschool" ColumnName="y_graduationschool" />
+          <ScalarProperty Name="y_registrationNum" ColumnName="y_registrationNum" />
+          <ScalarProperty Name="y_postalcode" ColumnName="y_postalcode" />
+          <ScalarProperty Name="y_foreignLanguageId" ColumnName="y_foreignLanguageId" />
+          <ScalarProperty Name="y_recruitTypeId" ColumnName="y_recruitTypeId" />
+          <ScalarProperty Name="y_professionTypeId" ColumnName="y_professionTypeId" />
+          <ScalarProperty Name="y_cultureExtentId" ColumnName="y_cultureExtentId" />
+          <ScalarProperty Name="y_examFeatureId" ColumnName="y_examFeatureId" />
+          <ScalarProperty Name="y_isMoneyOk" ColumnName="y_isMoneyOk" />
+          <ScalarProperty Name="y_applyOK" ColumnName="y_applyOK" />
+          <ScalarProperty Name="y_ischeck" ColumnName="y_ischeck" />
+          <ScalarProperty Name="y_degreeOK" ColumnName="y_degreeOK" />
+          <ScalarProperty Name="y_realYear" ColumnName="y_realYear" />
+          <ScalarProperty Name="y_studentType" ColumnName="y_studentType" />
+          <ScalarProperty Name="y_isgraduate" ColumnName="y_isgraduate" />
+          <ScalarProperty Name="y_isPay" ColumnName="y_isPay" />
+          <ScalarProperty Name="isCheckForSchool" ColumnName="isCheckForSchool" />
+          <ScalarProperty Name="y_graduateNumber" ColumnName="y_graduateNumber" />
+          <ScalarProperty Name="y_bachelordegree" ColumnName="y_bachelordegree" />
+          <ScalarProperty Name="isbachelorForcheck" ColumnName="isbachelorForcheck" />
+          <ScalarProperty Name="y_bachelordegreeCheck" ColumnName="y_bachelordegreeCheck" />
+          <ScalarProperty Name="y_examScore" ColumnName="y_examScore" />
+          <ScalarProperty Name="Y_generateWhether" ColumnName="Y_generateWhether" />
+          <ScalarProperty Name="y_origin" ColumnName="y_origin" />
+          <ScalarProperty Name="y_degreeNum" ColumnName="y_degreeNum" />
+          <ScalarProperty Name="y_scoreOk" ColumnName="y_scoreOk" />
+          <ScalarProperty Name="y_ImgIsok" ColumnName="y_ImgIsok" />
+          <ScalarProperty Name="y_IsWorking" ColumnName="y_IsWorking" />
+          <ScalarProperty Name="y_parentName1" ColumnName="y_parentName1" />
+          <ScalarProperty Name="y_parentCard1" ColumnName="y_parentCard1" />
+          <ScalarProperty Name="y_parentCardType1" ColumnName="y_parentCardType1" />
+          <ScalarProperty Name="y_parentName2" ColumnName="y_parentName2" />
+          <ScalarProperty Name="y_parentCard2" ColumnName="y_parentCard2" />
+          <ScalarProperty Name="y_parentCardType2" ColumnName="y_parentCardType2" />
+          <ScalarProperty Name="y_cardType" ColumnName="y_cardType" />
+          <ScalarProperty Name="y_graduateImg" ColumnName="y_graduateImg" />
+          <ScalarProperty Name="y_enrollYear" ColumnName="y_enrollYear" />
+          <ScalarProperty Name="y_classNum" ColumnName="y_classNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Sts_StuInfo_copy1">
+      <EntityTypeMapping TypeName="IYun.YD_Sts_StuInfo_copy1">
+        <MappingFragment StoreEntitySet="YD_Sts_StuInfo_copy1">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_stuNum" ColumnName="y_stuNum" />
+          <ScalarProperty Name="y_examNum" ColumnName="y_examNum" />
+          <ScalarProperty Name="y_sex" ColumnName="y_sex" />
+          <ScalarProperty Name="y_inYear" ColumnName="y_inYear" />
+          <ScalarProperty Name="y_cardId" ColumnName="y_cardId" />
+          <ScalarProperty Name="y_majorId" ColumnName="y_majorId" />
+          <ScalarProperty Name="y_subSchoolId" ColumnName="y_subSchoolId" />
+          <ScalarProperty Name="y_stuStateId" ColumnName="y_stuStateId" />
+          <ScalarProperty Name="y_img" ColumnName="y_img" />
+          <ScalarProperty Name="y_tel" ColumnName="y_tel" />
+          <ScalarProperty Name="y_mail" ColumnName="y_mail" />
+          <ScalarProperty Name="y_address" ColumnName="y_address" />
+          <ScalarProperty Name="y_registerState" ColumnName="y_registerState" />
+          <ScalarProperty Name="y_isChangePlan" ColumnName="y_isChangePlan" />
+          <ScalarProperty Name="y_changePlanId" ColumnName="y_changePlanId" />
+          <ScalarProperty Name="y_loginName" ColumnName="y_loginName" />
+          <ScalarProperty Name="y_password" ColumnName="y_password" />
+          <ScalarProperty Name="y_stuStrange" ColumnName="y_stuStrange" />
+          <ScalarProperty Name="y_isdel" ColumnName="y_isdel" />
+          <ScalarProperty Name="y_nationId" ColumnName="y_nationId" />
+          <ScalarProperty Name="y_politicsId" ColumnName="y_politicsId" />
+          <ScalarProperty Name="y_birthday" ColumnName="y_birthday" />
+          <ScalarProperty Name="y_graduationdata" ColumnName="y_graduationdata" />
+          <ScalarProperty Name="y_graduationschool" ColumnName="y_graduationschool" />
+          <ScalarProperty Name="y_registrationNum" ColumnName="y_registrationNum" />
+          <ScalarProperty Name="y_postalcode" ColumnName="y_postalcode" />
+          <ScalarProperty Name="y_foreignLanguageId" ColumnName="y_foreignLanguageId" />
+          <ScalarProperty Name="y_recruitTypeId" ColumnName="y_recruitTypeId" />
+          <ScalarProperty Name="y_professionTypeId" ColumnName="y_professionTypeId" />
+          <ScalarProperty Name="y_cultureExtentId" ColumnName="y_cultureExtentId" />
+          <ScalarProperty Name="y_examFeatureId" ColumnName="y_examFeatureId" />
+          <ScalarProperty Name="y_isMoneyOk" ColumnName="y_isMoneyOk" />
+          <ScalarProperty Name="y_applyOK" ColumnName="y_applyOK" />
+          <ScalarProperty Name="y_ischeck" ColumnName="y_ischeck" />
+          <ScalarProperty Name="y_degreeOK" ColumnName="y_degreeOK" />
+          <ScalarProperty Name="y_realYear" ColumnName="y_realYear" />
+          <ScalarProperty Name="y_studentType" ColumnName="y_studentType" />
+          <ScalarProperty Name="y_isgraduate" ColumnName="y_isgraduate" />
+          <ScalarProperty Name="y_isPay" ColumnName="y_isPay" />
+          <ScalarProperty Name="isCheckForSchool" ColumnName="isCheckForSchool" />
+          <ScalarProperty Name="y_graduateNumber" ColumnName="y_graduateNumber" />
+          <ScalarProperty Name="y_bachelordegree" ColumnName="y_bachelordegree" />
+          <ScalarProperty Name="isbachelorForcheck" ColumnName="isbachelorForcheck" />
+          <ScalarProperty Name="y_bachelordegreeCheck" ColumnName="y_bachelordegreeCheck" />
+          <ScalarProperty Name="y_examScore" ColumnName="y_examScore" />
+          <ScalarProperty Name="Y_generateWhether" ColumnName="Y_generateWhether" />
+          <ScalarProperty Name="y_origin" ColumnName="y_origin" />
+          <ScalarProperty Name="y_degreeNum" ColumnName="y_degreeNum" />
+          <ScalarProperty Name="y_scoreOk" ColumnName="y_scoreOk" />
+          <ScalarProperty Name="y_ImgIsok" ColumnName="y_ImgIsok" />
+          <ScalarProperty Name="y_IsWorking" ColumnName="y_IsWorking" />
+          <ScalarProperty Name="y_parentName1" ColumnName="y_parentName1" />
+          <ScalarProperty Name="y_parentCard1" ColumnName="y_parentCard1" />
+          <ScalarProperty Name="y_parentCardType1" ColumnName="y_parentCardType1" />
+          <ScalarProperty Name="y_parentName2" ColumnName="y_parentName2" />
+          <ScalarProperty Name="y_parentCard2" ColumnName="y_parentCard2" />
+          <ScalarProperty Name="y_parentCardType2" ColumnName="y_parentCardType2" />
+          <ScalarProperty Name="y_cardType" ColumnName="y_cardType" />
+          <ScalarProperty Name="y_graduateImg" ColumnName="y_graduateImg" />
+          <ScalarProperty Name="y_enrollYear" ColumnName="y_enrollYear" />
+          <ScalarProperty Name="y_classNum" ColumnName="y_classNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Sts_StuInfoTemp">
+      <EntityTypeMapping TypeName="IYun.YD_Sts_StuInfoTemp">
+        <MappingFragment StoreEntitySet="YD_Sts_StuInfoTemp">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_sex" ColumnName="y_sex" />
+          <ScalarProperty Name="y_sexName" ColumnName="y_sexName" />
+          <ScalarProperty Name="y_inYear" ColumnName="y_inYear" />
+          <ScalarProperty Name="y_cardId" ColumnName="y_cardId" />
+          <ScalarProperty Name="y_majorId" ColumnName="y_majorId" />
+          <ScalarProperty Name="y_majorLibId" ColumnName="y_majorLibId" />
+          <ScalarProperty Name="y_majorLibName" ColumnName="y_majorLibName" />
+          <ScalarProperty Name="y_majorNameMatch" ColumnName="y_majorNameMatch" />
+          <ScalarProperty Name="y_subSchoolId" ColumnName="y_subSchoolId" />
+          <ScalarProperty Name="y_subSchoolName" ColumnName="y_subSchoolName" />
+          <ScalarProperty Name="y_subNameMatch" ColumnName="y_subNameMatch" />
+          <ScalarProperty Name="y_stuTypeId" ColumnName="y_stuTypeId" />
+          <ScalarProperty Name="y_stuTypeName" ColumnName="y_stuTypeName" />
+          <ScalarProperty Name="y_eduTypeId" ColumnName="y_eduTypeId" />
+          <ScalarProperty Name="y_eduTypeName" ColumnName="y_eduTypeName" />
+          <ScalarProperty Name="y_stuNum" ColumnName="y_stuNum" />
+          <ScalarProperty Name="y_examNum" ColumnName="y_examNum" />
+          <ScalarProperty Name="y_tel" ColumnName="y_tel" />
+          <ScalarProperty Name="y_address" ColumnName="y_address" />
+          <ScalarProperty Name="y_stuStateId" ColumnName="y_stuStateId" />
+          <ScalarProperty Name="y_stuStateName" ColumnName="y_stuStateName" />
+          <ScalarProperty Name="y_isOk" ColumnName="y_isOk" />
+          <ScalarProperty Name="y_birthday" ColumnName="y_birthday" />
+          <ScalarProperty Name="y_nationId" ColumnName="y_nationId" />
+          <ScalarProperty Name="y_politicsId" ColumnName="y_politicsId" />
+          <ScalarProperty Name="y_nationName" ColumnName="y_nationName" />
+          <ScalarProperty Name="y_politicsName" ColumnName="y_politicsName" />
+          <ScalarProperty Name="y_graduationdata" ColumnName="y_graduationdata" />
+          <ScalarProperty Name="y_graduationschool" ColumnName="y_graduationschool" />
+          <ScalarProperty Name="y_registrationNum" ColumnName="y_registrationNum" />
+          <ScalarProperty Name="y_postalcode" ColumnName="y_postalcode" />
+          <ScalarProperty Name="y_foreignLanguageId" ColumnName="y_foreignLanguageId" />
+          <ScalarProperty Name="y_foreignLanguageName" ColumnName="y_foreignLanguageName" />
+          <ScalarProperty Name="y_recruitTypeId" ColumnName="y_recruitTypeId" />
+          <ScalarProperty Name="y_recruitTypeName" ColumnName="y_recruitTypeName" />
+          <ScalarProperty Name="y_professionTypeId" ColumnName="y_professionTypeId" />
+          <ScalarProperty Name="y_professionTypeName" ColumnName="y_professionTypeName" />
+          <ScalarProperty Name="y_cultureExtentId" ColumnName="y_cultureExtentId" />
+          <ScalarProperty Name="y_cultureExtentName" ColumnName="y_cultureExtentName" />
+          <ScalarProperty Name="y_examFeatureId" ColumnName="y_examFeatureId" />
+          <ScalarProperty Name="y_examFeatureName" ColumnName="y_examFeatureName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Sts_StuNumCol">
+      <EntityTypeMapping TypeName="IYun.YD_Sts_StuNumCol">
+        <MappingFragment StoreEntitySet="YD_Sts_StuNumCol">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_one" ColumnName="y_one" />
+          <ScalarProperty Name="y_two" ColumnName="y_two" />
+          <ScalarProperty Name="y_three" ColumnName="y_three" />
+          <ScalarProperty Name="y_four" ColumnName="y_four" />
+          <ScalarProperty Name="y_five" ColumnName="y_five" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Sts_StuStrange">
+      <EntityTypeMapping TypeName="IYun.YD_Sts_StuStrange">
+        <MappingFragment StoreEntitySet="YD_Sts_StuStrange">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_strangeType" ColumnName="y_strangeType" />
+          <ScalarProperty Name="y_applyTime" ColumnName="y_applyTime" />
+          <ScalarProperty Name="y_applyReason" ColumnName="y_applyReason" />
+          <ScalarProperty Name="y_approvalReason" ColumnName="y_approvalReason" />
+          <ScalarProperty Name="y_approvalTime" ColumnName="y_approvalTime" />
+          <ScalarProperty Name="y_approvalStatus" ColumnName="y_approvalStatus" />
+          <ScalarProperty Name="y_approvalAdmin" ColumnName="y_approvalAdmin" />
+          <ScalarProperty Name="y_applyAdmin" ColumnName="y_applyAdmin" />
+          <ScalarProperty Name="y_contentA" ColumnName="y_contentA" />
+          <ScalarProperty Name="y_contentB" ColumnName="y_contentB" />
+          <ScalarProperty Name="y_contentC" ColumnName="y_contentC" />
+          <ScalarProperty Name="y_contentD" ColumnName="y_contentD" />
+          <ScalarProperty Name="y_contentE" ColumnName="y_contentE" />
+          <ScalarProperty Name="y_isExecutive" ColumnName="y_isExecutive" />
+          <ScalarProperty Name="y_ExecutiveTime" ColumnName="y_ExecutiveTime" />
+          <ScalarProperty Name="y_stuId" ColumnName="y_stuId" />
+          <ScalarProperty Name="y_isdel" ColumnName="y_isdel" />
+          <ScalarProperty Name="y_contentF" ColumnName="y_contentF" />
+          <ScalarProperty Name="y_contentG" ColumnName="y_contentG" />
+          <ScalarProperty Name="y_contentH" ColumnName="y_contentH" />
+          <ScalarProperty Name="y_contentI" ColumnName="y_contentI" />
+          <ScalarProperty Name="y_contentJ" ColumnName="y_contentJ" />
+          <ScalarProperty Name="y_url" ColumnName="y_url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Sts_SubSchoolStuInfo">
+      <EntityTypeMapping TypeName="IYun.YD_Sts_SubSchoolStuInfo">
+        <MappingFragment StoreEntitySet="YD_Sts_SubSchoolStuInfo">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_subSchoolId" ColumnName="y_subSchoolId" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_examNum" ColumnName="y_examNum" />
+          <ScalarProperty Name="y_cardId" ColumnName="y_cardId" />
+          <ScalarProperty Name="y_isdel" ColumnName="y_isdel" />
+          <ScalarProperty Name="y_hide" ColumnName="y_hide" />
+          <ScalarProperty Name="y_year" ColumnName="y_year" />
+          <ScalarProperty Name="y_majorId" ColumnName="y_majorId" />
+          <ScalarProperty Name="y_stuTypeId" ColumnName="y_stuTypeId" />
+          <ScalarProperty Name="y_eduTypeId" ColumnName="y_eduTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Sts_SubStuTemp">
+      <EntityTypeMapping TypeName="IYun.YD_Sts_SubStuTemp">
+        <MappingFragment StoreEntitySet="YD_Sts_SubStuTemp">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_subSchoolId" ColumnName="y_subSchoolId" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_examNum" ColumnName="y_examNum" />
+          <ScalarProperty Name="y_cardId" ColumnName="y_cardId" />
+          <ScalarProperty Name="y_cardIdTemp" ColumnName="y_cardIdTemp" />
+          <ScalarProperty Name="y_isOk" ColumnName="y_isOk" />
+          <ScalarProperty Name="y_year" ColumnName="y_year" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Sys_Admin">
+      <EntityTypeMapping TypeName="IYun.YD_Sys_Admin">
+        <MappingFragment StoreEntitySet="YD_Sys_Admin">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_password" ColumnName="y_password" />
+          <ScalarProperty Name="y_roleID" ColumnName="y_roleID" />
+          <ScalarProperty Name="y_time" ColumnName="y_time" />
+          <ScalarProperty Name="y_realName" ColumnName="y_realName" />
+          <ScalarProperty Name="y_phone" ColumnName="y_phone" />
+          <ScalarProperty Name="y_realpassword" ColumnName="y_realpassword" />
+          <ScalarProperty Name="y_qinshuName" ColumnName="y_qinshuName" />
+          <ScalarProperty Name="y_qinshuPwd" ColumnName="y_qinshuPwd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Sys_AdminCourseLink">
+      <EntityTypeMapping TypeName="IYun.YD_Sys_AdminCourseLink">
+        <MappingFragment StoreEntitySet="YD_Sys_AdminCourseLink">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_adminId" ColumnName="y_adminId" />
+          <ScalarProperty Name="y_courseId" ColumnName="y_courseId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Sys_AdminSubLink">
+      <EntityTypeMapping TypeName="IYun.YD_Sys_AdminSubLink">
+        <MappingFragment StoreEntitySet="YD_Sys_AdminSubLink">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_adminId" ColumnName="y_adminId" />
+          <ScalarProperty Name="y_subSchoolId" ColumnName="y_subSchoolId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Sys_DbLog">
+      <EntityTypeMapping TypeName="IYun.YD_Sys_DbLog">
+        <MappingFragment StoreEntitySet="YD_Sys_DbLog">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_userID" ColumnName="y_userID" />
+          <ScalarProperty Name="Y_userName" ColumnName="Y_userName" />
+          <ScalarProperty Name="Y_logTypeID" ColumnName="Y_logTypeID" />
+          <ScalarProperty Name="y_time" ColumnName="y_time" />
+          <ScalarProperty Name="y_remark" ColumnName="y_remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Sys_DbLogType">
+      <EntityTypeMapping TypeName="IYun.YD_Sys_DbLogType">
+        <MappingFragment StoreEntitySet="YD_Sys_DbLogType">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_logType" ColumnName="y_logType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Sys_File">
+      <EntityTypeMapping TypeName="IYun.YD_Sys_File">
+        <MappingFragment StoreEntitySet="YD_Sys_File">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_time" ColumnName="y_time" />
+          <ScalarProperty Name="y_createduser" ColumnName="y_createduser" />
+          <ScalarProperty Name="y_role" ColumnName="y_role" />
+          <ScalarProperty Name="y_createdName" ColumnName="y_createdName" />
+          <ScalarProperty Name="y_path" ColumnName="y_path" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Sys_Module">
+      <EntityTypeMapping TypeName="IYun.YD_Sys_Module">
+        <MappingFragment StoreEntitySet="YD_Sys_Module">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_url" ColumnName="y_url" />
+          <ScalarProperty Name="y_parentID" ColumnName="y_parentID" />
+          <ScalarProperty Name="y_level" ColumnName="y_level" />
+          <ScalarProperty Name="y_sort" ColumnName="y_sort" />
+          <ScalarProperty Name="y_vaild" ColumnName="y_vaild" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Sys_Power">
+      <EntityTypeMapping TypeName="IYun.YD_Sys_Power">
+        <MappingFragment StoreEntitySet="YD_Sys_Power">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_roleID" ColumnName="y_roleID" />
+          <ScalarProperty Name="y_moduleID" ColumnName="y_moduleID" />
+          <ScalarProperty Name="y_menu" ColumnName="y_menu" />
+          <ScalarProperty Name="y_insert" ColumnName="y_insert" />
+          <ScalarProperty Name="y_delete" ColumnName="y_delete" />
+          <ScalarProperty Name="y_update" ColumnName="y_update" />
+          <ScalarProperty Name="y_select" ColumnName="y_select" />
+          <ScalarProperty Name="y_down" ColumnName="y_down" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Sys_PrintCss">
+      <EntityTypeMapping TypeName="IYun.YD_Sys_PrintCss">
+        <MappingFragment StoreEntitySet="YD_Sys_PrintCss">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_printid" ColumnName="y_printid" />
+          <ScalarProperty Name="y_divdatatype" ColumnName="y_divdatatype" />
+          <ScalarProperty Name="y_range" ColumnName="y_range" />
+          <ScalarProperty Name="y_fontsize" ColumnName="y_fontsize" />
+          <ScalarProperty Name="y_bold" ColumnName="y_bold" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Sys_PrintTemplate">
+      <EntityTypeMapping TypeName="IYun.YD_Sys_PrintTemplate">
+        <MappingFragment StoreEntitySet="YD_Sys_PrintTemplate">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_time" ColumnName="y_time" />
+          <ScalarProperty Name="y_dataview" ColumnName="y_dataview" />
+          <ScalarProperty Name="y_url" ColumnName="y_url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Sys_Role">
+      <EntityTypeMapping TypeName="IYun.YD_Sys_Role">
+        <MappingFragment StoreEntitySet="YD_Sys_Role">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_Sys_SubSchool">
+      <EntityTypeMapping TypeName="IYun.YD_Sys_SubSchool">
+        <MappingFragment StoreEntitySet="YD_Sys_SubSchool">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_code" ColumnName="y_code" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_nameabbreviation" ColumnName="y_nameabbreviation" />
+          <ScalarProperty Name="y_formername" ColumnName="y_formername" />
+          <ScalarProperty Name="y_schooltype" ColumnName="y_schooltype" />
+          <ScalarProperty Name="y_address" ColumnName="y_address" />
+          <ScalarProperty Name="y_contact" ColumnName="y_contact" />
+          <ScalarProperty Name="y_tel" ColumnName="y_tel" />
+          <ScalarProperty Name="y_cash" ColumnName="y_cash" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_TeaPlan_Class">
+      <EntityTypeMapping TypeName="IYun.YD_TeaPlan_Class">
+        <MappingFragment StoreEntitySet="YD_TeaPlan_Class">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_majorId" ColumnName="y_majorId" />
+          <ScalarProperty Name="y_teaPlanType" ColumnName="y_teaPlanType" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_remark" ColumnName="y_remark" />
+          <ScalarProperty Name="y_subSchoolId" ColumnName="y_subSchoolId" />
+          <ScalarProperty Name="y_year" ColumnName="y_year" />
+          <ScalarProperty Name="y_templetId" ColumnName="y_templetId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_TeaPlan_ClassCourseDes">
+      <EntityTypeMapping TypeName="IYun.YD_TeaPlan_ClassCourseDes">
+        <MappingFragment StoreEntitySet="YD_TeaPlan_ClassCourseDes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_classTeaPlanId" ColumnName="y_classTeaPlanId" />
+          <ScalarProperty Name="y_course" ColumnName="y_course" />
+          <ScalarProperty Name="y_team" ColumnName="y_team" />
+          <ScalarProperty Name="y_selfPeriod" ColumnName="y_selfPeriod" />
+          <ScalarProperty Name="y_teaPeriod" ColumnName="y_teaPeriod" />
+          <ScalarProperty Name="y_taskPeriod" ColumnName="y_taskPeriod" />
+          <ScalarProperty Name="y_courseType" ColumnName="y_courseType" />
+          <ScalarProperty Name="y_isMain" ColumnName="y_isMain" />
+          <ScalarProperty Name="y_selfPeriod2" ColumnName="y_selfPeriod2" />
+          <ScalarProperty Name="y_teaPeriod2" ColumnName="y_teaPeriod2" />
+          <ScalarProperty Name="y_sampleexam" ColumnName="y_sampleexam" />
+          <ScalarProperty Name="y_score" ColumnName="y_score" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_TeaPlan_ExamPlan">
+      <EntityTypeMapping TypeName="IYun.YD_TeaPlan_ExamPlan">
+        <MappingFragment StoreEntitySet="YD_TeaPlan_ExamPlan">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_majorName" ColumnName="y_majorName" />
+          <ScalarProperty Name="y_courseName" ColumnName="y_courseName" />
+          <ScalarProperty Name="y_time" ColumnName="y_time" />
+          <ScalarProperty Name="y_subSchoolName" ColumnName="y_subSchoolName" />
+          <ScalarProperty Name="y_year" ColumnName="y_year" />
+          <ScalarProperty Name="y_term" ColumnName="y_term" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_TeaPlan_Templet">
+      <EntityTypeMapping TypeName="IYun.YD_TeaPlan_Templet">
+        <MappingFragment StoreEntitySet="YD_TeaPlan_Templet">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_majorId" ColumnName="y_majorId" />
+          <ScalarProperty Name="y_teaPlanType" ColumnName="y_teaPlanType" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_remark" ColumnName="y_remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YD_TeaPlan_TempletCourseDes">
+      <EntityTypeMapping TypeName="IYun.YD_TeaPlan_TempletCourseDes">
+        <MappingFragment StoreEntitySet="YD_TeaPlan_TempletCourseDes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_templetId" ColumnName="y_templetId" />
+          <ScalarProperty Name="y_course" ColumnName="y_course" />
+          <ScalarProperty Name="y_team" ColumnName="y_team" />
+          <ScalarProperty Name="y_selfPeriod" ColumnName="y_selfPeriod" />
+          <ScalarProperty Name="y_teaPeriod" ColumnName="y_teaPeriod" />
+          <ScalarProperty Name="y_taskPeriod" ColumnName="y_taskPeriod" />
+          <ScalarProperty Name="y_courseType" ColumnName="y_courseType" />
+          <ScalarProperty Name="y_isMain" ColumnName="y_isMain" />
+          <ScalarProperty Name="y_selfPeriod2" ColumnName="y_selfPeriod2" />
+          <ScalarProperty Name="y_teaPeriod2" ColumnName="y_teaPeriod2" />
+          <ScalarProperty Name="y_sampleexam" ColumnName="y_sampleexam" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YT_ActivityVideo">
+      <EntityTypeMapping TypeName="IYun.YT_ActivityVideo">
+        <MappingFragment StoreEntitySet="YT_ActivityVideo">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_starttime" ColumnName="y_starttime" />
+          <ScalarProperty Name="y_endtime" ColumnName="y_endtime" />
+          <ScalarProperty Name="y_createdtime" ColumnName="y_createdtime" />
+          <ScalarProperty Name="y_url" ColumnName="y_url" />
+          <ScalarProperty Name="y_isOpen" ColumnName="y_isOpen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YT_Faculty">
+      <EntityTypeMapping TypeName="IYun.YT_Faculty">
+        <MappingFragment StoreEntitySet="YT_Faculty">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_createtime" ColumnName="y_createtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YT_Grade">
+      <EntityTypeMapping TypeName="IYun.YT_Grade">
+        <MappingFragment StoreEntitySet="YT_Grade">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_createtime" ColumnName="y_createtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YT_GraduationRegistration">
+      <EntityTypeMapping TypeName="IYun.YT_GraduationRegistration">
+        <MappingFragment StoreEntitySet="YT_GraduationRegistration">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_stuNum" ColumnName="y_stuNum" />
+          <ScalarProperty Name="y_cardId" ColumnName="y_cardId" />
+          <ScalarProperty Name="y_sex" ColumnName="y_sex" />
+          <ScalarProperty Name="y_inYear" ColumnName="y_inYear" />
+          <ScalarProperty Name="y_majorId" ColumnName="y_majorId" />
+          <ScalarProperty Name="y_subSchoolId" ColumnName="y_subSchoolId" />
+          <ScalarProperty Name="y_nationId" ColumnName="y_nationId" />
+          <ScalarProperty Name="y_tel" ColumnName="y_tel" />
+          <ScalarProperty Name="y_birthday" ColumnName="y_birthday" />
+          <ScalarProperty Name="y_address" ColumnName="y_address" />
+          <ScalarProperty Name="y_mail" ColumnName="y_mail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YT_Mechanism">
+      <EntityTypeMapping TypeName="IYun.YT_Mechanism">
+        <MappingFragment StoreEntitySet="YT_Mechanism">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_code" ColumnName="y_code" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_address" ColumnName="y_address" />
+          <ScalarProperty Name="y_tel" ColumnName="y_tel" />
+          <ScalarProperty Name="y_img" ColumnName="y_img" />
+          <ScalarProperty Name="y_Createtime" ColumnName="y_Createtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YT_RegisterSettings">
+      <EntityTypeMapping TypeName="IYun.YT_RegisterSettings">
+        <MappingFragment StoreEntitySet="YT_RegisterSettings">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_inyear" ColumnName="y_inyear" />
+          <ScalarProperty Name="y_starttime" ColumnName="y_starttime" />
+          <ScalarProperty Name="y_endtime" ColumnName="y_endtime" />
+          <ScalarProperty Name="y_Remarks" ColumnName="y_Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YT_Teacher">
+      <EntityTypeMapping TypeName="IYun.YT_Teacher">
+        <MappingFragment StoreEntitySet="YT_Teacher">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_subSchoolId" ColumnName="y_subSchoolId" />
+          <ScalarProperty Name="y_createtime" ColumnName="y_createtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YT_Term">
+      <EntityTypeMapping TypeName="IYun.YT_Term">
+        <MappingFragment StoreEntitySet="YT_Term">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_createtime" ColumnName="y_createtime" />
+          <ScalarProperty Name="y_code" ColumnName="y_code" />
+          <ScalarProperty Name="y_year" ColumnName="y_year" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Z_test">
+      <EntityTypeMapping TypeName="IYun.Z_test">
+        <MappingFragment StoreEntitySet="Z_test">
+          <ScalarProperty Name="exam" ColumnName="exam" />
+          <ScalarProperty Name="sub" ColumnName="sub" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_Admin">
+      <EntityTypeMapping TypeName="IYun.VW_Admin">
+        <MappingFragment StoreEntitySet="VW_Admin">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_adminName" ColumnName="y_adminName" />
+          <ScalarProperty Name="y_password" ColumnName="y_password" />
+          <ScalarProperty Name="y_realName" ColumnName="y_realName" />
+          <ScalarProperty Name="y_phone" ColumnName="y_phone" />
+          <ScalarProperty Name="y_roleID" ColumnName="y_roleID" />
+          <ScalarProperty Name="y_time" ColumnName="y_time" />
+          <ScalarProperty Name="y_roleName" ColumnName="y_roleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_AllBili">
+      <EntityTypeMapping TypeName="IYun.VW_AllBili">
+        <MappingFragment StoreEntitySet="VW_AllBili">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_inYear" ColumnName="y_inYear" />
+          <ScalarProperty Name="y_feeYear" ColumnName="y_feeYear" />
+          <ScalarProperty Name="y_stuTypeId" ColumnName="y_stuTypeId" />
+          <ScalarProperty Name="y_eduTypeId" ColumnName="y_eduTypeId" />
+          <ScalarProperty Name="y_bili" ColumnName="y_bili" />
+          <ScalarProperty Name="eduTypeName" ColumnName="eduTypeName" />
+          <ScalarProperty Name="y_eduTypeCode" ColumnName="y_eduTypeCode" />
+          <ScalarProperty Name="stuTypeName" ColumnName="stuTypeName" />
+          <ScalarProperty Name="y_stuTypeCode" ColumnName="y_stuTypeCode" />
+          <ScalarProperty Name="y_time" ColumnName="y_time" />
+          <ScalarProperty Name="y_Visible" ColumnName="y_Visible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_AllFeeSys">
+      <EntityTypeMapping TypeName="IYun.VW_AllFeeSys">
+        <MappingFragment StoreEntitySet="VW_AllFeeSys">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_inYear" ColumnName="y_inYear" />
+          <ScalarProperty Name="y_feeYear" ColumnName="y_feeYear" />
+          <ScalarProperty Name="y_stuTypeId" ColumnName="y_stuTypeId" />
+          <ScalarProperty Name="y_eduTypeId" ColumnName="y_eduTypeId" />
+          <ScalarProperty Name="y_stuFee" ColumnName="y_stuFee" />
+          <ScalarProperty Name="y_bookFee" ColumnName="y_bookFee" />
+          <ScalarProperty Name="eduTypeName" ColumnName="eduTypeName" />
+          <ScalarProperty Name="y_eduTypeCode" ColumnName="y_eduTypeCode" />
+          <ScalarProperty Name="stuTypeName" ColumnName="stuTypeName" />
+          <ScalarProperty Name="y_stuTypeCode" ColumnName="y_stuTypeCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_DbLog">
+      <EntityTypeMapping TypeName="IYun.VW_DbLog">
+        <MappingFragment StoreEntitySet="VW_DbLog">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_userID" ColumnName="y_userID" />
+          <ScalarProperty Name="y_userName" ColumnName="y_userName" />
+          <ScalarProperty Name="y_logTypeID" ColumnName="y_logTypeID" />
+          <ScalarProperty Name="y_time" ColumnName="y_time" />
+          <ScalarProperty Name="y_remark" ColumnName="y_remark" />
+          <ScalarProperty Name="y_logType" ColumnName="y_logType" />
+          <ScalarProperty Name="y_adminName" ColumnName="y_adminName" />
+          <ScalarProperty Name="y_password" ColumnName="y_password" />
+          <ScalarProperty Name="y_roleID" ColumnName="y_roleID" />
+          <ScalarProperty Name="y_roleName" ColumnName="y_roleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_Major">
+      <EntityTypeMapping TypeName="IYun.VW_Major">
+        <MappingFragment StoreEntitySet="VW_Major">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_majorLibId" ColumnName="y_majorLibId" />
+          <ScalarProperty Name="y_stuTypeId" ColumnName="y_stuTypeId" />
+          <ScalarProperty Name="y_eduTypeId" ColumnName="y_eduTypeId" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_code" ColumnName="y_code" />
+          <ScalarProperty Name="y_stuYear" ColumnName="y_stuYear" />
+          <ScalarProperty Name="y_StandardCode" ColumnName="y_StandardCode" />
+          <ScalarProperty Name="stuTypeName" ColumnName="stuTypeName" />
+          <ScalarProperty Name="y_stuTypeCode" ColumnName="y_stuTypeCode" />
+          <ScalarProperty Name="eduTypeName" ColumnName="eduTypeName" />
+          <ScalarProperty Name="y_eduTypeCode" ColumnName="y_eduTypeCode" />
+          <ScalarProperty Name="majorLibraryName" ColumnName="majorLibraryName" />
+          <ScalarProperty Name="majorLibraryCode" ColumnName="majorLibraryCode" />
+          <ScalarProperty Name="y_majortype" ColumnName="y_majortype" />
+          <ScalarProperty Name="y_needFee" ColumnName="y_needFee" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_MajorLiFeeSys">
+      <EntityTypeMapping TypeName="IYun.VW_MajorLiFeeSys">
+        <MappingFragment StoreEntitySet="VW_MajorLiFeeSys">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_majorlivraryid" ColumnName="y_majorlivraryid" />
+          <ScalarProperty Name="y_inYear" ColumnName="y_inYear" />
+          <ScalarProperty Name="y_feeYear" ColumnName="y_feeYear" />
+          <ScalarProperty Name="y_stuTypeId" ColumnName="y_stuTypeId" />
+          <ScalarProperty Name="y_eduTypeId" ColumnName="y_eduTypeId" />
+          <ScalarProperty Name="y_StuFee" ColumnName="y_StuFee" />
+          <ScalarProperty Name="y_bookFee" ColumnName="y_bookFee" />
+          <ScalarProperty Name="eduTypeName" ColumnName="eduTypeName" />
+          <ScalarProperty Name="y_eduTypeCode" ColumnName="y_eduTypeCode" />
+          <ScalarProperty Name="majorlibraryname" ColumnName="majorlibraryname" />
+          <ScalarProperty Name="y_code" ColumnName="y_code" />
+          <ScalarProperty Name="stuTypeName" ColumnName="stuTypeName" />
+          <ScalarProperty Name="y_stuTypeCode" ColumnName="y_stuTypeCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_MajorTeachPlan">
+      <EntityTypeMapping TypeName="IYun.VW_MajorTeachPlan">
+        <MappingFragment StoreEntitySet="VW_MajorTeachPlan">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_year" ColumnName="y_year" />
+          <ScalarProperty Name="y_majorId" ColumnName="y_majorId" />
+          <ScalarProperty Name="y_teachPlanId" ColumnName="y_teachPlanId" />
+          <ScalarProperty Name="y_majorLibId" ColumnName="y_majorLibId" />
+          <ScalarProperty Name="y_stuTypeId" ColumnName="y_stuTypeId" />
+          <ScalarProperty Name="y_eduTypeId" ColumnName="y_eduTypeId" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_code" ColumnName="y_code" />
+          <ScalarProperty Name="y_stuYear" ColumnName="y_stuYear" />
+          <ScalarProperty Name="stuTypeName" ColumnName="stuTypeName" />
+          <ScalarProperty Name="y_stuTypeCode" ColumnName="y_stuTypeCode" />
+          <ScalarProperty Name="eduTypeName" ColumnName="eduTypeName" />
+          <ScalarProperty Name="y_eduTypeCode" ColumnName="y_eduTypeCode" />
+          <ScalarProperty Name="majorLibraryName" ColumnName="majorLibraryName" />
+          <ScalarProperty Name="majorLibraryCode" ColumnName="majorLibraryCode" />
+          <ScalarProperty Name="y_teaPlanName" ColumnName="y_teaPlanName" />
+          <ScalarProperty Name="y_teaPlanType" ColumnName="y_teaPlanType" />
+          <ScalarProperty Name="y_term" ColumnName="y_term" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_MajorTeachPlanDes">
+      <EntityTypeMapping TypeName="IYun.VW_MajorTeachPlanDes">
+        <MappingFragment StoreEntitySet="VW_MajorTeachPlanDes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_year" ColumnName="y_year" />
+          <ScalarProperty Name="y_majorId" ColumnName="y_majorId" />
+          <ScalarProperty Name="y_teachPlanId" ColumnName="y_teachPlanId" />
+          <ScalarProperty Name="y_majorLibId" ColumnName="y_majorLibId" />
+          <ScalarProperty Name="y_stuTypeId" ColumnName="y_stuTypeId" />
+          <ScalarProperty Name="y_eduTypeId" ColumnName="y_eduTypeId" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_code" ColumnName="y_code" />
+          <ScalarProperty Name="y_stuYear" ColumnName="y_stuYear" />
+          <ScalarProperty Name="stuTypeName" ColumnName="stuTypeName" />
+          <ScalarProperty Name="y_stuTypeCode" ColumnName="y_stuTypeCode" />
+          <ScalarProperty Name="eduTypeName" ColumnName="eduTypeName" />
+          <ScalarProperty Name="y_eduTypeCode" ColumnName="y_eduTypeCode" />
+          <ScalarProperty Name="majorLibraryName" ColumnName="majorLibraryName" />
+          <ScalarProperty Name="majorLibraryCode" ColumnName="majorLibraryCode" />
+          <ScalarProperty Name="y_teaPlanName" ColumnName="y_teaPlanName" />
+          <ScalarProperty Name="y_teaPlanType" ColumnName="y_teaPlanType" />
+          <ScalarProperty Name="y_term" ColumnName="y_term" />
+          <ScalarProperty Name="y_teachplandesid" ColumnName="y_teachplandesid" />
+          <ScalarProperty Name="y_teaPlanId" ColumnName="y_teaPlanId" />
+          <ScalarProperty Name="y_courseId" ColumnName="y_courseId" />
+          <ScalarProperty Name="y_courseTypeId" ColumnName="y_courseTypeId" />
+          <ScalarProperty Name="y_stuTime" ColumnName="y_stuTime" />
+          <ScalarProperty Name="y_score" ColumnName="y_score" />
+          <ScalarProperty Name="y_faceTime1" ColumnName="y_faceTime1" />
+          <ScalarProperty Name="y_faceTime2" ColumnName="y_faceTime2" />
+          <ScalarProperty Name="y_task" ColumnName="y_task" />
+          <ScalarProperty Name="y_courseSid" ColumnName="y_courseSid" />
+          <ScalarProperty Name="y_coursecode" ColumnName="y_coursecode" />
+          <ScalarProperty Name="y_coursename" ColumnName="y_coursename" />
+          <ScalarProperty Name="y_coursetypesid" ColumnName="y_coursetypesid" />
+          <ScalarProperty Name="y_coursetypename" ColumnName="y_coursetypename" />
+          <ScalarProperty Name="y_courseTypeCode" ColumnName="y_courseTypeCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_Power">
+      <EntityTypeMapping TypeName="IYun.VW_Power">
+        <MappingFragment StoreEntitySet="VW_Power">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_roleID" ColumnName="y_roleID" />
+          <ScalarProperty Name="y_moduleID" ColumnName="y_moduleID" />
+          <ScalarProperty Name="y_menu" ColumnName="y_menu" />
+          <ScalarProperty Name="y_insert" ColumnName="y_insert" />
+          <ScalarProperty Name="y_delete" ColumnName="y_delete" />
+          <ScalarProperty Name="y_update" ColumnName="y_update" />
+          <ScalarProperty Name="y_select" ColumnName="y_select" />
+          <ScalarProperty Name="y_roleName" ColumnName="y_roleName" />
+          <ScalarProperty Name="y_moudleName" ColumnName="y_moudleName" />
+          <ScalarProperty Name="y_vaild" ColumnName="y_vaild" />
+          <ScalarProperty Name="y_level" ColumnName="y_level" />
+          <ScalarProperty Name="y_sort" ColumnName="y_sort" />
+          <ScalarProperty Name="y_url" ColumnName="y_url" />
+          <ScalarProperty Name="y_parentID" ColumnName="y_parentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_Score">
+      <EntityTypeMapping TypeName="IYun.VW_Score">
+        <MappingFragment StoreEntitySet="VW_Score">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_stuId" ColumnName="y_stuId" />
+          <ScalarProperty Name="y_stuNum" ColumnName="y_stuNum" />
+          <ScalarProperty Name="y_cardId" ColumnName="y_cardId" />
+          <ScalarProperty Name="y_term" ColumnName="y_term" />
+          <ScalarProperty Name="y_normalScore" ColumnName="y_normalScore" />
+          <ScalarProperty Name="y_termScore" ColumnName="y_termScore" />
+          <ScalarProperty Name="y_totalScore" ColumnName="y_totalScore" />
+          <ScalarProperty Name="y_courseId" ColumnName="y_courseId" />
+          <ScalarProperty Name="y_courseCode" ColumnName="y_courseCode" />
+          <ScalarProperty Name="y_courseName" ColumnName="y_courseName" />
+          <ScalarProperty Name="y_stuName" ColumnName="y_stuName" />
+          <ScalarProperty Name="y_examNum" ColumnName="y_examNum" />
+          <ScalarProperty Name="y_sex" ColumnName="y_sex" />
+          <ScalarProperty Name="y_inYear" ColumnName="y_inYear" />
+          <ScalarProperty Name="y_majorId" ColumnName="y_majorId" />
+          <ScalarProperty Name="y_subSchoolId" ColumnName="y_subSchoolId" />
+          <ScalarProperty Name="y_stuStateId" ColumnName="y_stuStateId" />
+          <ScalarProperty Name="y_politicsId" ColumnName="y_politicsId" />
+          <ScalarProperty Name="y_nationId" ColumnName="y_nationId" />
+          <ScalarProperty Name="y_img" ColumnName="y_img" />
+          <ScalarProperty Name="y_tel" ColumnName="y_tel" />
+          <ScalarProperty Name="y_mail" ColumnName="y_mail" />
+          <ScalarProperty Name="y_address" ColumnName="y_address" />
+          <ScalarProperty Name="y_registerState" ColumnName="y_registerState" />
+          <ScalarProperty Name="y_isChangePlan" ColumnName="y_isChangePlan" />
+          <ScalarProperty Name="y_changePlanId" ColumnName="y_changePlanId" />
+          <ScalarProperty Name="y_loginName" ColumnName="y_loginName" />
+          <ScalarProperty Name="y_password" ColumnName="y_password" />
+          <ScalarProperty Name="y_stuStrange" ColumnName="y_stuStrange" />
+          <ScalarProperty Name="y_isdel" ColumnName="y_isdel" />
+          <ScalarProperty Name="schoolCode" ColumnName="schoolCode" />
+          <ScalarProperty Name="schoolName" ColumnName="schoolName" />
+          <ScalarProperty Name="stuStateName" ColumnName="stuStateName" />
+          <ScalarProperty Name="y_stuStateCode" ColumnName="y_stuStateCode" />
+          <ScalarProperty Name="nationName" ColumnName="nationName" />
+          <ScalarProperty Name="politicsName" ColumnName="politicsName" />
+          <ScalarProperty Name="y_majorLibId" ColumnName="y_majorLibId" />
+          <ScalarProperty Name="y_stuTypeId" ColumnName="y_stuTypeId" />
+          <ScalarProperty Name="y_eduTypeId" ColumnName="y_eduTypeId" />
+          <ScalarProperty Name="majorName" ColumnName="majorName" />
+          <ScalarProperty Name="majorCode" ColumnName="majorCode" />
+          <ScalarProperty Name="y_stuYear" ColumnName="y_stuYear" />
+          <ScalarProperty Name="stuTypeName" ColumnName="stuTypeName" />
+          <ScalarProperty Name="y_stuTypeCode" ColumnName="y_stuTypeCode" />
+          <ScalarProperty Name="eduTypeName" ColumnName="eduTypeName" />
+          <ScalarProperty Name="y_eduTypeCode" ColumnName="y_eduTypeCode" />
+          <ScalarProperty Name="majorLibraryName" ColumnName="majorLibraryName" />
+          <ScalarProperty Name="majorLibraryCode" ColumnName="majorLibraryCode" />
+          <ScalarProperty Name="y_workScore" ColumnName="y_workScore" />
+          <ScalarProperty Name="y_type" ColumnName="y_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_ScoreFirst">
+      <EntityTypeMapping TypeName="IYun.VW_ScoreFirst">
+        <MappingFragment StoreEntitySet="VW_ScoreFirst">
+          <ScalarProperty Name="y_stuName" ColumnName="y_stuName" />
+          <ScalarProperty Name="y_stuId" ColumnName="y_stuId" />
+          <ScalarProperty Name="y_stuNum" ColumnName="y_stuNum" />
+          <ScalarProperty Name="y_subSchoolId" ColumnName="y_subSchoolId" />
+          <ScalarProperty Name="y_majorId" ColumnName="y_majorId" />
+          <ScalarProperty Name="majorName" ColumnName="majorName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_Strange">
+      <EntityTypeMapping TypeName="IYun.VW_Strange">
+        <MappingFragment StoreEntitySet="VW_Strange">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_strangeType" ColumnName="y_strangeType" />
+          <ScalarProperty Name="y_applyTime" ColumnName="y_applyTime" />
+          <ScalarProperty Name="y_applyReason" ColumnName="y_applyReason" />
+          <ScalarProperty Name="y_approvalReason" ColumnName="y_approvalReason" />
+          <ScalarProperty Name="y_approvalTime" ColumnName="y_approvalTime" />
+          <ScalarProperty Name="y_approvalStatus" ColumnName="y_approvalStatus" />
+          <ScalarProperty Name="y_approvalAdmin" ColumnName="y_approvalAdmin" />
+          <ScalarProperty Name="y_applyAdmin" ColumnName="y_applyAdmin" />
+          <ScalarProperty Name="y_contentA" ColumnName="y_contentA" />
+          <ScalarProperty Name="y_contentB" ColumnName="y_contentB" />
+          <ScalarProperty Name="y_contentC" ColumnName="y_contentC" />
+          <ScalarProperty Name="y_contentD" ColumnName="y_contentD" />
+          <ScalarProperty Name="y_contentE" ColumnName="y_contentE" />
+          <ScalarProperty Name="y_isExecutive" ColumnName="y_isExecutive" />
+          <ScalarProperty Name="y_ExecutiveTime" ColumnName="y_ExecutiveTime" />
+          <ScalarProperty Name="y_stuId" ColumnName="y_stuId" />
+          <ScalarProperty Name="strangeTypeName" ColumnName="strangeTypeName" />
+          <ScalarProperty Name="y_viewUrl" ColumnName="y_viewUrl" />
+          <ScalarProperty Name="y_applyNotice" ColumnName="y_applyNotice" />
+          <ScalarProperty Name="studentName" ColumnName="studentName" />
+          <ScalarProperty Name="y_stuNum" ColumnName="y_stuNum" />
+          <ScalarProperty Name="y_examNum" ColumnName="y_examNum" />
+          <ScalarProperty Name="y_sex" ColumnName="y_sex" />
+          <ScalarProperty Name="y_inYear" ColumnName="y_inYear" />
+          <ScalarProperty Name="y_cardId" ColumnName="y_cardId" />
+          <ScalarProperty Name="y_majorId" ColumnName="y_majorId" />
+          <ScalarProperty Name="y_subSchoolId" ColumnName="y_subSchoolId" />
+          <ScalarProperty Name="y_stuStateId" ColumnName="y_stuStateId" />
+          <ScalarProperty Name="y_politicsId" ColumnName="y_politicsId" />
+          <ScalarProperty Name="y_nationId" ColumnName="y_nationId" />
+          <ScalarProperty Name="y_img" ColumnName="y_img" />
+          <ScalarProperty Name="y_tel" ColumnName="y_tel" />
+          <ScalarProperty Name="y_mail" ColumnName="y_mail" />
+          <ScalarProperty Name="y_address" ColumnName="y_address" />
+          <ScalarProperty Name="y_registerState" ColumnName="y_registerState" />
+          <ScalarProperty Name="y_isChangePlan" ColumnName="y_isChangePlan" />
+          <ScalarProperty Name="y_changePlanId" ColumnName="y_changePlanId" />
+          <ScalarProperty Name="y_loginName" ColumnName="y_loginName" />
+          <ScalarProperty Name="y_password" ColumnName="y_password" />
+          <ScalarProperty Name="y_stuStrange" ColumnName="y_stuStrange" />
+          <ScalarProperty Name="y_isdel" ColumnName="y_isdel" />
+          <ScalarProperty Name="schoolCode" ColumnName="schoolCode" />
+          <ScalarProperty Name="schoolName" ColumnName="schoolName" />
+          <ScalarProperty Name="stuStateName" ColumnName="stuStateName" />
+          <ScalarProperty Name="y_stuStateCode" ColumnName="y_stuStateCode" />
+          <ScalarProperty Name="nationName" ColumnName="nationName" />
+          <ScalarProperty Name="politicsName" ColumnName="politicsName" />
+          <ScalarProperty Name="y_majorLibId" ColumnName="y_majorLibId" />
+          <ScalarProperty Name="y_stuTypeId" ColumnName="y_stuTypeId" />
+          <ScalarProperty Name="y_eduTypeId" ColumnName="y_eduTypeId" />
+          <ScalarProperty Name="majorName" ColumnName="majorName" />
+          <ScalarProperty Name="majorCode" ColumnName="majorCode" />
+          <ScalarProperty Name="y_stuYear" ColumnName="y_stuYear" />
+          <ScalarProperty Name="stuTypeName" ColumnName="stuTypeName" />
+          <ScalarProperty Name="y_stuTypeCode" ColumnName="y_stuTypeCode" />
+          <ScalarProperty Name="eduTypeName" ColumnName="eduTypeName" />
+          <ScalarProperty Name="y_eduTypeCode" ColumnName="y_eduTypeCode" />
+          <ScalarProperty Name="majorLibraryName" ColumnName="majorLibraryName" />
+          <ScalarProperty Name="majorLibraryCode" ColumnName="majorLibraryCode" />
+          <ScalarProperty Name="y_contentAName" ColumnName="y_contentAName" />
+          <ScalarProperty Name="y_contentBName" ColumnName="y_contentBName" />
+          <ScalarProperty Name="y_straisdel" ColumnName="y_straisdel" />
+          <ScalarProperty Name="y_contentF" ColumnName="y_contentF" />
+          <ScalarProperty Name="y_contentH" ColumnName="y_contentH" />
+          <ScalarProperty Name="y_contentG" ColumnName="y_contentG" />
+          <ScalarProperty Name="y_contentI" ColumnName="y_contentI" />
+          <ScalarProperty Name="y_contentJ" ColumnName="y_contentJ" />
+          <ScalarProperty Name="y_birthday" ColumnName="y_birthday" />
+          <ScalarProperty Name="y_nameabbreviation" ColumnName="y_nameabbreviation" />
+          <ScalarProperty Name="y_url" ColumnName="y_url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_StrangeReportTotal">
+      <EntityTypeMapping TypeName="IYun.VW_StrangeReportTotal">
+        <MappingFragment StoreEntitySet="VW_StrangeReportTotal">
+          <ScalarProperty Name="totalStuCount" ColumnName="totalStuCount" />
+          <ScalarProperty Name="approvalstatus" ColumnName="approvalstatus" />
+          <ScalarProperty Name="y_approvalStatus" ColumnName="y_approvalStatus" />
+          <ScalarProperty Name="y_strangeType" ColumnName="y_strangeType" />
+          <ScalarProperty Name="strangeTypeName" ColumnName="strangeTypeName" />
+          <ScalarProperty Name="y_subSchoolId" ColumnName="y_subSchoolId" />
+          <ScalarProperty Name="y_inYear" ColumnName="y_inYear" />
+          <ScalarProperty Name="schoolName" ColumnName="schoolName" />
+          <ScalarProperty Name="y_nameabbreviation" ColumnName="y_nameabbreviation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_Sts_News">
+      <EntityTypeMapping TypeName="IYun.VW_Sts_News">
+        <MappingFragment StoreEntitySet="VW_Sts_News">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_type" ColumnName="y_type" />
+          <ScalarProperty Name="y_subSchoolId" ColumnName="y_subSchoolId" />
+          <ScalarProperty Name="y_title" ColumnName="y_title" />
+          <ScalarProperty Name="y_content" ColumnName="y_content" />
+          <ScalarProperty Name="y_appyname" ColumnName="y_appyname" />
+          <ScalarProperty Name="y_appytime" ColumnName="y_appytime" />
+          <ScalarProperty Name="y_hits" ColumnName="y_hits" />
+          <ScalarProperty Name="y_usable" ColumnName="y_usable" />
+          <ScalarProperty Name="y_subschoolcode" ColumnName="y_subschoolcode" />
+          <ScalarProperty Name="y_subschoolname" ColumnName="y_subschoolname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_StuInfo">
+      <EntityTypeMapping TypeName="IYun.VW_StuInfo">
+        <MappingFragment StoreEntitySet="VW_StuInfo">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_stuNum" ColumnName="y_stuNum" />
+          <ScalarProperty Name="y_examNum" ColumnName="y_examNum" />
+          <ScalarProperty Name="y_sex" ColumnName="y_sex" />
+          <ScalarProperty Name="y_inYear" ColumnName="y_inYear" />
+          <ScalarProperty Name="y_cardId" ColumnName="y_cardId" />
+          <ScalarProperty Name="y_majorId" ColumnName="y_majorId" />
+          <ScalarProperty Name="y_subSchoolId" ColumnName="y_subSchoolId" />
+          <ScalarProperty Name="y_stuStateId" ColumnName="y_stuStateId" />
+          <ScalarProperty Name="y_politicsId" ColumnName="y_politicsId" />
+          <ScalarProperty Name="y_nationId" ColumnName="y_nationId" />
+          <ScalarProperty Name="y_img" ColumnName="y_img" />
+          <ScalarProperty Name="y_tel" ColumnName="y_tel" />
+          <ScalarProperty Name="y_mail" ColumnName="y_mail" />
+          <ScalarProperty Name="y_address" ColumnName="y_address" />
+          <ScalarProperty Name="y_registerState" ColumnName="y_registerState" />
+          <ScalarProperty Name="y_isChangePlan" ColumnName="y_isChangePlan" />
+          <ScalarProperty Name="y_changePlanId" ColumnName="y_changePlanId" />
+          <ScalarProperty Name="y_loginName" ColumnName="y_loginName" />
+          <ScalarProperty Name="y_password" ColumnName="y_password" />
+          <ScalarProperty Name="y_stuStrange" ColumnName="y_stuStrange" />
+          <ScalarProperty Name="y_isdel" ColumnName="y_isdel" />
+          <ScalarProperty Name="y_classNum" ColumnName="y_classNum" />
+          <ScalarProperty Name="schoolCode" ColumnName="schoolCode" />
+          <ScalarProperty Name="schoolName" ColumnName="schoolName" />
+          <ScalarProperty Name="stuStateName" ColumnName="stuStateName" />
+          <ScalarProperty Name="y_stuStateCode" ColumnName="y_stuStateCode" />
+          <ScalarProperty Name="nationName" ColumnName="nationName" />
+          <ScalarProperty Name="politicsName" ColumnName="politicsName" />
+          <ScalarProperty Name="y_majorLibId" ColumnName="y_majorLibId" />
+          <ScalarProperty Name="y_stuTypeId" ColumnName="y_stuTypeId" />
+          <ScalarProperty Name="y_eduTypeId" ColumnName="y_eduTypeId" />
+          <ScalarProperty Name="majorName" ColumnName="majorName" />
+          <ScalarProperty Name="majorCode" ColumnName="majorCode" />
+          <ScalarProperty Name="y_stuYear" ColumnName="y_stuYear" />
+          <ScalarProperty Name="stuTypeName" ColumnName="stuTypeName" />
+          <ScalarProperty Name="y_stuTypeCode" ColumnName="y_stuTypeCode" />
+          <ScalarProperty Name="eduTypeName" ColumnName="eduTypeName" />
+          <ScalarProperty Name="y_eduTypeCode" ColumnName="y_eduTypeCode" />
+          <ScalarProperty Name="majorLibraryName" ColumnName="majorLibraryName" />
+          <ScalarProperty Name="majorLibraryCode" ColumnName="majorLibraryCode" />
+          <ScalarProperty Name="y_StandardCode" ColumnName="y_StandardCode" />
+          <ScalarProperty Name="subSchoolCode" ColumnName="subSchoolCode" />
+          <ScalarProperty Name="y_birthday" ColumnName="y_birthday" />
+          <ScalarProperty Name="y_isMoneyOk" ColumnName="y_isMoneyOk" />
+          <ScalarProperty Name="y_applyOK" ColumnName="y_applyOK" />
+          <ScalarProperty Name="y_ischeck" ColumnName="y_ischeck" />
+          <ScalarProperty Name="y_degreeOK" ColumnName="y_degreeOK" />
+          <ScalarProperty Name="y_graduationdata" ColumnName="y_graduationdata" />
+          <ScalarProperty Name="y_graduationschool" ColumnName="y_graduationschool" />
+          <ScalarProperty Name="y_registrationNum" ColumnName="y_registrationNum" />
+          <ScalarProperty Name="y_postalcode" ColumnName="y_postalcode" />
+          <ScalarProperty Name="y_foreignLanguageId" ColumnName="y_foreignLanguageId" />
+          <ScalarProperty Name="y_recruitTypeId" ColumnName="y_recruitTypeId" />
+          <ScalarProperty Name="y_professionTypeId" ColumnName="y_professionTypeId" />
+          <ScalarProperty Name="y_cultureExtentId" ColumnName="y_cultureExtentId" />
+          <ScalarProperty Name="y_examFeatureId" ColumnName="y_examFeatureId" />
+          <ScalarProperty Name="y_foreignLanguageCode" ColumnName="y_foreignLanguageCode" />
+          <ScalarProperty Name="y_foreignLanguageName" ColumnName="y_foreignLanguageName" />
+          <ScalarProperty Name="y_cultureExtentCode" ColumnName="y_cultureExtentCode" />
+          <ScalarProperty Name="y_cultureExtentName" ColumnName="y_cultureExtentName" />
+          <ScalarProperty Name="y_professionTypeCode" ColumnName="y_professionTypeCode" />
+          <ScalarProperty Name="y_professionTypeName" ColumnName="y_professionTypeName" />
+          <ScalarProperty Name="y_recruitTypeCode" ColumnName="y_recruitTypeCode" />
+          <ScalarProperty Name="y_recruitTypeName" ColumnName="y_recruitTypeName" />
+          <ScalarProperty Name="y_ZJTD" ColumnName="y_ZJTD" />
+          <ScalarProperty Name="y_examFeatureCode" ColumnName="y_examFeatureCode" />
+          <ScalarProperty Name="y_examFeatureName" ColumnName="y_examFeatureName" />
+          <ScalarProperty Name="y_TZF" ColumnName="y_TZF" />
+          <ScalarProperty Name="y_nameabbreviation" ColumnName="y_nameabbreviation" />
+          <ScalarProperty Name="y_formername" ColumnName="y_formername" />
+          <ScalarProperty Name="y_studentType" ColumnName="y_studentType" />
+          <ScalarProperty Name="y_realYear" ColumnName="y_realYear" />
+          <ScalarProperty Name="y_isgraduate" ColumnName="y_isgraduate" />
+          <ScalarProperty Name="y_isPay" ColumnName="y_isPay" />
+          <ScalarProperty Name="y_graduateNumber" ColumnName="y_graduateNumber" />
+          <ScalarProperty Name="isCheckForSchool" ColumnName="isCheckForSchool" />
+          <ScalarProperty Name="y_bachelordegree" ColumnName="y_bachelordegree" />
+          <ScalarProperty Name="isbachelorForcheck" ColumnName="isbachelorForcheck" />
+          <ScalarProperty Name="y_bachelordegreeCheck" ColumnName="y_bachelordegreeCheck" />
+          <ScalarProperty Name="y_examScore" ColumnName="y_examScore" />
+          <ScalarProperty Name="y_origin" ColumnName="y_origin" />
+          <ScalarProperty Name="y_degreeNum" ColumnName="y_degreeNum" />
+          <ScalarProperty Name="y_scoreOk" ColumnName="y_scoreOk" />
+          <ScalarProperty Name="subaddress" ColumnName="subaddress" />
+          <ScalarProperty Name="subcontact" ColumnName="subcontact" />
+          <ScalarProperty Name="subtel" ColumnName="subtel" />
+          <ScalarProperty Name="y_IsWorking" ColumnName="y_IsWorking" />
+          <ScalarProperty Name="y_cardType" ColumnName="y_cardType" />
+          <ScalarProperty Name="y_parentCard1" ColumnName="y_parentCard1" />
+          <ScalarProperty Name="y_parentCard2" ColumnName="y_parentCard2" />
+          <ScalarProperty Name="y_parentName1" ColumnName="y_parentName1" />
+          <ScalarProperty Name="y_parentName2" ColumnName="y_parentName2" />
+          <ScalarProperty Name="y_parentCardType1" ColumnName="y_parentCardType1" />
+          <ScalarProperty Name="y_parentCardType2" ColumnName="y_parentCardType2" />
+          <ScalarProperty Name="y_ImgIsok" ColumnName="y_ImgIsok" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_SubFeeBili">
+      <EntityTypeMapping TypeName="IYun.VW_SubFeeBili">
+        <MappingFragment StoreEntitySet="VW_SubFeeBili">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_inYear" ColumnName="y_inYear" />
+          <ScalarProperty Name="y_feeYear" ColumnName="y_feeYear" />
+          <ScalarProperty Name="y_stuTypeId" ColumnName="y_stuTypeId" />
+          <ScalarProperty Name="y_eduTypeId" ColumnName="y_eduTypeId" />
+          <ScalarProperty Name="y_bili" ColumnName="y_bili" />
+          <ScalarProperty Name="y_subSchoolId" ColumnName="y_subSchoolId" />
+          <ScalarProperty Name="subSchoolName" ColumnName="subSchoolName" />
+          <ScalarProperty Name="eduTypeName" ColumnName="eduTypeName" />
+          <ScalarProperty Name="y_eduTypeCode" ColumnName="y_eduTypeCode" />
+          <ScalarProperty Name="stuTypeName" ColumnName="stuTypeName" />
+          <ScalarProperty Name="y_stuTypeCode" ColumnName="y_stuTypeCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_SubFeeSys">
+      <EntityTypeMapping TypeName="IYun.VW_SubFeeSys">
+        <MappingFragment StoreEntitySet="VW_SubFeeSys">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_inYear" ColumnName="y_inYear" />
+          <ScalarProperty Name="y_feeYear" ColumnName="y_feeYear" />
+          <ScalarProperty Name="y_stuTypeId" ColumnName="y_stuTypeId" />
+          <ScalarProperty Name="y_eduTypeId" ColumnName="y_eduTypeId" />
+          <ScalarProperty Name="y_stuFee" ColumnName="y_stuFee" />
+          <ScalarProperty Name="y_bookFee" ColumnName="y_bookFee" />
+          <ScalarProperty Name="y_subSchoolId" ColumnName="y_subSchoolId" />
+          <ScalarProperty Name="subSchoolName" ColumnName="subSchoolName" />
+          <ScalarProperty Name="eduTypeName" ColumnName="eduTypeName" />
+          <ScalarProperty Name="y_eduTypeCode" ColumnName="y_eduTypeCode" />
+          <ScalarProperty Name="stuTypeName" ColumnName="stuTypeName" />
+          <ScalarProperty Name="y_stuTypeCode" ColumnName="y_stuTypeCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_SubFeeTotal">
+      <EntityTypeMapping TypeName="IYun.VW_SubFeeTotal">
+        <MappingFragment StoreEntitySet="VW_SubFeeTotal">
+          <ScalarProperty Name="totalStuCount" ColumnName="totalStuCount" />
+          <ScalarProperty Name="noUpStuCount" ColumnName="noUpStuCount" />
+          <ScalarProperty Name="hasUpStuCount" ColumnName="hasUpStuCount" />
+          <ScalarProperty Name="totalFee" ColumnName="totalFee" />
+          <ScalarProperty Name="totalUpFee" ColumnName="totalUpFee" />
+          <ScalarProperty Name="totalFeeChae" ColumnName="totalFeeChae" />
+          <ScalarProperty Name="totalNeedUpFee" ColumnName="totalNeedUpFee" />
+          <ScalarProperty Name="y_subSchoolId" ColumnName="y_subSchoolId" />
+          <ScalarProperty Name="y_inYear" ColumnName="y_inYear" />
+          <ScalarProperty Name="y_feeYear" ColumnName="y_feeYear" />
+          <ScalarProperty Name="schoolName" ColumnName="schoolName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_SubschoolAdmin">
+      <EntityTypeMapping TypeName="IYun.VW_SubschoolAdmin">
+        <MappingFragment StoreEntitySet="VW_SubschoolAdmin">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_code" ColumnName="y_code" />
+          <ScalarProperty Name="y_adminId" ColumnName="y_adminId" />
+          <ScalarProperty Name="y_subSchoolId" ColumnName="y_subSchoolId" />
+          <ScalarProperty Name="y_adminName" ColumnName="y_adminName" />
+          <ScalarProperty Name="y_realName" ColumnName="y_realName" />
+          <ScalarProperty Name="y_nameabbreviation" ColumnName="y_nameabbreviation" />
+          <ScalarProperty Name="y_formername" ColumnName="y_formername" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_SubSchoolStuInfo">
+      <EntityTypeMapping TypeName="IYun.VW_SubSchoolStuInfo">
+        <MappingFragment StoreEntitySet="VW_SubSchoolStuInfo">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_subSchoolId" ColumnName="y_subSchoolId" />
+          <ScalarProperty Name="y_name" ColumnName="y_name" />
+          <ScalarProperty Name="y_examNum" ColumnName="y_examNum" />
+          <ScalarProperty Name="y_cardId" ColumnName="y_cardId" />
+          <ScalarProperty Name="schoolName" ColumnName="schoolName" />
+          <ScalarProperty Name="schoolCode" ColumnName="schoolCode" />
+          <ScalarProperty Name="y_isdel" ColumnName="y_isdel" />
+          <ScalarProperty Name="y_hide" ColumnName="y_hide" />
+          <ScalarProperty Name="y_nameabbreviation" ColumnName="y_nameabbreviation" />
+          <ScalarProperty Name="y_formername" ColumnName="y_formername" />
+          <ScalarProperty Name="y_schooltype" ColumnName="y_schooltype" />
+          <ScalarProperty Name="y_year" ColumnName="y_year" />
+          <ScalarProperty Name="y_majorName" ColumnName="y_majorName" />
+          <ScalarProperty Name="y_eduTypeName" ColumnName="y_eduTypeName" />
+          <ScalarProperty Name="y_stuTypeName" ColumnName="y_stuTypeName" />
+          <ScalarProperty Name="y_majorId" ColumnName="y_majorId" />
+          <ScalarProperty Name="y_stuTypeId" ColumnName="y_stuTypeId" />
+          <ScalarProperty Name="y_eduTypeId" ColumnName="y_eduTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_TeachPlanDes">
+      <EntityTypeMapping TypeName="IYun.VW_TeachPlanDes">
+        <MappingFragment StoreEntitySet="VW_TeachPlanDes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="y_teaPlanId" ColumnName="y_teaPlanId" />
+          <ScalarProperty Name="y_courseId" ColumnName="y_courseId" />
+          <ScalarProperty Name="y_courseTypeId" ColumnName="y_courseTypeId" />
+          <ScalarProperty Name="y_stuTime" ColumnName="y_stuTime" />
+          <ScalarProperty Name="y_score" ColumnName="y_score" />
+          <ScalarProperty Name="y_code" ColumnName="y_code" />
+          <ScalarProperty Name="courseName" ColumnName="courseName" />
+          <ScalarProperty Name="courseTypeName" ColumnName="courseTypeName" />
+          <ScalarProperty Name="y_courseTypeCode" ColumnName="y_courseTypeCode" />
+          <ScalarProperty Name="y_teaPlanName" ColumnName="y_teaPlanName" />
+          <ScalarProperty Name="y_term" ColumnName="y_term" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,381 @@
+﻿@using System.Configuration
+@using IYun.Models
+@{
+    Layout = null;
+    var id = (int)ViewBag.id;
+    const int able = (int)PowerState.Able;
+    const int disable = (int)PowerState.Disable;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+
+
+    var modulePowerPars = (List<ModulePowerPar>)ViewBag.modulePowerPars;
+
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <script type="text/javascript" src="js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    <script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });
+
+    </script>
+    <script>
+        var moduleIds;
+        function onloadModuleId() {
+            $.ajax({
+                type: "POST",
+                url: "/SysAdmin/ModuleIdsList",
+                async: false,
+                success: function (data) {
+                    moduleIds = data;
+                }
+            });
+        }
+       
+        onloadModuleId();
+      
+        function save() {
+            var modulePowers = [];
+            for (var i = 0; i < moduleIds.length; i++) {
+                var modulePower = {};
+                modulePower.y_moduleID = moduleIds[i].id;
+                modulePower.y_roleID = '@id';
+                modulePower.y_menu = $("#menu" + moduleIds[i].id)[0].checked ? '@able' : '@disable';
+                modulePower.y_delete = $("#delete" + moduleIds[i].id)[0].checked ? '@able' : '@disable';
+                modulePower.y_insert = $("#insert" + moduleIds[i].id)[0].checked ? '@able' : '@disable';
+                modulePower.y_select = $("#select" + moduleIds[i].id)[0].checked ? '@able' : '@disable';
+                modulePower.y_update = $("#update" + moduleIds[i].id)[0].checked ? '@able' : '@disable';
+                modulePowers[i] = modulePower;
+            }
+            $.ajax({
+                type: "POST",
+                url: "/SysAdmin/OperPower",
+                data: {
+                    power: JSON.stringify(modulePowers)
+                },
+                success: function (data) {
+                    if (data == "ok") {
+                        alert("保存成功");
+                        location.reload();
+                    } else {
+                        alert(data);
+                    }
+                },
+                error: function (msg) { message("未知错误！==" + msg); }
+            });
+        }
+    </script>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        <div id="main-tl">
+            <div class="left-t">系统设置</div>
+            <div class="left-c">
+                @{
+                    foreach (var modulePower in modulePowers)
+                    {
+                        if (modulePower.y_url.ToLower() == "/sysadmin/role".ToLower())
+                        {
+                            <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                        else
+                        {
+                            <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div id="main-tr">
+            <div class="tjia" style="background:#fff;"><span>权限设置</span><a style="height:32px; line-height:30px;  margin-left: 650px;margin-top: 10px" class="zc-sub2" href="javascript:save()">保存</a><a class="fhui" href="/sysadmin/role">返回</a></div>
+            <table class="xx-table ydong-tab" style="margin-top:0px;">
+                <tr>
+                    <th style="text-align:left; padding-left:80px;">栏目名称</th>
+                    <th width="75">菜单</th>
+                    <th width="75">查询</th>
+                    <th width="75">增加</th>
+                    <th width="75">删除</th>
+                    <th width="75">修改</th>
+                    <th width="75">全选</th>
+                </tr>
+            </table>
+            @{
+                foreach (var modulePower in modulePowerPars)
+                {
+                    <div class="le1">
+                        <div class="cli">
+                            <span class="le-sp">@modulePower.y_name</span>
+                            <div class="xx-chk tb-chk">
+                                @{
+                    if (modulePower.y_menu == able)
+                    {
+                        string tid = "menu"+modulePower.id;
+                        <span><input type="checkbox" class="cktb @modulePower.id" checked="checked" id="@tid" value="@able" /></span>
+                    }
+                    else
+                    {
+                        string tid = "menu" + modulePower.id;
+                        <span><input type="checkbox" class="cktb @modulePower.id" id="@tid" /></span>
+                    }
+                    if (modulePower.y_select == able)
+                    {
+                        string tid = "select" + modulePower.id;
+                        <span><input type="checkbox" class="cktb @modulePower.id" checked="checked" id="@tid" value="@able" /></span>
+                    }
+                    else
+                    {
+                        string tid = "select" + modulePower.id;
+                        <span><input type="checkbox" class="cktb @modulePower.id" id="@tid" /></span>
+                    }
+                    if (modulePower.y_insert == able)
+                    {
+                        string tid = "insert" + modulePower.id;
+                        <span><input type="checkbox" class="cktb @modulePower.id" checked="checked" id="@tid" value="@able" /></span>
+                    }
+                    else
+                    {
+                        string tid = "insert" + modulePower.id;
+                        <span><input type="checkbox" class="cktb @modulePower.id" id="@tid" /></span>
+                    }
+                    if (modulePower.y_delete == able)
+                    {
+                        string tid = "delete" + modulePower.id;
+                        <span><input type="checkbox" class="cktb @modulePower.id" checked="checked" id="@tid" value="@able" /></span>
+                    }
+                    else
+                    {
+                        string tid = "delete" + modulePower.id;
+                        <span><input type="checkbox" class="cktb @modulePower.id" id="@tid" /></span>
+                    }
+                    if (modulePower.y_update == able)
+                    {
+                        string tid = "update" + modulePower.id;
+                        <span><input type="checkbox" class="cktb @modulePower.id" checked="checked" id="@tid" value="@able" /></span>
+                    }
+                    else
+                    {
+                        string tid = "update" + modulePower.id;
+                        <span><input type="checkbox" class="cktb @modulePower.id" id="@tid" /></span>
+                    }
+                    if (modulePower.y_update == able && modulePower.y_insert == able && modulePower.y_select == able && modulePower.y_delete == able && modulePower.y_menu == able)
+                    {
+                        string tid = "all" + modulePower.id;
+                        <span><input class="rad cktb @modulePower.id" onclick="AllSel(this)" type="checkbox" checked="checked" id="@tid" value="@able" /></span>
+                    }
+                    else
+                    {
+                        string tid = "all" + modulePower.id;
+                        <span><input class="rad cktb @modulePower.id" type="checkbox" onclick="AllSel(this)" id="@tid" /></span>
+                    }
+                                }
+                            </div>
+                        </div>
+                        @{
+                    if (modulePower.children.Count > 0)
+                    {
+                        <ul class="le-ul2">
+                            @{
+                        foreach (var modulePowerSon in modulePower.children)
+                        {
+                            <li>
+                                <font>@modulePowerSon.y_name</font>
+                                <div class="xx-chk tb-chk">
+                                    @{
+                            if (modulePowerSon.y_menu == able)
+                            {
+                                string tid = "menu" + modulePowerSon.id;
+                                <span><input type="checkbox" class="cktb @modulePowerSon.id" checked="checked" id="@tid" value="@able" /></span>
+                            }
+                            else
+                            {
+                                string tid = "menu" + modulePowerSon.id;
+                                <span><input type="checkbox" class="cktb @modulePowerSon.id" id="@tid" /></span>
+                            }
+                            if (modulePowerSon.y_select == able)
+                            {
+                                string tid = "select" + modulePowerSon.id;
+                                <span><input type="checkbox" class="cktb @modulePowerSon.id" checked="checked" id="@tid" value="@able" /></span>
+                            }
+                            else
+                            {
+                                string tid = "select" + modulePowerSon.id;
+                                <span><input type="checkbox" class="cktb @modulePowerSon.id" id="@tid" /></span>
+                            }
+                            if (modulePowerSon.y_insert == able)
+                            {
+                                string tid = "insert" + modulePowerSon.id;
+                                <span><input type="checkbox" class="cktb @modulePowerSon.id" checked="checked" id="@tid" value="@able" /></span>
+                            }
+                            else
+                            {
+                                string tid = "insert" + modulePowerSon.id;
+                                <span><input type="checkbox" class="cktb @modulePowerSon.id" id="@tid" /></span>
+                            }
+                            if (modulePowerSon.y_delete == able)
+                            {
+                                string tid = "delete" + modulePowerSon.id;
+                                <span><input type="checkbox" class="cktb @modulePowerSon.id" checked="checked" id="@tid" value="@able" /></span>
+                            }
+                            else
+                            {
+                                string tid = "delete" + modulePowerSon.id;
+                                <span><input type="checkbox" class="cktb @modulePowerSon.id" id="@tid" /></span>
+                            }
+                            if (modulePowerSon.y_update == able)
+                            {
+                                string tid = "update" + modulePowerSon.id;
+                                <span><input type="checkbox" class="cktb @modulePowerSon.id" checked="checked" id="@tid" value="@able" /></span>
+                            }
+                            else
+                            {
+                                string tid = "update" + modulePowerSon.id;
+                                <span><input type="checkbox" class="cktb @modulePowerSon.id" id="@tid" /></span>
+                            }
+                            if (modulePowerSon.y_update == able && modulePowerSon.y_insert == able && modulePowerSon.y_select == able && modulePowerSon.y_delete == able && modulePowerSon.y_menu == able)
+                            {
+                                string tid = "all" + modulePowerSon.id;
+                                <span><input class="rad cktb @modulePowerSon.id" onclick="AllSel(this)" type="checkbox" checked="checked" id="@tid" value="@able" /></span>
+                            }
+                            else
+                            {
+                                string tid = "all" + modulePowerSon.id;
+                                <span><input class="rad cktb @modulePowerSon.id" type="checkbox" onclick="AllSel(this)" id="@tid" /></span>
+                            }
+                                    }
+                                </div>
+                            </li>
+                            foreach (var modulePowerSon2 in modulePowerSon.children)
+                            {
+
+                                <li>
+                                    <font>|__@modulePowerSon2.y_name</font>
+                                    <div class="xx-chk tb-chk">
+                                        @{
+                                            if (modulePowerSon2.y_menu == able)
+                                            {
+                                                string tid = "menu" + modulePowerSon2.id;
+                                                <span><input type="checkbox" class="cktb @modulePowerSon2.id" checked="checked" id="@tid" value="@able" /></span>
+                                            }
+                                            else
+                                            {
+                                                string tid = "menu" + modulePowerSon2.id;
+                                                <span><input type="checkbox" class="cktb @modulePowerSon2.id" id="@tid" /></span>
+                                            }
+                                            if (modulePowerSon2.y_select == able)
+                                            {
+                                                string tid = "select" + modulePowerSon2.id;
+                                                <span><input type="checkbox" class="cktb @modulePowerSon2.id" checked="checked" id="@tid" value="@able" /></span>
+                                            }
+                                            else
+                                            {
+                                                string tid = "select" + modulePowerSon2.id;
+                                                <span><input type="checkbox" class="cktb @modulePowerSon2.id" id="@tid" /></span>
+                                            }
+                                            if (modulePowerSon2.y_insert == able)
+                                            {
+                                                string tid = "insert" + modulePowerSon2.id;
+                                                <span><input type="checkbox" class="cktb @modulePowerSon2.id" checked="checked" id="@tid" value="@able" /></span>
+                                            }
+                                            else
+                                            {
+                                                string tid = "insert" + modulePowerSon2.id;
+                                                <span><input type="checkbox" class="cktb @modulePowerSon2.id" id="@tid" /></span>
+                                            }
+                                            if (modulePowerSon2.y_delete == able)
+                                            {
+                                                string tid = "delete" + modulePowerSon2.id;
+                                                <span><input type="checkbox" class="cktb @modulePowerSon2.id" checked="checked" id="@tid" value="@able" /></span>
+                                            }
+                                            else
+                                            {
+                                                string tid = "delete" + modulePowerSon2.id;
+                                                <span><input type="checkbox" class="cktb @modulePowerSon2.id" id="@tid" /></span>
+                                            }
+                                            if (modulePowerSon2.y_update == able)
+                                            {
+                                                string tid = "update" + modulePowerSon2.id;
+                                                <span><input type="checkbox" class="cktb @modulePowerSon2.id" checked="checked" id="@tid" value="@able" /></span>
+                                            }
+                                            else
+                                            {
+                                                string tid = "update" + modulePowerSon2.id;
+                                                <span><input type="checkbox" class="cktb @modulePowerSon2.id" id="@tid" /></span>
+                                            }
+                                            if (modulePowerSon2.y_update == able && modulePowerSon2.y_insert == able && modulePowerSon2.y_select == able && modulePowerSon2.y_delete == able && modulePowerSon2.y_menu == able)
+                                            {
+                                                string tid = "all" + modulePowerSon2.id;
+                                                <span><input class="rad cktb @modulePowerSon2.id" onclick="AllSel(this)" type="checkbox" checked="checked" id="@tid" value="@able" /></span>
+                                            }
+                                            else
+                                            {
+                                                string tid = "all" + modulePowerSon2.id;
+                                                <span><input class="rad cktb @modulePowerSon2.id" type="checkbox" onclick="AllSel(this)" id="@tid" /></span>
+                                            }
+                                        }
+                                    </div>
+                                </li>
+                                            }
+                                            }
+                            }
+                        </ul>
+                    }
+                        }
+
+                    </div>
+                }
+            }
+
+
+
+        </div>
+    </div>
+    <script>
+        /***********LEFT下拉**************/
+        $(document).ready(function () {
+            $('.le-sp').click(function () {
+                $(this).parents(".le1").find(".le-ul2").slideToggle();
+                $(this).toggleClass("le-on1");
+            });
+        });
+
+    </script>
+    <script>
+        /***********LEFT下拉**************/
+        $(document).ready(function () {
+            $('.le-sp2').click(function () {
+                $(this).parents(".le-ul2 li").find(".le-ul3").slideToggle();
+                $(this).toggleClass("le-on2");
+            });
+        });
+
+    </script>
+    @Html.Action("Foot", "AdminBase")
+</body>
+</html>

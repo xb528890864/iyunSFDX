@@ -1,0 +1,3111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IYun" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="YD_Edu_Course">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="YD_Edu_Score" Relationship="Self.FK_YD_Edu_Score_YD_Edu_Course" FromRole="YD_Edu_Course" ToRole="YD_Edu_Score" />
+    <NavigationProperty Name="YD_Edu_ScoreTest" Relationship="Self.FK_YD_Edu_ScoreTest_YD_Edu_Course" FromRole="YD_Edu_Course" ToRole="YD_Edu_ScoreTest" />
+    <NavigationProperty Name="YD_Edu_SmallPower" Relationship="Self.FK_YD_Edu_SmallPower_YD_Edu_Course" FromRole="YD_Edu_Course" ToRole="YD_Edu_SmallPower" />
+    <NavigationProperty Name="YD_Edu_TeachplanDes" Relationship="Self.FK_YD_Edu_TeachplanDes_YD_Edu_Course" FromRole="YD_Edu_Course" ToRole="YD_Edu_TeachplanDes" />
+    <NavigationProperty Name="YD_Graduate_SampleExamScore" Relationship="Self.FK_YD_Graduate_SampleExamScore_YD_Edu_Course" FromRole="YD_Edu_Course" ToRole="YD_Graduate_SampleExamScore" />
+    <NavigationProperty Name="YD_Sys_AdminCourseLink" Relationship="Self.FK_YD_Sys_AdminCourseLink_YD_Edu_Course" FromRole="YD_Edu_Course" ToRole="YD_Sys_AdminCourseLink" />
+    <NavigationProperty Name="YD_TeaPlan_ClassCourseDes" Relationship="Self.FK_YD_TeaPlan_ClassCourseDes_YD_Edu_Course" FromRole="YD_Edu_Course" ToRole="YD_TeaPlan_ClassCourseDes" />
+    <NavigationProperty Name="YD_TeaPlan_TempletCourseDes" Relationship="Self.FK_YD_TeaPlan_TempletCourseDes_YD_Edu_Course" FromRole="YD_Edu_Course" ToRole="YD_TeaPlan_TempletCourseDes" />
+  </EntityType>
+  <EntityType Name="YD_Edu_CourseCorrespondence">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_inyear" Type="Int32" Nullable="false" />
+    <Property Name="y_qingshuMajorlib" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_qingshuEdutype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_qingshuCourse" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_qingshuTerm" Type="Int32" Nullable="false" />
+    <Property Name="y_MajorID" Type="Int32" Nullable="false" />
+    <Property Name="y_CourseID" Type="Int32" Nullable="false" />
+    <Property Name="y_Term" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Edu_CourseType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_courseTypeCode" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="YD_Edu_TeachplanDes" Relationship="Self.FK_YD_Edu_TeachplanDes_YD_Edu_CourseType" FromRole="YD_Edu_CourseType" ToRole="YD_Edu_TeachplanDes" />
+  </EntityType>
+  <EntityType Name="YD_Edu_CultureExtent">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="YD_Sts_StuInfo_copy1" Relationship="Self.FK__YD_Sts_St__y_cul__2630A1B7" FromRole="YD_Edu_CultureExtent" ToRole="YD_Sts_StuInfo_copy1" />
+    <NavigationProperty Name="YD_Sts_StuInfo" Relationship="Self.FK_YD_Sts_StuInfo_YD_Edu_CultureExtent" FromRole="YD_Edu_CultureExtent" ToRole="YD_Sts_StuInfo" />
+  </EntityType>
+  <EntityType Name="YD_Edu_EduType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_eduTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="YD_Fee_AllBili" Relationship="Self.FK_y_eduType" FromRole="YD_Edu_EduType" ToRole="YD_Fee_AllBili" />
+    <NavigationProperty Name="YD_Fee_SubFeeSys" Relationship="Self.FK_y_eduTypeId" FromRole="YD_Edu_EduType" ToRole="YD_Fee_SubFeeSys" />
+    <NavigationProperty Name="YD_Edu_Major" Relationship="Self.FK_YD_Edu_Major_YD_Edu_EduType" FromRole="YD_Edu_EduType" ToRole="YD_Edu_Major" />
+  </EntityType>
+  <EntityType Name="YD_Edu_ExamFeature">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_TZF" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="YD_Sts_StuInfo_copy1" Relationship="Self.FK__YD_Sts_St__y_exa__2724C5F0" FromRole="YD_Edu_ExamFeature" ToRole="YD_Sts_StuInfo_copy1" />
+    <NavigationProperty Name="YD_Sts_StuInfo" Relationship="Self.FK_YD_Sts_StuInfo_YD_Edu_ExamFeature" FromRole="YD_Edu_ExamFeature" ToRole="YD_Sts_StuInfo" />
+  </EntityType>
+  <EntityType Name="YD_Edu_ForeignLanguage">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="YD_Sts_StuInfo_copy1" Relationship="Self.FK__YD_Sts_St__y_for__2818EA29" FromRole="YD_Edu_ForeignLanguage" ToRole="YD_Sts_StuInfo_copy1" />
+    <NavigationProperty Name="YD_Sts_StuInfo" Relationship="Self.FK_YD_Sts_StuInfo_YD_Edu_ForeignLanguage" FromRole="YD_Edu_ForeignLanguage" ToRole="YD_Sts_StuInfo" />
+  </EntityType>
+  <EntityType Name="YD_Edu_FormTemp">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_nameMatch" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="y_isOk" Type="Int32" Nullable="false" />
+    <Property Name="y_eduTypeId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="YD_Edu_GradCondition">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_isUse" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Edu_Major">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_majorLibId" Type="Int32" Nullable="false" />
+    <Property Name="y_stuTypeId" Type="Int32" Nullable="false" />
+    <Property Name="y_eduTypeId" Type="Int32" Nullable="false" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_needFee" Type="Int32" />
+    <Property Name="y_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_stuYear" Type="Int32" Nullable="false" />
+    <Property Name="y_majortype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_GridType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_StandardCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="YD_Edu_EduType" Relationship="Self.FK_YD_Edu_Major_YD_Edu_EduType" FromRole="YD_Edu_Major" ToRole="YD_Edu_EduType" />
+    <NavigationProperty Name="YD_Sts_StuInfo_copy1" Relationship="Self.FK__YD_Sts_St__y_maj__2077C861" FromRole="YD_Edu_Major" ToRole="YD_Sts_StuInfo_copy1" />
+    <NavigationProperty Name="YD_Fee_SubFeeSys" Relationship="Self.FK_y_majorid" FromRole="YD_Edu_Major" ToRole="YD_Fee_SubFeeSys" />
+    <NavigationProperty Name="YD_Edu_MajorLibrary" Relationship="Self.FK_YD_Edu_Major_YD_Edu_MajorLibrary" FromRole="YD_Edu_Major" ToRole="YD_Edu_MajorLibrary" />
+    <NavigationProperty Name="YD_Edu_StuType" Relationship="Self.FK_YD_Edu_Major_YD_Edu_StuType" FromRole="YD_Edu_Major" ToRole="YD_Edu_StuType" />
+    <NavigationProperty Name="YD_Edu_MajorTeachPlan" Relationship="Self.FK_YD_Edu_MajorTeachPlan_YD_Edu_Major" FromRole="YD_Edu_Major" ToRole="YD_Edu_MajorTeachPlan" />
+    <NavigationProperty Name="YD_Edu_SmallPower" Relationship="Self.FK_YD_Edu_SmallPower_YD_Edu_Major" FromRole="YD_Edu_Major" ToRole="YD_Edu_SmallPower" />
+    <NavigationProperty Name="YD_Sts_StuInfo" Relationship="Self.FK_YD_Sts_StuInfo_YD_Edu_Major" FromRole="YD_Edu_Major" ToRole="YD_Sts_StuInfo" />
+    <NavigationProperty Name="YD_TeaPlan_Class" Relationship="Self.FK_YD_TeaPlan_Class_YD_Edu_Major" FromRole="YD_Edu_Major" ToRole="YD_TeaPlan_Class" />
+    <NavigationProperty Name="YD_TeaPlan_Templet" Relationship="Self.FK_YD_TeaPlan_Templet_YD_Edu_Major" FromRole="YD_Edu_Major" ToRole="YD_TeaPlan_Templet" />
+  </EntityType>
+  <EntityType Name="YD_Edu_MajorLibrary">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="YD_Edu_Major" Relationship="Self.FK_YD_Edu_Major_YD_Edu_MajorLibrary" FromRole="YD_Edu_MajorLibrary" ToRole="YD_Edu_Major" />
+  </EntityType>
+  <EntityType Name="YD_Edu_MajorTeachPlan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_year" Type="Int32" Nullable="false" />
+    <Property Name="y_majorId" Type="Int32" Nullable="false" />
+    <Property Name="y_teachPlanId" Type="Int32" Nullable="false" />
+    <Property Name="y_teaPlanType" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="YD_Edu_Major" Relationship="Self.FK_YD_Edu_MajorTeachPlan_YD_Edu_Major" FromRole="YD_Edu_MajorTeachPlan" ToRole="YD_Edu_Major" />
+    <NavigationProperty Name="YD_Edu_TeachPlan" Relationship="Self.FK_YD_Edu_MajorTeachPlan_YD_Edu_TeachPlan" FromRole="YD_Edu_MajorTeachPlan" ToRole="YD_Edu_TeachPlan" />
+  </EntityType>
+  <EntityType Name="YD_Edu_News">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_type" Type="Int32" />
+    <Property Name="y_subSchoolId" Type="Int32" />
+    <Property Name="y_title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="y_appyname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_appytime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="y_hits" Type="Int32" />
+    <Property Name="y_usable" Type="Int32" />
+  </EntityType>
+  <EntityType Name="YD_Edu_ProfessionType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="YD_Sts_StuInfo_copy1" Relationship="Self.FK__YD_Sts_St__y_pro__290D0E62" FromRole="YD_Edu_ProfessionType" ToRole="YD_Sts_StuInfo_copy1" />
+    <NavigationProperty Name="YD_Sts_StuInfo" Relationship="Self.FK_YD_Sts_StuInfo_YD_Edu_ProfessionType" FromRole="YD_Edu_ProfessionType" ToRole="YD_Sts_StuInfo" />
+  </EntityType>
+  <EntityType Name="YD_Edu_QingCourse">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_qingId" Type="Int32" Nullable="false" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_nid" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Edu_QingStuInfo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_qingId" Type="Int32" Nullable="false" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_stuNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_cardId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_nid" Type="Int32" Nullable="false" />
+    <Property Name="y_qingSubId" Type="Int32" Nullable="false" />
+    <Property Name="y_qingMajorId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Edu_RecruitType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_ZJTD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="YD_Sts_StuInfo_copy1" Relationship="Self.FK__YD_Sts_St__y_rec__2A01329B" FromRole="YD_Edu_RecruitType" ToRole="YD_Sts_StuInfo_copy1" />
+    <NavigationProperty Name="YD_Sts_StuInfo" Relationship="Self.FK_YD_Sts_StuInfo_YD_Edu_RecruitType" FromRole="YD_Edu_RecruitType" ToRole="YD_Sts_StuInfo" />
+  </EntityType>
+  <EntityType Name="YD_Edu_Score">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_stuId" Type="Int32" Nullable="false" />
+    <Property Name="y_term" Type="Int32" Nullable="false" />
+    <Property Name="y_normalScore" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="y_termScore" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="y_workScore" Type="Decimal" Precision="18" Scale="1" />
+    <Property Name="y_totalScore" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="y_courseId" Type="Int32" Nullable="false" />
+    <Property Name="y_type" Type="Int32" Nullable="false" />
+    <Property Name="y_time" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="YD_Edu_Course" Relationship="Self.FK_YD_Edu_Score_YD_Edu_Course" FromRole="YD_Edu_Score" ToRole="YD_Edu_Course" />
+    <NavigationProperty Name="YD_Sts_StuInfo" Relationship="Self.FK_YD_Edu_Score_YD_Sts_StuInfo" FromRole="YD_Edu_Score" ToRole="YD_Sts_StuInfo" />
+  </EntityType>
+  <EntityType Name="YD_Edu_ScoreScale">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_normalScale" Type="Int32" Nullable="false" />
+    <Property Name="y_termScale" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Edu_ScoreTemp">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_stuId" Type="Int32" />
+    <Property Name="y_stuNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_examNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_term" Type="Int32" />
+    <Property Name="y_courseId" Type="Int32" />
+    <Property Name="y_course" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_normalScore" Type="Decimal" Precision="18" Scale="1" />
+    <Property Name="y_termScore" Type="Decimal" Precision="18" Scale="1" />
+    <Property Name="y_workScore" Type="Decimal" Precision="18" Scale="1" />
+    <Property Name="y_totalScore" Type="Decimal" Precision="18" Scale="1" />
+    <Property Name="y_stuName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_isOk" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Edu_ScoreTest">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_stuId" Type="Int32" Nullable="false" />
+    <Property Name="y_term" Type="Int32" Nullable="false" />
+    <Property Name="y_normalScore" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="y_termScore" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="y_workScore" Type="Decimal" Precision="18" Scale="1" />
+    <Property Name="y_totalScore" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="y_courseId" Type="Int32" Nullable="false" />
+    <Property Name="y_type" Type="Int32" Nullable="false" />
+    <Property Name="y_time" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="YD_Edu_Course" Relationship="Self.FK_YD_Edu_ScoreTest_YD_Edu_Course" FromRole="YD_Edu_ScoreTest" ToRole="YD_Edu_Course" />
+    <NavigationProperty Name="YD_Sts_StuInfo" Relationship="Self.FK_YD_Edu_ScoreTest_YD_Sts_StuInfo" FromRole="YD_Edu_ScoreTest" ToRole="YD_Sts_StuInfo" />
+  </EntityType>
+  <EntityType Name="YD_Edu_SmallPower">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_year" Type="Int32" Nullable="false" />
+    <Property Name="y_adminId" Type="Int32" Nullable="false" />
+    <Property Name="y_subSchoolId" Type="Int32" />
+    <Property Name="y_majorId" Type="Int32" />
+    <Property Name="y_courseType" Type="Int32" />
+    <Property Name="y_courseId" Type="Int32" />
+    <Property Name="y_scorelimit" Type="Int32" />
+    <Property Name="y_endTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="y_createTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="y_term" Type="Int32" />
+    <NavigationProperty Name="YD_Edu_Course" Relationship="Self.FK_YD_Edu_SmallPower_YD_Edu_Course" FromRole="YD_Edu_SmallPower" ToRole="YD_Edu_Course" />
+    <NavigationProperty Name="YD_Edu_Major" Relationship="Self.FK_YD_Edu_SmallPower_YD_Edu_Major" FromRole="YD_Edu_SmallPower" ToRole="YD_Edu_Major" />
+    <NavigationProperty Name="YD_Sys_SubSchool" Relationship="Self.FK_YD_Edu_SmallPower_YD_Sys_SubSchool" FromRole="YD_Edu_SmallPower" ToRole="YD_Sys_SubSchool" />
+  </EntityType>
+  <EntityType Name="YD_Edu_StuState">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_stuStateCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="YD_Sts_StuInfo_copy1" Relationship="Self.FK__YD_Sts_St__y_stu__2354350C" FromRole="YD_Edu_StuState" ToRole="YD_Sts_StuInfo_copy1" />
+    <NavigationProperty Name="YD_Sts_StuInfo" Relationship="Self.FK_YD_Sts_StuInfo_YD_Edu_StuState" FromRole="YD_Edu_StuState" ToRole="YD_Sts_StuInfo" />
+  </EntityType>
+  <EntityType Name="YD_Edu_StuType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_stuTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="YD_Edu_Major" Relationship="Self.FK_YD_Edu_Major_YD_Edu_StuType" FromRole="YD_Edu_StuType" ToRole="YD_Edu_Major" />
+  </EntityType>
+  <EntityType Name="YD_Edu_TeachPlan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_teaPlanName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_term" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="YD_Edu_MajorTeachPlan" Relationship="Self.FK_YD_Edu_MajorTeachPlan_YD_Edu_TeachPlan" FromRole="YD_Edu_TeachPlan" ToRole="YD_Edu_MajorTeachPlan" />
+    <NavigationProperty Name="YD_Edu_TeachplanDes" Relationship="Self.FK_YD_Edu_TeachplanDes_YD_Edu_TeachPlan" FromRole="YD_Edu_TeachPlan" ToRole="YD_Edu_TeachplanDes" />
+  </EntityType>
+  <EntityType Name="YD_Edu_TeachplanDes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_teaPlanId" Type="Int32" Nullable="false" />
+    <Property Name="y_courseId" Type="Int32" Nullable="false" />
+    <Property Name="y_courseTypeId" Type="Int32" Nullable="false" />
+    <Property Name="y_stuTime" Type="Int32" Nullable="false" />
+    <Property Name="y_score" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="y_faceTime1" Type="Int32" />
+    <Property Name="y_faceTime2" Type="Int32" />
+    <Property Name="y_task" Type="Int32" />
+    <NavigationProperty Name="YD_Edu_Course" Relationship="Self.FK_YD_Edu_TeachplanDes_YD_Edu_Course" FromRole="YD_Edu_TeachplanDes" ToRole="YD_Edu_Course" />
+    <NavigationProperty Name="YD_Edu_CourseType" Relationship="Self.FK_YD_Edu_TeachplanDes_YD_Edu_CourseType" FromRole="YD_Edu_TeachplanDes" ToRole="YD_Edu_CourseType" />
+    <NavigationProperty Name="YD_Edu_TeachPlan" Relationship="Self.FK_YD_Edu_TeachplanDes_YD_Edu_TeachPlan" FromRole="YD_Edu_TeachplanDes" ToRole="YD_Edu_TeachPlan" />
+  </EntityType>
+  <EntityType Name="YD_Edu_TeachPlanTemp">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_year" Type="Int32" />
+    <Property Name="y_majorId" Type="Int32" />
+    <Property Name="y_major" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_majorLibId" Type="Int32" />
+    <Property Name="y_majorLib" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_majorNameMatch" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuTypeId" Type="Int32" />
+    <Property Name="y_stuTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_eduTypeId" Type="Int32" />
+    <Property Name="y_eduTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_term" Type="Int32" />
+    <Property Name="y_courseId" Type="Int32" />
+    <Property Name="y_courseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_courseNameMatch" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="y_courseTypeId" Type="Int32" />
+    <Property Name="y_courseType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuTime" Type="Int32" />
+    <Property Name="y_teachPlanType" Type="Int32" />
+    <Property Name="y_score" Type="Decimal" Precision="18" Scale="1" />
+    <Property Name="y_isok" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Fee_AllBili">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_inYear" Type="Int32" />
+    <Property Name="y_stuTypeId" Type="Int32" />
+    <Property Name="y_eduTypeId" Type="Int32" Nullable="false" />
+    <Property Name="y_feeYear" Type="Int32" />
+    <Property Name="y_bili" Type="Int32" Nullable="false" />
+    <Property Name="y_time" Type="DateTime" Precision="3" />
+    <Property Name="y_Visible" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="YD_Edu_EduType" Relationship="Self.FK_y_eduType" FromRole="YD_Fee_AllBili" ToRole="YD_Edu_EduType" />
+  </EntityType>
+  <EntityType Name="YD_Fee_AllFeeSys">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_inYear" Type="Int32" Nullable="false" />
+    <Property Name="y_feeYear" Type="Int32" Nullable="false" />
+    <Property Name="y_stuTypeId" Type="Int32" Nullable="false" />
+    <Property Name="y_eduTypeId" Type="Int32" Nullable="false" />
+    <Property Name="y_stuFee" Type="Int32" Nullable="false" />
+    <Property Name="y_bookFee" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Fee_MajorLiFeeSys">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_majorlivraryid" Type="Int32" Nullable="false" />
+    <Property Name="y_inYear" Type="Int32" Nullable="false" />
+    <Property Name="y_feeYear" Type="Int32" Nullable="false" />
+    <Property Name="y_stuTypeId" Type="Int32" Nullable="false" />
+    <Property Name="y_eduTypeId" Type="Int32" Nullable="false" />
+    <Property Name="y_StuFee" Type="Int32" Nullable="false" />
+    <Property Name="y_bookFee" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Fee_StuFeeTb">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_stuId" Type="Int32" Nullable="false" />
+    <Property Name="y_feeYear" Type="Int32" Nullable="false" />
+    <Property Name="y_isUp" Type="Int32" Nullable="false" />
+    <Property Name="y_isCheckFee" Type="Int32" Nullable="false" />
+    <Property Name="y_needFee" Type="Int32" Nullable="false" />
+    <Property Name="y_needUpFee" Type="Int32" Nullable="false" />
+    <Property Name="y_planconductOK" Type="Int32" />
+    <Property Name="y_NoplanconductReason" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_invoiceOK" Type="Int32" />
+    <Property Name="y_invoiceMoney" Type="Int32" />
+    <Property Name="y_invoiceUp" Type="Int32" />
+    <Property Name="y_invoiceCheck" Type="Int32" />
+    <Property Name="y_createtime" Type="DateTime" Precision="3" />
+    <Property Name="y_registerYear" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="YD_Sts_StuInfo" Relationship="Self.FK_YD_Sts_StuInfo_YD_Fee_StuFeeTb" FromRole="YD_Fee_StuFeeTb" ToRole="YD_Sts_StuInfo" />
+  </EntityType>
+  <EntityType Name="YD_Fee_StuInvoicee">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_subSchoolId" Type="Int32" Nullable="false" />
+    <Property Name="schoolCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="schoolName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="totalcount" Type="Int32" Nullable="false" />
+    <Property Name="needtotal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="y_stuid" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="y_check" Type="Int32" Nullable="false" />
+    <Property Name="y_feeyear" Type="Int32" />
+    <Property Name="y_inyear" Type="Int32" />
+  </EntityType>
+  <EntityType Name="YD_Fee_StuRegistrBatch">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_subSchoolId" Type="Int32" Nullable="false" />
+    <Property Name="schoolCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="schoolName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="totalcount" Type="Int32" Nullable="false" />
+    <Property Name="needtotal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="y_stuid" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="y_check" Type="Int32" Nullable="false" />
+    <Property Name="y_feeyear" Type="Int32" />
+    <Property Name="y_inyear" Type="Int32" />
+    <Property Name="tuitiontotal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="governorName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="YD_Fee_SubFeeBili">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_inYear" Type="Int32" />
+    <Property Name="y_subSchoolId" Type="Int32" />
+    <Property Name="y_stuTypeId" Type="Int32" />
+    <Property Name="y_eduTypeId" Type="Int32" Nullable="false" />
+    <Property Name="y_feeYear" Type="Int32" />
+    <Property Name="y_bili" Type="Int32" Nullable="false" />
+    <Property Name="y_time" Type="DateTime" Precision="3" />
+    <Property Name="y_Visible" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Fee_SubFeeSys">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_subSchoolId" Type="Int32" Nullable="false" />
+    <Property Name="y_inYear" Type="Int32" />
+    <Property Name="y_feeYear" Type="Int32" />
+    <Property Name="y_stuTypeId" Type="Int32" />
+    <Property Name="y_eduTypeId" Type="Int32" Nullable="false" />
+    <Property Name="y_StuFee" Type="Int32" Nullable="false" />
+    <Property Name="y_bookFee" Type="Int32" />
+    <Property Name="y_majorid" Type="Int32" />
+    <NavigationProperty Name="YD_Edu_EduType" Relationship="Self.FK_y_eduTypeId" FromRole="YD_Fee_SubFeeSys" ToRole="YD_Edu_EduType" />
+    <NavigationProperty Name="YD_Edu_Major" Relationship="Self.FK_y_majorid" FromRole="YD_Fee_SubFeeSys" ToRole="YD_Edu_Major" />
+    <NavigationProperty Name="YD_Sys_SubSchool" Relationship="Self.FK_y_subSchoolId" FromRole="YD_Fee_SubFeeSys" ToRole="YD_Sys_SubSchool" />
+  </EntityType>
+  <EntityType Name="YD_Graduate_Bachelor">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_SubSchoolId" Type="Int32" Nullable="false" />
+    <Property Name="SchoolName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="totalcount" Type="Int32" Nullable="false" />
+    <Property Name="y_stuid" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_inyear" Type="Int32" Nullable="false" />
+    <Property Name="y_time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="y_check" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="YD_Sys_SubSchool" Relationship="Self.FK_YD_Sys_SubSchool_YD_Graduate_Bachelor" FromRole="YD_Graduate_Bachelor" ToRole="YD_Sys_SubSchool" />
+  </EntityType>
+  <EntityType Name="YD_Graduate_EnglishScoreTemp">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_examtime" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="y_admissionNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_stuname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_sex" Type="Int32" />
+    <Property Name="y_inYear" Type="Int32" Nullable="false" />
+    <Property Name="y_cardId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_subjectivitysore" Type="Int32" />
+    <Property Name="y_sumsore" Type="Int32" />
+    <Property Name="y_explain" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_verdict" Type="Int32" />
+    <Property Name="y_remark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_isOk" Type="Int32" Nullable="false" />
+    <Property Name="y_stuId" Type="Int32" />
+    <Property Name="y_adopttime" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="y_namePinyin" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="y_subschoolname" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="y_createtime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="YD_Graduate_SampleExamScore">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_stuId" Type="Int32" Nullable="false" />
+    <Property Name="y_courseId" Type="Int32" Nullable="false" />
+    <Property Name="y_totalScore" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <NavigationProperty Name="YD_Edu_Course" Relationship="Self.FK_YD_Graduate_SampleExamScore_YD_Edu_Course" FromRole="YD_Graduate_SampleExamScore" ToRole="YD_Edu_Course" />
+  </EntityType>
+  <EntityType Name="YD_Graduate_StudentApply">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_SubSchoolId" Type="Int32" Nullable="false" />
+    <Property Name="SchoolName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="totalcount" Type="Int32" Nullable="false" />
+    <Property Name="y_stuid" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_inyear" Type="Int32" Nullable="false" />
+    <Property Name="y_time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="y_check" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="YD_Sys_SubSchool" Relationship="Self.FK_YD_Sys_SubSchool_YD_Graduate_StudentApply" FromRole="YD_Graduate_StudentApply" ToRole="YD_Sys_SubSchool" />
+  </EntityType>
+  <EntityType Name="YD_Graduate_StudentScore">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_examtime" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="y_admissionNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_stuname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_sex" Type="Int32" />
+    <Property Name="y_inYear" Type="Int32" Nullable="false" />
+    <Property Name="y_cardId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_subjectivitysore" Type="Int32" />
+    <Property Name="y_sumsore" Type="Int32" />
+    <Property Name="y_explain" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_verdict" Type="Int32" />
+    <Property Name="y_remark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_isdel" Type="Int32" />
+    <Property Name="y_stuId" Type="Int32" />
+    <Property Name="y_adopttime" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="y_namePinyin" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="y_subschoolname" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="y_createtime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="YD_Sts_StuInfo" Relationship="Self.FK_YD_Sts_StuInfo_YD_Graduate_StudentScore" FromRole="YD_Graduate_StudentScore" ToRole="YD_Sts_StuInfo" />
+  </EntityType>
+  <EntityType Name="YD_Sts_Nation">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="YD_Sts_StuInfo_copy1" Relationship="Self.FK__YD_Sts_St__y_nat__24485945" FromRole="YD_Sts_Nation" ToRole="YD_Sts_StuInfo_copy1" />
+    <NavigationProperty Name="YD_Sts_StuInfo" Relationship="Self.FK_YD_Sts_StuInfo_YD_Sts_Nation" FromRole="YD_Sts_Nation" ToRole="YD_Sts_StuInfo" />
+  </EntityType>
+  <EntityType Name="YD_Sts_Politics">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="YD_Sts_StuInfo_copy1" Relationship="Self.FK__YD_Sts_St__y_pol__253C7D7E" FromRole="YD_Sts_Politics" ToRole="YD_Sts_StuInfo_copy1" />
+    <NavigationProperty Name="YD_Sts_StuInfo" Relationship="Self.FK_YD_Sts_StuInfo_YD_Sts_Politics" FromRole="YD_Sts_Politics" ToRole="YD_Sts_StuInfo" />
+  </EntityType>
+  <EntityType Name="YD_Sts_StrangeType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_viewUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="y_applyNotice" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="YD_Sts_StuStrange" Relationship="Self.FK_YD_Sts_StuStrange_YD_Sts_StrangeType" FromRole="YD_Sts_StrangeType" ToRole="YD_Sts_StuStrange" />
+  </EntityType>
+  <EntityType Name="YD_Sts_StuInfo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_stuNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_examNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_sex" Type="Int32" Nullable="false" />
+    <Property Name="y_inYear" Type="Int32" Nullable="false" />
+    <Property Name="y_cardId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_majorId" Type="Int32" Nullable="false" />
+    <Property Name="y_subSchoolId" Type="Int32" />
+    <Property Name="y_stuStateId" Type="Int32" Nullable="false" />
+    <Property Name="y_img" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="y_tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="y_registerState" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="y_isChangePlan" Type="Int32" Nullable="false" />
+    <Property Name="y_changePlanId" Type="Int32" />
+    <Property Name="y_loginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuStrange" Type="Int32" />
+    <Property Name="y_isdel" Type="Int32" Nullable="false" />
+    <Property Name="y_nationId" Type="Int32" />
+    <Property Name="y_politicsId" Type="Int32" />
+    <Property Name="y_birthday" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="y_graduationdata" Type="DateTime" Precision="3" />
+    <Property Name="y_graduationschool" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_registrationNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_postalcode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="y_foreignLanguageId" Type="Int32" />
+    <Property Name="y_recruitTypeId" Type="Int32" />
+    <Property Name="y_professionTypeId" Type="Int32" />
+    <Property Name="y_cultureExtentId" Type="Int32" />
+    <Property Name="y_examFeatureId" Type="Int32" />
+    <Property Name="y_isMoneyOk" Type="Int32" />
+    <Property Name="y_applyOK" Type="Int32" />
+    <Property Name="y_ischeck" Type="Int32" />
+    <Property Name="y_degreeOK" Type="Int32" />
+    <Property Name="y_realYear" Type="Int32" />
+    <Property Name="y_studentType" Type="Int32" />
+    <Property Name="y_isgraduate" Type="Boolean" />
+    <Property Name="y_isPay" Type="Int32" />
+    <Property Name="isCheckForSchool" Type="Boolean" />
+    <Property Name="y_graduateNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_bachelordegree" Type="Boolean" />
+    <Property Name="isbachelorForcheck" Type="Boolean" />
+    <Property Name="y_bachelordegreeCheck" Type="Boolean" />
+    <Property Name="y_examScore" Type="Int32" />
+    <Property Name="Y_generateWhether" Type="Boolean" />
+    <Property Name="y_origin" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="y_degreeNum" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="y_scoreOk" Type="Int32" />
+    <Property Name="y_ImgIsok" Type="Int32" />
+    <Property Name="y_IsWorking" Type="Int32" />
+    <Property Name="y_parentName1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="y_parentCard1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="y_parentCardType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="y_parentName2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="y_parentCard2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="y_parentCardType2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="y_cardType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="y_graduateImg" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="y_enrollYear" Type="Int32" />
+    <Property Name="y_classNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="YD_Edu_CultureExtent" Relationship="Self.FK_YD_Sts_StuInfo_YD_Edu_CultureExtent" FromRole="YD_Sts_StuInfo" ToRole="YD_Edu_CultureExtent" />
+    <NavigationProperty Name="YD_Edu_ExamFeature" Relationship="Self.FK_YD_Sts_StuInfo_YD_Edu_ExamFeature" FromRole="YD_Sts_StuInfo" ToRole="YD_Edu_ExamFeature" />
+    <NavigationProperty Name="YD_Edu_ForeignLanguage" Relationship="Self.FK_YD_Sts_StuInfo_YD_Edu_ForeignLanguage" FromRole="YD_Sts_StuInfo" ToRole="YD_Edu_ForeignLanguage" />
+    <NavigationProperty Name="YD_Edu_Major" Relationship="Self.FK_YD_Sts_StuInfo_YD_Edu_Major" FromRole="YD_Sts_StuInfo" ToRole="YD_Edu_Major" />
+    <NavigationProperty Name="YD_Edu_ProfessionType" Relationship="Self.FK_YD_Sts_StuInfo_YD_Edu_ProfessionType" FromRole="YD_Sts_StuInfo" ToRole="YD_Edu_ProfessionType" />
+    <NavigationProperty Name="YD_Edu_RecruitType" Relationship="Self.FK_YD_Sts_StuInfo_YD_Edu_RecruitType" FromRole="YD_Sts_StuInfo" ToRole="YD_Edu_RecruitType" />
+    <NavigationProperty Name="YD_Edu_Score" Relationship="Self.FK_YD_Edu_Score_YD_Sts_StuInfo" FromRole="YD_Sts_StuInfo" ToRole="YD_Edu_Score" />
+    <NavigationProperty Name="YD_Edu_ScoreTest" Relationship="Self.FK_YD_Edu_ScoreTest_YD_Sts_StuInfo" FromRole="YD_Sts_StuInfo" ToRole="YD_Edu_ScoreTest" />
+    <NavigationProperty Name="YD_Edu_StuState" Relationship="Self.FK_YD_Sts_StuInfo_YD_Edu_StuState" FromRole="YD_Sts_StuInfo" ToRole="YD_Edu_StuState" />
+    <NavigationProperty Name="YD_Fee_StuFeeTb" Relationship="Self.FK_YD_Sts_StuInfo_YD_Fee_StuFeeTb" FromRole="YD_Sts_StuInfo" ToRole="YD_Fee_StuFeeTb" />
+    <NavigationProperty Name="YD_Graduate_StudentScore" Relationship="Self.FK_YD_Sts_StuInfo_YD_Graduate_StudentScore" FromRole="YD_Sts_StuInfo" ToRole="YD_Graduate_StudentScore" />
+    <NavigationProperty Name="YD_Sts_Nation" Relationship="Self.FK_YD_Sts_StuInfo_YD_Sts_Nation" FromRole="YD_Sts_StuInfo" ToRole="YD_Sts_Nation" />
+    <NavigationProperty Name="YD_Sts_Politics" Relationship="Self.FK_YD_Sts_StuInfo_YD_Sts_Politics" FromRole="YD_Sts_StuInfo" ToRole="YD_Sts_Politics" />
+    <NavigationProperty Name="YD_Sts_StuStrange" Relationship="Self.FK_YD_Sts_StuInfo_YD_Sts_StuStrange" FromRole="YD_Sts_StuInfo" ToRole="YD_Sts_StuStrange" />
+    <NavigationProperty Name="YD_Sts_StuStrange1" Relationship="Self.FK_YD_Sts_StuStrange_YD_Sts_StuInfo" FromRole="YD_Sts_StuInfo" ToRole="YD_Sts_StuStrange" />
+    <NavigationProperty Name="YD_Sys_SubSchool" Relationship="Self.FK_YD_Sys_SubSchool_YD_Sts_StuInfo" FromRole="YD_Sts_StuInfo" ToRole="YD_Sys_SubSchool" />
+  </EntityType>
+  <EntityType Name="YD_Sts_StuInfo_copy1">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_stuNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_examNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_sex" Type="Int32" Nullable="false" />
+    <Property Name="y_inYear" Type="Int32" Nullable="false" />
+    <Property Name="y_cardId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_majorId" Type="Int32" Nullable="false" />
+    <Property Name="y_subSchoolId" Type="Int32" />
+    <Property Name="y_stuStateId" Type="Int32" Nullable="false" />
+    <Property Name="y_img" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="y_tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="y_registerState" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="y_isChangePlan" Type="Int32" Nullable="false" />
+    <Property Name="y_changePlanId" Type="Int32" />
+    <Property Name="y_loginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuStrange" Type="Int32" />
+    <Property Name="y_isdel" Type="Int32" Nullable="false" />
+    <Property Name="y_nationId" Type="Int32" />
+    <Property Name="y_politicsId" Type="Int32" />
+    <Property Name="y_birthday" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="y_graduationdata" Type="DateTime" Precision="3" />
+    <Property Name="y_graduationschool" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_registrationNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_postalcode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="y_foreignLanguageId" Type="Int32" />
+    <Property Name="y_recruitTypeId" Type="Int32" />
+    <Property Name="y_professionTypeId" Type="Int32" />
+    <Property Name="y_cultureExtentId" Type="Int32" />
+    <Property Name="y_examFeatureId" Type="Int32" />
+    <Property Name="y_isMoneyOk" Type="Int32" />
+    <Property Name="y_applyOK" Type="Int32" />
+    <Property Name="y_ischeck" Type="Int32" />
+    <Property Name="y_degreeOK" Type="Int32" />
+    <Property Name="y_realYear" Type="Int32" />
+    <Property Name="y_studentType" Type="Int32" />
+    <Property Name="y_isgraduate" Type="Boolean" />
+    <Property Name="y_isPay" Type="Int32" />
+    <Property Name="isCheckForSchool" Type="Boolean" />
+    <Property Name="y_graduateNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_bachelordegree" Type="Boolean" />
+    <Property Name="isbachelorForcheck" Type="Boolean" />
+    <Property Name="y_bachelordegreeCheck" Type="Boolean" />
+    <Property Name="y_examScore" Type="Int32" />
+    <Property Name="Y_generateWhether" Type="Boolean" />
+    <Property Name="y_origin" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="y_degreeNum" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="y_scoreOk" Type="Int32" />
+    <Property Name="y_ImgIsok" Type="Int32" />
+    <Property Name="y_IsWorking" Type="Int32" />
+    <Property Name="y_parentName1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="y_parentCard1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="y_parentCardType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="y_parentName2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="y_parentCard2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="y_parentCardType2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="y_cardType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="y_graduateImg" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="y_enrollYear" Type="Int32" />
+    <Property Name="y_classNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="YD_Edu_CultureExtent" Relationship="Self.FK__YD_Sts_St__y_cul__2630A1B7" FromRole="YD_Sts_StuInfo_copy1" ToRole="YD_Edu_CultureExtent" />
+    <NavigationProperty Name="YD_Edu_ExamFeature" Relationship="Self.FK__YD_Sts_St__y_exa__2724C5F0" FromRole="YD_Sts_StuInfo_copy1" ToRole="YD_Edu_ExamFeature" />
+    <NavigationProperty Name="YD_Edu_ForeignLanguage" Relationship="Self.FK__YD_Sts_St__y_for__2818EA29" FromRole="YD_Sts_StuInfo_copy1" ToRole="YD_Edu_ForeignLanguage" />
+    <NavigationProperty Name="YD_Edu_Major" Relationship="Self.FK__YD_Sts_St__y_maj__2077C861" FromRole="YD_Sts_StuInfo_copy1" ToRole="YD_Edu_Major" />
+    <NavigationProperty Name="YD_Edu_ProfessionType" Relationship="Self.FK__YD_Sts_St__y_pro__290D0E62" FromRole="YD_Sts_StuInfo_copy1" ToRole="YD_Edu_ProfessionType" />
+    <NavigationProperty Name="YD_Edu_RecruitType" Relationship="Self.FK__YD_Sts_St__y_rec__2A01329B" FromRole="YD_Sts_StuInfo_copy1" ToRole="YD_Edu_RecruitType" />
+    <NavigationProperty Name="YD_Edu_StuState" Relationship="Self.FK__YD_Sts_St__y_stu__2354350C" FromRole="YD_Sts_StuInfo_copy1" ToRole="YD_Edu_StuState" />
+    <NavigationProperty Name="YD_Sts_Nation" Relationship="Self.FK__YD_Sts_St__y_nat__24485945" FromRole="YD_Sts_StuInfo_copy1" ToRole="YD_Sts_Nation" />
+    <NavigationProperty Name="YD_Sts_Politics" Relationship="Self.FK__YD_Sts_St__y_pol__253C7D7E" FromRole="YD_Sts_StuInfo_copy1" ToRole="YD_Sts_Politics" />
+    <NavigationProperty Name="YD_Sts_StuStrange" Relationship="Self.FK__YD_Sts_St__y_stu__226010D3" FromRole="YD_Sts_StuInfo_copy1" ToRole="YD_Sts_StuStrange" />
+    <NavigationProperty Name="YD_Sys_SubSchool" Relationship="Self.FK__YD_Sts_St__y_sub__216BEC9A" FromRole="YD_Sts_StuInfo_copy1" ToRole="YD_Sys_SubSchool" />
+  </EntityType>
+  <EntityType Name="YD_Sts_StuInfoTemp">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_sex" Type="Int32" />
+    <Property Name="y_sexName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_inYear" Type="Int32" />
+    <Property Name="y_cardId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_majorId" Type="Int32" />
+    <Property Name="y_majorLibId" Type="Int32" />
+    <Property Name="y_majorLibName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_majorNameMatch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="y_subSchoolId" Type="Int32" />
+    <Property Name="y_subSchoolName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_subNameMatch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuTypeId" Type="Int32" />
+    <Property Name="y_stuTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_eduTypeId" Type="Int32" />
+    <Property Name="y_eduTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_examNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuStateId" Type="Int32" />
+    <Property Name="y_stuStateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_isOk" Type="Int32" Nullable="false" />
+    <Property Name="y_birthday" Type="DateTime" Precision="3" />
+    <Property Name="y_nationId" Type="Int32" />
+    <Property Name="y_politicsId" Type="Int32" />
+    <Property Name="y_nationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_politicsName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_graduationdata" Type="DateTime" Precision="3" />
+    <Property Name="y_graduationschool" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_registrationNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_postalcode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="y_foreignLanguageId" Type="Int32" />
+    <Property Name="y_foreignLanguageName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_recruitTypeId" Type="Int32" />
+    <Property Name="y_recruitTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_professionTypeId" Type="Int32" />
+    <Property Name="y_professionTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_cultureExtentId" Type="Int32" />
+    <Property Name="y_cultureExtentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_examFeatureId" Type="Int32" />
+    <Property Name="y_examFeatureName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="YD_Sts_StuNumCol">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_one" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_two" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_three" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_four" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_five" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="YD_Sts_StuStrange">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_strangeType" Type="Int32" Nullable="false" />
+    <Property Name="y_applyTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="y_applyReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="y_approvalReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="y_approvalTime" Type="DateTime" Precision="3" />
+    <Property Name="y_approvalStatus" Type="Int32" Nullable="false" />
+    <Property Name="y_approvalAdmin" Type="Int32" />
+    <Property Name="y_applyAdmin" Type="Int32" Nullable="false" />
+    <Property Name="y_contentA" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="y_contentB" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="y_contentC" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="y_contentD" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="y_contentE" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="y_isExecutive" Type="Int32" Nullable="false" />
+    <Property Name="y_ExecutiveTime" Type="DateTime" Precision="3" />
+    <Property Name="y_stuId" Type="Int32" Nullable="false" />
+    <Property Name="y_isdel" Type="Int32" />
+    <Property Name="y_contentF" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="y_contentG" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="y_contentH" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="y_contentI" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="y_contentJ" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="y_url" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="YD_Sts_StrangeType" Relationship="Self.FK_YD_Sts_StuStrange_YD_Sts_StrangeType" FromRole="YD_Sts_StuStrange" ToRole="YD_Sts_StrangeType" />
+    <NavigationProperty Name="YD_Sts_StuInfo" Relationship="Self.FK_YD_Sts_StuInfo_YD_Sts_StuStrange" FromRole="YD_Sts_StuStrange" ToRole="YD_Sts_StuInfo" />
+    <NavigationProperty Name="YD_Sts_StuInfo1" Relationship="Self.FK_YD_Sts_StuStrange_YD_Sts_StuInfo" FromRole="YD_Sts_StuStrange" ToRole="YD_Sts_StuInfo" />
+    <NavigationProperty Name="YD_Sts_StuInfo_copy1" Relationship="Self.FK__YD_Sts_St__y_stu__226010D3" FromRole="YD_Sts_StuStrange" ToRole="YD_Sts_StuInfo_copy1" />
+  </EntityType>
+  <EntityType Name="YD_Sts_SubSchoolStuInfo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_subSchoolId" Type="Int32" Nullable="false" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_examNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_cardId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_isdel" Type="Int32" Nullable="false" />
+    <Property Name="y_hide" Type="Int32" />
+    <Property Name="y_year" Type="Int32" />
+    <Property Name="y_majorId" Type="Int32" />
+    <Property Name="y_stuTypeId" Type="Int32" />
+    <Property Name="y_eduTypeId" Type="Int32" />
+    <NavigationProperty Name="YD_Sys_SubSchool" Relationship="Self.FK_YD_Sts_SubSchoolStuInfo_YD_Sys_SubSchool" FromRole="YD_Sts_SubSchoolStuInfo" ToRole="YD_Sys_SubSchool" />
+  </EntityType>
+  <EntityType Name="YD_Sts_SubStuTemp">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_subSchoolId" Type="Int32" Nullable="false" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_examNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_cardId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_cardIdTemp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_isOk" Type="Int32" Nullable="false" />
+    <Property Name="y_year" Type="Int32" />
+    <NavigationProperty Name="YD_Sys_SubSchool" Relationship="Self.FK_YD_Sts_SubStuTemp_YD_Sys_SubSchool" FromRole="YD_Sts_SubStuTemp" ToRole="YD_Sys_SubSchool" />
+  </EntityType>
+  <EntityType Name="YD_Sys_Admin">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_roleID" Type="Int32" Nullable="false" />
+    <Property Name="y_time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="y_realName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_realpassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_qinshuName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="y_qinshuPwd" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="YD_Sys_Role" Relationship="Self.FK_YD_SYS_A_REFERENCE_YD_SYS_R" FromRole="YD_Sys_Admin" ToRole="YD_Sys_Role" />
+    <NavigationProperty Name="YD_Sys_AdminCourseLink" Relationship="Self.FK_YD_Sys_AdminCourseLink_YD_Sys_Admin" FromRole="YD_Sys_Admin" ToRole="YD_Sys_AdminCourseLink" />
+    <NavigationProperty Name="YD_Sys_AdminSubLink" Relationship="Self.FK_YD_Sys_AdminSubLink_YD_Sys_Admin" FromRole="YD_Sys_Admin" ToRole="YD_Sys_AdminSubLink" />
+    <NavigationProperty Name="YD_Sys_DbLog" Relationship="Self.FK_YD_SYS_D_REFERENCE_YD_SYS_A" FromRole="YD_Sys_Admin" ToRole="YD_Sys_DbLog" />
+  </EntityType>
+  <EntityType Name="YD_Sys_AdminCourseLink">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_adminId" Type="Int32" Nullable="false" />
+    <Property Name="y_courseId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="YD_Edu_Course" Relationship="Self.FK_YD_Sys_AdminCourseLink_YD_Edu_Course" FromRole="YD_Sys_AdminCourseLink" ToRole="YD_Edu_Course" />
+    <NavigationProperty Name="YD_Sys_Admin" Relationship="Self.FK_YD_Sys_AdminCourseLink_YD_Sys_Admin" FromRole="YD_Sys_AdminCourseLink" ToRole="YD_Sys_Admin" />
+  </EntityType>
+  <EntityType Name="YD_Sys_AdminSubLink">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_adminId" Type="Int32" Nullable="false" />
+    <Property Name="y_subSchoolId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="YD_Sys_Admin" Relationship="Self.FK_YD_Sys_AdminSubLink_YD_Sys_Admin" FromRole="YD_Sys_AdminSubLink" ToRole="YD_Sys_Admin" />
+  </EntityType>
+  <EntityType Name="YD_Sys_DbLog">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_userID" Type="Int32" Nullable="false" />
+    <Property Name="Y_userName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Y_logTypeID" Type="Int32" Nullable="false" />
+    <Property Name="y_time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="y_remark" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="YD_Sys_Admin" Relationship="Self.FK_YD_SYS_D_REFERENCE_YD_SYS_A" FromRole="YD_Sys_DbLog" ToRole="YD_Sys_Admin" />
+    <NavigationProperty Name="YD_Sys_DbLogType" Relationship="Self.FK_YD_SYS_D_REFERENCE_YD_SYS_D" FromRole="YD_Sys_DbLog" ToRole="YD_Sys_DbLogType" />
+  </EntityType>
+  <EntityType Name="YD_Sys_DbLogType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_logType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="YD_Sys_DbLog" Relationship="Self.FK_YD_SYS_D_REFERENCE_YD_SYS_D" FromRole="YD_Sys_DbLogType" ToRole="YD_Sys_DbLog" />
+  </EntityType>
+  <EntityType Name="YD_Sys_File">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_time" Type="DateTime" Precision="3" />
+    <Property Name="y_createduser" Type="Int32" />
+    <Property Name="y_role" Type="Int32" />
+    <Property Name="y_createdName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="YD_Sys_Module">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_url" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_parentID" Type="Int32" Nullable="false" />
+    <Property Name="y_level" Type="Int32" Nullable="false" />
+    <Property Name="y_sort" Type="Int32" Nullable="false" />
+    <Property Name="y_vaild" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="YD_Sys_Power" Relationship="Self.FK_YD_SYS_P_REFERENCE_YD_SYS_M" FromRole="YD_Sys_Module" ToRole="YD_Sys_Power" />
+  </EntityType>
+  <EntityType Name="YD_Sys_Power">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_roleID" Type="Int32" Nullable="false" />
+    <Property Name="y_moduleID" Type="Int32" Nullable="false" />
+    <Property Name="y_menu" Type="Int32" Nullable="false" />
+    <Property Name="y_insert" Type="Int32" Nullable="false" />
+    <Property Name="y_delete" Type="Int32" Nullable="false" />
+    <Property Name="y_update" Type="Int32" Nullable="false" />
+    <Property Name="y_select" Type="Int32" Nullable="false" />
+    <Property Name="y_down" Type="Int32" />
+    <NavigationProperty Name="YD_Sys_Module" Relationship="Self.FK_YD_SYS_P_REFERENCE_YD_SYS_M" FromRole="YD_Sys_Power" ToRole="YD_Sys_Module" />
+    <NavigationProperty Name="YD_Sys_Role" Relationship="Self.FK_YD_SYS_P_REFERENCE_YD_SYS_R" FromRole="YD_Sys_Power" ToRole="YD_Sys_Role" />
+  </EntityType>
+  <EntityType Name="YD_Sys_PrintCss">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_printid" Type="Int32" />
+    <Property Name="y_divdatatype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_range" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="y_fontsize" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="y_bold" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="YD_Sys_PrintTemplate" Relationship="Self.FK_YD_Sys_PrintCss_YD_Sys_PrintTemplate1" FromRole="YD_Sys_PrintCss" ToRole="YD_Sys_PrintTemplate" />
+  </EntityType>
+  <EntityType Name="YD_Sys_PrintTemplate">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_time" Type="DateTime" Precision="3" />
+    <Property Name="y_dataview" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="YD_Sys_PrintCss" Relationship="Self.FK_YD_Sys_PrintCss_YD_Sys_PrintTemplate1" FromRole="YD_Sys_PrintTemplate" ToRole="YD_Sys_PrintCss" />
+  </EntityType>
+  <EntityType Name="YD_Sys_Role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="YD_Sys_Admin" Relationship="Self.FK_YD_SYS_A_REFERENCE_YD_SYS_R" FromRole="YD_Sys_Role" ToRole="YD_Sys_Admin" />
+    <NavigationProperty Name="YD_Sys_Power" Relationship="Self.FK_YD_SYS_P_REFERENCE_YD_SYS_R" FromRole="YD_Sys_Role" ToRole="YD_Sys_Power" />
+  </EntityType>
+  <EntityType Name="YD_Sys_SubSchool">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_nameabbreviation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_formername" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_schooltype" Type="Int32" />
+    <Property Name="y_address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="y_contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_cash" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="YD_Edu_SmallPower" Relationship="Self.FK_YD_Edu_SmallPower_YD_Sys_SubSchool" FromRole="YD_Sys_SubSchool" ToRole="YD_Edu_SmallPower" />
+    <NavigationProperty Name="YD_Fee_SubFeeSys" Relationship="Self.FK_y_subSchoolId" FromRole="YD_Sys_SubSchool" ToRole="YD_Fee_SubFeeSys" />
+    <NavigationProperty Name="YD_Graduate_Bachelor" Relationship="Self.FK_YD_Sys_SubSchool_YD_Graduate_Bachelor" FromRole="YD_Sys_SubSchool" ToRole="YD_Graduate_Bachelor" />
+    <NavigationProperty Name="YD_Graduate_StudentApply" Relationship="Self.FK_YD_Sys_SubSchool_YD_Graduate_StudentApply" FromRole="YD_Sys_SubSchool" ToRole="YD_Graduate_StudentApply" />
+    <NavigationProperty Name="YD_Sts_StuInfo" Relationship="Self.FK_YD_Sys_SubSchool_YD_Sts_StuInfo" FromRole="YD_Sys_SubSchool" ToRole="YD_Sts_StuInfo" />
+    <NavigationProperty Name="YD_Sts_StuInfo_copy1" Relationship="Self.FK__YD_Sts_St__y_sub__216BEC9A" FromRole="YD_Sys_SubSchool" ToRole="YD_Sts_StuInfo_copy1" />
+    <NavigationProperty Name="YD_Sts_SubSchoolStuInfo" Relationship="Self.FK_YD_Sts_SubSchoolStuInfo_YD_Sys_SubSchool" FromRole="YD_Sys_SubSchool" ToRole="YD_Sts_SubSchoolStuInfo" />
+    <NavigationProperty Name="YD_Sts_SubStuTemp" Relationship="Self.FK_YD_Sts_SubStuTemp_YD_Sys_SubSchool" FromRole="YD_Sys_SubSchool" ToRole="YD_Sts_SubStuTemp" />
+    <NavigationProperty Name="YD_TeaPlan_Class" Relationship="Self.FK_YD_TeaPlan_Class_YD_Sys_SubSchool" FromRole="YD_Sys_SubSchool" ToRole="YD_TeaPlan_Class" />
+    <NavigationProperty Name="YT_Teacher" Relationship="Self.FK_YT_Teacher_YD_Sys_SubSchool" FromRole="YD_Sys_SubSchool" ToRole="YT_Teacher" />
+  </EntityType>
+  <EntityType Name="YD_TeaPlan_Class">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_majorId" Type="Int32" Nullable="false" />
+    <Property Name="y_teaPlanType" Type="Int32" Nullable="false" />
+    <Property Name="y_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_remark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_subSchoolId" Type="Int32" Nullable="false" />
+    <Property Name="y_year" Type="Int32" Nullable="false" />
+    <Property Name="y_templetId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="YD_Edu_Major" Relationship="Self.FK_YD_TeaPlan_Class_YD_Edu_Major" FromRole="YD_TeaPlan_Class" ToRole="YD_Edu_Major" />
+    <NavigationProperty Name="YD_Sys_SubSchool" Relationship="Self.FK_YD_TeaPlan_Class_YD_Sys_SubSchool" FromRole="YD_TeaPlan_Class" ToRole="YD_Sys_SubSchool" />
+    <NavigationProperty Name="YD_TeaPlan_Templet" Relationship="Self.FK_YD_TeaPlan_Class_YD_TeaPlan_Templet" FromRole="YD_TeaPlan_Class" ToRole="YD_TeaPlan_Templet" />
+    <NavigationProperty Name="YD_TeaPlan_ClassCourseDes" Relationship="Self.FK_YD_TeaPlan_ClassCourseDes_YD_TeaPlan_Class" FromRole="YD_TeaPlan_Class" ToRole="YD_TeaPlan_ClassCourseDes" />
+  </EntityType>
+  <EntityType Name="YD_TeaPlan_ClassCourseDes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_classTeaPlanId" Type="Int32" Nullable="false" />
+    <Property Name="y_course" Type="Int32" Nullable="false" />
+    <Property Name="y_team" Type="Int32" Nullable="false" />
+    <Property Name="y_selfPeriod" Type="Int32" />
+    <Property Name="y_teaPeriod" Type="Int32" />
+    <Property Name="y_taskPeriod" Type="Int32" />
+    <Property Name="y_courseType" Type="Int32" />
+    <Property Name="y_isMain" Type="Boolean" Nullable="false" />
+    <Property Name="y_selfPeriod2" Type="Int32" />
+    <Property Name="y_teaPeriod2" Type="Int32" />
+    <Property Name="y_sampleexam" Type="Boolean" />
+    <Property Name="y_score" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="YD_Edu_Course" Relationship="Self.FK_YD_TeaPlan_ClassCourseDes_YD_Edu_Course" FromRole="YD_TeaPlan_ClassCourseDes" ToRole="YD_Edu_Course" />
+    <NavigationProperty Name="YD_TeaPlan_Class" Relationship="Self.FK_YD_TeaPlan_ClassCourseDes_YD_TeaPlan_Class" FromRole="YD_TeaPlan_ClassCourseDes" ToRole="YD_TeaPlan_Class" />
+  </EntityType>
+  <EntityType Name="YD_TeaPlan_ExamPlan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="y_majorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_courseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="y_subSchoolName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_year" Type="Int32" Nullable="false" />
+    <Property Name="y_term" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_TeaPlan_Templet">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_majorId" Type="Int32" Nullable="false" />
+    <Property Name="y_teaPlanType" Type="Int32" Nullable="false" />
+    <Property Name="y_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_remark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="YD_Edu_Major" Relationship="Self.FK_YD_TeaPlan_Templet_YD_Edu_Major" FromRole="YD_TeaPlan_Templet" ToRole="YD_Edu_Major" />
+    <NavigationProperty Name="YD_TeaPlan_Class" Relationship="Self.FK_YD_TeaPlan_Class_YD_TeaPlan_Templet" FromRole="YD_TeaPlan_Templet" ToRole="YD_TeaPlan_Class" />
+    <NavigationProperty Name="YD_TeaPlan_TempletCourseDes" Relationship="Self.FK_YD_TeaPlan_TempletCourseDes_YD_TeaPlan_Templet" FromRole="YD_TeaPlan_Templet" ToRole="YD_TeaPlan_TempletCourseDes" />
+  </EntityType>
+  <EntityType Name="YD_TeaPlan_TempletCourseDes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_templetId" Type="Int32" Nullable="false" />
+    <Property Name="y_course" Type="Int32" Nullable="false" />
+    <Property Name="y_team" Type="Int32" Nullable="false" />
+    <Property Name="y_selfPeriod" Type="Int32" />
+    <Property Name="y_teaPeriod" Type="Int32" />
+    <Property Name="y_taskPeriod" Type="Int32" />
+    <Property Name="y_courseType" Type="Int32" />
+    <Property Name="y_isMain" Type="Boolean" Nullable="false" />
+    <Property Name="y_selfPeriod2" Type="Int32" />
+    <Property Name="y_teaPeriod2" Type="Int32" />
+    <Property Name="y_sampleexam" Type="Boolean" />
+    <NavigationProperty Name="YD_Edu_Course" Relationship="Self.FK_YD_TeaPlan_TempletCourseDes_YD_Edu_Course" FromRole="YD_TeaPlan_TempletCourseDes" ToRole="YD_Edu_Course" />
+    <NavigationProperty Name="YD_TeaPlan_Templet" Relationship="Self.FK_YD_TeaPlan_TempletCourseDes_YD_TeaPlan_Templet" FromRole="YD_TeaPlan_TempletCourseDes" ToRole="YD_TeaPlan_Templet" />
+  </EntityType>
+  <EntityType Name="YT_ActivityVideo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_starttime" Type="DateTime" Precision="3" />
+    <Property Name="y_endtime" Type="DateTime" Precision="3" />
+    <Property Name="y_createdtime" Type="DateTime" Precision="3" />
+    <Property Name="y_url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="y_isOpen" Type="Int32" />
+  </EntityType>
+  <EntityType Name="YT_Faculty">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="y_createtime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="YT_Grade">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_createtime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="YT_GraduationRegistration">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="y_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuNum" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="y_cardId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="y_sex" Type="Int32" />
+    <Property Name="y_inYear" Type="Int32" />
+    <Property Name="y_majorId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="y_subSchoolId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="y_nationId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_birthday" Type="DateTime" Precision="3" />
+    <Property Name="y_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="y_mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="YT_Mechanism">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_code" Type="Int32" />
+    <Property Name="y_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="y_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="y_tel" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="y_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="y_Createtime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="YT_RegisterSettings">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_inyear" Type="Int32" />
+    <Property Name="y_starttime" Type="DateTime" Precision="3" />
+    <Property Name="y_endtime" Type="DateTime" Precision="3" />
+    <Property Name="y_Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="YT_Teacher">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_subSchoolId" Type="Int32" />
+    <Property Name="y_createtime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="YD_Sys_SubSchool" Relationship="Self.FK_YT_Teacher_YD_Sys_SubSchool" FromRole="YT_Teacher" ToRole="YD_Sys_SubSchool" />
+  </EntityType>
+  <EntityType Name="YT_Term">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_createtime" Type="DateTime" Precision="3" />
+    <Property Name="y_code" Type="Int32" />
+    <Property Name="y_year" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Z_test">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="exam" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="sub" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="VW_Admin">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_adminName" />
+      <PropertyRef Name="y_password" />
+      <PropertyRef Name="y_roleID" />
+      <PropertyRef Name="y_time" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="y_adminName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_realName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_roleID" Type="Int32" Nullable="false" />
+    <Property Name="y_time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="y_roleName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VW_AllBili">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_inYear" />
+      <PropertyRef Name="y_feeYear" />
+      <PropertyRef Name="y_stuTypeId" />
+      <PropertyRef Name="y_eduTypeId" />
+      <PropertyRef Name="y_bili" />
+      <PropertyRef Name="y_Visible" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="y_inYear" Type="Int32" Nullable="false" />
+    <Property Name="y_feeYear" Type="Int32" Nullable="false" />
+    <Property Name="y_stuTypeId" Type="Int32" Nullable="false" />
+    <Property Name="y_eduTypeId" Type="Int32" Nullable="false" />
+    <Property Name="y_bili" Type="Int32" Nullable="false" />
+    <Property Name="eduTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_eduTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="stuTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_time" Type="DateTime" Precision="3" />
+    <Property Name="y_Visible" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VW_AllFeeSys">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_inYear" />
+      <PropertyRef Name="y_feeYear" />
+      <PropertyRef Name="y_stuTypeId" />
+      <PropertyRef Name="y_eduTypeId" />
+      <PropertyRef Name="y_stuFee" />
+      <PropertyRef Name="y_bookFee" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="y_inYear" Type="Int32" Nullable="false" />
+    <Property Name="y_feeYear" Type="Int32" Nullable="false" />
+    <Property Name="y_stuTypeId" Type="Int32" Nullable="false" />
+    <Property Name="y_eduTypeId" Type="Int32" Nullable="false" />
+    <Property Name="y_stuFee" Type="Int32" Nullable="false" />
+    <Property Name="y_bookFee" Type="Int32" Nullable="false" />
+    <Property Name="eduTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_eduTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="stuTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VW_DbLog">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_userID" />
+      <PropertyRef Name="y_userName" />
+      <PropertyRef Name="y_logTypeID" />
+      <PropertyRef Name="y_time" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="y_userID" Type="Int32" Nullable="false" />
+    <Property Name="y_userName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_logTypeID" Type="Int32" Nullable="false" />
+    <Property Name="y_time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="y_remark" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="y_logType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="y_adminName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="y_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_roleID" Type="Int32" />
+    <Property Name="y_roleName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VW_Major">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_majorLibId" />
+      <PropertyRef Name="y_stuTypeId" />
+      <PropertyRef Name="y_eduTypeId" />
+      <PropertyRef Name="y_name" />
+      <PropertyRef Name="y_code" />
+      <PropertyRef Name="y_stuYear" />
+      <PropertyRef Name="stuTypeName" />
+      <PropertyRef Name="y_stuTypeCode" />
+      <PropertyRef Name="eduTypeName" />
+      <PropertyRef Name="y_eduTypeCode" />
+      <PropertyRef Name="majorLibraryName" />
+      <PropertyRef Name="majorLibraryCode" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="y_majorLibId" Type="Int32" Nullable="false" />
+    <Property Name="y_stuTypeId" Type="Int32" Nullable="false" />
+    <Property Name="y_eduTypeId" Type="Int32" Nullable="false" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_stuYear" Type="Int32" Nullable="false" />
+    <Property Name="y_StandardCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="stuTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_stuTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="eduTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_eduTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="majorLibraryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="majorLibraryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_majortype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_needFee" Type="Int32" />
+  </EntityType>
+  <EntityType Name="VW_MajorLiFeeSys">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_majorlivraryid" />
+      <PropertyRef Name="y_inYear" />
+      <PropertyRef Name="y_feeYear" />
+      <PropertyRef Name="y_stuTypeId" />
+      <PropertyRef Name="y_eduTypeId" />
+      <PropertyRef Name="y_StuFee" />
+      <PropertyRef Name="y_bookFee" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="y_majorlivraryid" Type="Int32" Nullable="false" />
+    <Property Name="y_inYear" Type="Int32" Nullable="false" />
+    <Property Name="y_feeYear" Type="Int32" Nullable="false" />
+    <Property Name="y_stuTypeId" Type="Int32" Nullable="false" />
+    <Property Name="y_eduTypeId" Type="Int32" Nullable="false" />
+    <Property Name="y_StuFee" Type="Int32" Nullable="false" />
+    <Property Name="y_bookFee" Type="Int32" Nullable="false" />
+    <Property Name="eduTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_eduTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="majorlibraryname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="y_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="stuTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VW_MajorTeachPlan">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_year" />
+      <PropertyRef Name="y_majorId" />
+      <PropertyRef Name="y_teachPlanId" />
+      <PropertyRef Name="y_teaPlanType" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="y_year" Type="Int32" Nullable="false" />
+    <Property Name="y_majorId" Type="Int32" Nullable="false" />
+    <Property Name="y_teachPlanId" Type="Int32" Nullable="false" />
+    <Property Name="y_majorLibId" Type="Int32" />
+    <Property Name="y_stuTypeId" Type="Int32" />
+    <Property Name="y_eduTypeId" Type="Int32" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuYear" Type="Int32" />
+    <Property Name="stuTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="eduTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_eduTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="majorLibraryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="majorLibraryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_teaPlanName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_teaPlanType" Type="Int32" Nullable="false" />
+    <Property Name="y_term" Type="Int32" />
+  </EntityType>
+  <EntityType Name="VW_MajorTeachPlanDes">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_year" />
+      <PropertyRef Name="y_majorId" />
+      <PropertyRef Name="y_teachPlanId" />
+      <PropertyRef Name="y_teaPlanType" />
+      <PropertyRef Name="y_teachplandesid" />
+      <PropertyRef Name="y_teaPlanId" />
+      <PropertyRef Name="y_courseId" />
+      <PropertyRef Name="y_courseTypeId" />
+      <PropertyRef Name="y_stuTime" />
+      <PropertyRef Name="y_score" />
+      <PropertyRef Name="y_courseSid" />
+      <PropertyRef Name="y_coursecode" />
+      <PropertyRef Name="y_coursename" />
+      <PropertyRef Name="y_coursetypesid" />
+      <PropertyRef Name="y_coursetypename" />
+      <PropertyRef Name="y_courseTypeCode" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="y_year" Type="Int32" Nullable="false" />
+    <Property Name="y_majorId" Type="Int32" Nullable="false" />
+    <Property Name="y_teachPlanId" Type="Int32" Nullable="false" />
+    <Property Name="y_majorLibId" Type="Int32" />
+    <Property Name="y_stuTypeId" Type="Int32" />
+    <Property Name="y_eduTypeId" Type="Int32" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuYear" Type="Int32" />
+    <Property Name="stuTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="eduTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_eduTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="majorLibraryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="majorLibraryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_teaPlanName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_teaPlanType" Type="Int32" Nullable="false" />
+    <Property Name="y_term" Type="Int32" />
+    <Property Name="y_teachplandesid" Type="Int32" Nullable="false" />
+    <Property Name="y_teaPlanId" Type="Int32" Nullable="false" />
+    <Property Name="y_courseId" Type="Int32" Nullable="false" />
+    <Property Name="y_courseTypeId" Type="Int32" Nullable="false" />
+    <Property Name="y_stuTime" Type="Int32" Nullable="false" />
+    <Property Name="y_score" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="y_faceTime1" Type="Int32" />
+    <Property Name="y_faceTime2" Type="Int32" />
+    <Property Name="y_task" Type="Int32" />
+    <Property Name="y_courseSid" Type="Int32" Nullable="false" />
+    <Property Name="y_coursecode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_coursename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_coursetypesid" Type="Int32" Nullable="false" />
+    <Property Name="y_coursetypename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_courseTypeCode" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VW_Power">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_roleID" />
+      <PropertyRef Name="y_moduleID" />
+      <PropertyRef Name="y_menu" />
+      <PropertyRef Name="y_insert" />
+      <PropertyRef Name="y_delete" />
+      <PropertyRef Name="y_update" />
+      <PropertyRef Name="y_select" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="y_roleID" Type="Int32" Nullable="false" />
+    <Property Name="y_moduleID" Type="Int32" Nullable="false" />
+    <Property Name="y_menu" Type="Int32" Nullable="false" />
+    <Property Name="y_insert" Type="Int32" Nullable="false" />
+    <Property Name="y_delete" Type="Int32" Nullable="false" />
+    <Property Name="y_update" Type="Int32" Nullable="false" />
+    <Property Name="y_select" Type="Int32" Nullable="false" />
+    <Property Name="y_roleName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="y_moudleName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="y_vaild" Type="Int32" />
+    <Property Name="y_level" Type="Int32" />
+    <Property Name="y_sort" Type="Int32" />
+    <Property Name="y_url" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="y_parentID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="VW_Score">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_stuId" />
+      <PropertyRef Name="y_term" />
+      <PropertyRef Name="y_normalScore" />
+      <PropertyRef Name="y_termScore" />
+      <PropertyRef Name="y_totalScore" />
+      <PropertyRef Name="y_courseId" />
+      <PropertyRef Name="y_type" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="y_stuId" Type="Int32" Nullable="false" />
+    <Property Name="y_stuNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_cardId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_term" Type="Int32" Nullable="false" />
+    <Property Name="y_normalScore" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="y_termScore" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="y_totalScore" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="y_courseId" Type="Int32" Nullable="false" />
+    <Property Name="y_courseCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_courseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_examNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_sex" Type="Int32" />
+    <Property Name="y_inYear" Type="Int32" />
+    <Property Name="y_majorId" Type="Int32" />
+    <Property Name="y_subSchoolId" Type="Int32" />
+    <Property Name="y_stuStateId" Type="Int32" />
+    <Property Name="y_politicsId" Type="Int32" />
+    <Property Name="y_nationId" Type="Int32" />
+    <Property Name="y_img" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="y_tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="y_registerState" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="y_isChangePlan" Type="Int32" />
+    <Property Name="y_changePlanId" Type="Int32" />
+    <Property Name="y_loginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuStrange" Type="Int32" />
+    <Property Name="y_isdel" Type="Int32" />
+    <Property Name="schoolCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="schoolName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="stuStateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuStateCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="nationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="politicsName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_majorLibId" Type="Int32" />
+    <Property Name="y_stuTypeId" Type="Int32" />
+    <Property Name="y_eduTypeId" Type="Int32" />
+    <Property Name="majorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="majorCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuYear" Type="Int32" />
+    <Property Name="stuTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="eduTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_eduTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="majorLibraryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="majorLibraryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_workScore" Type="Decimal" Precision="18" Scale="1" />
+    <Property Name="y_type" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VW_ScoreFirst">
+    <Key>
+      <PropertyRef Name="y_stuId" />
+    </Key>
+    <Property Name="y_stuName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuId" Type="Int32" Nullable="false" />
+    <Property Name="y_stuNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_subSchoolId" Type="Int32" />
+    <Property Name="y_majorId" Type="Int32" />
+    <Property Name="majorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VW_Strange">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_strangeType" />
+      <PropertyRef Name="y_applyTime" />
+      <PropertyRef Name="y_approvalStatus" />
+      <PropertyRef Name="y_applyAdmin" />
+      <PropertyRef Name="y_isExecutive" />
+      <PropertyRef Name="y_stuId" />
+      <PropertyRef Name="strangeTypeName" />
+      <PropertyRef Name="studentName" />
+      <PropertyRef Name="y_examNum" />
+      <PropertyRef Name="y_sex" />
+      <PropertyRef Name="y_inYear" />
+      <PropertyRef Name="y_cardId" />
+      <PropertyRef Name="y_majorId" />
+      <PropertyRef Name="y_stuStateId" />
+      <PropertyRef Name="y_isChangePlan" />
+      <PropertyRef Name="y_isdel" />
+      <PropertyRef Name="y_birthday" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="y_strangeType" Type="Int32" Nullable="false" />
+    <Property Name="y_applyTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="y_applyReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="y_approvalReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="y_approvalTime" Type="DateTime" Precision="3" />
+    <Property Name="y_approvalStatus" Type="Int32" Nullable="false" />
+    <Property Name="y_approvalAdmin" Type="Int32" />
+    <Property Name="y_applyAdmin" Type="Int32" Nullable="false" />
+    <Property Name="y_contentA" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="y_contentB" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="y_contentC" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="y_contentD" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="y_contentE" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="y_isExecutive" Type="Int32" Nullable="false" />
+    <Property Name="y_ExecutiveTime" Type="DateTime" Precision="3" />
+    <Property Name="y_stuId" Type="Int32" Nullable="false" />
+    <Property Name="strangeTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_viewUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="y_applyNotice" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="studentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_stuNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_examNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_sex" Type="Int32" Nullable="false" />
+    <Property Name="y_inYear" Type="Int32" Nullable="false" />
+    <Property Name="y_cardId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_majorId" Type="Int32" Nullable="false" />
+    <Property Name="y_subSchoolId" Type="Int32" />
+    <Property Name="y_stuStateId" Type="Int32" Nullable="false" />
+    <Property Name="y_politicsId" Type="Int32" />
+    <Property Name="y_nationId" Type="Int32" />
+    <Property Name="y_img" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="y_tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="y_registerState" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="y_isChangePlan" Type="Int32" Nullable="false" />
+    <Property Name="y_changePlanId" Type="Int32" />
+    <Property Name="y_loginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuStrange" Type="Int32" />
+    <Property Name="y_isdel" Type="Int32" Nullable="false" />
+    <Property Name="schoolCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="schoolName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="stuStateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuStateCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="nationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="politicsName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_majorLibId" Type="Int32" />
+    <Property Name="y_stuTypeId" Type="Int32" />
+    <Property Name="y_eduTypeId" Type="Int32" />
+    <Property Name="majorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="majorCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuYear" Type="Int32" />
+    <Property Name="stuTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="eduTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_eduTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="majorLibraryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="majorLibraryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_contentAName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="y_contentBName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="y_straisdel" Type="Int32" />
+    <Property Name="y_contentF" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="y_contentH" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="y_contentG" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="y_contentI" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="y_contentJ" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="y_birthday" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="y_nameabbreviation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_url" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VW_StrangeReportTotal">
+    <Key>
+      <PropertyRef Name="y_approvalStatus" />
+      <PropertyRef Name="y_strangeType" />
+      <PropertyRef Name="strangeTypeName" />
+      <PropertyRef Name="y_inYear" />
+    </Key>
+    <Property Name="totalStuCount" Type="Int32" />
+    <Property Name="approvalstatus" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="y_approvalStatus" Type="Int32" Nullable="false" />
+    <Property Name="y_strangeType" Type="Int32" Nullable="false" />
+    <Property Name="strangeTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_subSchoolId" Type="Int32" />
+    <Property Name="y_inYear" Type="Int32" Nullable="false" />
+    <Property Name="schoolName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_nameabbreviation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VW_Sts_News">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_appytime" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="y_type" Type="Int32" />
+    <Property Name="y_subSchoolId" Type="Int32" />
+    <Property Name="y_title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_content" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="y_appyname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_appytime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="y_hits" Type="Int32" />
+    <Property Name="y_usable" Type="Int32" />
+    <Property Name="y_subschoolcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_subschoolname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VW_StuInfo">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_name" />
+      <PropertyRef Name="y_examNum" />
+      <PropertyRef Name="y_sex" />
+      <PropertyRef Name="y_inYear" />
+      <PropertyRef Name="y_cardId" />
+      <PropertyRef Name="y_majorId" />
+      <PropertyRef Name="y_stuStateId" />
+      <PropertyRef Name="y_isChangePlan" />
+      <PropertyRef Name="y_isdel" />
+      <PropertyRef Name="y_birthday" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_stuNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_examNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_sex" Type="Int32" Nullable="false" />
+    <Property Name="y_inYear" Type="Int32" Nullable="false" />
+    <Property Name="y_cardId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_majorId" Type="Int32" Nullable="false" />
+    <Property Name="y_subSchoolId" Type="Int32" />
+    <Property Name="y_stuStateId" Type="Int32" Nullable="false" />
+    <Property Name="y_politicsId" Type="Int32" />
+    <Property Name="y_nationId" Type="Int32" />
+    <Property Name="y_img" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="y_tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="y_registerState" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="y_isChangePlan" Type="Int32" Nullable="false" />
+    <Property Name="y_changePlanId" Type="Int32" />
+    <Property Name="y_loginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuStrange" Type="Int32" />
+    <Property Name="y_isdel" Type="Int32" Nullable="false" />
+    <Property Name="y_classNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="schoolCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="schoolName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="stuStateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuStateCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="nationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="politicsName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_majorLibId" Type="Int32" />
+    <Property Name="y_stuTypeId" Type="Int32" />
+    <Property Name="y_eduTypeId" Type="Int32" />
+    <Property Name="majorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="majorCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuYear" Type="Int32" />
+    <Property Name="stuTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="eduTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_eduTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="majorLibraryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="majorLibraryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_StandardCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="subSchoolCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_birthday" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="y_isMoneyOk" Type="Int32" />
+    <Property Name="y_applyOK" Type="Int32" />
+    <Property Name="y_ischeck" Type="Int32" />
+    <Property Name="y_degreeOK" Type="Int32" />
+    <Property Name="y_graduationdata" Type="DateTime" Precision="3" />
+    <Property Name="y_graduationschool" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_registrationNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_postalcode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="y_foreignLanguageId" Type="Int32" />
+    <Property Name="y_recruitTypeId" Type="Int32" />
+    <Property Name="y_professionTypeId" Type="Int32" />
+    <Property Name="y_cultureExtentId" Type="Int32" />
+    <Property Name="y_examFeatureId" Type="Int32" />
+    <Property Name="y_foreignLanguageCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_foreignLanguageName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_cultureExtentCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_cultureExtentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_professionTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_professionTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_recruitTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_recruitTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_ZJTD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_examFeatureCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_examFeatureName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_TZF" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_nameabbreviation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_formername" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_studentType" Type="Int32" />
+    <Property Name="y_realYear" Type="Int32" />
+    <Property Name="y_isgraduate" Type="Boolean" />
+    <Property Name="y_isPay" Type="Int32" />
+    <Property Name="y_graduateNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="isCheckForSchool" Type="Boolean" />
+    <Property Name="y_bachelordegree" Type="Boolean" />
+    <Property Name="isbachelorForcheck" Type="Boolean" />
+    <Property Name="y_bachelordegreeCheck" Type="Boolean" />
+    <Property Name="y_examScore" Type="Int32" />
+    <Property Name="y_origin" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="y_degreeNum" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="y_scoreOk" Type="Int32" />
+    <Property Name="subaddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="subcontact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="subtel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_IsWorking" Type="Int32" />
+    <Property Name="y_cardType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="y_parentCard1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="y_parentCard2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="y_parentName1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="y_parentName2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="y_parentCardType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="y_parentCardType2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="y_ImgIsok" Type="Int32" />
+  </EntityType>
+  <EntityType Name="VW_SubFeeBili">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_inYear" />
+      <PropertyRef Name="y_feeYear" />
+      <PropertyRef Name="y_stuTypeId" />
+      <PropertyRef Name="y_eduTypeId" />
+      <PropertyRef Name="y_bili" />
+      <PropertyRef Name="y_subSchoolId" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="y_inYear" Type="Int32" Nullable="false" />
+    <Property Name="y_feeYear" Type="Int32" Nullable="false" />
+    <Property Name="y_stuTypeId" Type="Int32" Nullable="false" />
+    <Property Name="y_eduTypeId" Type="Int32" Nullable="false" />
+    <Property Name="y_bili" Type="Int32" Nullable="false" />
+    <Property Name="y_subSchoolId" Type="Int32" Nullable="false" />
+    <Property Name="subSchoolName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="eduTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_eduTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="stuTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VW_SubFeeSys">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_inYear" />
+      <PropertyRef Name="y_feeYear" />
+      <PropertyRef Name="y_stuTypeId" />
+      <PropertyRef Name="y_eduTypeId" />
+      <PropertyRef Name="y_stuFee" />
+      <PropertyRef Name="y_bookFee" />
+      <PropertyRef Name="y_subSchoolId" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="y_inYear" Type="Int32" Nullable="false" />
+    <Property Name="y_feeYear" Type="Int32" Nullable="false" />
+    <Property Name="y_stuTypeId" Type="Int32" Nullable="false" />
+    <Property Name="y_eduTypeId" Type="Int32" Nullable="false" />
+    <Property Name="y_stuFee" Type="Int32" Nullable="false" />
+    <Property Name="y_bookFee" Type="Int32" Nullable="false" />
+    <Property Name="y_subSchoolId" Type="Int32" Nullable="false" />
+    <Property Name="subSchoolName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="eduTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_eduTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="stuTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuTypeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VW_SubFeeTotal">
+    <Key>
+      <PropertyRef Name="y_inYear" />
+      <PropertyRef Name="y_feeYear" />
+    </Key>
+    <Property Name="totalStuCount" Type="Int32" />
+    <Property Name="noUpStuCount" Type="Int32" />
+    <Property Name="hasUpStuCount" Type="Int32" />
+    <Property Name="totalFee" Type="Int32" />
+    <Property Name="totalUpFee" Type="Int32" />
+    <Property Name="totalFeeChae" Type="Int32" />
+    <Property Name="totalNeedUpFee" Type="Int32" />
+    <Property Name="y_subSchoolId" Type="Int32" />
+    <Property Name="y_inYear" Type="Int32" Nullable="false" />
+    <Property Name="y_feeYear" Type="Int32" Nullable="false" />
+    <Property Name="schoolName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VW_SubschoolAdmin">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_name" />
+      <PropertyRef Name="y_code" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_adminId" Type="Int32" />
+    <Property Name="y_subSchoolId" Type="Int32" />
+    <Property Name="y_adminName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="y_realName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_nameabbreviation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_formername" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VW_SubSchoolStuInfo">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_subSchoolId" />
+      <PropertyRef Name="y_name" />
+      <PropertyRef Name="y_examNum" />
+      <PropertyRef Name="y_cardId" />
+      <PropertyRef Name="y_isdel" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="y_subSchoolId" Type="Int32" Nullable="false" />
+    <Property Name="y_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_examNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_cardId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="schoolName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="schoolCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_isdel" Type="Int32" Nullable="false" />
+    <Property Name="y_hide" Type="Int32" />
+    <Property Name="y_nameabbreviation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_formername" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_schooltype" Type="Int32" />
+    <Property Name="y_year" Type="Int32" />
+    <Property Name="y_majorName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="y_eduTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_stuTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="y_majorId" Type="Int32" />
+    <Property Name="y_stuTypeId" Type="Int32" />
+    <Property Name="y_eduTypeId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="VW_TeachPlanDes">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_teaPlanId" />
+      <PropertyRef Name="y_courseId" />
+      <PropertyRef Name="y_courseTypeId" />
+      <PropertyRef Name="y_stuTime" />
+      <PropertyRef Name="y_score" />
+      <PropertyRef Name="y_code" />
+      <PropertyRef Name="courseName" />
+      <PropertyRef Name="courseTypeName" />
+      <PropertyRef Name="y_courseTypeCode" />
+      <PropertyRef Name="y_teaPlanName" />
+      <PropertyRef Name="y_term" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="y_teaPlanId" Type="Int32" Nullable="false" />
+    <Property Name="y_courseId" Type="Int32" Nullable="false" />
+    <Property Name="y_courseTypeId" Type="Int32" Nullable="false" />
+    <Property Name="y_stuTime" Type="Int32" Nullable="false" />
+    <Property Name="y_score" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="y_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="courseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="courseTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_courseTypeCode" Type="Int32" Nullable="false" />
+    <Property Name="y_teaPlanName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="y_term" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_YD_Edu_Score_YD_Edu_Course">
+    <End Role="YD_Edu_Course" Type="Self.YD_Edu_Course" Multiplicity="1" />
+    <End Role="YD_Edu_Score" Type="Self.YD_Edu_Score" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_Score">
+        <PropertyRef Name="y_courseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_ScoreTest_YD_Edu_Course">
+    <End Role="YD_Edu_Course" Type="Self.YD_Edu_Course" Multiplicity="1" />
+    <End Role="YD_Edu_ScoreTest" Type="Self.YD_Edu_ScoreTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_ScoreTest">
+        <PropertyRef Name="y_courseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_SmallPower_YD_Edu_Course">
+    <End Role="YD_Edu_Course" Type="Self.YD_Edu_Course" Multiplicity="0..1" />
+    <End Role="YD_Edu_SmallPower" Type="Self.YD_Edu_SmallPower" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_SmallPower">
+        <PropertyRef Name="y_courseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_TeachplanDes_YD_Edu_Course">
+    <End Role="YD_Edu_Course" Type="Self.YD_Edu_Course" Multiplicity="1" />
+    <End Role="YD_Edu_TeachplanDes" Type="Self.YD_Edu_TeachplanDes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_TeachplanDes">
+        <PropertyRef Name="y_courseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Graduate_SampleExamScore_YD_Edu_Course">
+    <End Role="YD_Edu_Course" Type="Self.YD_Edu_Course" Multiplicity="1" />
+    <End Role="YD_Graduate_SampleExamScore" Type="Self.YD_Graduate_SampleExamScore" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Graduate_SampleExamScore">
+        <PropertyRef Name="y_courseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sys_AdminCourseLink_YD_Edu_Course">
+    <End Role="YD_Edu_Course" Type="Self.YD_Edu_Course" Multiplicity="1" />
+    <End Role="YD_Sys_AdminCourseLink" Type="Self.YD_Sys_AdminCourseLink" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sys_AdminCourseLink">
+        <PropertyRef Name="y_courseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_TeaPlan_ClassCourseDes_YD_Edu_Course">
+    <End Role="YD_Edu_Course" Type="Self.YD_Edu_Course" Multiplicity="1" />
+    <End Role="YD_TeaPlan_ClassCourseDes" Type="Self.YD_TeaPlan_ClassCourseDes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_TeaPlan_ClassCourseDes">
+        <PropertyRef Name="y_course" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_TeaPlan_TempletCourseDes_YD_Edu_Course">
+    <End Role="YD_Edu_Course" Type="Self.YD_Edu_Course" Multiplicity="1" />
+    <End Role="YD_TeaPlan_TempletCourseDes" Type="Self.YD_TeaPlan_TempletCourseDes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_TeaPlan_TempletCourseDes">
+        <PropertyRef Name="y_course" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_TeachplanDes_YD_Edu_CourseType">
+    <End Role="YD_Edu_CourseType" Type="Self.YD_Edu_CourseType" Multiplicity="1" />
+    <End Role="YD_Edu_TeachplanDes" Type="Self.YD_Edu_TeachplanDes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_CourseType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_TeachplanDes">
+        <PropertyRef Name="y_courseTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__YD_Sts_St__y_cul__2630A1B7">
+    <End Role="YD_Edu_CultureExtent" Type="Self.YD_Edu_CultureExtent" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo_copy1" Type="Self.YD_Sts_StuInfo_copy1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_CultureExtent">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo_copy1">
+        <PropertyRef Name="y_cultureExtentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuInfo_YD_Edu_CultureExtent">
+    <End Role="YD_Edu_CultureExtent" Type="Self.YD_Edu_CultureExtent" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_CultureExtent">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo">
+        <PropertyRef Name="y_cultureExtentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_y_eduType">
+    <End Role="YD_Edu_EduType" Type="Self.YD_Edu_EduType" Multiplicity="1" />
+    <End Role="YD_Fee_AllBili" Type="Self.YD_Fee_AllBili" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_EduType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Fee_AllBili">
+        <PropertyRef Name="y_eduTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_y_eduTypeId">
+    <End Role="YD_Edu_EduType" Type="Self.YD_Edu_EduType" Multiplicity="1" />
+    <End Role="YD_Fee_SubFeeSys" Type="Self.YD_Fee_SubFeeSys" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_EduType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Fee_SubFeeSys">
+        <PropertyRef Name="y_eduTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_Major_YD_Edu_EduType">
+    <End Role="YD_Edu_EduType" Type="Self.YD_Edu_EduType" Multiplicity="1" />
+    <End Role="YD_Edu_Major" Type="Self.YD_Edu_Major" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_EduType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_Major">
+        <PropertyRef Name="y_eduTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__YD_Sts_St__y_exa__2724C5F0">
+    <End Role="YD_Edu_ExamFeature" Type="Self.YD_Edu_ExamFeature" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo_copy1" Type="Self.YD_Sts_StuInfo_copy1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_ExamFeature">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo_copy1">
+        <PropertyRef Name="y_examFeatureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuInfo_YD_Edu_ExamFeature">
+    <End Role="YD_Edu_ExamFeature" Type="Self.YD_Edu_ExamFeature" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_ExamFeature">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo">
+        <PropertyRef Name="y_examFeatureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__YD_Sts_St__y_for__2818EA29">
+    <End Role="YD_Edu_ForeignLanguage" Type="Self.YD_Edu_ForeignLanguage" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo_copy1" Type="Self.YD_Sts_StuInfo_copy1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_ForeignLanguage">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo_copy1">
+        <PropertyRef Name="y_foreignLanguageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuInfo_YD_Edu_ForeignLanguage">
+    <End Role="YD_Edu_ForeignLanguage" Type="Self.YD_Edu_ForeignLanguage" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_ForeignLanguage">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo">
+        <PropertyRef Name="y_foreignLanguageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__YD_Sts_St__y_maj__2077C861">
+    <End Role="YD_Edu_Major" Type="Self.YD_Edu_Major" Multiplicity="1" />
+    <End Role="YD_Sts_StuInfo_copy1" Type="Self.YD_Sts_StuInfo_copy1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Major">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo_copy1">
+        <PropertyRef Name="y_majorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_y_majorid">
+    <End Role="YD_Edu_Major" Type="Self.YD_Edu_Major" Multiplicity="0..1" />
+    <End Role="YD_Fee_SubFeeSys" Type="Self.YD_Fee_SubFeeSys" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Major">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Fee_SubFeeSys">
+        <PropertyRef Name="y_majorid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_Major_YD_Edu_MajorLibrary">
+    <End Role="YD_Edu_MajorLibrary" Type="Self.YD_Edu_MajorLibrary" Multiplicity="1" />
+    <End Role="YD_Edu_Major" Type="Self.YD_Edu_Major" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_MajorLibrary">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_Major">
+        <PropertyRef Name="y_majorLibId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_Major_YD_Edu_StuType">
+    <End Role="YD_Edu_StuType" Type="Self.YD_Edu_StuType" Multiplicity="1" />
+    <End Role="YD_Edu_Major" Type="Self.YD_Edu_Major" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_StuType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_Major">
+        <PropertyRef Name="y_stuTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_MajorTeachPlan_YD_Edu_Major">
+    <End Role="YD_Edu_Major" Type="Self.YD_Edu_Major" Multiplicity="1" />
+    <End Role="YD_Edu_MajorTeachPlan" Type="Self.YD_Edu_MajorTeachPlan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Major">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_MajorTeachPlan">
+        <PropertyRef Name="y_majorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_SmallPower_YD_Edu_Major">
+    <End Role="YD_Edu_Major" Type="Self.YD_Edu_Major" Multiplicity="0..1" />
+    <End Role="YD_Edu_SmallPower" Type="Self.YD_Edu_SmallPower" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Major">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_SmallPower">
+        <PropertyRef Name="y_majorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuInfo_YD_Edu_Major">
+    <End Role="YD_Edu_Major" Type="Self.YD_Edu_Major" Multiplicity="1" />
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Major">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo">
+        <PropertyRef Name="y_majorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_TeaPlan_Class_YD_Edu_Major">
+    <End Role="YD_Edu_Major" Type="Self.YD_Edu_Major" Multiplicity="1" />
+    <End Role="YD_TeaPlan_Class" Type="Self.YD_TeaPlan_Class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Major">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_TeaPlan_Class">
+        <PropertyRef Name="y_majorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_TeaPlan_Templet_YD_Edu_Major">
+    <End Role="YD_Edu_Major" Type="Self.YD_Edu_Major" Multiplicity="1" />
+    <End Role="YD_TeaPlan_Templet" Type="Self.YD_TeaPlan_Templet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Major">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_TeaPlan_Templet">
+        <PropertyRef Name="y_majorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_MajorTeachPlan_YD_Edu_TeachPlan">
+    <End Role="YD_Edu_TeachPlan" Type="Self.YD_Edu_TeachPlan" Multiplicity="1" />
+    <End Role="YD_Edu_MajorTeachPlan" Type="Self.YD_Edu_MajorTeachPlan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_TeachPlan">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_MajorTeachPlan">
+        <PropertyRef Name="y_teachPlanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__YD_Sts_St__y_pro__290D0E62">
+    <End Role="YD_Edu_ProfessionType" Type="Self.YD_Edu_ProfessionType" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo_copy1" Type="Self.YD_Sts_StuInfo_copy1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_ProfessionType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo_copy1">
+        <PropertyRef Name="y_professionTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuInfo_YD_Edu_ProfessionType">
+    <End Role="YD_Edu_ProfessionType" Type="Self.YD_Edu_ProfessionType" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_ProfessionType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo">
+        <PropertyRef Name="y_professionTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__YD_Sts_St__y_rec__2A01329B">
+    <End Role="YD_Edu_RecruitType" Type="Self.YD_Edu_RecruitType" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo_copy1" Type="Self.YD_Sts_StuInfo_copy1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_RecruitType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo_copy1">
+        <PropertyRef Name="y_recruitTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuInfo_YD_Edu_RecruitType">
+    <End Role="YD_Edu_RecruitType" Type="Self.YD_Edu_RecruitType" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_RecruitType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo">
+        <PropertyRef Name="y_recruitTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_Score_YD_Sts_StuInfo">
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="1" />
+    <End Role="YD_Edu_Score" Type="Self.YD_Edu_Score" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sts_StuInfo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_Score">
+        <PropertyRef Name="y_stuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_ScoreTest_YD_Sts_StuInfo">
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="1" />
+    <End Role="YD_Edu_ScoreTest" Type="Self.YD_Edu_ScoreTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sts_StuInfo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_ScoreTest">
+        <PropertyRef Name="y_stuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_SmallPower_YD_Sys_SubSchool">
+    <End Role="YD_Sys_SubSchool" Type="Self.YD_Sys_SubSchool" Multiplicity="0..1" />
+    <End Role="YD_Edu_SmallPower" Type="Self.YD_Edu_SmallPower" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_SubSchool">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_SmallPower">
+        <PropertyRef Name="y_subSchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__YD_Sts_St__y_stu__2354350C">
+    <End Role="YD_Edu_StuState" Type="Self.YD_Edu_StuState" Multiplicity="1" />
+    <End Role="YD_Sts_StuInfo_copy1" Type="Self.YD_Sts_StuInfo_copy1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_StuState">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo_copy1">
+        <PropertyRef Name="y_stuStateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuInfo_YD_Edu_StuState">
+    <End Role="YD_Edu_StuState" Type="Self.YD_Edu_StuState" Multiplicity="1" />
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_StuState">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo">
+        <PropertyRef Name="y_stuStateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_TeachplanDes_YD_Edu_TeachPlan">
+    <End Role="YD_Edu_TeachPlan" Type="Self.YD_Edu_TeachPlan" Multiplicity="1" />
+    <End Role="YD_Edu_TeachplanDes" Type="Self.YD_Edu_TeachplanDes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_TeachPlan">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_TeachplanDes">
+        <PropertyRef Name="y_teaPlanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuInfo_YD_Fee_StuFeeTb">
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="1" />
+    <End Role="YD_Fee_StuFeeTb" Type="Self.YD_Fee_StuFeeTb" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sts_StuInfo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Fee_StuFeeTb">
+        <PropertyRef Name="y_stuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_y_subSchoolId">
+    <End Role="YD_Sys_SubSchool" Type="Self.YD_Sys_SubSchool" Multiplicity="1" />
+    <End Role="YD_Fee_SubFeeSys" Type="Self.YD_Fee_SubFeeSys" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_SubSchool">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Fee_SubFeeSys">
+        <PropertyRef Name="y_subSchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sys_SubSchool_YD_Graduate_Bachelor">
+    <End Role="YD_Sys_SubSchool" Type="Self.YD_Sys_SubSchool" Multiplicity="1" />
+    <End Role="YD_Graduate_Bachelor" Type="Self.YD_Graduate_Bachelor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_SubSchool">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Graduate_Bachelor">
+        <PropertyRef Name="y_SubSchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sys_SubSchool_YD_Graduate_StudentApply">
+    <End Role="YD_Sys_SubSchool" Type="Self.YD_Sys_SubSchool" Multiplicity="1" />
+    <End Role="YD_Graduate_StudentApply" Type="Self.YD_Graduate_StudentApply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_SubSchool">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Graduate_StudentApply">
+        <PropertyRef Name="y_SubSchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuInfo_YD_Graduate_StudentScore">
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="0..1" />
+    <End Role="YD_Graduate_StudentScore" Type="Self.YD_Graduate_StudentScore" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sts_StuInfo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Graduate_StudentScore">
+        <PropertyRef Name="y_stuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__YD_Sts_St__y_nat__24485945">
+    <End Role="YD_Sts_Nation" Type="Self.YD_Sts_Nation" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo_copy1" Type="Self.YD_Sts_StuInfo_copy1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sts_Nation">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo_copy1">
+        <PropertyRef Name="y_nationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuInfo_YD_Sts_Nation">
+    <End Role="YD_Sts_Nation" Type="Self.YD_Sts_Nation" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sts_Nation">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo">
+        <PropertyRef Name="y_nationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__YD_Sts_St__y_pol__253C7D7E">
+    <End Role="YD_Sts_Politics" Type="Self.YD_Sts_Politics" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo_copy1" Type="Self.YD_Sts_StuInfo_copy1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sts_Politics">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo_copy1">
+        <PropertyRef Name="y_politicsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuInfo_YD_Sts_Politics">
+    <End Role="YD_Sts_Politics" Type="Self.YD_Sts_Politics" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sts_Politics">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo">
+        <PropertyRef Name="y_politicsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuStrange_YD_Sts_StrangeType">
+    <End Role="YD_Sts_StrangeType" Type="Self.YD_Sts_StrangeType" Multiplicity="1" />
+    <End Role="YD_Sts_StuStrange" Type="Self.YD_Sts_StuStrange" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sts_StrangeType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuStrange">
+        <PropertyRef Name="y_strangeType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuInfo_YD_Sts_StuStrange">
+    <End Role="YD_Sts_StuStrange" Type="Self.YD_Sts_StuStrange" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sts_StuStrange">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo">
+        <PropertyRef Name="y_stuStrange" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuStrange_YD_Sts_StuInfo">
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="1" />
+    <End Role="YD_Sts_StuStrange" Type="Self.YD_Sts_StuStrange" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sts_StuInfo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuStrange">
+        <PropertyRef Name="y_stuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sys_SubSchool_YD_Sts_StuInfo">
+    <End Role="YD_Sys_SubSchool" Type="Self.YD_Sys_SubSchool" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_SubSchool">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo">
+        <PropertyRef Name="y_subSchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__YD_Sts_St__y_stu__226010D3">
+    <End Role="YD_Sts_StuStrange" Type="Self.YD_Sts_StuStrange" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo_copy1" Type="Self.YD_Sts_StuInfo_copy1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sts_StuStrange">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo_copy1">
+        <PropertyRef Name="y_stuStrange" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__YD_Sts_St__y_sub__216BEC9A">
+    <End Role="YD_Sys_SubSchool" Type="Self.YD_Sys_SubSchool" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo_copy1" Type="Self.YD_Sts_StuInfo_copy1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_SubSchool">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo_copy1">
+        <PropertyRef Name="y_subSchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_SubSchoolStuInfo_YD_Sys_SubSchool">
+    <End Role="YD_Sys_SubSchool" Type="Self.YD_Sys_SubSchool" Multiplicity="1" />
+    <End Role="YD_Sts_SubSchoolStuInfo" Type="Self.YD_Sts_SubSchoolStuInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_SubSchool">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_SubSchoolStuInfo">
+        <PropertyRef Name="y_subSchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_SubStuTemp_YD_Sys_SubSchool">
+    <End Role="YD_Sys_SubSchool" Type="Self.YD_Sys_SubSchool" Multiplicity="1" />
+    <End Role="YD_Sts_SubStuTemp" Type="Self.YD_Sts_SubStuTemp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_SubSchool">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_SubStuTemp">
+        <PropertyRef Name="y_subSchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_SYS_A_REFERENCE_YD_SYS_R">
+    <End Role="YD_Sys_Role" Type="Self.YD_Sys_Role" Multiplicity="1" />
+    <End Role="YD_Sys_Admin" Type="Self.YD_Sys_Admin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_Role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sys_Admin">
+        <PropertyRef Name="y_roleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sys_AdminCourseLink_YD_Sys_Admin">
+    <End Role="YD_Sys_Admin" Type="Self.YD_Sys_Admin" Multiplicity="1" />
+    <End Role="YD_Sys_AdminCourseLink" Type="Self.YD_Sys_AdminCourseLink" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_Admin">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sys_AdminCourseLink">
+        <PropertyRef Name="y_adminId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sys_AdminSubLink_YD_Sys_Admin">
+    <End Role="YD_Sys_Admin" Type="Self.YD_Sys_Admin" Multiplicity="1" />
+    <End Role="YD_Sys_AdminSubLink" Type="Self.YD_Sys_AdminSubLink" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_Admin">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sys_AdminSubLink">
+        <PropertyRef Name="y_adminId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_SYS_D_REFERENCE_YD_SYS_A">
+    <End Role="YD_Sys_Admin" Type="Self.YD_Sys_Admin" Multiplicity="1" />
+    <End Role="YD_Sys_DbLog" Type="Self.YD_Sys_DbLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_Admin">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sys_DbLog">
+        <PropertyRef Name="y_userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_SYS_D_REFERENCE_YD_SYS_D">
+    <End Role="YD_Sys_DbLogType" Type="Self.YD_Sys_DbLogType" Multiplicity="1" />
+    <End Role="YD_Sys_DbLog" Type="Self.YD_Sys_DbLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_DbLogType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sys_DbLog">
+        <PropertyRef Name="Y_logTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_SYS_P_REFERENCE_YD_SYS_M">
+    <End Role="YD_Sys_Module" Type="Self.YD_Sys_Module" Multiplicity="1" />
+    <End Role="YD_Sys_Power" Type="Self.YD_Sys_Power" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_Module">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sys_Power">
+        <PropertyRef Name="y_moduleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_SYS_P_REFERENCE_YD_SYS_R">
+    <End Role="YD_Sys_Role" Type="Self.YD_Sys_Role" Multiplicity="1" />
+    <End Role="YD_Sys_Power" Type="Self.YD_Sys_Power" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_Role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sys_Power">
+        <PropertyRef Name="y_roleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sys_PrintCss_YD_Sys_PrintTemplate1">
+    <End Role="YD_Sys_PrintTemplate" Type="Self.YD_Sys_PrintTemplate" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="YD_Sys_PrintCss" Type="Self.YD_Sys_PrintCss" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_PrintTemplate">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sys_PrintCss">
+        <PropertyRef Name="y_printid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_TeaPlan_Class_YD_Sys_SubSchool">
+    <End Role="YD_Sys_SubSchool" Type="Self.YD_Sys_SubSchool" Multiplicity="1" />
+    <End Role="YD_TeaPlan_Class" Type="Self.YD_TeaPlan_Class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_SubSchool">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_TeaPlan_Class">
+        <PropertyRef Name="y_subSchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YT_Teacher_YD_Sys_SubSchool">
+    <End Role="YD_Sys_SubSchool" Type="Self.YD_Sys_SubSchool" Multiplicity="0..1" />
+    <End Role="YT_Teacher" Type="Self.YT_Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_SubSchool">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YT_Teacher">
+        <PropertyRef Name="y_subSchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_TeaPlan_Class_YD_TeaPlan_Templet">
+    <End Role="YD_TeaPlan_Templet" Type="Self.YD_TeaPlan_Templet" Multiplicity="1" />
+    <End Role="YD_TeaPlan_Class" Type="Self.YD_TeaPlan_Class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_TeaPlan_Templet">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_TeaPlan_Class">
+        <PropertyRef Name="y_templetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_TeaPlan_ClassCourseDes_YD_TeaPlan_Class">
+    <End Role="YD_TeaPlan_Class" Type="Self.YD_TeaPlan_Class" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="YD_TeaPlan_ClassCourseDes" Type="Self.YD_TeaPlan_ClassCourseDes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_TeaPlan_Class">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_TeaPlan_ClassCourseDes">
+        <PropertyRef Name="y_classTeaPlanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_TeaPlan_TempletCourseDes_YD_TeaPlan_Templet">
+    <End Role="YD_TeaPlan_Templet" Type="Self.YD_TeaPlan_Templet" Multiplicity="1" />
+    <End Role="YD_TeaPlan_TempletCourseDes" Type="Self.YD_TeaPlan_TempletCourseDes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_TeaPlan_Templet">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_TeaPlan_TempletCourseDes">
+        <PropertyRef Name="y_templetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="IYunEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="YD_Edu_Course" EntityType="Self.YD_Edu_Course" />
+    <EntitySet Name="YD_Edu_CourseCorrespondence" EntityType="Self.YD_Edu_CourseCorrespondence" />
+    <EntitySet Name="YD_Edu_CourseType" EntityType="Self.YD_Edu_CourseType" />
+    <EntitySet Name="YD_Edu_CultureExtent" EntityType="Self.YD_Edu_CultureExtent" />
+    <EntitySet Name="YD_Edu_EduType" EntityType="Self.YD_Edu_EduType" />
+    <EntitySet Name="YD_Edu_ExamFeature" EntityType="Self.YD_Edu_ExamFeature" />
+    <EntitySet Name="YD_Edu_ForeignLanguage" EntityType="Self.YD_Edu_ForeignLanguage" />
+    <EntitySet Name="YD_Edu_FormTemp" EntityType="Self.YD_Edu_FormTemp" />
+    <EntitySet Name="YD_Edu_GradCondition" EntityType="Self.YD_Edu_GradCondition" />
+    <EntitySet Name="YD_Edu_Major" EntityType="Self.YD_Edu_Major" />
+    <EntitySet Name="YD_Edu_MajorLibrary" EntityType="Self.YD_Edu_MajorLibrary" />
+    <EntitySet Name="YD_Edu_MajorTeachPlan" EntityType="Self.YD_Edu_MajorTeachPlan" />
+    <EntitySet Name="YD_Edu_News" EntityType="Self.YD_Edu_News" />
+    <EntitySet Name="YD_Edu_ProfessionType" EntityType="Self.YD_Edu_ProfessionType" />
+    <EntitySet Name="YD_Edu_QingCourse" EntityType="Self.YD_Edu_QingCourse" />
+    <EntitySet Name="YD_Edu_QingStuInfo" EntityType="Self.YD_Edu_QingStuInfo" />
+    <EntitySet Name="YD_Edu_RecruitType" EntityType="Self.YD_Edu_RecruitType" />
+    <EntitySet Name="YD_Edu_Score" EntityType="Self.YD_Edu_Score" />
+    <EntitySet Name="YD_Edu_ScoreScale" EntityType="Self.YD_Edu_ScoreScale" />
+    <EntitySet Name="YD_Edu_ScoreTemp" EntityType="Self.YD_Edu_ScoreTemp" />
+    <EntitySet Name="YD_Edu_ScoreTest" EntityType="Self.YD_Edu_ScoreTest" />
+    <EntitySet Name="YD_Edu_SmallPower" EntityType="Self.YD_Edu_SmallPower" />
+    <EntitySet Name="YD_Edu_StuState" EntityType="Self.YD_Edu_StuState" />
+    <EntitySet Name="YD_Edu_StuType" EntityType="Self.YD_Edu_StuType" />
+    <EntitySet Name="YD_Edu_TeachPlan" EntityType="Self.YD_Edu_TeachPlan" />
+    <EntitySet Name="YD_Edu_TeachplanDes" EntityType="Self.YD_Edu_TeachplanDes" />
+    <EntitySet Name="YD_Edu_TeachPlanTemp" EntityType="Self.YD_Edu_TeachPlanTemp" />
+    <EntitySet Name="YD_Fee_AllBili" EntityType="Self.YD_Fee_AllBili" />
+    <EntitySet Name="YD_Fee_AllFeeSys" EntityType="Self.YD_Fee_AllFeeSys" />
+    <EntitySet Name="YD_Fee_MajorLiFeeSys" EntityType="Self.YD_Fee_MajorLiFeeSys" />
+    <EntitySet Name="YD_Fee_StuFeeTb" EntityType="Self.YD_Fee_StuFeeTb" />
+    <EntitySet Name="YD_Fee_StuInvoicee" EntityType="Self.YD_Fee_StuInvoicee" />
+    <EntitySet Name="YD_Fee_StuRegistrBatch" EntityType="Self.YD_Fee_StuRegistrBatch" />
+    <EntitySet Name="YD_Fee_SubFeeBili" EntityType="Self.YD_Fee_SubFeeBili" />
+    <EntitySet Name="YD_Fee_SubFeeSys" EntityType="Self.YD_Fee_SubFeeSys" />
+    <EntitySet Name="YD_Graduate_Bachelor" EntityType="Self.YD_Graduate_Bachelor" />
+    <EntitySet Name="YD_Graduate_EnglishScoreTemp" EntityType="Self.YD_Graduate_EnglishScoreTemp" />
+    <EntitySet Name="YD_Graduate_SampleExamScore" EntityType="Self.YD_Graduate_SampleExamScore" />
+    <EntitySet Name="YD_Graduate_StudentApply" EntityType="Self.YD_Graduate_StudentApply" />
+    <EntitySet Name="YD_Graduate_StudentScore" EntityType="Self.YD_Graduate_StudentScore" />
+    <EntitySet Name="YD_Sts_Nation" EntityType="Self.YD_Sts_Nation" />
+    <EntitySet Name="YD_Sts_Politics" EntityType="Self.YD_Sts_Politics" />
+    <EntitySet Name="YD_Sts_StrangeType" EntityType="Self.YD_Sts_StrangeType" />
+    <EntitySet Name="YD_Sts_StuInfo" EntityType="Self.YD_Sts_StuInfo" />
+    <EntitySet Name="YD_Sts_StuInfo_copy1" EntityType="Self.YD_Sts_StuInfo_copy1" />
+    <EntitySet Name="YD_Sts_StuInfoTemp" EntityType="Self.YD_Sts_StuInfoTemp" />
+    <EntitySet Name="YD_Sts_StuNumCol" EntityType="Self.YD_Sts_StuNumCol" />
+    <EntitySet Name="YD_Sts_StuStrange" EntityType="Self.YD_Sts_StuStrange" />
+    <EntitySet Name="YD_Sts_SubSchoolStuInfo" EntityType="Self.YD_Sts_SubSchoolStuInfo" />
+    <EntitySet Name="YD_Sts_SubStuTemp" EntityType="Self.YD_Sts_SubStuTemp" />
+    <EntitySet Name="YD_Sys_Admin" EntityType="Self.YD_Sys_Admin" />
+    <EntitySet Name="YD_Sys_AdminCourseLink" EntityType="Self.YD_Sys_AdminCourseLink" />
+    <EntitySet Name="YD_Sys_AdminSubLink" EntityType="Self.YD_Sys_AdminSubLink" />
+    <EntitySet Name="YD_Sys_DbLog" EntityType="Self.YD_Sys_DbLog" />
+    <EntitySet Name="YD_Sys_DbLogType" EntityType="Self.YD_Sys_DbLogType" />
+    <EntitySet Name="YD_Sys_File" EntityType="Self.YD_Sys_File" />
+    <EntitySet Name="YD_Sys_Module" EntityType="Self.YD_Sys_Module" />
+    <EntitySet Name="YD_Sys_Power" EntityType="Self.YD_Sys_Power" />
+    <EntitySet Name="YD_Sys_PrintCss" EntityType="Self.YD_Sys_PrintCss" />
+    <EntitySet Name="YD_Sys_PrintTemplate" EntityType="Self.YD_Sys_PrintTemplate" />
+    <EntitySet Name="YD_Sys_Role" EntityType="Self.YD_Sys_Role" />
+    <EntitySet Name="YD_Sys_SubSchool" EntityType="Self.YD_Sys_SubSchool" />
+    <EntitySet Name="YD_TeaPlan_Class" EntityType="Self.YD_TeaPlan_Class" />
+    <EntitySet Name="YD_TeaPlan_ClassCourseDes" EntityType="Self.YD_TeaPlan_ClassCourseDes" />
+    <EntitySet Name="YD_TeaPlan_ExamPlan" EntityType="Self.YD_TeaPlan_ExamPlan" />
+    <EntitySet Name="YD_TeaPlan_Templet" EntityType="Self.YD_TeaPlan_Templet" />
+    <EntitySet Name="YD_TeaPlan_TempletCourseDes" EntityType="Self.YD_TeaPlan_TempletCourseDes" />
+    <EntitySet Name="YT_ActivityVideo" EntityType="Self.YT_ActivityVideo" />
+    <EntitySet Name="YT_Faculty" EntityType="Self.YT_Faculty" />
+    <EntitySet Name="YT_Grade" EntityType="Self.YT_Grade" />
+    <EntitySet Name="YT_GraduationRegistration" EntityType="Self.YT_GraduationRegistration" />
+    <EntitySet Name="YT_Mechanism" EntityType="Self.YT_Mechanism" />
+    <EntitySet Name="YT_RegisterSettings" EntityType="Self.YT_RegisterSettings" />
+    <EntitySet Name="YT_Teacher" EntityType="Self.YT_Teacher" />
+    <EntitySet Name="YT_Term" EntityType="Self.YT_Term" />
+    <EntitySet Name="Z_test" EntityType="Self.Z_test" />
+    <EntitySet Name="VW_Admin" EntityType="Self.VW_Admin" />
+    <EntitySet Name="VW_AllBili" EntityType="Self.VW_AllBili" />
+    <EntitySet Name="VW_AllFeeSys" EntityType="Self.VW_AllFeeSys" />
+    <EntitySet Name="VW_DbLog" EntityType="Self.VW_DbLog" />
+    <EntitySet Name="VW_Major" EntityType="Self.VW_Major" />
+    <EntitySet Name="VW_MajorLiFeeSys" EntityType="Self.VW_MajorLiFeeSys" />
+    <EntitySet Name="VW_MajorTeachPlan" EntityType="Self.VW_MajorTeachPlan" />
+    <EntitySet Name="VW_MajorTeachPlanDes" EntityType="Self.VW_MajorTeachPlanDes" />
+    <EntitySet Name="VW_Power" EntityType="Self.VW_Power" />
+    <EntitySet Name="VW_Score" EntityType="Self.VW_Score" />
+    <EntitySet Name="VW_ScoreFirst" EntityType="Self.VW_ScoreFirst" />
+    <EntitySet Name="VW_Strange" EntityType="Self.VW_Strange" />
+    <EntitySet Name="VW_StrangeReportTotal" EntityType="Self.VW_StrangeReportTotal" />
+    <EntitySet Name="VW_Sts_News" EntityType="Self.VW_Sts_News" />
+    <EntitySet Name="VW_StuInfo" EntityType="Self.VW_StuInfo" />
+    <EntitySet Name="VW_SubFeeBili" EntityType="Self.VW_SubFeeBili" />
+    <EntitySet Name="VW_SubFeeSys" EntityType="Self.VW_SubFeeSys" />
+    <EntitySet Name="VW_SubFeeTotal" EntityType="Self.VW_SubFeeTotal" />
+    <EntitySet Name="VW_SubschoolAdmin" EntityType="Self.VW_SubschoolAdmin" />
+    <EntitySet Name="VW_SubSchoolStuInfo" EntityType="Self.VW_SubSchoolStuInfo" />
+    <EntitySet Name="VW_TeachPlanDes" EntityType="Self.VW_TeachPlanDes" />
+    <AssociationSet Name="FK_YD_Edu_Score_YD_Edu_Course" Association="Self.FK_YD_Edu_Score_YD_Edu_Course">
+      <End Role="YD_Edu_Course" EntitySet="YD_Edu_Course" />
+      <End Role="YD_Edu_Score" EntitySet="YD_Edu_Score" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_ScoreTest_YD_Edu_Course" Association="Self.FK_YD_Edu_ScoreTest_YD_Edu_Course">
+      <End Role="YD_Edu_Course" EntitySet="YD_Edu_Course" />
+      <End Role="YD_Edu_ScoreTest" EntitySet="YD_Edu_ScoreTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_SmallPower_YD_Edu_Course" Association="Self.FK_YD_Edu_SmallPower_YD_Edu_Course">
+      <End Role="YD_Edu_Course" EntitySet="YD_Edu_Course" />
+      <End Role="YD_Edu_SmallPower" EntitySet="YD_Edu_SmallPower" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_TeachplanDes_YD_Edu_Course" Association="Self.FK_YD_Edu_TeachplanDes_YD_Edu_Course">
+      <End Role="YD_Edu_Course" EntitySet="YD_Edu_Course" />
+      <End Role="YD_Edu_TeachplanDes" EntitySet="YD_Edu_TeachplanDes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Graduate_SampleExamScore_YD_Edu_Course" Association="Self.FK_YD_Graduate_SampleExamScore_YD_Edu_Course">
+      <End Role="YD_Edu_Course" EntitySet="YD_Edu_Course" />
+      <End Role="YD_Graduate_SampleExamScore" EntitySet="YD_Graduate_SampleExamScore" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sys_AdminCourseLink_YD_Edu_Course" Association="Self.FK_YD_Sys_AdminCourseLink_YD_Edu_Course">
+      <End Role="YD_Edu_Course" EntitySet="YD_Edu_Course" />
+      <End Role="YD_Sys_AdminCourseLink" EntitySet="YD_Sys_AdminCourseLink" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_TeaPlan_ClassCourseDes_YD_Edu_Course" Association="Self.FK_YD_TeaPlan_ClassCourseDes_YD_Edu_Course">
+      <End Role="YD_Edu_Course" EntitySet="YD_Edu_Course" />
+      <End Role="YD_TeaPlan_ClassCourseDes" EntitySet="YD_TeaPlan_ClassCourseDes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_TeaPlan_TempletCourseDes_YD_Edu_Course" Association="Self.FK_YD_TeaPlan_TempletCourseDes_YD_Edu_Course">
+      <End Role="YD_Edu_Course" EntitySet="YD_Edu_Course" />
+      <End Role="YD_TeaPlan_TempletCourseDes" EntitySet="YD_TeaPlan_TempletCourseDes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_TeachplanDes_YD_Edu_CourseType" Association="Self.FK_YD_Edu_TeachplanDes_YD_Edu_CourseType">
+      <End Role="YD_Edu_CourseType" EntitySet="YD_Edu_CourseType" />
+      <End Role="YD_Edu_TeachplanDes" EntitySet="YD_Edu_TeachplanDes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__YD_Sts_St__y_cul__2630A1B7" Association="Self.FK__YD_Sts_St__y_cul__2630A1B7">
+      <End Role="YD_Edu_CultureExtent" EntitySet="YD_Edu_CultureExtent" />
+      <End Role="YD_Sts_StuInfo_copy1" EntitySet="YD_Sts_StuInfo_copy1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuInfo_YD_Edu_CultureExtent" Association="Self.FK_YD_Sts_StuInfo_YD_Edu_CultureExtent">
+      <End Role="YD_Edu_CultureExtent" EntitySet="YD_Edu_CultureExtent" />
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_y_eduType" Association="Self.FK_y_eduType">
+      <End Role="YD_Edu_EduType" EntitySet="YD_Edu_EduType" />
+      <End Role="YD_Fee_AllBili" EntitySet="YD_Fee_AllBili" />
+    </AssociationSet>
+    <AssociationSet Name="FK_y_eduTypeId" Association="Self.FK_y_eduTypeId">
+      <End Role="YD_Edu_EduType" EntitySet="YD_Edu_EduType" />
+      <End Role="YD_Fee_SubFeeSys" EntitySet="YD_Fee_SubFeeSys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_Major_YD_Edu_EduType" Association="Self.FK_YD_Edu_Major_YD_Edu_EduType">
+      <End Role="YD_Edu_EduType" EntitySet="YD_Edu_EduType" />
+      <End Role="YD_Edu_Major" EntitySet="YD_Edu_Major" />
+    </AssociationSet>
+    <AssociationSet Name="FK__YD_Sts_St__y_exa__2724C5F0" Association="Self.FK__YD_Sts_St__y_exa__2724C5F0">
+      <End Role="YD_Edu_ExamFeature" EntitySet="YD_Edu_ExamFeature" />
+      <End Role="YD_Sts_StuInfo_copy1" EntitySet="YD_Sts_StuInfo_copy1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuInfo_YD_Edu_ExamFeature" Association="Self.FK_YD_Sts_StuInfo_YD_Edu_ExamFeature">
+      <End Role="YD_Edu_ExamFeature" EntitySet="YD_Edu_ExamFeature" />
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__YD_Sts_St__y_for__2818EA29" Association="Self.FK__YD_Sts_St__y_for__2818EA29">
+      <End Role="YD_Edu_ForeignLanguage" EntitySet="YD_Edu_ForeignLanguage" />
+      <End Role="YD_Sts_StuInfo_copy1" EntitySet="YD_Sts_StuInfo_copy1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuInfo_YD_Edu_ForeignLanguage" Association="Self.FK_YD_Sts_StuInfo_YD_Edu_ForeignLanguage">
+      <End Role="YD_Edu_ForeignLanguage" EntitySet="YD_Edu_ForeignLanguage" />
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__YD_Sts_St__y_maj__2077C861" Association="Self.FK__YD_Sts_St__y_maj__2077C861">
+      <End Role="YD_Edu_Major" EntitySet="YD_Edu_Major" />
+      <End Role="YD_Sts_StuInfo_copy1" EntitySet="YD_Sts_StuInfo_copy1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_y_majorid" Association="Self.FK_y_majorid">
+      <End Role="YD_Edu_Major" EntitySet="YD_Edu_Major" />
+      <End Role="YD_Fee_SubFeeSys" EntitySet="YD_Fee_SubFeeSys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_Major_YD_Edu_MajorLibrary" Association="Self.FK_YD_Edu_Major_YD_Edu_MajorLibrary">
+      <End Role="YD_Edu_MajorLibrary" EntitySet="YD_Edu_MajorLibrary" />
+      <End Role="YD_Edu_Major" EntitySet="YD_Edu_Major" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_Major_YD_Edu_StuType" Association="Self.FK_YD_Edu_Major_YD_Edu_StuType">
+      <End Role="YD_Edu_StuType" EntitySet="YD_Edu_StuType" />
+      <End Role="YD_Edu_Major" EntitySet="YD_Edu_Major" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_MajorTeachPlan_YD_Edu_Major" Association="Self.FK_YD_Edu_MajorTeachPlan_YD_Edu_Major">
+      <End Role="YD_Edu_Major" EntitySet="YD_Edu_Major" />
+      <End Role="YD_Edu_MajorTeachPlan" EntitySet="YD_Edu_MajorTeachPlan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_SmallPower_YD_Edu_Major" Association="Self.FK_YD_Edu_SmallPower_YD_Edu_Major">
+      <End Role="YD_Edu_Major" EntitySet="YD_Edu_Major" />
+      <End Role="YD_Edu_SmallPower" EntitySet="YD_Edu_SmallPower" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuInfo_YD_Edu_Major" Association="Self.FK_YD_Sts_StuInfo_YD_Edu_Major">
+      <End Role="YD_Edu_Major" EntitySet="YD_Edu_Major" />
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_TeaPlan_Class_YD_Edu_Major" Association="Self.FK_YD_TeaPlan_Class_YD_Edu_Major">
+      <End Role="YD_Edu_Major" EntitySet="YD_Edu_Major" />
+      <End Role="YD_TeaPlan_Class" EntitySet="YD_TeaPlan_Class" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_TeaPlan_Templet_YD_Edu_Major" Association="Self.FK_YD_TeaPlan_Templet_YD_Edu_Major">
+      <End Role="YD_Edu_Major" EntitySet="YD_Edu_Major" />
+      <End Role="YD_TeaPlan_Templet" EntitySet="YD_TeaPlan_Templet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_MajorTeachPlan_YD_Edu_TeachPlan" Association="Self.FK_YD_Edu_MajorTeachPlan_YD_Edu_TeachPlan">
+      <End Role="YD_Edu_TeachPlan" EntitySet="YD_Edu_TeachPlan" />
+      <End Role="YD_Edu_MajorTeachPlan" EntitySet="YD_Edu_MajorTeachPlan" />
+    </AssociationSet>
+    <AssociationSet Name="FK__YD_Sts_St__y_pro__290D0E62" Association="Self.FK__YD_Sts_St__y_pro__290D0E62">
+      <End Role="YD_Edu_ProfessionType" EntitySet="YD_Edu_ProfessionType" />
+      <End Role="YD_Sts_StuInfo_copy1" EntitySet="YD_Sts_StuInfo_copy1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuInfo_YD_Edu_ProfessionType" Association="Self.FK_YD_Sts_StuInfo_YD_Edu_ProfessionType">
+      <End Role="YD_Edu_ProfessionType" EntitySet="YD_Edu_ProfessionType" />
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__YD_Sts_St__y_rec__2A01329B" Association="Self.FK__YD_Sts_St__y_rec__2A01329B">
+      <End Role="YD_Edu_RecruitType" EntitySet="YD_Edu_RecruitType" />
+      <End Role="YD_Sts_StuInfo_copy1" EntitySet="YD_Sts_StuInfo_copy1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuInfo_YD_Edu_RecruitType" Association="Self.FK_YD_Sts_StuInfo_YD_Edu_RecruitType">
+      <End Role="YD_Edu_RecruitType" EntitySet="YD_Edu_RecruitType" />
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_Score_YD_Sts_StuInfo" Association="Self.FK_YD_Edu_Score_YD_Sts_StuInfo">
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+      <End Role="YD_Edu_Score" EntitySet="YD_Edu_Score" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_ScoreTest_YD_Sts_StuInfo" Association="Self.FK_YD_Edu_ScoreTest_YD_Sts_StuInfo">
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+      <End Role="YD_Edu_ScoreTest" EntitySet="YD_Edu_ScoreTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_SmallPower_YD_Sys_SubSchool" Association="Self.FK_YD_Edu_SmallPower_YD_Sys_SubSchool">
+      <End Role="YD_Sys_SubSchool" EntitySet="YD_Sys_SubSchool" />
+      <End Role="YD_Edu_SmallPower" EntitySet="YD_Edu_SmallPower" />
+    </AssociationSet>
+    <AssociationSet Name="FK__YD_Sts_St__y_stu__2354350C" Association="Self.FK__YD_Sts_St__y_stu__2354350C">
+      <End Role="YD_Edu_StuState" EntitySet="YD_Edu_StuState" />
+      <End Role="YD_Sts_StuInfo_copy1" EntitySet="YD_Sts_StuInfo_copy1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuInfo_YD_Edu_StuState" Association="Self.FK_YD_Sts_StuInfo_YD_Edu_StuState">
+      <End Role="YD_Edu_StuState" EntitySet="YD_Edu_StuState" />
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_TeachplanDes_YD_Edu_TeachPlan" Association="Self.FK_YD_Edu_TeachplanDes_YD_Edu_TeachPlan">
+      <End Role="YD_Edu_TeachPlan" EntitySet="YD_Edu_TeachPlan" />
+      <End Role="YD_Edu_TeachplanDes" EntitySet="YD_Edu_TeachplanDes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuInfo_YD_Fee_StuFeeTb" Association="Self.FK_YD_Sts_StuInfo_YD_Fee_StuFeeTb">
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+      <End Role="YD_Fee_StuFeeTb" EntitySet="YD_Fee_StuFeeTb" />
+    </AssociationSet>
+    <AssociationSet Name="FK_y_subSchoolId" Association="Self.FK_y_subSchoolId">
+      <End Role="YD_Sys_SubSchool" EntitySet="YD_Sys_SubSchool" />
+      <End Role="YD_Fee_SubFeeSys" EntitySet="YD_Fee_SubFeeSys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sys_SubSchool_YD_Graduate_Bachelor" Association="Self.FK_YD_Sys_SubSchool_YD_Graduate_Bachelor">
+      <End Role="YD_Sys_SubSchool" EntitySet="YD_Sys_SubSchool" />
+      <End Role="YD_Graduate_Bachelor" EntitySet="YD_Graduate_Bachelor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sys_SubSchool_YD_Graduate_StudentApply" Association="Self.FK_YD_Sys_SubSchool_YD_Graduate_StudentApply">
+      <End Role="YD_Sys_SubSchool" EntitySet="YD_Sys_SubSchool" />
+      <End Role="YD_Graduate_StudentApply" EntitySet="YD_Graduate_StudentApply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuInfo_YD_Graduate_StudentScore" Association="Self.FK_YD_Sts_StuInfo_YD_Graduate_StudentScore">
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+      <End Role="YD_Graduate_StudentScore" EntitySet="YD_Graduate_StudentScore" />
+    </AssociationSet>
+    <AssociationSet Name="FK__YD_Sts_St__y_nat__24485945" Association="Self.FK__YD_Sts_St__y_nat__24485945">
+      <End Role="YD_Sts_Nation" EntitySet="YD_Sts_Nation" />
+      <End Role="YD_Sts_StuInfo_copy1" EntitySet="YD_Sts_StuInfo_copy1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuInfo_YD_Sts_Nation" Association="Self.FK_YD_Sts_StuInfo_YD_Sts_Nation">
+      <End Role="YD_Sts_Nation" EntitySet="YD_Sts_Nation" />
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__YD_Sts_St__y_pol__253C7D7E" Association="Self.FK__YD_Sts_St__y_pol__253C7D7E">
+      <End Role="YD_Sts_Politics" EntitySet="YD_Sts_Politics" />
+      <End Role="YD_Sts_StuInfo_copy1" EntitySet="YD_Sts_StuInfo_copy1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuInfo_YD_Sts_Politics" Association="Self.FK_YD_Sts_StuInfo_YD_Sts_Politics">
+      <End Role="YD_Sts_Politics" EntitySet="YD_Sts_Politics" />
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuStrange_YD_Sts_StrangeType" Association="Self.FK_YD_Sts_StuStrange_YD_Sts_StrangeType">
+      <End Role="YD_Sts_StrangeType" EntitySet="YD_Sts_StrangeType" />
+      <End Role="YD_Sts_StuStrange" EntitySet="YD_Sts_StuStrange" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuInfo_YD_Sts_StuStrange" Association="Self.FK_YD_Sts_StuInfo_YD_Sts_StuStrange">
+      <End Role="YD_Sts_StuStrange" EntitySet="YD_Sts_StuStrange" />
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuStrange_YD_Sts_StuInfo" Association="Self.FK_YD_Sts_StuStrange_YD_Sts_StuInfo">
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+      <End Role="YD_Sts_StuStrange" EntitySet="YD_Sts_StuStrange" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sys_SubSchool_YD_Sts_StuInfo" Association="Self.FK_YD_Sys_SubSchool_YD_Sts_StuInfo">
+      <End Role="YD_Sys_SubSchool" EntitySet="YD_Sys_SubSchool" />
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__YD_Sts_St__y_stu__226010D3" Association="Self.FK__YD_Sts_St__y_stu__226010D3">
+      <End Role="YD_Sts_StuStrange" EntitySet="YD_Sts_StuStrange" />
+      <End Role="YD_Sts_StuInfo_copy1" EntitySet="YD_Sts_StuInfo_copy1" />
+    </AssociationSet>
+    <AssociationSet Name="FK__YD_Sts_St__y_sub__216BEC9A" Association="Self.FK__YD_Sts_St__y_sub__216BEC9A">
+      <End Role="YD_Sys_SubSchool" EntitySet="YD_Sys_SubSchool" />
+      <End Role="YD_Sts_StuInfo_copy1" EntitySet="YD_Sts_StuInfo_copy1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_SubSchoolStuInfo_YD_Sys_SubSchool" Association="Self.FK_YD_Sts_SubSchoolStuInfo_YD_Sys_SubSchool">
+      <End Role="YD_Sys_SubSchool" EntitySet="YD_Sys_SubSchool" />
+      <End Role="YD_Sts_SubSchoolStuInfo" EntitySet="YD_Sts_SubSchoolStuInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_SubStuTemp_YD_Sys_SubSchool" Association="Self.FK_YD_Sts_SubStuTemp_YD_Sys_SubSchool">
+      <End Role="YD_Sys_SubSchool" EntitySet="YD_Sys_SubSchool" />
+      <End Role="YD_Sts_SubStuTemp" EntitySet="YD_Sts_SubStuTemp" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_SYS_A_REFERENCE_YD_SYS_R" Association="Self.FK_YD_SYS_A_REFERENCE_YD_SYS_R">
+      <End Role="YD_Sys_Role" EntitySet="YD_Sys_Role" />
+      <End Role="YD_Sys_Admin" EntitySet="YD_Sys_Admin" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sys_AdminCourseLink_YD_Sys_Admin" Association="Self.FK_YD_Sys_AdminCourseLink_YD_Sys_Admin">
+      <End Role="YD_Sys_Admin" EntitySet="YD_Sys_Admin" />
+      <End Role="YD_Sys_AdminCourseLink" EntitySet="YD_Sys_AdminCourseLink" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sys_AdminSubLink_YD_Sys_Admin" Association="Self.FK_YD_Sys_AdminSubLink_YD_Sys_Admin">
+      <End Role="YD_Sys_Admin" EntitySet="YD_Sys_Admin" />
+      <End Role="YD_Sys_AdminSubLink" EntitySet="YD_Sys_AdminSubLink" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_SYS_D_REFERENCE_YD_SYS_A" Association="Self.FK_YD_SYS_D_REFERENCE_YD_SYS_A">
+      <End Role="YD_Sys_Admin" EntitySet="YD_Sys_Admin" />
+      <End Role="YD_Sys_DbLog" EntitySet="YD_Sys_DbLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_SYS_D_REFERENCE_YD_SYS_D" Association="Self.FK_YD_SYS_D_REFERENCE_YD_SYS_D">
+      <End Role="YD_Sys_DbLogType" EntitySet="YD_Sys_DbLogType" />
+      <End Role="YD_Sys_DbLog" EntitySet="YD_Sys_DbLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_SYS_P_REFERENCE_YD_SYS_M" Association="Self.FK_YD_SYS_P_REFERENCE_YD_SYS_M">
+      <End Role="YD_Sys_Module" EntitySet="YD_Sys_Module" />
+      <End Role="YD_Sys_Power" EntitySet="YD_Sys_Power" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_SYS_P_REFERENCE_YD_SYS_R" Association="Self.FK_YD_SYS_P_REFERENCE_YD_SYS_R">
+      <End Role="YD_Sys_Role" EntitySet="YD_Sys_Role" />
+      <End Role="YD_Sys_Power" EntitySet="YD_Sys_Power" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sys_PrintCss_YD_Sys_PrintTemplate1" Association="Self.FK_YD_Sys_PrintCss_YD_Sys_PrintTemplate1">
+      <End Role="YD_Sys_PrintTemplate" EntitySet="YD_Sys_PrintTemplate" />
+      <End Role="YD_Sys_PrintCss" EntitySet="YD_Sys_PrintCss" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_TeaPlan_Class_YD_Sys_SubSchool" Association="Self.FK_YD_TeaPlan_Class_YD_Sys_SubSchool">
+      <End Role="YD_Sys_SubSchool" EntitySet="YD_Sys_SubSchool" />
+      <End Role="YD_TeaPlan_Class" EntitySet="YD_TeaPlan_Class" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YT_Teacher_YD_Sys_SubSchool" Association="Self.FK_YT_Teacher_YD_Sys_SubSchool">
+      <End Role="YD_Sys_SubSchool" EntitySet="YD_Sys_SubSchool" />
+      <End Role="YT_Teacher" EntitySet="YT_Teacher" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_TeaPlan_Class_YD_TeaPlan_Templet" Association="Self.FK_YD_TeaPlan_Class_YD_TeaPlan_Templet">
+      <End Role="YD_TeaPlan_Templet" EntitySet="YD_TeaPlan_Templet" />
+      <End Role="YD_TeaPlan_Class" EntitySet="YD_TeaPlan_Class" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_TeaPlan_ClassCourseDes_YD_TeaPlan_Class" Association="Self.FK_YD_TeaPlan_ClassCourseDes_YD_TeaPlan_Class">
+      <End Role="YD_TeaPlan_Class" EntitySet="YD_TeaPlan_Class" />
+      <End Role="YD_TeaPlan_ClassCourseDes" EntitySet="YD_TeaPlan_ClassCourseDes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_TeaPlan_TempletCourseDes_YD_TeaPlan_Templet" Association="Self.FK_YD_TeaPlan_TempletCourseDes_YD_TeaPlan_Templet">
+      <End Role="YD_TeaPlan_Templet" EntitySet="YD_TeaPlan_Templet" />
+      <End Role="YD_TeaPlan_TempletCourseDes" EntitySet="YD_TeaPlan_TempletCourseDes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

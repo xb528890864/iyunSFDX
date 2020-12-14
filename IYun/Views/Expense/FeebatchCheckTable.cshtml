@@ -1,0 +1,26 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YD_Fee_StuFeeTb>
+<table class="xx-table ydong-tab">
+    <tr>
+        <th style=" padding-left:25px; width:210px; text-align:left;">学号</th>
+        <th>姓名</th>
+        <th>入学时间</th>
+        <th>专业</th>
+        <th>缴费学年</th>
+        <th>应缴费用</th>
+    </tr>
+    @{
+        foreach (var stu in Model)
+        {
+            <tr>
+                <td style="padding-left:25px; text-align:left;">@stu.YD_Sts_StuInfo.y_stuNum</td>
+                <td>@stu.YD_Sts_StuInfo.y_name</td>
+                <td>@stu.YD_Sts_StuInfo.y_inYear</td>
+                <td>@stu.YD_Sts_StuInfo.YD_Edu_Major.y_name</td>
+                <td>第 @stu.y_feeYear 学年</td>
+                <td>@stu.y_needUpFee</td>
+            </tr>
+        }
+    }
+</table>

@@ -1,0 +1,210 @@
+﻿@using System.Configuration
+@using IYun.Common
+@using IYun.Models
+@using IYun.Object
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+    var teachPlan = (YD_Edu_TeachPlan)ViewBag.teachPlan;
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+        <script type="text/javascript" src="~/Views/SysAdmin/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+        <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    @*<script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>*@
+    <script src="~/Content/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });
+
+    </script>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        <div id="main-tl">
+            <div class="left-t">教务管理</div>
+            <div class="left-c">
+                @{
+                    foreach (var modulePower in modulePowers)
+                    {
+                        if (modulePower.y_url.ToLower() == "/edu/major".ToLower())
+                        {
+                            <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                        else
+                        {
+                            <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div id="main-tr">
+            @if (ConfigurationManager.AppSettings["SchoolName"].ToString()!= ComEnum.SchoolName.JXSFDX.ToString())
+            {
+            
+                <div class="tjia"><span>添加教学计划课程(@teachPlan.y_teaPlanName)</span><a class="fhui" @*href="javascript:goback()"*@ href="javascript:;" onclick="history.go(-1)">返回</a></div>
+            }
+       
+            <form action="/Edu/teachPlanDesAdd" method="post">
+                <table class="cx-table">
+                    <tr>
+                        <td class="tdl">年度</td>
+                        <td>
+                            @Html.Action("EnrollYear", "Helper", new HelperParameterM { name = "year", style = "margin-top:13px;margin-left:5px;width:100px;" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdl">修课学期</td>
+                        <td>
+                            <select class="cx-sel" name="y_term" style="width:130px;" id="term">
+                                <option value="0">请选择</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdl">专业</td>
+                        <td>
+                            @Html.Action("Major", "Helper", new HelperParameterM { style = "width:150px;", name = "y_majorId" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1">课程</td>
+                        <td>
+                            @Html.Action("Course", "Helper", new HelperParameterM { id = "y_courseId" })
+                            <input type="hidden" id="y_teaPlanId" value="@ViewData["teachPlanId"]" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1">选修/必修</td>
+                        <td>@Html.Action("CourseType", "Helper", new HelperParameterM { id = "y_courseTypeId" })</td>
+                    </tr>
+                    <tr>
+                        <td class="td1">学时</td>
+                        <td><input type="text" class="cx-inp" id="y_stuTime"  /></td>
+                    </tr>
+                    <tr>
+                        <td class="td1">及格分数</td>
+                        <td><input type="text" class="cx-inp" id="y_score"  /></td>
+                    </tr>
+                    <tr>
+                        <td class="td1">&nbsp;</td>
+                        <td><input class="cx-sub" type="button" onclick="save()" value="保存" /></td>
+                       
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+</body>
+
+</html>
+<script type="text/javascript">
+    function save() {
+        var year = $("#EnrollYear").val();
+        if (year == "") {
+            alert("年份必选");
+            return;
+        }
+        var term = $("#term").val();
+        if (term == "") {
+            alert("学期必选");
+            return;
+        }
+        var Major = $("#Major").val();
+        if (Major == "") {
+            alert("专业必选");
+            return;
+        }
+
+        var yTeaPlanId = $("#y_teaPlanId").val();
+        if (yTeaPlanId == "") {
+            alert("未知错误");
+            return;
+        }
+        var y_courseId = $("#y_courseId").val();
+        if (y_courseId == "") {
+            alert("课程必选");
+            return;
+        }
+        var y_courseTypeId = $("#y_courseTypeId").val();
+        if (y_courseTypeId == "") {
+            alert("课程类型必选");
+            return;
+        }
+        var y_stuTime = $("#y_stuTime").val();
+        if (y_stuTime == "") {
+            alert("学时必填");
+            return;
+        }
+        var y_score = $("#y_score").val();
+        if (y_score == "") {
+            alert("及格分数必填");
+            return;
+        }
+
+        $.ajax({
+            type: "post",
+            url: "/Edu/TeachPlanDesAdd",
+            data: {
+                y_teaPlanId: yTeaPlanId,
+                year: year,
+                term: term,
+                Major: Major,
+                y_courseId: y_courseId,
+                y_courseTypeId: y_courseTypeId,
+                y_stuTime: y_stuTime,
+                y_score: y_score
+            },
+            success: function (data) {
+                if (data == "ok") {
+                    location.href = document.referrer;
+                } else {
+                    alert(data);
+                }
+            },
+            error: function (msg) {
+                alert("未知错误");
+            }
+        });
+    }
+    function goback() {
+        location.href = document.referrer;
+    }
+</script>

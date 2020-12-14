@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d0a65469fd4c43cba516d5479c2cb036" Name="Diagram1">
+        <EntityTypeShape EntityType="IYun.YD_Edu_Course" Width="1.5" PointX="9" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Edu_CourseCorrespondence" Width="1.5" PointX="7.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Edu_CourseType" Width="1.5" PointX="9" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Edu_CultureExtent" Width="1.5" PointX="6.75" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Edu_EduType" Width="1.5" PointX="1.5" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Edu_ExamFeature" Width="1.5" PointX="6.75" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Edu_ForeignLanguage" Width="1.5" PointX="6.75" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Edu_FormTemp" Width="1.5" PointX="7.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Edu_GradCondition" Width="1.5" PointX="9.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Edu_Major" Width="1.5" PointX="3.75" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Edu_MajorLibrary" Width="1.5" PointX="1.5" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Edu_MajorTeachPlan" Width="1.5" PointX="11.25" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Edu_News" Width="1.5" PointX="9.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Edu_ProfessionType" Width="1.5" PointX="6.75" PointY="37.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Edu_QingCourse" Width="1.5" PointX="10.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Edu_QingStuInfo" Width="1.5" PointX="11.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Edu_RecruitType" Width="1.5" PointX="6.75" PointY="40.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Edu_Score" Width="1.5" PointX="11.25" PointY="34.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Edu_ScoreScale" Width="1.5" PointX="5.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Edu_ScoreTemp" Width="1.5" PointX="11.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Edu_ScoreTest" Width="1.5" PointX="14.25" PointY="33.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Edu_SmallPower" Width="1.5" PointX="3" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Edu_StuState" Width="1.5" PointX="6.75" PointY="43.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Edu_StuType" Width="1.5" PointX="1.5" PointY="27.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Edu_TeachPlan" Width="1.5" PointX="9" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Edu_TeachplanDes" Width="1.5" PointX="11.25" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Edu_TeachPlanTemp" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Fee_AllBili" Width="1.5" PointX="3.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Fee_AllFeeSys" Width="1.5" PointX="7.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Fee_MajorLiFeeSys" Width="1.5" PointX="2.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Fee_StuFeeTb" Width="1.5" PointX="11.25" PointY="38.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Fee_StuInvoicee" Width="1.5" PointX="13.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Fee_StuRegistrBatch" Width="1.5" PointX="13.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Fee_SubFeeBili" Width="1.5" PointX="13.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Fee_SubFeeSys" Width="1.5" PointX="6" PointY="33.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Graduate_Bachelor" Width="1.5" PointX="3" PointY="35.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Graduate_EnglishScoreTemp" Width="1.5" PointX="13.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Graduate_SampleExamScore" Width="1.5" PointX="11.25" PointY="26.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Graduate_StudentApply" Width="1.5" PointX="3" PointY="38.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Graduate_StudentScore" Width="1.5" PointX="11.25" PointY="43.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Sts_Nation" Width="1.5" PointX="6.75" PointY="45.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Sts_Politics" Width="1.5" PointX="6.75" PointY="48.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Sts_StrangeType" Width="1.5" PointX="15" PointY="30.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Sts_StuInfo" Width="1.5" PointX="9" PointY="27.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Sts_StuInfo_copy1" Width="1.5" PointX="19.5" PointY="27.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Sts_StuInfoTemp" Width="1.5" PointX="15.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Sts_StuNumCol" Width="1.5" PointX="4.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Sts_StuStrange" Width="1.5" PointX="17.25" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Sts_SubSchoolStuInfo" Width="1.5" PointX="3" PointY="58.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Sts_SubStuTemp" Width="1.5" PointX="3" PointY="62.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Sys_Admin" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Sys_AdminCourseLink" Width="1.5" PointX="11.25" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Sys_AdminSubLink" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Sys_DbLog" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Sys_DbLogType" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Sys_File" Width="1.5" PointX="15.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Sys_Module" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Sys_Power" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Sys_PrintCss" Width="1.5" PointX="8" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Sys_PrintTemplate" Width="1.5" PointX="5.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Sys_Role" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_Sys_SubSchool" Width="1.5" PointX="0.75" PointY="32.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_TeaPlan_Class" Width="1.5" PointX="6" PointY="29.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_TeaPlan_ClassCourseDes" Width="1.5" PointX="11.25" PointY="29.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_TeaPlan_ExamPlan" Width="1.5" PointX="15.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_TeaPlan_Templet" Width="1.5" PointX="3.75" PointY="42.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YD_TeaPlan_TempletCourseDes" Width="1.5" PointX="14.25" PointY="38.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YT_ActivityVideo" Width="1.5" PointX="17.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YT_Faculty" Width="1.5" PointX="17.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YT_Grade" Width="1.5" PointX="17.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YT_GraduationRegistration" Width="1.5" PointX="17.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YT_Mechanism" Width="1.5" PointX="17.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YT_RegisterSettings" Width="1.5" PointX="0.75" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YT_Teacher" Width="1.5" PointX="3" PointY="70" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.YT_Term" Width="1.5" PointX="19.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.Z_test" Width="1.5" PointX="19.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.VW_Admin" Width="1.5" PointX="19.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.VW_AllBili" Width="1.5" PointX="19.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.VW_AllFeeSys" Width="1.5" PointX="13.75" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.VW_DbLog" Width="1.5" PointX="19.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.VW_Major" Width="1.5" PointX="15.75" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.VW_MajorLiFeeSys" Width="1.5" PointX="17.75" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.VW_MajorTeachPlan" Width="1.5" PointX="19.75" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.VW_MajorTeachPlanDes" Width="1.5" PointX="21.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.VW_Power" Width="1.5" PointX="21.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.VW_Score" Width="1.5" PointX="21.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.VW_ScoreFirst" Width="1.5" PointX="23.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.VW_Strange" Width="1.5" PointX="23.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.VW_StrangeReportTotal" Width="1.5" PointX="23.75" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.VW_Sts_News" Width="1.5" PointX="23.75" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.VW_StuInfo" Width="1.5" PointX="25.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.VW_SubFeeBili" Width="1.5" PointX="13.75" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.VW_SubFeeSys" Width="1.5" PointX="15.75" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.VW_SubFeeTotal" Width="1.5" PointX="25.75" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.VW_SubschoolAdmin" Width="1.5" PointX="25.75" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.VW_SubSchoolStuInfo" Width="1.5" PointX="21.75" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IYun.VW_TeachPlanDes" Width="1.5" PointX="27.75" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="IYun.FK_YD_Edu_Score_YD_Edu_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Edu_ScoreTest_YD_Edu_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Edu_SmallPower_YD_Edu_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Edu_TeachplanDes_YD_Edu_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Graduate_SampleExamScore_YD_Edu_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Sys_AdminCourseLink_YD_Edu_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_TeaPlan_ClassCourseDes_YD_Edu_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_TeaPlan_TempletCourseDes_YD_Edu_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Edu_TeachplanDes_YD_Edu_CourseType" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK__YD_Sts_St__y_cul__2630A1B7" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Sts_StuInfo_YD_Edu_CultureExtent" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_y_eduType" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_y_eduTypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Edu_Major_YD_Edu_EduType" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK__YD_Sts_St__y_exa__2724C5F0" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Sts_StuInfo_YD_Edu_ExamFeature" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK__YD_Sts_St__y_for__2818EA29" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Sts_StuInfo_YD_Edu_ForeignLanguage" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK__YD_Sts_St__y_maj__2077C861" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_y_majorid" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Edu_Major_YD_Edu_MajorLibrary" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Edu_Major_YD_Edu_StuType" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Edu_MajorTeachPlan_YD_Edu_Major" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Edu_SmallPower_YD_Edu_Major" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Sts_StuInfo_YD_Edu_Major" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_TeaPlan_Class_YD_Edu_Major" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_TeaPlan_Templet_YD_Edu_Major" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Edu_MajorTeachPlan_YD_Edu_TeachPlan" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK__YD_Sts_St__y_pro__290D0E62" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Sts_StuInfo_YD_Edu_ProfessionType" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK__YD_Sts_St__y_rec__2A01329B" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Sts_StuInfo_YD_Edu_RecruitType" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Edu_Score_YD_Sts_StuInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Edu_ScoreTest_YD_Sts_StuInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Edu_SmallPower_YD_Sys_SubSchool" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK__YD_Sts_St__y_stu__2354350C" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Sts_StuInfo_YD_Edu_StuState" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Edu_TeachplanDes_YD_Edu_TeachPlan" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Sts_StuInfo_YD_Fee_StuFeeTb" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_y_subSchoolId" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Sys_SubSchool_YD_Graduate_Bachelor" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Sys_SubSchool_YD_Graduate_StudentApply" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Sts_StuInfo_YD_Graduate_StudentScore" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK__YD_Sts_St__y_nat__24485945" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Sts_StuInfo_YD_Sts_Nation" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK__YD_Sts_St__y_pol__253C7D7E" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Sts_StuInfo_YD_Sts_Politics" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Sts_StuStrange_YD_Sts_StrangeType" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Sts_StuInfo_YD_Sts_StuStrange" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Sts_StuStrange_YD_Sts_StuInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Sys_SubSchool_YD_Sts_StuInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK__YD_Sts_St__y_stu__226010D3" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK__YD_Sts_St__y_sub__216BEC9A" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Sts_SubSchoolStuInfo_YD_Sys_SubSchool" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Sts_SubStuTemp_YD_Sys_SubSchool" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_SYS_A_REFERENCE_YD_SYS_R" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Sys_AdminCourseLink_YD_Sys_Admin" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Sys_AdminSubLink_YD_Sys_Admin" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_SYS_D_REFERENCE_YD_SYS_A" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_SYS_D_REFERENCE_YD_SYS_D" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_SYS_P_REFERENCE_YD_SYS_M" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_SYS_P_REFERENCE_YD_SYS_R" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_Sys_PrintCss_YD_Sys_PrintTemplate1" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_TeaPlan_Class_YD_Sys_SubSchool" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YT_Teacher_YD_Sys_SubSchool" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_TeaPlan_Class_YD_TeaPlan_Templet" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_TeaPlan_ClassCourseDes_YD_TeaPlan_Class" ManuallyRouted="false" />
+        <AssociationConnector Association="IYun.FK_YD_TeaPlan_TempletCourseDes_YD_TeaPlan_Templet" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

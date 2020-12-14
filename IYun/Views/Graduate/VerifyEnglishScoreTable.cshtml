@@ -1,0 +1,143 @@
+﻿@using IYun.Common
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YD_Graduate_EnglishScoreTemp>
+
+@{
+    foreach (var ydEduScoreTemp in Model)
+    {
+        <div class="xx-js">
+            @{
+                if (ydEduScoreTemp.y_stuname == "")
+                {
+                    <div class="x-js1">&nbsp;&nbsp;</div>
+                }
+                else
+                {
+                    <div class="x-js1">@ydEduScoreTemp.y_stuname</div>
+                }
+            }
+            <input type="hidden" class="id" value="@ydEduScoreTemp.id"/>
+            <input type="hidden" class="subSchool" value="@ydEduScoreTemp.y_subSchoolId" />
+            <div class="td-drop jj2">
+                @{
+                    if (ydEduScoreTemp.y_stuname == "" || ydEduScoreTemp.y_stunameMatch== "-1")
+                    {
+                        <span style="padding-left: 30px;">
+                            <b>姓名：</b>
+                            <input class="cx-inp name" style="border:solid 1px red;width: 100px" value="@ydEduScoreTemp.y_stuname" type="text" >
+                            &nbsp;<font color="green">姓名不存在</font>
+                         </span>
+                    }
+                    else
+                    {
+                        <span style="padding-left: 30px;">
+                            <b>姓名：</b>
+                            <input class="cx-inp name" style="width: 100px" value="@ydEduScoreTemp.y_stuname" type="text" >
+                        </span>
+                    }
+                    if (ydEduScoreTemp.y_sex == -1)
+                    {
+                        <span style="padding-left: 30px;">
+                            <b>性别：</b>
+                            <input class="cx-inp sex" style="border:solid 1px red;width: 100px" value="@ydEduScoreTemp.y_sexName" type="text" >
+                        </span>
+                    }
+                    else
+                    {
+                        <span style="padding-left: 30px;">
+                            <b>性别：</b>
+                            <input class="cx-inp sex" style="width: 100px" value="@ydEduScoreTemp.y_sexName" type="text" >
+                        </span>
+                    }
+                    if (Convert.ToDateTime(ydEduScoreTemp.y_examtime).ToShortDateString() == DateTime.MaxValue.ToShortDateString())
+                    {
+                        <span style="padding-left: 30px;">
+                            <b>考试时间：</b>
+                            <input class="cx-inp examtime" style="border: solid 1px red; width: 150px" value="" type="date" >
+                        </span>
+                    }
+                    else
+                    {
+                        <span style="padding-left: 30px;">
+                            <b>考试时间：</b>
+                            <input class="cx-inp examtime" style="width: 150px" value="@Convert.ToDateTime(ydEduScoreTemp.y_examtime).ToShortDateString()" type="text" >
+                        </span>
+                    }
+                    <span style="padding-left: 30px;">
+                        <b>准考证号：</b>
+                        <input class="cx-inp examNum" style="width: 100px" value="@ydEduScoreTemp.y_admissionNum" type="text" >
+                    </span>
+                    if (ydEduScoreTemp.y_majorLibId == -1)
+                    {
+                        <span style="padding-left: 30px;">
+                            <b>专业名：</b>
+                            <input class="cx-inp majorLib" style="border:solid 1px red;width: 100px" value="@ydEduScoreTemp.y_majorLibName" type="text" >
+                            &nbsp;<font color="green">专业名不存在</font>
+                         </span>
+                                }
+                                else
+                                {
+                                    <span style="padding-left: 30px;">
+                                        <b>专业名：</b>
+                                        <input class="cx-inp majorLib" style="width: 100px" value="@ydEduScoreTemp.y_majorLibName" type="text" >
+                                    </span>
+                                }
+                                if (ydEduScoreTemp.y_inYear == -1)
+                                {
+                                    <span style="padding-left: 30px;">
+                                        <b>入学年度：</b>
+                                        <input class="cx-inp year" style="border: solid 1px red; width: 100px" value="@ydEduScoreTemp.y_inYear" type="text" >
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span style="padding-left: 30px;">
+                                        <b>入学年度：</b>
+                                        <input class="cx-inp year" style="width: 100px" value="@ydEduScoreTemp.y_inYear" type="text" >
+                                    </span>
+                                 }
+                                if (ydEduScoreTemp.y_cardIdMatch == "-1" || ydEduScoreTemp.y_cardId=="")
+                                {
+                                    <span style="padding-left: 30px;">
+                                        <b>身份证：</b>
+                                        <input class="cx-inp cardId" style="border: solid 1px red;width: 100px" value="@ydEduScoreTemp.y_cardId" type="text" >
+                                        &nbsp;<font color="green">身份证号不存在</font>
+                                      </span>
+                                }
+                                else
+                                {
+                                    <span style="padding-left: 30px;">
+                                                    <b>身份证：</b>
+                                                    <input class="cx-inp cardId" style="width: 100px" value="@ydEduScoreTemp.y_cardId" type="text" >
+                                                </span>
+                                }
+                    <span style="padding-left: 30px;">
+                                        <b>主观分：</b>
+                                        <input class="cx-inp subjectivitysore" style="width: 100px" value="@ydEduScoreTemp.y_subjectivitysore" type="text" >
+                                    </span>
+                                    <span style="padding-left: 30px;">
+                                        <b>总分：</b>
+                                        <input class="cx-inp sumsore" style="width: 100px" value="@ydEduScoreTemp.y_sumsore" type="text" >
+                                    </span>
+                                if (ydEduScoreTemp.y_verdict == -1)
+                                {
+                                    <span style="padding-left: 30px;">
+                                        <b>结论：</b>
+                                        <input class="cx-inp verdict" style="border:solid 1px red;width: 100px" value="@ydEduScoreTemp.y_verdictname" type="text" >
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span style="padding-left: 30px;">
+                                        <b>结论：</b>
+                                        <input class="cx-inp verdict" style="width: 100px" value="@ydEduScoreTemp.y_verdictname" type="text" >
+                                    </span>
+                                }
+                }
+            </div>
+            <a class="gr_edit" onclick="StudentInfoGetEdit(this);">展开</a>
+        </div>
+  }
+
+}

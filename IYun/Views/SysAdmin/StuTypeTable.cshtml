@@ -1,0 +1,22 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YD_Edu_StuType>
+
+<table class="xx-table ydong-tab">
+    <tr>
+        <th>学习形式</th>
+        <th>学习形式代码</th>
+        <th>操作</th>
+    </tr>
+    @{
+        foreach (var ydSysAdmin in Model)
+        {
+            <tr>
+                <td>@ydSysAdmin.y_name</td>
+                <td>@ydSysAdmin.y_stuTypeCode</td>
+                <td><a class="bfont2" href="/SysAdmin/StuTypeEditPage/@ydSysAdmin.id">修改</a><a class="bfont2" href="javascript:deleteStuType(@ydSysAdmin.id)">删除</a></td>
+            </tr>
+        }
+    }
+</table>
+

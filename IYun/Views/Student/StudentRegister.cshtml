@@ -1,0 +1,153 @@
+﻿@using System.Configuration
+@using IYun.Common
+@using IYun.Models
+@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@model PagedList<VW_StuInfo>
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+    var man = (int)SexEnum.Man;
+    var woman = (int)SexEnum.WoMan;
+    var adminrole = ViewBag.adminroleid;
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <script type="text/javascript" src="~/Content/manage/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    @*<script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>*@
+    <script src="~/Content/IYun/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="~/Scripts/MvcPager.js"></script>
+    <link href="~/Content/kindeditor-4.1.10/themes/default/default.css" rel="stylesheet" />
+    <script src="~/Content/kindeditor-4.1.10/kindeditor-min.js"></script>
+    <script src="~/Content/kindeditor-4.1.10/lang/zh_CN.js"></script>
+    <script src="~/Content/manage/ComboboxBind.js"></script>
+    <link href="~/Content/IYun/style/jquery.editable-select.min.css" rel="stylesheet" />
+    <script src="~/Content/IYun/js/jquery.editable-select.min.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });
+    </script>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        @Html.Partial("../AdminBase/PartialModuleView", "/student/StudentRegister")
+        <div id="main-tr">
+            @*<div class="right-nav">
+                @if (adminrole != 4)
+                {
+                    <div class="nava1">
+                        <a style="width: 120px; height: 40px; line-height: 40px; margin: 0px 10px 0 0;" class="nava2" href="/Student/RegisterStudent">全校在校生已注册</a>
+                    </div>
+                    <div class="nava1">
+                        <a style="width: 120px; height: 40px; line-height: 40px; margin: 0px 10px 0 0;" class="nava2" href="/Student/NoRegisterStudent">全校在校生未注册</a>
+                    </div>
+                }
+                <div class="nava1">
+                    <a style="height: 40px; width: 140px; line-height: 40px; margin: 0px 10px 0 0;" class="nava2" href="/Student/SubschoolRegisterStudent">函授站在校生已注册</a>
+                </div>
+                <div class="nava1">
+                    <a style="height: 40px; width: 140px; line-height: 40px; margin: 0px 10px 0 0;" class="nava2" href="/Student/SubschoolNoRegisterStudent">函授站在校生未注册</a>
+                </div>
+            </div>*@
+
+        <style>
+            .chak-1 {
+                width: 552px;
+                height: 360px;
+                overflow: hidden;
+                margin: 115px auto;
+            }
+
+            .chak-2 {
+                width: 615px;
+            }
+
+                .chak-2 li {
+                    width: 246px;
+                    height: 150px;
+                    float: left;
+                    margin: 0px 60px 60px 0px;
+                    background: #f1f3f6;
+                    font-size: 16px;
+                    color: #323232;
+                    line-height: 53px;
+                    text-align: center;
+                }
+
+                    .chak-2 li div {
+                        height: 97px;
+                        background-size: auto 43px !important;
+                    }
+
+                    .chak-2 li a {
+                        display: block;
+                    }
+        </style>
+        <div class="chak-1">
+            <ul class="chak-2">
+                @if (adminrole != 4)
+                {
+                    <li>
+                        <a href="/Student/RegisterStudent">
+                            <div style="background: #46c37b url(../../Content/images/chak-1.png) center no-repeat;"></div>
+                            全校在校生已注册
+                        </a>
+                    </li>
+                        <li>
+                            <a href="/Student/NoRegisterStudent">
+                                <div style="background: #bfbfbf url(../../Content/images/chak-1.png) center no-repeat;"></div>
+                                全校在校生未注册
+                            </a>
+                        </li>
+                }
+                <li>
+                    <a href="/Student/SubschoolRegisterStudent">
+                        <div style="background: #46c37b url(../../Content/images/chak-2.png) center no-repeat;"></div>
+                        函授站在校生已注册
+                    </a>
+                </li>
+                <li>
+                    <a href="/Student/SubschoolNoRegisterStudent">
+                        <div style="background: #bfbfbf url(../../Content/images/chak-2.png) center no-repeat;"></div>
+                        函授站在校生未注册
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+
+
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+</body>
+</html>

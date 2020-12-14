@@ -1,0 +1,72 @@
+﻿@using System.Configuration
+@using IYun.Common
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<VW_StuInfo>
+@{
+    var adminroleid = ViewBag.adminroleid;
+}
+<table class="xx-table">
+    <tr>
+        <th style="padding-left:25px;"><input id="all" class="rad cktb zz8" type="checkbox">姓名</th>
+        <th>性别</th>
+        <th>出生日期</th>
+        @{
+            if (adminroleid != 4)
+            {
+                <th>学习中心</th>
+            }
+        }
+        <th>专业</th>
+        <th>层次</th>
+        <th>学习形式</th>
+        <th>学号</th>
+        <th>入学年份</th>
+        <th>证书编号</th>
+        @*<th>批准文号</th>*@
+
+    </tr>
+
+    @foreach (VW_StuInfo student in Model)
+    {
+        <tr>
+            <td style="padding-left:25px;">
+                <input type="checkbox" name="check" class="mycb" value="@student.id" />
+                @student.y_name
+            </td>
+            <td>@(student.y_sex == 0 ? "男" : "女")</td>
+            <td>@student.y_birthday.ToString("yyyy-MM-dd")</td>
+            @{
+                if (adminroleid != 4)
+                {
+                    <td>@student.schoolName</td>
+                }
+            }
+            <td>@student.majorLibraryName</td>
+            <td>@student.eduTypeName</td>
+            <td>@student.stuTypeName</td>
+            <td>@student.y_stuNum</td>
+            <td>@student.y_inYear</td>
+            <td>@student.y_graduateNumber</td>
+            @*<td>@student.y_ApprovalNumber</td>*@
+        </tr>
+    }
+</table>
+<script>
+
+    //全选或取消全选功能
+    $(function () {
+        $("input[name='check']").click(function () {
+            var bl = $("input[name='check'").length == $("input[name='check']:checked").length;
+            $("#all").attr("checked", bl);
+        });
+        $(".zz8").click(function () {
+            var checkedStatus = this.checked;
+            var checkbox = $(this).parents('table').find('tr td input:checkbox');
+            checkbox.each(function () {
+                this.checked = checkedStatus;
+            });
+        });
+    });
+
+</script>

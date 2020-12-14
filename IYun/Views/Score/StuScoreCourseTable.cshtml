@@ -1,0 +1,102 @@
+﻿@using IYun.Controllers.ControllerObject
+@using Webdiyer.WebControls.Mvc
+@model PagedList<ScoreInputDto>
+    @{
+        int totalCount = ViewBag.totalCount;
+        int errorCount = ViewBag.errorCount;
+    }
+<table class="xx-table">
+    <tr>
+        <th colspan="6" style="padding-left: 50px;">
+            此课程共学生
+            <span style="color: blue"> @totalCount </span>
+            个，其中
+            <span style="color: red"> @errorCount </span>
+            个学生没有录分
+        </th>
+    </tr>
+    <tr>
+        <th style="padding-left: 30px;">姓名</th>
+        <th>学期</th>
+        <th>课程名称</th>
+        <th>平时分</th>
+        <th>考试分</th>
+        <th>总分</th>
+    </tr>
+    @foreach (ScoreInputDto item in Model)
+    {
+        if (item.hasPermission)
+        {
+            <tr class="scoreTr">
+                <td style="display: none;" class="scoreId">@item.scoreid</td>
+                <td style="display: none;" class="courseId">@item.courseId</td>
+                <td style="display: none;" class="stuId">@item.stuId</td>
+                <td style="padding-left: 30px;">@item.stuName</td>
+                <td class="term">@item.term</td>
+                <td>@item.courseName</td>
+                <td><input class="scoreinput normalScore" value="@item.normalScore" type="text" /></td>
+                <td><input class="scoreinput termScore" value="@item.termScore" type="text" /></td>
+                @if (item.totalScore < 60 || item.totalScore == 100)
+                {
+                    <td class="errorscore totalScore">@item.totalScore</td>
+                }
+                else
+                {
+                    <td class="totalScore">@item.totalScore</td>
+                }
+            </tr>
+        }
+        else
+        {
+            <tr class="scoreTr2" style="background-color: wheat;">
+                <td style="display: none;" class="scoreId">@item.scoreid</td>
+                <td style="display: none;" class="courseId">@item.courseId</td>
+                <td style="display: none;" class="stuId">@item.stuId</td>
+                <td style="padding-left: 30px;">@item.stuName</td>
+                <td class="term">@item.term</td>
+                <td>@item.courseName</td>
+                <td>@item.normalScore</td>
+                <td>@item.termScore</td>
+                @if (item.totalScore < 60 || item.totalScore == 100)
+                {
+                    <td class="errorscore totalScore">@item.totalScore</td>
+                }
+                else
+                {
+                    <td class="totalScore">@item.totalScore</td>
+                }
+            </tr>
+        }
+
+
+
+    }
+</table>
+<script>
+    $('.scoreinput').blur(function () {
+        var value = $(this).val();
+
+        if (!isNub(value)) {
+            $(this).val('0');
+        } else {
+            var normalScore = $(this).parent('td').parent('tr').find('.normalScore').val();
+            var termScore = $(this).parent('td').parent('tr').find('.termScore').val();
+
+            var normalInput = $('.normalInput').val();
+            var examInput = $('.examInput').val();
+
+            var score = Number(Number((normalScore * normalInput / 100)) + Number((termScore * examInput / 100))).toFixed(1);
+            
+            $(this).parent('td').parent('tr').find('.totalScore').html(score);
+        }
+    });
+
+    function isNub(val) {
+        if (!isNaN(val)) {
+            if (val >= 0 && val <= 100) {
+                return true;
+            }
+        }
+        return false;
+    }
+</script>

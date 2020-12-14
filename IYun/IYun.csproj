@@ -1,0 +1,2222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{97C486BE-0B12-49CD-800D-EDC40A639590}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IYun</RootNamespace>
+    <AssemblyName>IYun</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>12.0</OldToolsVersion>
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress>true</Use64BitIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\SharpZipLib_0860_Bin\net-20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ionic.Zip.1.9.1.8\lib\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\ExtendDll\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="MiniProfiler, Version=3.0.11.0, Culture=neutral, PublicKeyToken=b44f9351044011a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\MiniProfiler.3.1\lib\net40\MiniProfiler.dll</HintPath>
+    </Reference>
+    <Reference Include="MiniProfiler.EntityFramework6, Version=3.0.11.0, Culture=neutral, PublicKeyToken=b44f9351044011a3, processorArchitecture=MSIL">
+      <HintPath>..\packages\MiniProfiler.EF6.3.0.11\lib\net40\MiniProfiler.EntityFramework6.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\packages\ExtendDll\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\packages\ExtendDll\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\packages\ExtendDll\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\packages\ExtendDll\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="Renci.SshNet, Version=2013.4.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Renci.SshNet\Renci.SshNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.30506.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.30506.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.30506.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.2\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.30506.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Webdiyer.MvcPager">
+      <HintPath>..\packages\ExtendDll\Webdiyer.MvcPager.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.3.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.3.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Z.EntityFramework.Extensions, Version=3.9.9.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.EntityFramework.Extensions.3.9.9\lib\Z.EntityFramework.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AppHandleErrorAttribute.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\PowerDto.cs" />
+    <Compile Include="App_Start\PowerInit.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Common\Base64.cs" />
+    <Compile Include="Common\ComEnum.cs" />
+    <Compile Include="Common\ExcelHelper.cs" />
+    <Compile Include="Common\FileHelper.cs" />
+    <Compile Include="Common\KeyValue.cs" />
+    <Compile Include="Common\LogHelper.cs" />
+    <Compile Include="Common\MD5Helper.cs" />
+    <Compile Include="Common\PageValidate.cs" />
+    <Compile Include="Common\QingShuCode.cs" />
+    <Compile Include="Common\SFTPHelper.cs" />
+    <Compile Include="Content\kindeditor-4.1.10\asp.net\excelUpload.ashx.cs">
+      <DependentUpon>excelUpload.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AdminBaseController.cs" />
+    <Compile Include="Controllers\BasicDataController.cs" />
+    <Compile Include="Controllers\ControllerObject\BatchCheck.cs" />
+    <Compile Include="Controllers\ControllerObject\BiliDto.cs" />
+    <Compile Include="Controllers\ControllerObject\ClassTeaPlanTemporary.cs" />
+    <Compile Include="Controllers\ControllerObject\CoursePlanDto.cs" />
+    <Compile Include="Controllers\ControllerObject\DHLGBatchCheck.cs" />
+    <Compile Include="Controllers\ControllerObject\DHLGStuSub.cs" />
+    <Compile Include="Controllers\ControllerObject\EduTypeStuSum.cs" />
+    <Compile Include="Controllers\ControllerObject\ExamPlanDto.cs" />
+    <Compile Include="Controllers\ControllerObject\ExamPlanExcelInsertDto.cs" />
+    <Compile Include="Controllers\ControllerObject\ExcelDownDto.cs" />
+    <Compile Include="Controllers\ControllerObject\FeeCheckStu.cs" />
+    <Compile Include="Controllers\ControllerObject\GraduateStu.cs" />
+    <Compile Include="Controllers\ControllerObject\GridSampleExam.cs" />
+    <Compile Include="Controllers\ControllerObject\GridSampleScoreListDto.cs" />
+    <Compile Include="Controllers\ControllerObject\JXLGStuSub.cs" />
+    <Compile Include="Controllers\ControllerObject\MajorEduStu.cs" />
+    <Compile Include="Controllers\ControllerObject\MajorKey.cs" />
+    <Compile Include="Controllers\ControllerObject\ScoreAjaxDto.cs" />
+    <Compile Include="Controllers\ControllerObject\ScoreAjaxModel.cs" />
+    <Compile Include="Controllers\ControllerObject\ScoreInputDto.cs" />
+    <Compile Include="Controllers\ControllerObject\ScoreListDto.cs" />
+    <Compile Include="Controllers\ControllerObject\ScorePermissionDto.cs" />
+    <Compile Include="Controllers\ControllerObject\ScoreStatistics.cs" />
+    <Compile Include="Controllers\ControllerObject\ScoreStatistics_Course.cs" />
+    <Compile Include="Controllers\ControllerObject\StudentsScoreDto.cs" />
+    <Compile Include="Controllers\ControllerObject\StuNoRegister.cs" />
+    <Compile Include="Controllers\ControllerObject\StuScoreDto.cs" />
+    <Compile Include="Controllers\ControllerObject\StuScoreStatistics_CourseList.cs" />
+    <Compile Include="Controllers\ControllerObject\SubFeeStuTj.cs" />
+    <Compile Include="Controllers\ControllerObject\SubFeeStuTjShow.cs" />
+    <Compile Include="Controllers\ControllerObject\SubMainNoRegister.cs" />
+    <Compile Include="Controllers\ControllerObject\TeachPlanTetm.cs" />
+    <Compile Include="Controllers\ControllerObject\TeaPlanExcelInsertDto.cs" />
+    <Compile Include="Controllers\ControllerObject\CoreFunction\CoreFunction.cs" />
+    <Compile Include="Controllers\ControllerObject\TermScoreStatistics_Course.cs" />
+    <Compile Include="Controllers\ControllerObject\ZYYFeeCheckStu.cs" />
+    <Compile Include="Controllers\DicAdminController.cs" />
+    <Compile Include="Controllers\EduController.cs" />
+    <Compile Include="Controllers\ExpenseController.cs" />
+    <Compile Include="Controllers\FileManagerController.cs" />
+    <Compile Include="Controllers\GraduateController.cs" />
+    <Compile Include="Controllers\HelperController.cs" />
+    <Compile Include="Controllers\QingShuApiController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\ScoreController.cs" />
+    <Compile Include="Controllers\StudentAccountController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\SysAdminController.cs" />
+    <Compile Include="Controllers\TeaPlanController.cs" />
+    <Compile Include="Dal\BaseDal.cs" />
+    <Compile Include="Dal\VW_StuInfoDal.cs" />
+    <Compile Include="Dal\YD_Edu_CourseDal.cs" />
+    <Compile Include="Dal\YD_Edu_CourseTypeDal.cs" />
+    <Compile Include="Dal\YD_Edu_EduTypeDal.cs" />
+    <Compile Include="Dal\YD_Edu_MajorLibraryDal.cs" />
+    <Compile Include="Dal\YD_Edu_ScoreDal.cs" />
+    <Compile Include="Dal\YD_Edu_StuStateDal.cs" />
+    <Compile Include="Dal\YD_Edu_StuTypeDal.cs" />
+    <Compile Include="Dal\YD_Edu_TeachPlanDal.cs" />
+    <Compile Include="Dal\YD_Edu_TeachplanDesDal.cs" />
+    <Compile Include="Dal\YD_Sts_NationDal.cs" />
+    <Compile Include="Dal\YD_Sts_PoliticsDal.cs" />
+    <Compile Include="Dal\YD_Sts_StuInfoDal.cs" />
+    <Compile Include="Dal\YD_Sts_StuStrangeDal.cs" />
+    <Compile Include="Dal\YD_Sys_DbLogDal.cs" />
+    <Compile Include="Dal\YD_Sys_DbLogTypeDal.cs" />
+    <Compile Include="Dal\VW_AdminDal.cs" />
+    <Compile Include="Dal\VW_DbLogDal.cs" />
+    <Compile Include="Dal\VW_RoleDal.cs" />
+    <Compile Include="Dal\YD_Sys_AdminDal.cs" />
+    <Compile Include="Dal\YD_Sys_ModuleDal.cs" />
+    <Compile Include="Dal\YD_Sys_RoleDal.cs" />
+    <Compile Include="Dal\YD_Sys_SubSchoolDal.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Dto\PrintTemplateDto.cs" />
+    <Compile Include="Models\Dto\SupplementaryTaxInput.cs" />
+    <Compile Include="Models\IYun.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IYun.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IYun.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IYun.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IYun.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VW_Admin.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VW_AllBili.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VW_AllFeeSys.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VW_DbLog.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VW_Major.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VW_MajorLiFeeSys.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VW_MajorTeachPlan.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VW_MajorTeachPlanDes.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VW_Power.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VW_Score.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VW_ScoreFirst.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VW_Strange.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VW_StrangeReportTotal.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VW_Sts_News.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VW_StuInfo.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VW_SubFeeBili.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VW_SubFeeSys.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VW_SubFeeTotal.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VW_SubschoolAdmin.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VW_SubSchoolStuInfo.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VW_TeachPlanDes.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Edu_Course.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Edu_CourseCorrespondence.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Edu_CourseType.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Edu_CultureExtent.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Edu_EduType.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Edu_ExamFeature.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Edu_ForeignLanguage.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Edu_FormTemp.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Edu_GradCondition.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Edu_Major.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Edu_MajorLibrary.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Edu_MajorTeachPlan.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Edu_News.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Edu_ProfessionType.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Edu_QingCourse.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Edu_QingStuInfo.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Edu_RecruitType.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Edu_Score.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Edu_ScoreScale.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Edu_ScoreTemp.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Edu_ScoreTest.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Edu_SmallPower.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Edu_StuState.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Edu_StuType.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Edu_TeachPlan.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Edu_TeachplanDes.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Edu_TeachPlanTemp.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Fee_AllBili.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Fee_AllFeeSys.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Fee_MajorLiFeeSys.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Fee_StuFeeTb.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Fee_StuInvoicee.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Fee_StuRegistrBatch.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Fee_SubFeeBili.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Fee_SubFeeSys.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Graduate_Bachelor.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Graduate_EnglishScoreTemp.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Graduate_SampleExamScore.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Graduate_StudentApply.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Graduate_StudentScore.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Sts_Nation.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Sts_Politics.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Sts_StrangeType.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Sts_StuInfo.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Sts_StuInfoTemp.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Sts_StuInfo_copy1.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Sts_StuNumCol.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Sts_StuStrange.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Sts_SubSchoolStuInfo.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Sts_SubStuTemp.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Sys_Admin.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Sys_AdminCourseLink.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Sys_AdminSubLink.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Sys_DbLog.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Sys_DbLogType.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Sys_File.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Sys_Module.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Sys_Power.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Sys_PrintCss.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Sys_PrintTemplate.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Sys_Role.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_Sys_SubSchool.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_TeaPlan_Class.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_TeaPlan_ClassCourseDes.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_TeaPlan_ExamPlan.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_TeaPlan_Templet.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YD_TeaPlan_TempletCourseDes.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YT_ActivityVideo.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YT_Faculty.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YT_Grade.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YT_GraduationRegistration.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YT_Mechanism.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YT_RegisterSettings.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YT_Teacher.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YT_Term.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Z_test.cs">
+      <DependentUpon>IYun.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Object\ApprovaState.cs" />
+    <Compile Include="Object\Combortree.cs" />
+    <Compile Include="Object\CourseType2.cs" />
+    <Compile Include="Object\Enum\CourseType.cs" />
+    <Compile Include="Object\Enum\ScoreLimit.cs" />
+    <Compile Include="Object\Enum\ScoreType.cs" />
+    <Compile Include="Object\Enum\StudentType.cs" />
+    <Compile Include="Object\HandState.cs" />
+    <Compile Include="Object\HelperParameterM.cs" />
+    <Compile Include="Object\LogType.cs" />
+    <Compile Include="Object\ls.cs" />
+    <Compile Include="Object\Module.cs" />
+    <Compile Include="Object\ModulePower.cs" />
+    <Compile Include="Object\DataState.cs" />
+    <Compile Include="Object\ModulePowerPar.cs" />
+    <Compile Include="Object\OrderState.cs" />
+    <Compile Include="Object\PowerFlag.cs" />
+    <Compile Include="Object\PowerInfo.cs" />
+    <Compile Include="Object\PowerState.cs" />
+    <Compile Include="Object\QingShuCourseMessage.cs" />
+    <Compile Include="Object\QingShuMessage.cs" />
+    <Compile Include="Object\QingShuStuCourse.cs" />
+    <Compile Include="Object\QingShuStuMessage.cs" />
+    <Compile Include="Object\QingShuStuScore.cs" />
+    <Compile Include="Object\QingStuInfo.cs" />
+    <Compile Include="Object\ResultInfo.cs" />
+    <Compile Include="Object\SexValue.cs" />
+    <Compile Include="Object\StuInfoAge.cs" />
+    <Compile Include="Object\StuInfoExtended.cs" />
+    <Compile Include="Object\StuInfoReport.cs" />
+    <Compile Include="Object\SubMajor.cs" />
+    <Compile Include="Object\TeachPlanNew.cs" />
+    <Compile Include="Object\TeachPlanType.cs" />
+    <Compile Include="Object\YesOrNo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\EduPageBase.cs" />
+    <Compile Include="Views\TeaPlan\ViewObject\TeaPlanDesObj.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-datetimepicker-master\.gitattributes" />
+    <Content Include="Content\bootstrap-datetimepicker-master\.gitignore" />
+    <Content Include="Content\bootstrap-datetimepicker-master\css\bootstrap-datetimepicker.css" />
+    <Content Include="Content\bootstrap-datetimepicker-master\css\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\bootstrap-datetimepicker-master\Gruntfile.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\bootstrap-datetimepicker.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\bootstrap-datetimepicker.min.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.ar.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.az.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.bg.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.bn.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.ca.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.cs.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.da.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.de.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.ee.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.el.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.es.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.fi.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.fr.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.he.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.hr.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.hu.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.hy.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.id.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.is.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.it.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.ja.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.ka.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.ko.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.lt.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.lv.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.ms.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.nb.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.nl.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.no.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.pl.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.pt-BR.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.pt.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.ro.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.rs-latin.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.rs.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.ru.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.sk.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.sl.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.sv.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.sw.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.th.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.tr.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.ua.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.uk.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.zh-CN.js" />
+    <Content Include="Content\bootstrap-datetimepicker-master\js\locales\bootstrap-datetimepicker.zh-TW.js" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\EasyUI\combo.css" />
+    <Content Include="Content\EasyUI\combobox.css" />
+    <Content Include="Content\EasyUI\easyloader.js" />
+    <Content Include="Content\EasyUI\images\accordion_arrows.png" />
+    <Content Include="Content\EasyUI\images\blank.gif" />
+    <Content Include="Content\EasyUI\images\calendar_arrows.png" />
+    <Content Include="Content\EasyUI\images\combo_arrow.png" />
+    <Content Include="Content\EasyUI\images\datagrid_icons.png" />
+    <Content Include="Content\EasyUI\images\datebox_arrow.png" />
+    <Content Include="Content\EasyUI\images\layout_arrows.png" />
+    <Content Include="Content\EasyUI\images\linkbutton_bg.png" />
+    <Content Include="Content\EasyUI\images\loading.gif" />
+    <Content Include="Content\EasyUI\images\menu_arrows.png" />
+    <Content Include="Content\EasyUI\images\messager_icons.png" />
+    <Content Include="Content\EasyUI\images\pagination_icons.png" />
+    <Content Include="Content\EasyUI\images\panel_tools.png" />
+    <Content Include="Content\EasyUI\images\passwordbox_close.png" />
+    <Content Include="Content\EasyUI\images\passwordbox_open.png" />
+    <Content Include="Content\EasyUI\images\searchbox_button.png" />
+    <Content Include="Content\EasyUI\images\slider_handle.png" />
+    <Content Include="Content\EasyUI\images\spinner_arrows.png" />
+    <Content Include="Content\EasyUI\images\tabs_icons.png" />
+    <Content Include="Content\EasyUI\images\tagbox_icons.png" />
+    <Content Include="Content\EasyUI\images\tree_icons.png" />
+    <Content Include="Content\EasyUI\images\validatebox_warning.png" />
+    <Content Include="Content\EasyUI\jquery.easyui.min.js" />
+    <Content Include="Content\EasyUI\jquery.min.js" />
+    <Content Include="Content\EasyUI\panel.css" />
+    <Content Include="Content\EasyUI\plugins\jquery.accordion.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.calendar.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.combo.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.combobox.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.combogrid.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.combotree.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.combotreegrid.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.datagrid.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.datalist.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.datebox.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.datetimebox.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.datetimespinner.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.dialog.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.draggable.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.droppable.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.filebox.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.form.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.layout.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.linkbutton.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.menu.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.menubutton.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.messager.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.mobile.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.numberbox.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.numberspinner.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.pagination.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.panel.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.parser.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.passwordbox.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.progressbar.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.propertygrid.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.resizable.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.searchbox.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.slider.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.spinner.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.splitbutton.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.switchbutton.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.tabs.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.tagbox.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.textbox.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.timespinner.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.tooltip.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.tree.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.treegrid.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.validatebox.js" />
+    <Content Include="Content\EasyUI\plugins\jquery.window.js" />
+    <Content Include="Content\EasyUI\textbox.css" />
+    <Content Include="Content\echarts-2.2.6\build\dist\chart\bar.js" />
+    <Content Include="Content\echarts-2.2.6\build\dist\chart\chord.js" />
+    <Content Include="Content\echarts-2.2.6\build\dist\chart\eventRiver.js" />
+    <Content Include="Content\echarts-2.2.6\build\dist\chart\force.js" />
+    <Content Include="Content\echarts-2.2.6\build\dist\chart\funnel.js" />
+    <Content Include="Content\echarts-2.2.6\build\dist\chart\gauge.js" />
+    <Content Include="Content\echarts-2.2.6\build\dist\chart\heatmap.js" />
+    <Content Include="Content\echarts-2.2.6\build\dist\chart\k.js" />
+    <Content Include="Content\echarts-2.2.6\build\dist\chart\line.js" />
+    <Content Include="Content\echarts-2.2.6\build\dist\chart\map.js" />
+    <Content Include="Content\echarts-2.2.6\build\dist\chart\pie.js" />
+    <Content Include="Content\echarts-2.2.6\build\dist\chart\radar.js" />
+    <Content Include="Content\echarts-2.2.6\build\dist\chart\scatter.js" />
+    <Content Include="Content\echarts-2.2.6\build\dist\chart\tree.js" />
+    <Content Include="Content\echarts-2.2.6\build\dist\chart\treemap.js" />
+    <Content Include="Content\echarts-2.2.6\build\dist\chart\venn.js" />
+    <Content Include="Content\echarts-2.2.6\build\dist\chart\wordCloud.js" />
+    <Content Include="Content\echarts-2.2.6\build\dist\echarts-all.js" />
+    <Content Include="Content\echarts-2.2.6\build\dist\echarts.js" />
+    <Content Include="Content\echarts-2.2.6\build\echarts-optimize-conf.js" />
+    <Content Include="Content\echarts-2.2.6\build\source\chart\bar.js" />
+    <Content Include="Content\echarts-2.2.6\build\source\chart\chord.js" />
+    <Content Include="Content\echarts-2.2.6\build\source\chart\eventRiver.js" />
+    <Content Include="Content\echarts-2.2.6\build\source\chart\force.js" />
+    <Content Include="Content\echarts-2.2.6\build\source\chart\funnel.js" />
+    <Content Include="Content\echarts-2.2.6\build\source\chart\gauge.js" />
+    <Content Include="Content\echarts-2.2.6\build\source\chart\heatmap.js" />
+    <Content Include="Content\echarts-2.2.6\build\source\chart\k.js" />
+    <Content Include="Content\echarts-2.2.6\build\source\chart\line.js" />
+    <Content Include="Content\echarts-2.2.6\build\source\chart\map.js" />
+    <Content Include="Content\echarts-2.2.6\build\source\chart\pie.js" />
+    <Content Include="Content\echarts-2.2.6\build\source\chart\radar.js" />
+    <Content Include="Content\echarts-2.2.6\build\source\chart\scatter.js" />
+    <Content Include="Content\echarts-2.2.6\build\source\chart\tree.js" />
+    <Content Include="Content\echarts-2.2.6\build\source\chart\treemap.js" />
+    <Content Include="Content\echarts-2.2.6\build\source\chart\venn.js" />
+    <Content Include="Content\echarts-2.2.6\build\source\chart\wordCloud.js" />
+    <Content Include="Content\echarts-2.2.6\build\source\echarts-all.js" />
+    <Content Include="Content\echarts-2.2.6\build\source\echarts.js" />
+    <Content Include="Content\echarts-2.2.6\extension\BMap\doc\BMap.html" />
+    <Content Include="Content\echarts-2.2.6\extension\BMap\doc\BMap.js" />
+    <Content Include="Content\echarts-2.2.6\extension\BMap\doc\doc.html" />
+    <Content Include="Content\echarts-2.2.6\extension\BMap\doc\example.html" />
+    <Content Include="Content\echarts-2.2.6\extension\BMap\doc\example.js" />
+    <Content Include="Content\echarts-2.2.6\extension\BMap\src\main.js" />
+    <Content Include="Content\echarts-2.2.6\index-en.html" />
+    <Content Include="Content\echarts-2.2.6\index.html" />
+    <Content Include="Content\echarts-2.2.6\LICENSE.txt" />
+    <Content Include="Content\echarts-2.2.6\src\chart.js" />
+    <Content Include="Content\echarts-2.2.6\src\chart\bar.js" />
+    <Content Include="Content\echarts-2.2.6\src\chart\base.js" />
+    <Content Include="Content\echarts-2.2.6\src\chart\chord.js" />
+    <Content Include="Content\echarts-2.2.6\src\chart\eventRiver.js" />
+    <Content Include="Content\echarts-2.2.6\src\chart\force.js" />
+    <Content Include="Content\echarts-2.2.6\src\chart\funnel.js" />
+    <Content Include="Content\echarts-2.2.6\src\chart\gauge.js" />
+    <Content Include="Content\echarts-2.2.6\src\chart\heatmap.js" />
+    <Content Include="Content\echarts-2.2.6\src\chart\island.js" />
+    <Content Include="Content\echarts-2.2.6\src\chart\k.js" />
+    <Content Include="Content\echarts-2.2.6\src\chart\line.js" />
+    <Content Include="Content\echarts-2.2.6\src\chart\map.js" />
+    <Content Include="Content\echarts-2.2.6\src\chart\pie.js" />
+    <Content Include="Content\echarts-2.2.6\src\chart\radar.js" />
+    <Content Include="Content\echarts-2.2.6\src\chart\scatter.js" />
+    <Content Include="Content\echarts-2.2.6\src\chart\tree.js" />
+    <Content Include="Content\echarts-2.2.6\src\chart\treemap.js" />
+    <Content Include="Content\echarts-2.2.6\src\chart\venn.js" />
+    <Content Include="Content\echarts-2.2.6\src\chart\wordCloud.js" />
+    <Content Include="Content\echarts-2.2.6\src\component.js" />
+    <Content Include="Content\echarts-2.2.6\src\component\axis.js" />
+    <Content Include="Content\echarts-2.2.6\src\component\base.js" />
+    <Content Include="Content\echarts-2.2.6\src\component\categoryAxis.js" />
+    <Content Include="Content\echarts-2.2.6\src\component\dataRange.js" />
+    <Content Include="Content\echarts-2.2.6\src\component\dataView.js" />
+    <Content Include="Content\echarts-2.2.6\src\component\dataZoom.js" />
+    <Content Include="Content\echarts-2.2.6\src\component\grid.js" />
+    <Content Include="Content\echarts-2.2.6\src\component\legend.js" />
+    <Content Include="Content\echarts-2.2.6\src\component\polar.js" />
+    <Content Include="Content\echarts-2.2.6\src\component\roamController.js" />
+    <Content Include="Content\echarts-2.2.6\src\component\timeline.js" />
+    <Content Include="Content\echarts-2.2.6\src\component\title.js" />
+    <Content Include="Content\echarts-2.2.6\src\component\toolbox.js" />
+    <Content Include="Content\echarts-2.2.6\src\component\tooltip.js" />
+    <Content Include="Content\echarts-2.2.6\src\component\valueAxis.js" />
+    <Content Include="Content\echarts-2.2.6\src\config.js" />
+    <Content Include="Content\echarts-2.2.6\src\data\Graph.js" />
+    <Content Include="Content\echarts-2.2.6\src\data\KDTree.js" />
+    <Content Include="Content\echarts-2.2.6\src\data\quickSelect.js" />
+    <Content Include="Content\echarts-2.2.6\src\data\Tree.js" />
+    <Content Include="Content\echarts-2.2.6\src\echarts.js" />
+    <Content Include="Content\echarts-2.2.6\src\layer\heatmap.js" />
+    <Content Include="Content\echarts-2.2.6\src\layout\Chord.js" />
+    <Content Include="Content\echarts-2.2.6\src\layout\EdgeBundling.js" />
+    <Content Include="Content\echarts-2.2.6\src\layout\eventRiver.js" />
+    <Content Include="Content\echarts-2.2.6\src\layout\Force.js" />
+    <Content Include="Content\echarts-2.2.6\src\layout\forceLayoutWorker.js" />
+    <Content Include="Content\echarts-2.2.6\src\layout\Tree.js" />
+    <Content Include="Content\echarts-2.2.6\src\layout\TreeMap.js" />
+    <Content Include="Content\echarts-2.2.6\src\layout\WordCloud.js" />
+    <Content Include="Content\echarts-2.2.6\src\layout\WordCloudRectZero.js" />
+    <Content Include="Content\echarts-2.2.6\src\theme\default.js" />
+    <Content Include="Content\echarts-2.2.6\src\theme\infographic.js" />
+    <Content Include="Content\echarts-2.2.6\src\theme\macarons.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\accMath.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\coordinates.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\date.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\ecAnimation.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\ecData.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\ecEffect.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\ecQuery.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\kwargs.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoCoord.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\an_hui_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\ao_men_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\bei_jing_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\china_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\chong_qing_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\fu_jian_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\gan_su_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\guang_dong_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\guang_xi_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\gui_zhou_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\hai_nan_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\hei_long_jiang_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\he_bei_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\he_nan_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\hu_bei_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\hu_nan_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\jiang_su_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\jiang_xi_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\ji_lin_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\liao_ning_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\nei_meng_gu_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\ning_xia_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\qing_hai_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\shang_hai_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\shan_dong_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\shan_xi_1_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\shan_xi_2_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\si_chuan_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\tai_wan_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\tian_jin_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\world_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\xiang_gang_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\xin_jiang_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\xi_zang_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\yun_nan_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\geoJson\zhe_jiang_geo.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\params.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\encode.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\textFixed.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\ndarray.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\number.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\projection\albers.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\projection\mercator.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\projection\normal.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\projection\svg.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\shape\Candle.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\shape\Chain.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\shape\Cross.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\shape\GaugePointer.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\shape\HalfSmoothPolygon.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\shape\HandlePolygon.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\shape\Icon.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\shape\MarkLine.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\shape\normalIsCover.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\shape\Ribbon.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\shape\Symbol.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\smartLogSteps.js" />
+    <Content Include="Content\echarts-2.2.6\src\util\smartSteps.js" />
+    <Content Include="Content\echarts-2.2.6\test\allchart\all.html" />
+    <Content Include="Content\echarts-2.2.6\test\allchart\all.js" />
+    <Content Include="Content\echarts-2.2.6\test\heatmap.html" />
+    <Content Include="Content\echarts-2.2.6\test\kdtree.html" />
+    <Content Include="Content\echarts-2.2.6\test\performance\option.js" />
+    <Content Include="Content\echarts-2.2.6\test\performance\p.html" />
+    <Content Include="Content\echarts-2.2.6\test\performance\p.js" />
+    <Content Include="Content\images\chak-1.png" />
+    <Content Include="Content\images\chak-2.png" />
+    <Content Include="Content\images\chak-3.png" />
+    <Content Include="Content\images\chak-4.png" />
+    <Content Include="Content\images\default.jpeg" />
+    <Content Include="Content\images\erweim.png" />
+    <Content Include="Content\images\loading%281%29.gif" />
+    <Content Include="Content\images\loading.gif" />
+    <Content Include="Content\images\logo.jpg" />
+    <Content Include="Content\images\logo2.jpg" />
+    <Content Include="Content\images\logo3.jpg" />
+    <Content Include="Content\images\toolbar_del.gif" />
+    <Content Include="Content\images\toolbar_no.gif" />
+    <Content Include="Content\images\toolbar_ok.gif" />
+    <Content Include="Content\images\404.png" />
+    <Content Include="Content\IYun\css\common.css" />
+    <Content Include="Content\IYun\css\css.css" />
+    <Content Include="Content\IYun\css\Printcss.css" />
+    <Content Include="Content\IYun\css\PrintGrid.css" />
+    <Content Include="Content\IYun\images\bg.jpg" />
+    <Content Include="Content\IYun\images\bg2.jpg" />
+    <Content Include="Content\IYun\images\bom.png" />
+    <Content Include="Content\IYun\images\bom2.png" />
+    <Content Include="Content\IYun\images\img.jpg" />
+    <Content Include="Content\IYun\images\info-img.png" />
+    <Content Include="Content\IYun\images\log-bom.jpg" />
+    <Content Include="Content\IYun\images\log-bom.png" />
+    <Content Include="Content\IYun\images\logo.png" />
+    <Content Include="Content\IYun\images\mm.jpg" />
+    <Content Include="Content\IYun\images\wei.jpg" />
+    <Content Include="Content\IYun\images\xwimg.jpg" />
+    <Content Include="Content\IYun\images\yzm.jpg" />
+    <Content Include="Content\IYun\images\zh.jpg" />
+    <Content Include="Content\IYun\jquery-migrate-1.1.0.js" />
+    <Content Include="Content\IYun\jquery.jqprint-0.3.js" />
+    <Content Include="Content\IYun\js\all-common.js" />
+    <Content Include="Content\IYun\js\demo.js" />
+    <Content Include="Content\IYun\js\iepng.js" />
+    <Content Include="Content\IYun\js\img\common_btn_cancel.gif" />
+    <Content Include="Content\IYun\js\img\common_btn_ok.gif" />
+    <Content Include="Content\IYun\js\img\common_loading.gif" />
+    <Content Include="Content\IYun\js\img\dialog_bc.png" />
+    <Content Include="Content\IYun\js\img\dialog_bg.png" />
+    <Content Include="Content\IYun\js\img\dialog_bl.png" />
+    <Content Include="Content\IYun\js\img\dialog_border.png" />
+    <Content Include="Content\IYun\js\img\dialog_br.png" />
+    <Content Include="Content\IYun\js\img\dialog_btn_cancel.gif" />
+    <Content Include="Content\IYun\js\img\dialog_btn_ok.gif" />
+    <Content Include="Content\IYun\js\img\dialog_close1.png" />
+    <Content Include="Content\IYun\js\img\dialog_close2.png" />
+    <Content Include="Content\IYun\js\img\dialog_con_lc.png" />
+    <Content Include="Content\IYun\js\img\dialog_con_rc.png" />
+    <Content Include="Content\IYun\js\img\dialog_tc.png" />
+    <Content Include="Content\IYun\js\img\dialog_tc1.png" />
+    <Content Include="Content\IYun\js\img\dialog_tc2.gif" />
+    <Content Include="Content\IYun\js\img\dialog_tc2.png" />
+    <Content Include="Content\IYun\js\img\dialog_tl.png" />
+    <Content Include="Content\IYun\js\img\dialog_tr.png" />
+    <Content Include="Content\IYun\js\index_common.js" />
+    <Content Include="Content\IYun\js\jquery-1.7.1.min.js" />
+    <Content Include="Content\IYun\js\jquery-1.9.1.min.js" />
+    <Content Include="Content\IYun\js\jquery.editable-select.min.js" />
+    <Content Include="Content\IYun\js\jquery.flexslider-min.js" />
+    <Content Include="Content\IYun\js\jquery.nicescroll.js" />
+    <Content Include="Content\IYun\js\lang\en.js" />
+    <Content Include="Content\IYun\js\lang\zh-cn.js" />
+    <Content Include="Content\IYun\js\lang\zh-tw.js" />
+    <Content Include="Content\IYun\js\lrtk.js" />
+    <Content Include="Content\IYun\js\mxc.js" />
+    <Content Include="Content\IYun\js\need\laydate.css" />
+    <Content Include="Content\IYun\js\pcasunzip.js" />
+    <Content Include="Content\IYun\js\PIE.htc" />
+    <Content Include="Content\IYun\js\PIE.js" />
+    <Content Include="Content\IYun\js\PIE_uncompressed.htc" />
+    <Content Include="Content\IYun\js\PIE_uncompressed.js" />
+    <Content Include="Content\IYun\js\png.js" />
+    <Content Include="Content\IYun\js\select2.min.js" />
+    <Content Include="Content\IYun\js\skins\dahong\icon.png" />
+    <Content Include="Content\IYun\js\skins\dahong\laydate.css" />
+    <Content Include="Content\IYun\js\skins\danlan\icon.png" />
+    <Content Include="Content\IYun\js\skins\danlan\laydate.css" />
+    <Content Include="Content\IYun\js\skins\default\icon.png" />
+    <Content Include="Content\IYun\js\skins\default\laydate.css" />
+    <Content Include="Content\IYun\js\skins\molv\icon.png" />
+    <Content Include="Content\IYun\js\skins\molv\laydate.css" />
+    <Content Include="Content\IYun\js\skins\qianhuang\icon.png" />
+    <Content Include="Content\IYun\js\skins\qianhuang\laydate.css" />
+    <Content Include="Content\IYun\js\skins\yahui\icon.png" />
+    <Content Include="Content\IYun\js\skins\yahui\laydate.css" />
+    <Content Include="Content\IYun\js\skins\yalan\icon.png" />
+    <Content Include="Content\IYun\js\skins\yalan\laydate.css" />
+    <Content Include="Content\IYun\js\sl.js" />
+    <Content Include="Content\IYun\js\slideshow.js" />
+    <Content Include="Content\IYun\js\Validate.form.js" />
+    <Content Include="Content\IYun\js\Validate.js" />
+    <Content Include="Content\IYun\js\ZoomPic.js" />
+    <Content Include="Content\IYun\print.css" />
+    <Content Include="Content\IYun\style\css.css" />
+    <Content Include="Content\IYun\style\jquery.editable-select.min.css" />
+    <Content Include="Content\IYun\style\pic.css" />
+    <Content Include="Content\IYun\style\reset.css" />
+    <Content Include="Content\IYun\style\select2.min.css" />
+    <Content Include="Content\js\dialog.js" />
+    <Content Include="Content\js\dialog2.js" />
+    <Content Include="Content\js\drag.js" />
+    <Content Include="Content\js\getdate\calendar.js" />
+    <Content Include="Content\js\getdate\config.js" />
+    <Content Include="Content\js\getdate\lang\en.js" />
+    <Content Include="Content\js\getdate\lang\zh-cn.js" />
+    <Content Include="Content\js\getdate\lang\zh-tw.js" />
+    <Content Include="Content\js\getdate\My97DatePicker.htm" />
+    <Content Include="Content\js\getdate\skin\datePicker.gif" />
+    <Content Include="Content\js\getdate\skin\default\datepicker.css" />
+    <Content Include="Content\js\getdate\skin\default\img.gif" />
+    <Content Include="Content\js\getdate\skin\WdatePicker.css" />
+    <Content Include="Content\js\getdate\skin\whyGreen\bg.jpg" />
+    <Content Include="Content\js\getdate\skin\whyGreen\datepicker.css" />
+    <Content Include="Content\js\getdate\skin\whyGreen\img.gif" />
+    <Content Include="Content\js\getdate\WdatePicker.js" />
+    <Content Include="Content\js\iColorPicker.js" />
+    <Content Include="Content\js\jquery-1.7.1.min.js" />
+    <Content Include="Content\js\jquery-1.9.1.min.js" />
+    <Content Include="Content\js\jquery.min.js" />
+    <Content Include="Content\js\jquery.tinyTips.js" />
+    <Content Include="Content\js\menu.js" />
+    <Content Include="Content\js\pcas.js" />
+    <Content Include="Content\js\swfobject.js" />
+    <Content Include="Content\kindeditor-4.1.10\asp.net\bin\LitJSON.dll" />
+    <Content Include="Content\kindeditor-4.1.10\asp.net\demo.aspx" />
+    <Content Include="Content\kindeditor-4.1.10\asp.net\README.txt" />
+    <Content Include="Content\kindeditor-4.1.10\kindeditor-all-min.js" />
+    <Content Include="Content\kindeditor-4.1.10\kindeditor-all.js" />
+    <Content Include="Content\kindeditor-4.1.10\kindeditor-min.js" />
+    <Content Include="Content\kindeditor-4.1.10\kindeditor.js" />
+    <Content Include="Content\kindeditor-4.1.10\lang\ar.js" />
+    <Content Include="Content\kindeditor-4.1.10\lang\en.js" />
+    <Content Include="Content\kindeditor-4.1.10\lang\ko.js" />
+    <Content Include="Content\kindeditor-4.1.10\lang\zh_CN.js" />
+    <Content Include="Content\kindeditor-4.1.10\lang\zh_TW.js" />
+    <Content Include="Content\kindeditor-4.1.10\license.txt" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\anchor\anchor.js" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\autoheight\autoheight.js" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\baidumap\baidumap.js" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\baidumap\index.html" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\baidumap\map.html" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\clearhtml\clearhtml.js" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\code\code.js" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\code\prettify.css" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\code\prettify.js" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\emoticons.js" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\0.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\1.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\10.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\100.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\101.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\102.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\103.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\104.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\105.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\106.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\107.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\108.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\109.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\11.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\110.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\111.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\112.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\113.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\114.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\115.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\116.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\117.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\118.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\119.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\12.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\120.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\121.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\122.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\123.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\124.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\125.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\126.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\127.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\128.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\129.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\13.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\130.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\131.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\132.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\133.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\134.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\14.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\15.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\16.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\17.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\18.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\19.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\2.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\20.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\21.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\22.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\23.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\24.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\25.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\26.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\27.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\28.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\29.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\3.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\30.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\31.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\32.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\33.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\34.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\35.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\36.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\37.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\38.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\39.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\4.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\40.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\41.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\42.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\43.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\44.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\45.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\46.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\47.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\48.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\49.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\5.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\50.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\51.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\52.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\53.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\54.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\55.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\56.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\57.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\58.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\59.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\6.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\60.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\61.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\62.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\63.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\64.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\65.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\66.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\67.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\68.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\69.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\7.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\70.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\71.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\72.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\73.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\74.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\75.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\76.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\77.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\78.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\79.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\8.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\80.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\81.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\82.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\83.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\84.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\85.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\86.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\87.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\88.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\89.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\9.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\90.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\91.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\92.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\93.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\94.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\95.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\96.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\97.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\98.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\99.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\emoticons\images\static.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\filemanager\filemanager.js" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\filemanager\images\file-16.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\filemanager\images\file-64.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\filemanager\images\folder-16.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\filemanager\images\folder-64.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\filemanager\images\go-up.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\flash\flash.js" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\image\image.js" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\image\images\align_left.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\image\images\align_right.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\image\images\align_top.gif" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\image\images\refresh.png" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\insertfile\insertfile.js" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\lineheight\lineheight.js" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\link\link.js" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\map\map.html" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\map\map.js" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\media\media.js" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\multiimage\images\image.png" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\multiimage\images\select-files-en.png" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\multiimage\images\select-files-zh_CN.png" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\multiimage\images\swfupload.swf" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\multiimage\multiimage.js" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\pagebreak\pagebreak.js" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\plainpaste\plainpaste.js" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\preview\preview.js" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\quickformat\quickformat.js" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\table\table.js" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\template\html\1.html" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\template\html\2.html" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\template\html\3.html" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\template\template.js" />
+    <Content Include="Content\kindeditor-4.1.10\plugins\wordpaste\wordpaste.js" />
+    <Content Include="Content\kindeditor-4.1.10\themes\common\anchor.gif" />
+    <Content Include="Content\kindeditor-4.1.10\themes\common\blank.gif" />
+    <Content Include="Content\kindeditor-4.1.10\themes\common\flash.gif" />
+    <Content Include="Content\kindeditor-4.1.10\themes\common\loading.gif" />
+    <Content Include="Content\kindeditor-4.1.10\themes\common\media.gif" />
+    <Content Include="Content\kindeditor-4.1.10\themes\common\rm.gif" />
+    <Content Include="Content\kindeditor-4.1.10\themes\default\background.png" />
+    <Content Include="Content\kindeditor-4.1.10\themes\default\default.css" />
+    <Content Include="Content\kindeditor-4.1.10\themes\default\default.png" />
+    <Content Include="Content\kindeditor-4.1.10\themes\qq\editor.gif" />
+    <Content Include="Content\kindeditor-4.1.10\themes\qq\qq.css" />
+    <Content Include="Content\kindeditor-4.1.10\themes\simple\simple.css" />
+    <Content Include="Content\login\images\bg.png" />
+    <Content Include="Content\login\images\logo.png" />
+    <Content Include="Content\login\images\yzm.jpg" />
+    <Content Include="Content\login\style\css.css" />
+    <Content Include="Content\login\style\pic.css" />
+    <Content Include="Content\login\style\reset.css" />
+    <Content Include="Content\manage\ComboboxBind.js" />
+    <Content Include="Content\manage\images\30op.png" />
+    <Content Include="Content\manage\images\bell.png" />
+    <Content Include="Content\manage\images\bg.png" />
+    <Content Include="Content\manage\images\bjq.jpg" />
+    <Content Include="Content\manage\images\close.png" />
+    <Content Include="Content\manage\images\dot.png" />
+    <Content Include="Content\manage\images\fhui.png" />
+    <Content Include="Content\manage\images\gl.png" />
+    <Content Include="Content\manage\images\icon-x.png" />
+    <Content Include="Content\manage\images\icon-x2.png" />
+    <Content Include="Content\manage\images\jia1.jpg" />
+    <Content Include="Content\manage\images\jiaa.jpg" />
+    <Content Include="Content\manage\images\jian1.jpg" />
+    <Content Include="Content\manage\images\line.png" />
+    <Content Include="Content\manage\images\loading.gif" />
+    <Content Include="Content\manage\images\logo.png" />
+    <Content Include="Content\manage\images\qq.png" />
+    <Content Include="Content\manage\images\ques.png" />
+    <Content Include="Content\manage\images\toux.jpg" />
+    <Content Include="Content\manage\images\xx.png" />
+    <Content Include="Content\manage\images\yzm.jpg" />
+    <Content Include="Content\manage\js\all-common.js" />
+    <Content Include="Content\manage\js\demo.js" />
+    <Content Include="Content\manage\js\iepng.js" />
+    <Content Include="Content\manage\js\img\common_btn_cancel.gif" />
+    <Content Include="Content\manage\js\img\common_btn_ok.gif" />
+    <Content Include="Content\manage\js\img\common_loading.gif" />
+    <Content Include="Content\manage\js\img\dialog_bc.png" />
+    <Content Include="Content\manage\js\img\dialog_bg.png" />
+    <Content Include="Content\manage\js\img\dialog_bl.png" />
+    <Content Include="Content\manage\js\img\dialog_border.png" />
+    <Content Include="Content\manage\js\img\dialog_br.png" />
+    <Content Include="Content\manage\js\img\dialog_btn_cancel.gif" />
+    <Content Include="Content\manage\js\img\dialog_btn_ok.gif" />
+    <Content Include="Content\manage\js\img\dialog_close1.png" />
+    <Content Include="Content\manage\js\img\dialog_close2.png" />
+    <Content Include="Content\manage\js\img\dialog_con_lc.png" />
+    <Content Include="Content\manage\js\img\dialog_con_rc.png" />
+    <Content Include="Content\manage\js\img\dialog_tc.png" />
+    <Content Include="Content\manage\js\img\dialog_tc1.png" />
+    <Content Include="Content\manage\js\img\dialog_tc2.gif" />
+    <Content Include="Content\manage\js\img\dialog_tc2.png" />
+    <Content Include="Content\manage\js\img\dialog_tl.png" />
+    <Content Include="Content\manage\js\img\dialog_tr.png" />
+    <Content Include="Content\manage\js\index_common.js" />
+    <Content Include="Content\manage\js\jquery-1.7.1.min.js" />
+    <Content Include="Content\manage\js\jquery-1.9.1.min.js" />
+    <Content Include="Content\manage\js\jquery.flexslider-min.js" />
+    <Content Include="Content\manage\js\jquery.nicescroll.js" />
+    <Content Include="Content\manage\js\lang\en.js" />
+    <Content Include="Content\manage\js\lang\zh-cn.js" />
+    <Content Include="Content\manage\js\lang\zh-tw.js" />
+    <Content Include="Content\manage\js\lrtk.js" />
+    <Content Include="Content\manage\js\mxc.js" />
+    <Content Include="Content\manage\js\need\laydate.css" />
+    <Content Include="Content\manage\js\pcasunzip.js" />
+    <Content Include="Content\manage\js\PIE.htc" />
+    <Content Include="Content\manage\js\PIE.js" />
+    <Content Include="Content\manage\js\PIE_uncompressed.htc" />
+    <Content Include="Content\manage\js\PIE_uncompressed.js" />
+    <Content Include="Content\manage\js\png.js" />
+    <Content Include="Content\manage\js\skins\dahong\icon.png" />
+    <Content Include="Content\manage\js\skins\dahong\laydate.css" />
+    <Content Include="Content\manage\js\skins\danlan\icon.png" />
+    <Content Include="Content\manage\js\skins\danlan\laydate.css" />
+    <Content Include="Content\manage\js\skins\default\icon.png" />
+    <Content Include="Content\manage\js\skins\default\laydate.css" />
+    <Content Include="Content\manage\js\skins\molv\icon.png" />
+    <Content Include="Content\manage\js\skins\molv\laydate.css" />
+    <Content Include="Content\manage\js\skins\qianhuang\icon.png" />
+    <Content Include="Content\manage\js\skins\qianhuang\laydate.css" />
+    <Content Include="Content\manage\js\skins\yahui\icon.png" />
+    <Content Include="Content\manage\js\skins\yahui\laydate.css" />
+    <Content Include="Content\manage\js\skins\yalan\icon.png" />
+    <Content Include="Content\manage\js\skins\yalan\laydate.css" />
+    <Content Include="Content\manage\js\sl.js" />
+    <Content Include="Content\manage\js\slideshow.js" />
+    <Content Include="Content\manage\js\Validate.form.js" />
+    <Content Include="Content\manage\js\Validate.js" />
+    <Content Include="Content\manage\js\Validform_v5.3.2_min.js" />
+    <Content Include="Content\manage\js\ZoomPic.js" />
+    <Content Include="Content\manage\style\css.css" />
+    <Content Include="Content\manage\style\pic.css" />
+    <Content Include="Content\manage\style\reset.css" />
+    <Content Include="Content\news\css.css" />
+    <Content Include="Content\news\news.css" />
+    <Content Include="Content\news\news.js" />
+    <Content Include="Content\news\nn-bt.jpg" />
+    <Content Include="Content\news\reset.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\TopMessage.css" />
+    <Content Include="Content\WdatePicker\calendar.js" />
+    <Content Include="Content\WdatePicker\lang\en.js" />
+    <Content Include="Content\WdatePicker\lang\zh-cn.js" />
+    <Content Include="Content\WdatePicker\lang\zh-tw.js" />
+    <Content Include="Content\WdatePicker\skin\datePicker.gif" />
+    <Content Include="Content\WdatePicker\skin\default\datepicker.css" />
+    <Content Include="Content\WdatePicker\skin\default\img.gif" />
+    <Content Include="Content\WdatePicker\skin\WdatePicker.css" />
+    <Content Include="Content\WdatePicker\skin\whyGreen\bg.jpg" />
+    <Content Include="Content\WdatePicker\skin\whyGreen\datepicker.css" />
+    <Content Include="Content\WdatePicker\skin\whyGreen\img.gif" />
+    <Content Include="Content\WdatePicker\WdatePicker.js" />
+    <Content Include="File\mould\private.xml" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\echarts-2.2.6\.editorconfig" />
+    <Content Include="Content\echarts-2.2.6\.gitignore" />
+    <Content Include="Content\echarts-2.2.6\.jshintignore" />
+    <Content Include="Content\echarts-2.2.6\.jshintrc" />
+    <Content Include="Content\echarts-2.2.6\.npmignore" />
+    <Content Include="Content\echarts-2.2.6\bower.json" />
+    <Content Include="Content\echarts-2.2.6\extension\README.md" />
+    <Content Include="Content\echarts-2.2.6\package.json" />
+    <Content Include="Content\echarts-2.2.6\README.md" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\an_hui_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\ao_men_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\bei_jing_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\china_city.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\china_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\chong_qing_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\fu_jian_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\gan_su_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\guang_dong_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\guang_xi_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\gui_zhou_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\hai_nan_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\hei_long_jiang_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\he_bei_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\he_nan_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\hu_bei_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\hu_nan_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\jiang_su_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\jiang_xi_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\ji_lin_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\liao_ning_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\nei_meng_gu_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\ning_xia_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\qing_hai_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\shang_hai_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\shan_dong_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\shan_xi_1_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\shan_xi_2_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\si_chuan_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\tai_wan_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\tian_jin_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\world_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\xiang_gang_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\xin_jiang_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\xi_zang_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\yun_nan_geo.json" />
+    <Content Include="Content\echarts-2.2.6\src\util\mapData\rawData\geoJson\zhe_jiang_geo.json" />
+    <Content Include="Content\kindeditor-4.1.10\asp.net\file_manager_json.ashx" />
+    <Content Include="Content\kindeditor-4.1.10\asp.net\upload_json.ashx" />
+    <Content Include="Content\IYun\style\_notes\css.css.mno" />
+    <Content Include="Content\IYun\images\Thumbs.db" />
+    <Content Include="Content\manage\images\Thumbs.db" />
+    <Content Include="Content\manage\style\_notes\css.css.mno" />
+    <Content Include="Content\kindeditor-4.1.10\asp.net\excelUpload.ashx" />
+    <Content Include="File\mould\学生信息导入模板.xlsx" />
+    <Content Include="File\mould\成绩导入模板.xlsx" />
+    <Content Include="File\mould\教学计划导入表.xlsx" />
+    <Content Include="Content\login\images\Thumbs.db" />
+    <Content Include="Content\login\style\_notes\css.css.mno" />
+    <Content Include="File\mould\专业信息导入模板 .xlsx" />
+    <Content Include="File\mould\函授站信息导入模板.xlsx" />
+    <Content Include="File\mould\课程信息导入模板.xlsx" />
+    <Content Include="File\mould\key.key" />
+    <Content Include="File\mould\教学计划模板.xlsx" />
+    <Content Include="File\mould\函授站学生信息导入模板.xlsx" />
+    <Content Include="File\mould\学生毕业证号导入模板.xlsx" />
+    <Content Include="File\mould\学位外语导入模版.xls" />
+    <Content Include="Content\bootstrap-datetimepicker-master\.jshintrc" />
+    <Content Include="Content\bootstrap-datetimepicker-master\.npmignore" />
+    <Content Include="Content\bootstrap-datetimepicker-master\.travis.yml" />
+    <Content Include="Content\bootstrap-datetimepicker-master\bower.json" />
+    <Content Include="Content\bootstrap-datetimepicker-master\build\build.less" />
+    <Content Include="Content\bootstrap-datetimepicker-master\build\build_standalone.less" />
+    <Content Include="Content\bootstrap-datetimepicker-master\less\datetimepicker.less" />
+    <Content Include="Content\bootstrap-datetimepicker-master\LICENSE" />
+    <Content Include="Content\bootstrap-datetimepicker-master\minify.sh" />
+    <Content Include="Content\bootstrap-datetimepicker-master\package.json" />
+    <Content Include="Content\bootstrap-datetimepicker-master\README.md" />
+    <EntityDeploy Include="Models\IYun.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>IYun.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\IYun.edmx.diagram">
+      <DependentUpon>IYun.edmx</DependentUpon>
+    </Content>
+    <None Include="Properties\PublishProfiles\edu.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
+    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Models\IYun.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>IYun.edmx</DependentUpon>
+      <LastGenOutput>IYun.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\IYun.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>IYun.edmx</DependentUpon>
+      <LastGenOutput>IYun.cs</LastGenOutput>
+    </Content>
+    <Content Include="Properties\PublishProfiles\edu.pubxml.user" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\jquery-1.8.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.8.24.js" />
+    <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-2.2.0.debug.js" />
+    <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\MvcPager.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Views\AdminBase\Board.cshtml" />
+    <Content Include="Views\AdminBase\Foot.cshtml" />
+    <Content Include="Views\AdminBase\Login.cshtml" />
+    <Content Include="Views\AdminBase\Main.cshtml" />
+    <Content Include="Views\AdminBase\PartialModuleView.cshtml" />
+    <Content Include="Views\AdminBase\Top.cshtml" />
+    <Content Include="Views\DicAdmin\CourseType.cshtml" />
+    <Content Include="Views\DicAdmin\CourseTypeAddPage.cshtml" />
+    <Content Include="Views\DicAdmin\CourseTypeEditPage.cshtml" />
+    <Content Include="Views\DicAdmin\CourseTypeList.cshtml" />
+    <Content Include="Views\DicAdmin\CourseTypeTable.cshtml" />
+    <Content Include="Views\DicAdmin\EduType.cshtml" />
+    <Content Include="Views\DicAdmin\EduTypeAddPage.cshtml" />
+    <Content Include="Views\DicAdmin\EduTypeEditPage.cshtml" />
+    <Content Include="Views\DicAdmin\EduTypeList.cshtml" />
+    <Content Include="Views\DicAdmin\EduTypeTable.cshtml" />
+    <Content Include="Views\DicAdmin\Nation.cshtml" />
+    <Content Include="Views\DicAdmin\NationAddPage.cshtml" />
+    <Content Include="Views\DicAdmin\NationEditPage.cshtml" />
+    <Content Include="Views\DicAdmin\NationList.cshtml" />
+    <Content Include="Views\DicAdmin\NationTable.cshtml" />
+    <Content Include="Views\DicAdmin\Politics.cshtml" />
+    <Content Include="Views\DicAdmin\PoliticsAddPage.cshtml" />
+    <Content Include="Views\DicAdmin\PoliticsEditPage.cshtml" />
+    <Content Include="Views\DicAdmin\PoliticsList.cshtml" />
+    <Content Include="Views\DicAdmin\PoliticsTable.cshtml" />
+    <Content Include="Views\DicAdmin\StuState.cshtml" />
+    <Content Include="Views\DicAdmin\StuStateAddPage.cshtml" />
+    <Content Include="Views\DicAdmin\StuStateEditPage.cshtml" />
+    <Content Include="Views\DicAdmin\StuStateList.cshtml" />
+    <Content Include="Views\DicAdmin\StuStateTable.cshtml" />
+    <Content Include="Views\DicAdmin\StuType.cshtml" />
+    <Content Include="Views\DicAdmin\StuTypeAddPage.cshtml" />
+    <Content Include="Views\DicAdmin\StuTypeEditPage.cshtml" />
+    <Content Include="Views\DicAdmin\StuTypeList.cshtml" />
+    <Content Include="Views\DicAdmin\StuTypeTable.cshtml" />
+    <Content Include="Views\Edu\Course.cshtml" />
+    <Content Include="Views\Edu\CourseAddPage.cshtml" />
+    <Content Include="Views\Edu\CourseCodeCheckUp.cshtml" />
+    <Content Include="Views\Edu\CourseEditPage.cshtml" />
+    <Content Include="Views\Edu\CourseList.cshtml" />
+    <Content Include="Views\Edu\CourseNameCheckUp.cshtml" />
+    <Content Include="Views\Edu\CourseTable.cshtml" />
+    <Content Include="Views\Edu\Major.cshtml" />
+    <Content Include="Views\Edu\MajorLib.cshtml" />
+    <Content Include="Views\Edu\MajorLibList.cshtml" />
+    <Content Include="Views\Edu\MajorLibTable.cshtml" />
+    <Content Include="Views\Edu\MajorList.cshtml" />
+    <Content Include="Views\Edu\MajorTable.cshtml" />
+    <Content Include="Views\Edu\MajorTeachPlan.cshtml" />
+    <Content Include="Views\Edu\MajorTeachPlanNew.cshtml" />
+    <Content Include="Views\Edu\NewAddPage.cshtml" />
+    <Content Include="Views\Edu\NewDes.cshtml" />
+    <Content Include="Views\Edu\NewEditPage.cshtml" />
+    <Content Include="Views\Edu\News.cshtml" />
+    <Content Include="Views\Edu\Shouye.cshtml" />
+    <Content Include="Views\Edu\TeachPlan.cshtml" />
+    <Content Include="Views\Edu\TeachPlanA.cshtml" />
+    <Content Include="Views\Edu\TeachPlanAddPage.cshtml" />
+    <Content Include="Views\Edu\TeachPlanBYsd.cshtml" />
+    <Content Include="Views\Edu\TeachplanDes.cshtml" />
+    <Content Include="Views\Edu\TeachPlanDesAddPage.cshtml" />
+    <Content Include="Views\Edu\TeachPlanDesAddPageBYsd.cshtml" />
+    <Content Include="Views\Edu\TeachPlanDesEditPage.cshtml" />
+    <Content Include="Views\Edu\TeachPlanEditPage.cshtml" />
+    <Content Include="Views\Edu\TeachPlanList.cshtml" />
+    <Content Include="Views\Edu\TeachPlanListBYsd.cshtml" />
+    <Content Include="Views\Edu\TeachPlanTable.cshtml" />
+    <Content Include="Views\Edu\TeachplanTableBYsd.cshtml" />
+    <Content Include="Views\Edu\UploadCourse.cshtml" />
+    <Content Include="Views\Edu\UploadMajor.cshtml" />
+    <Content Include="Views\Edu\UploadTeachPlan.cshtml" />
+    <Content Include="Views\Expense\AddAllBili.cshtml" />
+    <Content Include="Views\Expense\AddAllFee.cshtml" />
+    <Content Include="Views\Expense\AddAtrFee.cshtml" />
+    <Content Include="Views\Expense\AddFeeBili.cshtml" />
+    <Content Include="Views\Expense\AddSubFee.cshtml" />
+    <Content Include="Views\Expense\AllBili.cshtml" />
+    <Content Include="Views\Expense\AllBiliList.cshtml" />
+    <Content Include="Views\Expense\AllBiliTable.cshtml" />
+    <Content Include="Views\Expense\ApplyInvoice.cshtml" />
+    <Content Include="Views\Expense\ApplyInvoiceList.cshtml" />
+    <Content Include="Views\Expense\ApplyInvoiceTable.cshtml" />
+    <Content Include="Views\Expense\ApplyNoRegister.cshtml" />
+    <Content Include="Views\Expense\ApplyRegister.cshtml" />
+    <Content Include="Views\Expense\EduFeeArt.cshtml" />
+    <Content Include="Views\Expense\EduFeeSyBiliArt.cshtml" />
+    <Content Include="Views\Expense\EduFeeSys.cshtml" />
+    <Content Include="Views\Expense\EduFeeSysList.cshtml" />
+    <Content Include="Views\Expense\EduFeeSysTable.cshtml" />
+    <Content Include="Views\Expense\InvoiceeManage.cshtml" />
+    <Content Include="Views\Expense\MajorFeeSys.cshtml" />
+    <Content Include="Views\Expense\PartialApplyRegisterList.cshtml" />
+    <Content Include="Views\Expense\StudentNoRegister.cshtml" />
+    <Content Include="Views\Expense\StuFeeBatDes.cshtml" />
+    <Content Include="Views\Expense\StuFeeInvoiceDes.cshtml" />
+    <Content Include="Views\Expense\SubEduFeeSys.cshtml" />
+    <Content Include="Views\Expense\SubEduFeeSysList.cshtml" />
+    <Content Include="Views\Expense\SubEduFeeSysTable.cshtml" />
+    <Content Include="Views\Expense\SubFeeBili.cshtml" />
+    <Content Include="Views\Expense\SubFeeBiliList.cshtml" />
+    <Content Include="Views\Expense\SubFeeBiliTable.cshtml" />
+    <Content Include="Views\Expense\SubFeeTotal.cshtml" />
+    <Content Include="Views\Expense\SubFeeTotalList.cshtml" />
+    <Content Include="Views\Expense\SubFeeTotalTable.cshtml" />
+    <Content Include="Views\Expense\SubMainNoRegister.cshtml" />
+    <Content Include="Views\Expense\SubNoRegister.cshtml" />
+    <Content Include="Views\Graduate\ClassGridSampleStu.cshtml" />
+    <Content Include="Views\Graduate\EditEnglishScore.cshtml" />
+    <Content Include="Views\Graduate\GridSampleEExamScore.cshtml" />
+    <Content Include="Views\Graduate\PrintGridDegreeShow.aspx" />
+    <Content Include="Views\Graduate\StDegreeScore.cshtml" />
+    <Content Include="Views\Graduate\StuDegreeCheck.cshtml" />
+    <Content Include="Views\Graduate\StuDegreeCheckDes.cshtml" />
+    <Content Include="Views\Graduate\StudentGegreeEnglish.cshtml" />
+    <Content Include="Views\Graduate\StudentGegreeEnglishList.cshtml" />
+    <Content Include="Views\Graduate\StudentGegreeEnglishTable.cshtml" />
+    <Content Include="Views\Graduate\StudentGradInfo.cshtml" />
+    <Content Include="Views\Graduate\StudentGradInfoList.cshtml" />
+    <Content Include="Views\Graduate\StudentGradInfoTable.cshtml" />
+    <Content Include="Views\Graduate\StuGradCheckDes.cshtml" />
+    <Content Include="Views\Graduate\StuGradInfoCheck.cshtml" />
+    <Content Include="Views\Graduate\StuGradInfoNum.cshtml" />
+    <Content Include="Views\Graduate\StuGradInfoRester.cshtml" />
+    <Content Include="Views\Graduate\StuGradInfoUpload.cshtml" />
+    <Content Include="Views\Graduate\StuGridEnglishScore.cshtml" />
+    <Content Include="Views\Graduate\StuGridEnglishScoreList.cshtml" />
+    <Content Include="Views\Graduate\StuGridEnglishScoreTable.cshtml" />
+    <Content Include="Views\Graduate\StuScoreList.cshtml" />
+    <Content Include="Views\Graduate\UploadStuGridEnglishScore.cshtml" />
+    <Content Include="Views\Helper\Course.cshtml" />
+    <Content Include="Views\Helper\CourseType.cshtml" />
+    <Content Include="Views\Helper\EduType.cshtml" />
+    <Content Include="Views\Helper\EnrollYear.cshtml" />
+    <Content Include="Views\Helper\EnrollYear2.cshtml" />
+    <Content Include="Views\Helper\EnrollYearOld.cshtml" />
+    <Content Include="Views\Helper\LogType.cshtml" />
+    <Content Include="Views\Helper\Major.cshtml" />
+    <Content Include="Views\Helper\Major2.cshtml" />
+    <Content Include="Views\Helper\MajorLibrary.cshtml" />
+    <Content Include="Views\Helper\MajorLibrary2.cshtml" />
+    <Content Include="Views\Helper\Nation.cshtml" />
+    <Content Include="Views\Helper\Politics.cshtml" />
+    <Content Include="Views\Helper\Role.cshtml" />
+    <Content Include="Views\Helper\StrangeType.cshtml" />
+    <Content Include="Views\Helper\StuState.cshtml" />
+    <Content Include="Views\Helper\StuType.cshtml" />
+    <Content Include="Views\Helper\SubSchool.cshtml" />
+    <Content Include="Views\Helper\SubSchool2.cshtml" />
+    <Content Include="Views\Report\AgeReport.cshtml" />
+    <Content Include="Views\Report\StrangeReport.cshtml" />
+    <Content Include="Views\Report\StuInfoReport.cshtml" />
+    <Content Include="Views\Report\SubStuReport.cshtml" />
+    <Content Include="Views\Score\PrintScore.cshtml" />
+    <Content Include="Views\Score\ScoreScale.cshtml" />
+    <Content Include="Views\Score\StudentScoreCourse.cshtml" />
+    <Content Include="Views\Score\UploadScore.cshtml" />
+    <Content Include="Views\Score\VerifyScore.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\StudentAccount\SupplementaryTaxInfo.cshtml" />
+    <Content Include="Views\Student\ApplyRegister.cshtml" />
+    <Content Include="Views\Student\CardIdCheckUp.cshtml" />
+    <Content Include="Views\Student\FeeCheck.cshtml" />
+    <Content Include="Views\Student\FeeCheckList.cshtml" />
+    <Content Include="Views\Student\FeeCheckTable.cshtml" />
+    <Content Include="Views\Student\FeeManage.cshtml" />
+    <Content Include="Views\Student\FeeManageList.cshtml" />
+    <Content Include="Views\Student\FeeManageTable.cshtml" />
+    <Content Include="Views\Student\NewPrintNoticeFive.aspx" />
+    <Content Include="Views\Student\NewPrintNoticeFour.aspx" />
+    <Content Include="Views\Student\NewPrintNotice.aspx" />
+    <Content Include="Views\Student\NewPrintNoticeThree.aspx" />
+    <Content Include="Views\Student\NewPrintNoticeTwo.aspx" />
+    <Content Include="Views\Student\PrintNotice.aspx" />
+    <Content Include="Views\SysAdmin\AddSmallPower.cshtml" />
+    <Content Include="Views\SysAdmin\Admin.cshtml" />
+    <Content Include="Views\SysAdmin\AdminAddPage.cshtml" />
+    <Content Include="Views\SysAdmin\AdminCourseLinkList.cshtml" />
+    <Content Include="Views\SysAdmin\AdminCourseLinkPage.cshtml" />
+    <Content Include="Views\SysAdmin\AdminCourseLinkTable.cshtml" />
+    <Content Include="Views\SysAdmin\AdminEditPage.cshtml" />
+    <Content Include="Views\SysAdmin\AdminList.cshtml" />
+    <Content Include="Views\SysAdmin\AdminSubLinkList.cshtml" />
+    <Content Include="Views\SysAdmin\AdminSubLinkPage.cshtml" />
+    <Content Include="Views\SysAdmin\AdminSubLinkTable.cshtml" />
+    <Content Include="Views\SysAdmin\AdminTable.cshtml" />
+    <Content Include="Views\SysAdmin\CourseType.cshtml" />
+    <Content Include="Views\SysAdmin\CourseTypeAddPage.cshtml" />
+    <Content Include="Views\SysAdmin\CourseTypeEditPage.cshtml" />
+    <Content Include="Views\SysAdmin\CourseTypeList.cshtml" />
+    <Content Include="Views\SysAdmin\CourseTypeTable.cshtml" />
+    <Content Include="Views\SysAdmin\DbLog.cshtml" />
+    <Content Include="Views\SysAdmin\DbLogList.cshtml" />
+    <Content Include="Views\SysAdmin\DbLogTable.cshtml" />
+    <Content Include="Views\SysAdmin\EduType.cshtml" />
+    <Content Include="Views\SysAdmin\EduTypeAddPage.cshtml" />
+    <Content Include="Views\SysAdmin\EduTypeEditPage.cshtml" />
+    <Content Include="Views\SysAdmin\EduTypeList.cshtml" />
+    <Content Include="Views\SysAdmin\EduTypeTable.cshtml" />
+    <Content Include="Views\SysAdmin\Module.cshtml" />
+    <Content Include="Views\SysAdmin\ModuleAddPage.cshtml" />
+    <Content Include="Views\SysAdmin\ModuleEditPage.cshtml" />
+    <Content Include="Views\SysAdmin\Nation.cshtml" />
+    <Content Include="Views\SysAdmin\NationAddPage.cshtml" />
+    <Content Include="Views\SysAdmin\NationEditPage.cshtml" />
+    <Content Include="Views\SysAdmin\NationList.cshtml" />
+    <Content Include="Views\SysAdmin\NationTable.cshtml" />
+    <Content Include="Views\SysAdmin\Politics.cshtml" />
+    <Content Include="Views\SysAdmin\PoliticsAddPage.cshtml" />
+    <Content Include="Views\SysAdmin\PoliticsEditPage.cshtml" />
+    <Content Include="Views\SysAdmin\PoliticsList.cshtml" />
+    <Content Include="Views\SysAdmin\PoliticsTable.cshtml" />
+    <Content Include="Views\SysAdmin\PowerAdmin.cshtml" />
+    <Content Include="Views\SysAdmin\Role.cshtml" />
+    <Content Include="Views\SysAdmin\RoleAddPage.cshtml" />
+    <Content Include="Views\SysAdmin\RoleEditPage.cshtml" />
+    <Content Include="Views\SysAdmin\SmallPower.cshtml" />
+    <Content Include="Views\SysAdmin\SmallPowerList.cshtml" />
+    <Content Include="Views\SysAdmin\SmallPowerTable.cshtml" />
+    <Content Include="Views\SysAdmin\StuNum.cshtml" />
+    <Content Include="Views\SysAdmin\StuState.cshtml" />
+    <Content Include="Views\SysAdmin\StuStateAddPage.cshtml" />
+    <Content Include="Views\SysAdmin\StuStateEditPage.cshtml" />
+    <Content Include="Views\SysAdmin\StuStateList.cshtml" />
+    <Content Include="Views\SysAdmin\StuStateTable.cshtml" />
+    <Content Include="Views\SysAdmin\StuType.cshtml" />
+    <Content Include="Views\SysAdmin\StuTypeAddPage.cshtml" />
+    <Content Include="Views\SysAdmin\StuTypeEditPage.cshtml" />
+    <Content Include="Views\SysAdmin\SubSchool.cshtml" />
+    <Content Include="Views\SysAdmin\SubSchoolAddPage.cshtml" />
+    <Content Include="Views\SysAdmin\SubSchoolCodeCheckUp.cshtml" />
+    <Content Include="Views\SysAdmin\SubSchoolEditPage.cshtml" />
+    <Content Include="Views\SysAdmin\SubSchoolList.cshtml" />
+    <Content Include="Views\SysAdmin\SubSchoolNameCheckUp.cshtml" />
+    <Content Include="Views\SysAdmin\SubSchoolTable.cshtml" />
+    <Content Include="Views\SysAdmin\UploadSubSchool.cshtml" />
+    <Content Include="Views\SysAdmin\VerifySubSchool.cshtml" />
+    <Content Include="Views\TeaPlan\CoursePlan.cshtml" />
+    <Content Include="Views\TeaPlan\CoursePlanList.cshtml" />
+    <Content Include="Views\TeaPlan\CoursePlanTable.cshtml" />
+    <Content Include="Views\TeaPlan\SubSchoolTeaPlanTemplet.cshtml" />
+    <Content Include="Views\TeaPlan\SubSchoolTempletList.cshtml" />
+    <Content Include="Views\TeaPlan\SubTeaPlanTempletDes.cshtml" />
+    <Content Include="Views\TeaPlan\SubTeaPlanTempletTable.cshtml" />
+    <Content Include="Views\TeaPlan\SubYearCourseTeaPlan.cshtml" />
+    <Content Include="Views\TeaPlan\TeaPlanTemplet.cshtml" />
+    <Content Include="Views\TeaPlan\TeaPlanTempletDes.cshtml" />
+    <Content Include="Views\TeaPlan\TeaPlanTempletList.cshtml" />
+    <Content Include="Views\TeaPlan\TeaPlanTempletTable.cshtml" />
+    <Content Include="Views\TeaPlan\YearCourseTeaPlanTemplet.cshtml" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Edu\NewsList.cshtml" />
+    <Content Include="Views\Edu\newsTable.cshtml" />
+    <Content Include="Views\Expense\EduFeeArtList.cshtml" />
+    <Content Include="Views\Expense\EduFeeArtTable.cshtml" />
+    <Content Include="Views\Expense\FeebatchCheckList.cshtml" />
+    <Content Include="Views\Expense\FeebatchCheckTable.cshtml" />
+    <Content Include="Views\Expense\InvoiceeManageList.cshtml" />
+    <Content Include="Views\Expense\InvoiceeManageTable.cshtml" />
+    <Content Include="Views\Expense\MajorFeeSysList.cshtml" />
+    <Content Include="Views\Expense\MajorFeeSyTable.cshtml" />
+    <Content Include="Views\Expense\PartialApplyRegisterTable.cshtml" />
+    <Content Include="Views\Report\StrangeTotalList.cshtml" />
+    <Content Include="Views\Report\StrangeTotalTable.cshtml" />
+    <Content Include="Views\Report\SubStuReportTable.cshtml" />
+    <Content Include="Views\SysAdmin\StuTypeList.cshtml" />
+    <Content Include="Views\SysAdmin\StuTypeTable.cshtml" />
+    <Content Include="Views\TeaPlan\SchoolCoursePlan.cshtml" />
+    <Content Include="Views\TeaPlan\Init.cshtml" />
+    <Content Include="Views\Expense\SubFeeStuTonji.cshtml" />
+    <Content Include="Views\Expense\SubFeeStuTonjiDes.cshtml" />
+    <Content Include="Views\Expense\StuFeeBatMajorDes.cshtml" />
+    <Content Include="Views\Expense\StuFeeBatMajorzhuanComThree.cshtml" />
+    <Content Include="Views\Expense\StuFeeBatMajorzhuanArtThree.cshtml" />
+    <Content Include="Views\Expense\StuFeeBatMajorzhuanComfour.cshtml" />
+    <Content Include="Views\Expense\StuFeeBatMajorzhuanbenComThree.cshtml" />
+    <Content Include="Views\Expense\StuFeeBatMajorzhuanbenArtThree.cshtml" />
+    <Content Include="Views\Expense\StuFeeBatMajorbenComfive.cshtml" />
+    <Content Include="Views\Score\ScoreStatistics.cshtml" />
+    <Content Include="Views\Score\ScoreStatistics_Course.cshtml" />
+    <Content Include="Views\SysAdmin\ErrorHtml.cshtml" />
+    <Content Include="Views\Report\EduTypeNewStuStatist.cshtml" />
+    <Content Include="Views\Score\ClassScoreList.cshtml" />
+    <Content Include="Views\Graduate\StuDegreeCheckList.cshtml" />
+    <Content Include="Views\Graduate\StuDegreeCheckTable.cshtml" />
+    <Content Include="Views\Graduate\StuGradInfoCheckList.cshtml" />
+    <Content Include="Views\Graduate\StuGradInfoCheckTable.cshtml" />
+    <Content Include="Views\Graduate\StuGradInfoNumList.cshtml" />
+    <Content Include="Views\Graduate\StuGradInfoNumTable.cshtml" />
+    <Content Include="Views\Helper\StrangeSubschool.cshtml" />
+    <Content Include="Views\Graduate\PrintStuDegree.cshtml" />
+    <Content Include="Views\Graduate\PrintGradInfoTonji.cshtml" />
+    <Content Include="Views\Graduate\StuGridAwardDegree.cshtml" />
+    <Content Include="Views\Graduate\ForGraduation.cshtml" />
+    <Content Include="Views\Graduate\StuGridApplyDegree.cshtml" />
+    <Content Include="Views\Graduate\PrintGridDegree.cshtml" />
+    <Content Include="Views\Score\StuScoreCourselist.cshtml" />
+    <Content Include="Views\Score\StuScoreCourseTable.cshtml" />
+    <Content Include="Views\Graduate\PrintGridDegreeList.cshtml" />
+    <Content Include="Views\Graduate\PrintGridDegreeTable.cshtml" />
+    <Content Include="Views\Student\AddAuditor.cshtml" />
+    <Content Include="Views\Student\AddStudent.cshtml" />
+    <Content Include="Views\Student\AllStrangeList.cshtml" />
+    <Content Include="Views\Student\AllStrangeTable.cshtml" />
+    <Content Include="Views\Student\AuditorInfo.cshtml" />
+    <Content Include="Views\Student\AuditorInfoList.cshtml" />
+    <Content Include="Views\Student\AuditorInfoTable.cshtml" />
+    <Content Include="Views\Student\AuditStudent.cshtml" />
+    <Content Include="Views\Student\AuditStudentList.cshtml" />
+    <Content Include="Views\Student\DegreeApply.cshtml" />
+    <Content Include="Views\Student\DegreeApplyList.cshtml" />
+    <Content Include="Views\Student\DegreeApplyTable.cshtml" />
+    <Content Include="Views\Student\EditAuditor.cshtml" />
+    <Content Include="Views\Student\EditStudent.cshtml" />
+    <Content Include="Views\Student\GradCondition.cshtml" />
+    <Content Include="Views\Student\NewAndMajorStudent.cshtml" />
+    <Content Include="Views\Student\NewAndSubschoolNoRegisterStudent.cshtml" />
+    <Content Include="Views\Student\NewAndSubschoolNoStuStatistics.cshtml" />
+    <Content Include="Views\Student\NewAndSubschoolNoStuStatisticsPost.cshtml" />
+    <Content Include="Views\Student\NewAndSubschoolRegisterStudent.cshtml" />
+    <Content Include="Views\Student\NewAndSubSchoolStudent.cshtml" />
+    <Content Include="Views\Student\NewAndSubschoolStuStatistics.cshtml" />
+    <Content Include="Views\Student\NewAndSubschoolStuStatisticsPost.cshtml" />
+    <Content Include="Views\Student\NewlyEditStudent.cshtml" />
+    <Content Include="Views\Student\NewlyFeeCheck.cshtml" />
+    <Content Include="Views\Student\NewlyFeeManage.cshtml" />
+    <Content Include="Views\Student\NewlyFeeManageList.cshtml" />
+    <Content Include="Views\Student\NewlyFeeManageTable.cshtml" />
+    <Content Include="Views\Student\NewlyPrintNotice.cshtml" />
+    <Content Include="Views\Student\NewlyPrintNoticeList.cshtml" />
+    <Content Include="Views\Student\NewlyPrintNoticeTable.cshtml" />
+    <Content Include="Views\Student\NewlyRegister.cshtml" />
+    <Content Include="Views\Student\NewlysRegistertatistics.cshtml" />
+    <Content Include="Views\Student\NewlyStudentDes.cshtml" />
+    <Content Include="Views\Student\NewlyStudentInfo.cshtml" />
+    <Content Include="Views\Student\NewlyStudentList.cshtml" />
+    <Content Include="Views\Student\NewlyStudentTable.cshtml" />
+    <Content Include="Views\Student\NewlyUploadStudent.cshtml" />
+    <Content Include="Views\Student\NewNoRegisterStudent.cshtml" />
+    <Content Include="Views\Student\NewNoRegisterStuStatistics.cshtml" />
+    <Content Include="Views\Student\NewNoRegisterStuStatisticsPost.cshtml" />
+    <Content Include="Views\Student\NewRegisterStudent.cshtml" />
+    <Content Include="Views\Student\NewRegisterStuStatistics.cshtml" />
+    <Content Include="Views\Student\NewRegisterStuStatisticsPost.cshtml" />
+    <Content Include="Views\Student\NewStuStatist.cshtml" />
+    <Content Include="Views\Student\NewStuStatistics.cshtml" />
+    <Content Include="Views\Student\NewStuStatistics2.cshtml" />
+    <Content Include="Views\Student\NewStuStatistics2Post.cshtml" />
+    <Content Include="Views\Student\NoRegisterStudent.cshtml" />
+    <Content Include="Views\Student\NoRegisterStuStatistics.cshtml" />
+    <Content Include="Views\Student\NoRegisterStuStatisticsPost.cshtml" />
+    <Content Include="Views\Student\PartialApplyRegisterList.cshtml" />
+    <Content Include="Views\Student\PartialApplyRegisterTable.cshtml" />
+    <Content Include="Views\Student\PrintStrangeMajororSub.cshtml" />
+    <Content Include="Views\Student\PrintStrangeStop.cshtml" />
+    <Content Include="Views\Student\PrintStuStrange.cshtml" />
+    <Content Include="Views\Student\RegisterStudent.cshtml" />
+    <Content Include="Views\Student\RegisterStuStatistics.cshtml" />
+    <Content Include="Views\Student\RegisterStuStatisticsPost.cshtml" />
+    <Content Include="Views\Student\Registertatistics.cshtml" />
+    <Content Include="Views\Student\StrangeList.cshtml" />
+    <Content Include="Views\Student\StrangeTable.cshtml" />
+    <Content Include="Views\Student\StudentDes.cshtml" />
+    <Content Include="Views\Student\StudentGradInfo.cshtml" />
+    <Content Include="Views\Student\StudentGradInfoList.cshtml" />
+    <Content Include="Views\Student\StudentGradInfoTable.cshtml" />
+    <Content Include="Views\Student\StudentInfo.cshtml" />
+    <Content Include="Views\Student\StudentInfoChange.cshtml" />
+    <Content Include="Views\Student\StudentInfoChangeAll.cshtml" />
+    <Content Include="Views\Student\StudentInfoChangeB.cshtml" />
+    <Content Include="Views\Student\StudentInfoChangeC.cshtml" />
+    <Content Include="Views\Student\StudentList.cshtml" />
+    <Content Include="Views\Student\StudentRegister.cshtml" />
+    <Content Include="Views\Student\StudentTable.cshtml" />
+    <Content Include="Views\Student\StuFeeBatDes.cshtml" />
+    <Content Include="Views\Student\StuFeeDes.cshtml" />
+    <Content Include="Views\Student\StuInfoChangeApply.cshtml" />
+    <Content Include="Views\Student\StuInfoChangeDetail.cshtml" />
+    <Content Include="Views\Student\StuInfoChangeDetB.cshtml" />
+    <Content Include="Views\Student\StuInfoChangeDetC.cshtml" />
+    <Content Include="Views\Student\StuInfoUpdateList.cshtml" />
+    <Content Include="Views\Student\StuInfoUpdateTable.cshtml" />
+    <Content Include="Views\Student\StuNum.cshtml" />
+    <Content Include="Views\Student\StuNumCheckUp.cshtml" />
+    <Content Include="Views\Student\StuNumSys.cshtml" />
+    <Content Include="Views\Student\StuNumSysList.cshtml" />
+    <Content Include="Views\Student\StuNumSysTable.cshtml" />
+    <Content Include="Views\Student\StuRegistra.cshtml" />
+    <Content Include="Views\Student\StuRegistraList.cshtml" />
+    <Content Include="Views\Student\StuRegistraTable.cshtml" />
+    <Content Include="Views\Student\StuStatusScore.cshtml" />
+    <Content Include="Views\Student\StuStatusScore2.cshtml" />
+    <Content Include="Views\Student\SubschoolNoRegisterStudent.cshtml" />
+    <Content Include="Views\Student\SubschoolNoStuStatistics.cshtml" />
+    <Content Include="Views\Student\SubschoolNoStuStatisticsPost.cshtml" />
+    <Content Include="Views\Student\SubschoolRegisterStudent.cshtml" />
+    <Content Include="Views\Student\SubSchoolStuInfo.cshtml" />
+    <Content Include="Views\Student\SubSchoolStuList.cshtml" />
+    <Content Include="Views\Student\SubschoolStuStatistics.cshtml" />
+    <Content Include="Views\Student\SubschoolStuStatisticsPost.cshtml" />
+    <Content Include="Views\Student\SubSchoolStuTable.cshtml" />
+    <Content Include="Views\Student\SubStuUpdateList.cshtml" />
+    <Content Include="Views\Student\SubStuUpdateTable.cshtml" />
+    <Content Include="Views\Student\TermRegisterEditStu.cshtml" />
+    <Content Include="Views\Student\UpdatePassword.cshtml" />
+    <Content Include="Views\Student\UploadStudent.cshtml" />
+    <Content Include="Views\Student\UploadSubSchoolStu.cshtml" />
+    <Content Include="Views\Student\VerifyStudent.cshtml" />
+    <Content Include="Views\Student\VerifyStudentList.cshtml" />
+    <Content Include="Views\Student\VerifyStudentTable.cshtml" />
+    <Content Include="Views\Student\VerifyStuStuList.cshtml" />
+    <Content Include="Views\Student\VerifySubStudent.cshtml" />
+    <Content Include="Views\Student\VerifySubStuTable.cshtml" />
+    <Content Include="Views\Graduate\GraduateNumber.cshtml" />
+    <Content Include="Views\Graduate\GraduateNumberList.cshtml" />
+    <Content Include="Views\Graduate\GraduateNumberTable.cshtml" />
+    <Content Include="Views\Edu\TermIndex.cshtml" />
+    <Content Include="Views\Student\HandSubSchool.cshtml" />
+    <Content Include="Views\Graduate\StuGridApplyDegreetoo.cshtml" />
+    <Content Include="Views\TeaPlan\TermScoreStatistics_Course.cshtml" />
+    <Content Include="Views\Student\StuStatusScore3.cshtml" />
+    <Content Include="Views\Score\ClassScoreListPrint.cshtml" />
+    <Content Include="Views\Student\StuStatusScoreOne.cshtml" />
+    <Content Include="Views\Student\GNSFDXStuStatusScore.cshtml" />
+    <Content Include="Views\Student\PrintStuStatusScores.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Score\UploadExcel.cshtml" />
+    <Content Include="Views\Student\ZYYStuScore.cshtml" />
+    <Content Include="Views\Score\ClassScoreAuditList.cshtml" />
+    <Content Include="Views\Score\NewlyStudentList.cshtml" />
+    <Content Include="Views\Score\NewlyStudentTable.cshtml" />
+    <Content Include="Views\AdminBase\PartialModuleView2.cshtml" />
+    <Content Include="Views\TeaPlan\IsMainCoursePlan.cshtml" />
+    <Content Include="Views\TeaPlan\IsMainCoursePlanClass.cshtml" />
+    <Content Include="Views\Score\ScoreTable.cshtml" />
+    <Content Include="Views\Score\StudentScore.cshtml" />
+    <Content Include="Views\Score\RecordScore.cshtml" />
+    <Content Include="Views\Score\RecordScoreCourse.cshtml" />
+    <Content Include="Views\Score\RecordScoreList.cshtml" />
+    <Content Include="Views\Score\RecordScoreMajor.cshtml" />
+    <Content Include="Views\Score\RecordScoreMajorList.cshtml" />
+    <Content Include="Views\Score\RecordScoreMajorTable.cshtml" />
+    <Content Include="Views\Score\RecordScoreSub.cshtml" />
+    <Content Include="Views\Score\RecordScoreSubList.cshtml" />
+    <Content Include="Views\Score\RecordScoreSubTable.cshtml" />
+    <Content Include="Views\Score\RecordScoreTable.cshtml" />
+    <Content Include="Views\Score\Score.cshtml" />
+    <Content Include="Views\Score\ScoreAddPage.cshtml" />
+    <Content Include="Views\Score\ScoreEditPage.cshtml" />
+    <Content Include="Views\Score\ScoreFirst.cshtml" />
+    <Content Include="Views\Score\ScoreList.cshtml" />
+    <Content Include="Views\Student\FeebatchCheckList.cshtml" />
+    <Content Include="Views\Student\InvoiceeManage.cshtml" />
+    <Content Include="Views\Student\InvoiceeManageList.cshtml" />
+    <Content Include="Views\Graduate\StudEnglishUpdateList.cshtml" />
+    <Content Include="Views\Graduate\erifyEnglishScoreList.cshtml" />
+    <Content Include="Views\Graduate\VerifyEnglishScore.cshtml" />
+    <Content Include="Views\Edu\VerifyMajor.cshtml" />
+    <Content Include="Views\Edu\VerifyTeachPlan.cshtml" />
+    <Content Include="Views\Edu\VerifyTeachPlanList.cshtml" />
+    <Content Include="Views\Edu\VerifyTeachPlanTable.cshtml" />
+    <Content Include="Views\Edu\VerifyCourse.cshtml" />
+    <Content Include="Views\AdminBase\Left.cshtml" />
+    <Content Include="Views\AdminBase\Right.cshtml" />
+    <Content Include="Views\AdminBase\TopMessage.cshtml" />
+    <Content Include="Views\AdminBase\UpdatePwd.cshtml" />
+    <Content Include="Views\Expense\FeeCheck.cshtml" />
+    <Content Include="Views\Expense\FeeCheckList.cshtml" />
+    <Content Include="Views\Expense\FeeManageList.cshtml" />
+    <Content Include="Views\Expense\StuFeeTotal.cshtml" />
+    <Content Include="Views\Expense\StuFeeTotalList.cshtml" />
+    <Content Include="Views\StudentAccount\EditStudent.cshtml" />
+    <Content Include="Views\StudentAccount\GraduationApplyInfo.cshtml" />
+    <Content Include="Views\StudentAccount\Index1.cshtml" />
+    <Content Include="Views\StudentAccount\Login.cshtml" />
+    <Content Include="Views\StudentAccount\MyScore.cshtml" />
+    <Content Include="Views\StudentAccount\Payment.cshtml" />
+    <Content Include="Views\StudentAccount\StudentInfo.cshtml" />
+    <Content Include="Views\StudentAccount\StuInfoChangeApply.cshtml" />
+    <Content Include="Views\StudentAccount\StuPlan.cshtml" />
+    <Content Include="Views\StudentAccount\Top1.cshtml" />
+    <Content Include="Views\Student\StuStatusScore4.cshtml" />
+    <Content Include="Views\Score\SubjectScoreList.cshtml" />
+    <Content Include="Views\BasicData\CourseAddPage.cshtml" />
+    <Content Include="Views\BasicData\CourseCodeCheckUp.cshtml" />
+    <Content Include="Views\BasicData\CourseEditPage.cshtml" />
+    <Content Include="Views\BasicData\CourseList.cshtml" />
+    <Content Include="Views\BasicData\CourseManager.cshtml" />
+    <Content Include="Views\BasicData\CourseNameCheckUp.cshtml" />
+    <Content Include="Views\BasicData\CourseTable.cshtml" />
+    <Content Include="Views\BasicData\FacultyAddPage.cshtml" />
+    <Content Include="Views\BasicData\FacultyEditPage.cshtml" />
+    <Content Include="Views\BasicData\FacultyList.cshtml" />
+    <Content Include="Views\BasicData\FacultyManager.cshtml" />
+    <Content Include="Views\BasicData\FacultyTable.cshtml" />
+    <Content Include="Views\BasicData\GradeAddPage.cshtml" />
+    <Content Include="Views\BasicData\GradeEditPage.cshtml" />
+    <Content Include="Views\BasicData\GradeList.cshtml" />
+    <Content Include="Views\BasicData\GradeManager.cshtml" />
+    <Content Include="Views\BasicData\GradeTable.cshtml" />
+    <Content Include="Views\BasicData\MajorAddPage.cshtml" />
+    <Content Include="Views\BasicData\MajorEditPage.cshtml" />
+    <Content Include="Views\BasicData\MajorList.cshtml" />
+    <Content Include="Views\BasicData\MajorManager.cshtml" />
+    <Content Include="Views\BasicData\MajorTable.cshtml" />
+    <Content Include="Views\BasicData\SubSchool.cshtml" />
+    <Content Include="Views\BasicData\SubSchoolAddPage.cshtml" />
+    <Content Include="Views\BasicData\SubSchoolEditPage.cshtml" />
+    <Content Include="Views\BasicData\SubSchoolList.cshtml" />
+    <Content Include="Views\BasicData\SubSchoolTable.cshtml" />
+    <Content Include="Views\BasicData\TeacherAddPage.cshtml" />
+    <Content Include="Views\BasicData\TeacherEditPage.cshtml" />
+    <Content Include="Views\BasicData\TeacherList.cshtml" />
+    <Content Include="Views\BasicData\TeacherManager.cshtml" />
+    <Content Include="Views\BasicData\TeacherTable.cshtml" />
+    <Content Include="Views\BasicData\TremAddPage.cshtml" />
+    <Content Include="Views\BasicData\TremEditPage.cshtml" />
+    <Content Include="Views\BasicData\TremList.cshtml" />
+    <Content Include="Views\BasicData\TremManager.cshtml" />
+    <Content Include="Views\BasicData\TremTable.cshtml" />
+    <Content Include="Views\BasicData\UploadCourse.cshtml" />
+    <Content Include="Views\BasicData\VerifyCourse.cshtml" />
+    <Content Include="Views\Student\PhotoList.cshtml" />
+    <Content Include="Views\Student\PhotoManager.cshtml" />
+    <Content Include="Views\Student\PhotoTable.cshtml" />
+    <Content Include="Views\Student\SchoolYear.cshtml" />
+    <Content Include="Views\Student\InsertOrUpdateSchoolYear.cshtml" />
+    <Content Include="Views\TeaPlan\ExamPlan.cshtml" />
+    <Content Include="Views\TeaPlan\ExamPlanAddPage.cshtml" />
+    <Content Include="Views\TeaPlan\ExamPlanList.cshtml" />
+    <Content Include="Views\TeaPlan\ExamPlanTable.cshtml" />
+    <Content Include="Views\StudentAccount\LiveVideo.cshtml" />
+    <Content Include="Views\BasicData\ActivityVideo.cshtml" />
+    <Content Include="Views\BasicData\ActivityVideoList.cshtml" />
+    <Content Include="Views\BasicData\ActivityVideoTable.cshtml" />
+    <Content Include="Views\BasicData\ActivityVideoAddPage.cshtml" />
+    <Content Include="Views\BasicData\ActivityVideoEditPage.cshtml" />
+    <Content Include="Views\StudentAccount\Activity.cshtml" />
+    <Content Include="Views\BasicData\LiveVideo.cshtml" />
+    <Content Include="Views\Student\InsertOrUpdateSubSchoolStuView.cshtml" />
+    <Content Include="Views\BasicData\PhoneLiveVideo.cshtml" />
+    <Content Include="Views\FileManager\FileList.cshtml" />
+    <Content Include="Views\FileManager\FilePage.cshtml" />
+    <Content Include="Views\FileManager\FileTable.cshtml" />
+    <Content Include="Views\FileManager\UpLoadFile.cshtml" />
+    <Content Include="Views\AdminBase\Error.cshtml" />
+    <Content Include="Views\AdminBase\NotFound.cshtml" />
+    <Content Include="Views\Report\SupTaxReport.cshtml" />
+    <Content Include="Views\Report\SupTaxReportTable.cshtml" />
+    <Content Include="Views\StudentAccount\TaxInfo.cshtml" />
+    <Content Include="Views\Report\SupTaxStuDetail.cshtml" />
+    <Content Include="Upload\Upload\Web\file\20190108\20190108112928_5936.xlsx" />
+    <Content Include="Upload\Upload\Web\file\20190108\20190108113333_3469.xlsx" />
+    <Content Include="Upload\Upload\Web\file\20190109\20190109104502_9095.xlsx" />
+    <Content Include="Views\BasicData\PrintTemplate.cshtml" />
+    <Content Include="Views\BasicData\PrintTemplateAddPage.cshtml" />
+    <Content Include="Views\BasicData\PrintView.cshtml" />
+    <Content Include="Views\BasicData\PrintTemplateEditPage.cshtml" />
+    <Content Include="Views\BasicData\PrintViewSet.cshtml" />
+    <Content Include="Views\BasicData\PrintViewSetList.cshtml" />
+    <Content Include="Views\BasicData\PrintViewSetTable.cshtml" />
+    <Content Include="Views\Report\ECharts.cshtml" />
+    <Content Include="Views\Student\StuStatusScoreOne2.cshtml" />
+    <Content Include="Views\Graduate\StuGradNum.cshtml" />
+    <Content Include="Views\Graduate\StuGradNumList.cshtml" />
+    <Content Include="Views\Graduate\StuGradNumTable.cshtml" />
+    <Content Include="Views\Helper\CourseType2.cshtml" />
+    <Content Include="Views\Report\GraduateReport.cshtml" />
+    <Content Include="Views\Report\GraduateReportTable.cshtml" />
+    <Content Include="Views\TeaPlan\TeaplanAddPage.cshtml" />
+    <Content Include="Views\TeaPlan\TeaPlanDes.cshtml" />
+    <Content Include="Views\TeaPlan\TeaPlanDesList.cshtml" />
+    <Content Include="Views\TeaPlan\TeaPlanDesTable.cshtml" />
+    <Content Include="Views\TeaPlan\TeaplanEidtPage.cshtml" />
+    <Content Include="Views\TeaPlan\TeaPlanTempletDesAddPage.cshtml" />
+    <Content Include="Views\TeaPlan\TeaPlanTempletDesEditPage.cshtml" />
+    <Content Include="Views\Student\SubStuStatist.cshtml" />
+    <Content Include="Views\Student\StudentDes2.cshtml" />
+    <Content Include="Views\Student\NewlyPrintNoticeTwo.cshtml" />
+    <Content Include="Views\Student\NewlyPrintNoticeTwoList.cshtml" />
+    <Content Include="Views\Student\NewlyPrintNoticeTwoTable.cshtml" />
+    <Content Include="Views\Student\NewlyPrintNoticeThreeTable.cshtml" />
+    <Content Include="Views\Student\NewlyPrintNoticeThreeList.cshtml" />
+    <Content Include="Views\Student\NewlyPrintNoticeThree.cshtml" />
+    <Content Include="Views\Student\NewlyPrintNoticeFour.cshtml" />
+    <Content Include="Views\Student\NewlyPrintNoticeFourList.cshtml" />
+    <Content Include="Views\Student\NewlyPrintNoticeFourTable.cshtml" />
+    <Content Include="Views\Student\NewlyPrintNoticeFive.cshtml" />
+    <Content Include="Views\Student\NewlyPrintNoticeFiveList.cshtml" />
+    <Content Include="Views\Student\NewlyPrintNoticeFiveTable.cshtml" />
+    <Content Include="Views\Graduate\PrintGridList2.cshtml" />
+    <Content Include="Views\Graduate\PrintGridTable2.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\kindeditor-4.1.10\attached\" />
+    <Folder Include="Content\NewEdu\css\" />
+    <Folder Include="Content\NewEdu\fonts\" />
+    <Folder Include="Content\NewEdu\images\" />
+    <Folder Include="Content\NewEdu\js\" />
+    <Folder Include="Content\StudentImg\新15级相片\" />
+    <Folder Include="Upload\Upload\image\181026\" />
+    <Folder Include="Upload\Upload\Mall\" />
+    <Folder Include="Upload\Upload\Web\image\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>59005</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:59007/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

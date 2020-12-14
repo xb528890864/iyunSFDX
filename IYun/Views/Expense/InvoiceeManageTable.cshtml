@@ -1,0 +1,220 @@
+﻿@using System.Configuration
+@using IYun.Common
+@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YD_Fee_StuFeeTb>
+@{
+    const int yes = (int)YesOrNo.Yes;
+    const int no = (int)YesOrNo.No;
+    var adminroleid = ViewBag.admin;
+}
+<h1 style="float: left; font-size: 18px; margin-left: 25px; margin-bottom: 15px;">总金额：<span style="color: red">@ViewBag.needmoneys</span></h1>
+<h1 style="float: left;font-size: 18px;margin-left: 25px;margin-bottom: 15px;">给函授站金额：<span style="color:red">@ViewBag.money</span></h1>
+<table class="xx-table ydong-tab">
+    <tr>
+        <th style="padding-left: 25px; width: 180px; text-align: left;"><label>学号</label></th>
+        <th>姓名</th>
+        <th>入学时间</th>
+        <th>站点</th>
+        <th>缴费学年</th>
+        <th>开票提交</th>
+        <th>开票审核</th>
+        <th>应缴费用</th>
+        <th>实缴金额</th>
+        <th>开票</th>
+        <th>开票金额</th>
+        @if (adminroleid != 3)
+        {
+            <th>是否开发票</th>
+        }
+    </tr>
+    @{
+        foreach (var stu in Model)
+        {
+            <tr>
+                <td style="padding-left: 25px; text-align: left;"><label>@stu.YD_Sts_StuInfo.y_stuNum</label></td>
+                <td>@stu.YD_Sts_StuInfo.y_name</td>
+                <td>@stu.YD_Sts_StuInfo.y_inYear</td>
+                <td>@stu.YD_Sts_StuInfo.YD_Sys_SubSchool.y_name</td>
+                <td>第 @stu.y_feeYear 学年</td>
+                @{
+                    if (stu.y_invoiceUp == 1)
+                    {
+                        <td>
+                            已申请
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            未申请
+                        </td>
+                    }
+                    if (stu.y_invoiceCheck == 1)
+                    {
+                        <td>
+                            已审核
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            未审核
+                        </td>
+                    }
+                }
+                <td>@stu.y_needFee</td>
+                <td>@stu.y_needUpFee</td>
+                @{
+                    if (stu.y_invoiceOK != null)
+                    {
+                        if (stu.y_invoiceOK == 1)
+                        {
+                            <td>是</td>
+                        }
+                        else
+                        {
+                            <td>否</td>
+                        }
+                    }
+                    else
+                    {
+                        if (stu.y_invoiceOK == 1)
+                        {
+                            <td> 是 </td>
+                        }
+                        else
+                        {
+                            <td></td>
+                        }
+                    }
+
+                }
+                <td>@stu.y_invoiceMoney</td>
+                @if (adminroleid != 3)
+                {
+                    <td>
+                        <div class="nava1">
+                            <a class="nava2" style="line-height: 40px; margin-right: 20px;" href="javascript:;"><img class="falseimg" src="~/Content/images/toolbar_ok.gif"/></a>
+                            <div class="show-bg"></div>
+                            <div class="show-c">
+                                <form action="/Expense/InvoiceeCheckNo/" method="post">
+                                    <div class="tbt">填写开票金额</div>
+                                    <a class="close close8" href="javascript:;"></a>
+                                    <table class="cx-table">
+                                        <tr>
+                                            <td class="td1">开票金额</td>
+                                            <td><input type="text" name="invoiceMoney" class="cx-inp reason" placeholder="必填" data-id2="@stu.y_stuId"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td1">&nbsp;</td>
+                                            <td><a class="cx-set close" href="javascript:;">取消</a><input class="cx-sub close" type="button" value="确定" onclick="checkboxtrue(@stu.y_stuId)"/></td>
+                                        </tr>
+                                    </table>
+                                </form>
+                            </div>
+                            <img class="trueimg" src="~/Content/images/toolbar_del.gif" onclick="checkboxfalse(@stu.y_stuId)"/>
+                        </div>
+                    </td>
+                }
+            </tr>
+        }
+    }
+</table>
+<script>
+    //弹框填金额
+    $(".falseimg").click(function() {
+        $(".show-c").css('display', 'none');
+        $(".nava2").click(function () {
+            $(this).parents(".nava1").find(".show-bg").stop().fadeTo(500, 1);
+            $(this).parents(".nava1").find(".show-c").css("display", "block");
+        });
+        $(".close").click(function () {
+            $(this).parents(".nava1").find(".show-bg").css('display', 'none');
+            $(this).parents(".nava1").find(".show-c").css("display", "none");
+        });
+    });
+    //全选或取消全选功能
+    $(function () {
+        $(".mycb").click(function () {
+            var bl = $(".mycb").length == $(".mycb:checked").length;
+            $("#all").attr("checked", bl);
+        });
+        $(".zz8").click(function () {
+            var checkedStatus = this.checked;
+            var checkbox = $(this).parents('table').find('tr td input:checkbox');
+            checkbox.each(function () {
+                this.checked = checkedStatus;
+            });
+        });
+    });
+    //开票并填写开票金额
+    function checkboxtrue(stuId) {
+        var invoiceMoney = $(".reason");
+        var reason = "";
+        for (var i = 0; i < invoiceMoney.length; i++) {
+            if ($(invoiceMoney[i]).attr("data-id2") == stuId) {
+                reason += $(".reason").eq(i).val();
+            }
+        }
+        if (reason == "") {
+            alert("必须输入开票金额");
+            return;
+        }
+        $.ajax({
+            type: "post",
+            url: "/Expense/InvoiceeCheck",
+            data: {
+                stuId: stuId,
+                invoiceMoney: reason
+            },
+            success: function (data) {
+                if (data == "ok") {
+                    if (@Model.CurrentPageIndex==1) {
+                        $("#searchForm").submit();
+                    } else {
+                        var url = window.location.href;
+                        $("#searchForm").submit();
+                        window.location.href = url;
+                    }
+                } else {
+                    alert(data);
+                }
+            },
+            error: function (msg) {
+                alert("未知错误");
+            }
+        });
+    }
+    //取消学生开发票资格
+    function checkboxfalse(stuId) {
+
+        $.ajax({
+            type: "post",
+            url: "/Expense/InvoiceeCheckNo",
+            data: {
+                stuId: stuId
+            },
+            success: function (data) {
+                if (data == "ok") {
+                    if (@Model.CurrentPageIndex==1) {
+                        $("#searchForm").submit();
+                    } else {
+                        var url = window.location.href;
+                        $("#searchForm").submit();
+                        window.location.href = url;
+                    }
+
+                    //location.reload();
+                } else {
+                    alert(data);
+                }
+            },
+            error: function (msg) {
+                alert("未知错误");
+            }
+        });
+    }
+
+</script>

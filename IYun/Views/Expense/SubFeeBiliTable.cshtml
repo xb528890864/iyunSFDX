@@ -1,0 +1,75 @@
+﻿@using IYun.Controllers
+@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;;
+@model PagedList<ExpenseController.StuSubFeeBili>
+@{
+    var sublist = ViewBag.sublist as List<ExpenseController.StuSubFeeBili>;
+    sublist = sublist ?? new List<ExpenseController.StuSubFeeBili>();
+    var edutypelist = ViewBag.edutypelist as List<YD_Edu_EduType>;
+    edutypelist = edutypelist ?? new List<YD_Edu_EduType>();
+    var allbililist=ViewBag.allbililist?? new List<YD_Fee_SubFeeBili>();
+
+    //var list = sublist.GroupBy(u => new
+    //{
+    //    u.schoolName,u.schoolId
+    //}).ToList();
+
+    var educount = edutypelist.Count();
+}
+<table class="xx-table">
+    <tr>
+        <th style="padding-left:25px;">函授站</th>
+       @foreach (var item in edutypelist)
+       {
+           <th>
+               @item.y_name
+           </th>
+       }
+        @*<th width="160">操作</th>*@
+    </tr>
+
+  
+    @*@foreach (var item in list)
+    {
+        <tr>
+            <td style="padding-left: 25px;">@item.Key.schoolName</td>
+
+            @foreach (var items in edutypelist)
+            {
+
+                var a = item.FirstOrDefault(u => u.EduId == items.id);
+                if (a.y_bili == null)
+                {
+                    <td>未设置</td>
+                }
+                else
+                {
+                    <td>@a.y_bili</td>
+                }
+
+            }
+        </tr>
+      
+    }*@
+
+    @for (int i = 0; i < sublist.Count; i++)
+    {
+        <tr>
+            <td style="padding-left: 25px;">@sublist[i].schoolName</td>
+
+            @for (int j = 0; j < educount; j++)
+            {
+                if (sublist[i + j].y_bili == null && allbililist[j].y_bili==null)
+                {
+                    <td><input type="text"/></td>
+                }
+                else
+                {
+                    <td><input type="text" value="@sublist[i + j].y_bili" /></td>
+                }
+            }
+        </tr>
+        i = i + educount - 1;
+    }
+</table>

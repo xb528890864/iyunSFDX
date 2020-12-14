@@ -1,0 +1,262 @@
+﻿@using System.Configuration
+@using IYun.Models
+@using IYun.Object
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+    var hasStu = (bool)ViewBag.hasStu;
+    var majorFlag = (bool)ViewBag.majorFlag;
+    var eduTypeFlag = (bool)ViewBag.eduTypeFlag;
+    var stuTypeFlag = (bool)ViewBag.stuTypeFlag;
+    var stuStateFlag = (bool)ViewBag.stuStateFlag;
+    var subSchoolFlag = (bool)ViewBag.subSchoolFlag;
+    var inyearFlag = (bool) ViewBag.inyearFlag;
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css"/><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css"/><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css"/><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <script type="text/javascript" src="~/Views/SysAdmin/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]>
+    <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    <script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function() {
+            if (window.PIE) {
+                $('.rounded').each(function() {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });
+
+        function myPrint(obj) {
+            var newWindow = window.open("/report/stuinforeport", "_blank"); //打印窗口要换成页面的url
+            var docStr = obj.innerHTML;
+            newWindow.document.write(docStr);
+            newWindow.document.close();
+            newWindow.print();
+            newWindow.close();
+        }
+    </script>
+    <style>
+        .sx {
+            font-size: 15px;
+            margin-left: 30px;
+        }
+    </style>
+</head>
+
+<body>
+@Html.Action("Top", "AdminBase")
+<div class="main center">
+    <div id="main-tl">
+        <div class="left-t">统计报表</div>
+        <div class="left-c">
+            @{
+                foreach (var modulePower in modulePowers)
+                {
+                    if (modulePower.y_url.ToLower() == "/report/stuinforeport".ToLower())
+                    {
+                        <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                    }
+                    else
+                    {
+                        <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                    }
+                }
+            }
+        </div>
+    </div>
+    <div id="main-tr">
+        <form action="/report/stuinforeport" method="post" id="formid">
+            <div class="zc-head show-par">
+                @{
+                    if (majorFlag)
+                    {
+                        <span class="sx"><input type="checkbox" checked="checked" name="majorLibraryName" value="majorLibraryName" /> 专业 </span>
+                    }
+                    else
+                    {
+                        <span class="sx"><input type="checkbox" name="majorLibraryName" value="majorLibraryName" /> 专业 </span>
+                    }
+                }
+                @{
+                    if (eduTypeFlag)
+                    {
+                        <span class="sx"><input type="checkbox" checked="checked" name="eduTypeName" value="eduTypeName" /> 层次 </span>
+                    }
+                    else
+                    {
+                        <span class="sx"><input type="checkbox" name="eduTypeName" value="eduTypeName" /> 层次 </span>
+                    }
+                }
+                @{
+                    if (stuTypeFlag)
+                    {
+                        <span class="sx"><input type="checkbox" checked="checked" name="stuTypeName" value="stuTypeName" /> 学习形式 </span>
+                    }
+                    else
+                    {
+                        <span class="sx"><input type="checkbox" name="stuTypeName" value="stuTypeName" /> 学习形式 </span>
+                    }
+                }
+                @{
+                    if (stuStateFlag)
+                    {
+                        <span class="sx"><input type="checkbox" checked="checked" name="stuStateName" value="stuStateName" /> 学籍状态 </span>
+                    }
+                    else
+                    {
+                        <span class="sx"><input type="checkbox" name="stuStateName" value="stuStateName" /> 学籍状态 </span>
+                    }
+                }
+                @{
+                    if (inyearFlag)
+                    {
+                        <span class="sx"><input type="checkbox" checked="checked" name="y_inyear" value="y_inyear" /> 入学年份 </span>
+                    }
+                    else
+                    {
+                        <span class="sx"><input type="checkbox" name="y_inyear" value="y_inyear" /> 入学年份 </span>
+                    }
+                }
+                @{
+                    if (subSchoolFlag)
+                    {
+                        <span class="sx"><input type="checkbox" checked="checked" name="schoolName" value="schoolName" /> 函授站 </span>
+                    }
+                    else
+                    {
+                        <span class="sx"><input type="checkbox" name="schoolName" value="schoolName" /> 函授站 </span>
+                    }
+                }
+              
+
+                <a style="height: 32px; line-height: 30px; float: right; margin: 40px 20px 0 0;" class="zc-sub2" href="javascript:document.getElementById('formid').submit();">统计</a>
+                <a style="height: 32px; line-height: 30px; float: right; margin: 40px 15px 0 0;" class="zc-sub2" href="javascript:myPrint(document.getElementById('print'))">数据打印</a>
+                <a style="height: 32px; line-height: 30px; float: right; margin: 40px 5px 0 0;" class="zc-sub2" href="javascript:loadreport()">数据导出</a>
+            </div>
+        </form>
+
+        <div id="print">
+            @{
+                if (hasStu)
+                {
+                    var stuList = (List<StuInfoReport>) ViewBag.stuList;
+                    if (stuList != null && stuList.Count > 0)
+                    {
+                        <table class="xx-table ydong-tab">
+                            <tr>
+                                <th>人数</th>
+                                @{
+
+                                    if (!string.IsNullOrWhiteSpace(stuList[0].majorLibraryName))
+                                    {
+                                        <th>专业名称</th>
+                                    }
+                                    if (!string.IsNullOrWhiteSpace(stuList[0].eduTypeName))
+                                    {
+                                        <th>层次</th>
+                                    }
+                                    if (!string.IsNullOrWhiteSpace(stuList[0].stuTypeName))
+                                    {
+                                        <th>学习形式</th>
+                                    }
+                                    if (!string.IsNullOrWhiteSpace(stuList[0].stuStateName))
+                                    {
+                                        <th>学籍状态</th>
+                                    }
+                                    if (stuList[0].y_inyear != null && stuList[0].y_inyear != 0)
+                                    {
+                                        <th>入学年份</th>
+                                    }
+                                    if (!string.IsNullOrWhiteSpace(stuList[0].schoolName))
+                                    {
+                                        <th>函授站</th>
+                                    }
+                                }
+                            </tr>
+                            @{
+                                foreach (var stuInfoReport in stuList)
+                                {
+                                    <tr>
+                                        <td>@stuInfoReport.totalcount</td>
+                                        @{
+                                            if (!string.IsNullOrWhiteSpace(stuInfoReport.majorLibraryName))
+                                            {
+                                                <td>@stuInfoReport.majorLibraryName</td>
+                                            }
+                                            if (!string.IsNullOrWhiteSpace(stuInfoReport.eduTypeName))
+                                            {
+                                                <td>@stuInfoReport.eduTypeName</td>
+                                            }
+                                            if (!string.IsNullOrWhiteSpace(stuInfoReport.stuTypeName))
+                                            {
+                                                <td>@stuInfoReport.stuTypeName</td>
+                                            }
+
+                                            if (!string.IsNullOrWhiteSpace(stuInfoReport.stuStateName))
+                                            {
+                                                <td>@stuInfoReport.stuStateName</td>
+                                            }
+                                            if (stuInfoReport.y_inyear != null && stuInfoReport.y_inyear != 0)
+                                            {
+                                                <td>@stuInfoReport.y_inyear</td>
+                                            }
+                                            if (!string.IsNullOrWhiteSpace(stuInfoReport.schoolName))
+                                            {
+                                                <td>@stuInfoReport.schoolName</td>
+                                            }
+                                            
+                                        }
+                                    </tr>
+                                }
+                            }
+
+                        </table>
+                    }
+
+                }
+            }
+        </div>
+
+
+    </div>
+</div>
+@Html.Action("Foot", "AdminBase")
+</body>
+</html>
+<script>
+    function loadreport() {
+        $.ajax({
+            type: "post",
+            url: "/Report/DownloadStuReport",
+            data: $("#formid").serialize(),
+            success: function(data) {
+                if (data.indexOf("xls") > 0) {
+                    location.href = data;
+                } else {
+                    eval(data);
+                }
+            },
+            error: function(msg) {
+                alert("未知错误");
+            }
+        });
+    }
+</script>

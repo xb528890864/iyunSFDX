@@ -1,0 +1,386 @@
+
+ 
+记录时间：2020-11-29 09:22:51,384 
+线程ID:[6] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：f:\成人教务系统\江西师范大学\trunk\IYun\Views\Graduate\PrintGridTable.cshtml(51): error CS1061: “IYun.Models.VW_StuInfo”不包含“y_ApprovalNumber”的定义，并且找不到可接受类型为“IYun.Models.VW_StuInfo”的第一个参数的扩展方法“y_ApprovalNumber”(是否缺少 using 指令或程序集引用?)
+ 
+
+ 
+记录时间：2020-11-29 09:22:51,403 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /Graduate/PrintGrid
+ 
+
+ 
+记录时间：2020-11-29 09:22:51,403 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-11-29 09:22:51,404 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.Web.HttpCompileException (0x80004005): f:\成人教务系统\江西师范大学\trunk\IYun\Views\Graduate\PrintGridTable.cshtml(51): error CS1061: “IYun.Models.VW_StuInfo”不包含“y_ApprovalNumber”的定义，并且找不到可接受类型为“IYun.Models.VW_StuInfo”的第一个参数的扩展方法“y_ApprovalNumber”(是否缺少 using 指令或程序集引用?)
+   在 System.Web.Compilation.AssemblyBuilder.Compile()
+   在 System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   在 System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   在 System.Web.Mvc.BuildManagerWrapper.System.Web.Mvc.IBuildManager.FileExists(String virtualPath)
+   在 Microsoft.Web.Mvc.ViewEngineFixWorker`1.<>c__DisplayClass4.<GetPathFromGeneralName>b__0(String path)
+   在 System.Web.WebPages.DefaultDisplayMode.GetDisplayInfo(HttpContextBase httpContext, String virtualPath, Func`2 virtualPathExists)
+   在 System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   在 System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   在 Microsoft.Web.Mvc.ViewEngineFixWorker`1.GetPathFromGeneralName(ControllerContext controllerContext, List`1 locations, String name, String controllerName, String areaName, String cacheKey, String[]& searchedLocations)
+   在 Microsoft.Web.Mvc.ViewEngineFixWorker`1.GetPath(ControllerContext controllerContext, String[] locations, String[] areaLocations, String locationsPropertyName, String name, String controllerName, String cacheKeyPrefix, Boolean useCache, String[]& searchedLocations)
+   在 Microsoft.Web.Mvc.ViewEngineFixWorker`1.FindPartialView(ControllerContext controllerContext, String partialViewName, Boolean useCache)
+   在 System.Web.Mvc.ViewEngineCollection.Find(Func`2 lookup, Boolean trackSearchedPaths)
+   在 System.Web.Mvc.ViewEngineCollection.FindPartialView(ControllerContext controllerContext, String partialViewName)
+   在 System.Web.Mvc.HtmlHelper.FindPartialView(ViewContext viewContext, String partialViewName, ViewEngineCollection viewEngineCollection)
+   在 System.Web.Mvc.HtmlHelper.RenderPartialInternal(String partialViewName, ViewDataDictionary viewData, Object model, TextWriter writer, ViewEngineCollection viewEngineCollection)
+   在 System.Web.Mvc.Html.RenderPartialExtensions.RenderPartial(HtmlHelper htmlHelper, String partialViewName)
+   在 ASP._Page_Views_Graduate_PrintGridList_cshtml.Execute() 位置 f:\成人教务系统\江西师范大学\trunk\IYun\Views\Graduate\PrintGridList.cshtml:行号 5
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   在 System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   在 System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
+   在 ASP._Page_Views_Graduate_PrintGrid_cshtml.Execute() 位置 f:\成人教务系统\江西师范大学\trunk\IYun\Views\Graduate\PrintGrid.cshtml:行号 140
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   在 System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-11-29 09:29:04,999 
+线程ID:[7] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：f:\成人教务系统\江西师范大学\trunk\IYun\Views\Graduate\PrintGridTable.cshtml(51): error CS1061: “IYun.Models.VW_StuInfo”不包含“y_ApprovalNumber”的定义，并且找不到可接受类型为“IYun.Models.VW_StuInfo”的第一个参数的扩展方法“y_ApprovalNumber”(是否缺少 using 指令或程序集引用?)
+ 
+
+ 
+记录时间：2020-11-29 09:29:05,000 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /Graduate/PrintGrid
+ 
+
+ 
+记录时间：2020-11-29 09:29:05,000 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-11-29 09:29:05,000 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.Web.HttpCompileException (0x80004005): f:\成人教务系统\江西师范大学\trunk\IYun\Views\Graduate\PrintGridTable.cshtml(51): error CS1061: “IYun.Models.VW_StuInfo”不包含“y_ApprovalNumber”的定义，并且找不到可接受类型为“IYun.Models.VW_StuInfo”的第一个参数的扩展方法“y_ApprovalNumber”(是否缺少 using 指令或程序集引用?)
+   在 System.Web.Compilation.AssemblyBuilder.Compile()
+   在 System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   在 System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   在 System.Web.Mvc.BuildManagerWrapper.System.Web.Mvc.IBuildManager.FileExists(String virtualPath)
+   在 Microsoft.Web.Mvc.ViewEngineFixWorker`1.<>c__DisplayClass4.<GetPathFromGeneralName>b__0(String path)
+   在 System.Web.WebPages.DefaultDisplayMode.GetDisplayInfo(HttpContextBase httpContext, String virtualPath, Func`2 virtualPathExists)
+   在 System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   在 System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   在 Microsoft.Web.Mvc.ViewEngineFixWorker`1.GetPathFromGeneralName(ControllerContext controllerContext, List`1 locations, String name, String controllerName, String areaName, String cacheKey, String[]& searchedLocations)
+   在 Microsoft.Web.Mvc.ViewEngineFixWorker`1.GetPath(ControllerContext controllerContext, String[] locations, String[] areaLocations, String locationsPropertyName, String name, String controllerName, String cacheKeyPrefix, Boolean useCache, String[]& searchedLocations)
+   在 Microsoft.Web.Mvc.ViewEngineFixWorker`1.FindPartialView(ControllerContext controllerContext, String partialViewName, Boolean useCache)
+   在 System.Web.Mvc.ViewEngineCollection.Find(Func`2 lookup, Boolean trackSearchedPaths)
+   在 System.Web.Mvc.ViewEngineCollection.FindPartialView(ControllerContext controllerContext, String partialViewName)
+   在 System.Web.Mvc.HtmlHelper.FindPartialView(ViewContext viewContext, String partialViewName, ViewEngineCollection viewEngineCollection)
+   在 System.Web.Mvc.HtmlHelper.RenderPartialInternal(String partialViewName, ViewDataDictionary viewData, Object model, TextWriter writer, ViewEngineCollection viewEngineCollection)
+   在 System.Web.Mvc.Html.RenderPartialExtensions.RenderPartial(HtmlHelper htmlHelper, String partialViewName)
+   在 ASP._Page_Views_Graduate_PrintGridList_cshtml.Execute() 位置 f:\成人教务系统\江西师范大学\trunk\IYun\Views\Graduate\PrintGridList.cshtml:行号 5
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   在 System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   在 System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
+   在 ASP._Page_Views_Graduate_PrintGrid_cshtml.Execute() 位置 f:\成人教务系统\江西师范大学\trunk\IYun\Views\Graduate\PrintGrid.cshtml:行号 140
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   在 System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-11-29 09:57:29,873 
+线程ID:[7] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：f:\成人教务系统\江西师范大学\trunk\IYun\Views\Graduate\PrintGridTable2.cshtml(51): error CS1061: “IYun.Models.VW_StuInfo”不包含“y_ApprovalNumber”的定义，并且找不到可接受类型为“IYun.Models.VW_StuInfo”的第一个参数的扩展方法“y_ApprovalNumber”(是否缺少 using 指令或程序集引用?)
+ 
+
+ 
+记录时间：2020-11-29 09:57:29,890 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /Graduate/PrintGrid
+ 
+
+ 
+记录时间：2020-11-29 09:57:29,890 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-11-29 09:57:29,890 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.Web.HttpCompileException (0x80004005): f:\成人教务系统\江西师范大学\trunk\IYun\Views\Graduate\PrintGridTable2.cshtml(51): error CS1061: “IYun.Models.VW_StuInfo”不包含“y_ApprovalNumber”的定义，并且找不到可接受类型为“IYun.Models.VW_StuInfo”的第一个参数的扩展方法“y_ApprovalNumber”(是否缺少 using 指令或程序集引用?)
+   在 System.Web.Compilation.AssemblyBuilder.Compile()
+   在 System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   在 System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   在 System.Web.Mvc.BuildManagerWrapper.System.Web.Mvc.IBuildManager.FileExists(String virtualPath)
+   在 Microsoft.Web.Mvc.ViewEngineFixWorker`1.<>c__DisplayClass4.<GetPathFromGeneralName>b__0(String path)
+   在 System.Web.WebPages.DefaultDisplayMode.GetDisplayInfo(HttpContextBase httpContext, String virtualPath, Func`2 virtualPathExists)
+   在 System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   在 System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   在 Microsoft.Web.Mvc.ViewEngineFixWorker`1.GetPathFromGeneralName(ControllerContext controllerContext, List`1 locations, String name, String controllerName, String areaName, String cacheKey, String[]& searchedLocations)
+   在 Microsoft.Web.Mvc.ViewEngineFixWorker`1.GetPath(ControllerContext controllerContext, String[] locations, String[] areaLocations, String locationsPropertyName, String name, String controllerName, String cacheKeyPrefix, Boolean useCache, String[]& searchedLocations)
+   在 Microsoft.Web.Mvc.ViewEngineFixWorker`1.FindPartialView(ControllerContext controllerContext, String partialViewName, Boolean useCache)
+   在 System.Web.Mvc.ViewEngineCollection.Find(Func`2 lookup, Boolean trackSearchedPaths)
+   在 System.Web.Mvc.ViewEngineCollection.FindPartialView(ControllerContext controllerContext, String partialViewName)
+   在 System.Web.Mvc.HtmlHelper.FindPartialView(ViewContext viewContext, String partialViewName, ViewEngineCollection viewEngineCollection)
+   在 System.Web.Mvc.HtmlHelper.RenderPartialInternal(String partialViewName, ViewDataDictionary viewData, Object model, TextWriter writer, ViewEngineCollection viewEngineCollection)
+   在 System.Web.Mvc.Html.RenderPartialExtensions.RenderPartial(HtmlHelper htmlHelper, String partialViewName)
+   在 ASP._Page_Views_Graduate_PrintGridList2_cshtml.Execute() 位置 f:\成人教务系统\江西师范大学\trunk\IYun\Views\Graduate\PrintGridList2.cshtml:行号 6
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   在 System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   在 System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
+   在 ASP._Page_Views_Graduate_PrintGrid_cshtml.Execute() 位置 f:\成人教务系统\江西师范大学\trunk\IYun\Views\Graduate\PrintGrid.cshtml:行号 140
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   在 System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-11-29 09:58:43,695 
+线程ID:[14] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：f:\成人教务系统\江西师范大学\trunk\IYun\Views\Graduate\PrintGridTable2.cshtml(51): error CS1061: “IYun.Models.VW_StuInfo”不包含“y_ApprovalNumber”的定义，并且找不到可接受类型为“IYun.Models.VW_StuInfo”的第一个参数的扩展方法“y_ApprovalNumber”(是否缺少 using 指令或程序集引用?)
+ 
+
+ 
+记录时间：2020-11-29 09:58:43,695 
+线程ID:[14] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /Graduate/PrintGrid
+ 
+
+ 
+记录时间：2020-11-29 09:58:43,695 
+线程ID:[14] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-11-29 09:58:43,695 
+线程ID:[14] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.Web.HttpCompileException (0x80004005): f:\成人教务系统\江西师范大学\trunk\IYun\Views\Graduate\PrintGridTable2.cshtml(51): error CS1061: “IYun.Models.VW_StuInfo”不包含“y_ApprovalNumber”的定义，并且找不到可接受类型为“IYun.Models.VW_StuInfo”的第一个参数的扩展方法“y_ApprovalNumber”(是否缺少 using 指令或程序集引用?)
+   在 System.Web.Compilation.AssemblyBuilder.Compile()
+   在 System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   在 System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   在 System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   在 System.Web.Mvc.BuildManagerWrapper.System.Web.Mvc.IBuildManager.FileExists(String virtualPath)
+   在 Microsoft.Web.Mvc.ViewEngineFixWorker`1.<>c__DisplayClass4.<GetPathFromGeneralName>b__0(String path)
+   在 System.Web.WebPages.DefaultDisplayMode.GetDisplayInfo(HttpContextBase httpContext, String virtualPath, Func`2 virtualPathExists)
+   在 System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   在 System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   在 Microsoft.Web.Mvc.ViewEngineFixWorker`1.GetPathFromGeneralName(ControllerContext controllerContext, List`1 locations, String name, String controllerName, String areaName, String cacheKey, String[]& searchedLocations)
+   在 Microsoft.Web.Mvc.ViewEngineFixWorker`1.GetPath(ControllerContext controllerContext, String[] locations, String[] areaLocations, String locationsPropertyName, String name, String controllerName, String cacheKeyPrefix, Boolean useCache, String[]& searchedLocations)
+   在 Microsoft.Web.Mvc.ViewEngineFixWorker`1.FindPartialView(ControllerContext controllerContext, String partialViewName, Boolean useCache)
+   在 System.Web.Mvc.ViewEngineCollection.Find(Func`2 lookup, Boolean trackSearchedPaths)
+   在 System.Web.Mvc.ViewEngineCollection.FindPartialView(ControllerContext controllerContext, String partialViewName)
+   在 System.Web.Mvc.HtmlHelper.FindPartialView(ViewContext viewContext, String partialViewName, ViewEngineCollection viewEngineCollection)
+   在 System.Web.Mvc.HtmlHelper.RenderPartialInternal(String partialViewName, ViewDataDictionary viewData, Object model, TextWriter writer, ViewEngineCollection viewEngineCollection)
+   在 System.Web.Mvc.Html.RenderPartialExtensions.RenderPartial(HtmlHelper htmlHelper, String partialViewName)
+   在 ASP._Page_Views_Graduate_PrintGridList2_cshtml.Execute() 位置 f:\成人教务系统\江西师范大学\trunk\IYun\Views\Graduate\PrintGridList2.cshtml:行号 6
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   在 System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   在 System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
+   在 ASP._Page_Views_Graduate_PrintGrid_cshtml.Execute() 位置 f:\成人教务系统\江西师范大学\trunk\IYun\Views\Graduate\PrintGrid.cshtml:行号 140
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   在 System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-11-29 10:25:22,648 
+线程ID:[6] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：无法在发送 HTTP 标头之后进行重定向。
+ 
+
+ 
+记录时间：2020-11-29 10:25:22,676 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /Graduate/PrintGrid
+ 
+
+ 
+记录时间：2020-11-29 10:25:22,676 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-11-29 10:25:22,676 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.Web.HttpException (0x80004005): 无法在发送 HTTP 标头之后进行重定向。
+   在 System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   在 System.Web.HttpResponseWrapper.Redirect(String url)
+   在 IYun.Controllers.AdminBaseController.get_YdAdminRoleId() 位置 F:\成人教务系统\江西师范大学\trunk\IYun\Controllers\AdminBaseController.cs:行号 28
+   在 IYun.Controllers.AdminBaseController.<>c__DisplayClass29_0.<GetChildModulePower>b__0(IGrouping`2 u) 位置 F:\成人教务系统\江西师范大学\trunk\IYun\Controllers\AdminBaseController.cs:行号 594
+   在 System.Collections.Generic.List`1.Find(Predicate`1 match)
+   在 IYun.Controllers.AdminBaseController.GetChildModulePower(IYunEntities yunEntities, Int32 yParentID) 位置 F:\成人教务系统\江西师范大学\trunk\IYun\Controllers\AdminBaseController.cs:行号 594
+   在 IYun.Controllers.GraduateController.PrintGrid(Int32 id) 位置 F:\成人教务系统\江西师范大学\trunk\IYun\Controllers\GraduateController.cs:行号 7329
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-11-29 11:05:40,864 
+线程ID:[37] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：输入字符串的格式不正确。
+ 
+
+ 
+记录时间：2020-11-29 11:05:40,883 
+线程ID:[37] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /Graduate/PrintGridShow
+ 
+
+ 
+记录时间：2020-11-29 11:05:40,883 
+线程ID:[37] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-11-29 11:05:40,883 
+线程ID:[37] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.FormatException: 输入字符串的格式不正确。
+   在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Convert.ToInt32(String value)
+   在 IYun.Controllers.GraduateController.<>c.<PrintGridShow>b__60_11(String e) 位置 F:\成人教务系统\江西师范大学\trunk\IYun\Controllers\GraduateController.cs:行号 7497
+   在 System.Linq.Enumerable.WhereSelectArrayIterator`2.MoveNext()
+   在 System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.ConstantTranslator.TypedTranslate(ExpressionConverter parent, ConstantExpression linq)
+   在 System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   在 System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.ContainsTranslator.TranslateContains(ExpressionConverter parent, Expression sourceExpression, Expression valueExpression)
+   在 System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   在 System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   在 System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input)
+   在 System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
+   在 System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   在 System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   在 System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   在 System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.Convert()
+   在 System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
+   在 System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass3.<GetResults>b__2()
+   在 System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   在 System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass3.<GetResults>b__1()
+   在 System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   在 System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   在 System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   在 System.Lazy`1.CreateValue()
+   在 System.Lazy`1.LazyInitValue()
+   在 System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 IYun.Controllers.GraduateController.PrintGridShow() 位置 F:\成人教务系统\江西师范大学\trunk\IYun\Controllers\GraduateController.cs:行号 7501
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)

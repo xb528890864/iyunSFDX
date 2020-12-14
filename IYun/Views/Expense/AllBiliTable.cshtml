@@ -1,0 +1,27 @@
+﻿@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YD_Fee_AllBili>
+
+<table class="xx-table">
+    <tr>
+        @*<th style="padding-left:25px;">入学年份</th>*@
+        <th style="padding-left:25px;">层次</th>
+        @*<th>学习形式</th>
+        <th>缴费年度</th>*@
+        <th>上缴比例</th>
+        <th width="160">操作</th>
+    </tr>
+
+    @foreach (var smallpower in Model)
+    {
+        <tr>
+            @*<td style="padding-left:25px;">@smallpower.y_inYear</td>*@
+            <td style="padding-left:25px;">@smallpower.YD_Edu_EduType.y_name</td>
+            @*<td>@smallpower.stuTypeName</td>
+            <td>第 @smallpower.y_feeYear 学年</td>*@
+            <td>@smallpower.y_bili %</td>
+            <td><a class="bfont2" href="javascript:delpower(@smallpower.id)">删除</a></td>
+        </tr>
+    }
+</table>

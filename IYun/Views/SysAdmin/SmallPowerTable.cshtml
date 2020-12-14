@@ -1,0 +1,45 @@
+﻿
+@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YD_Edu_SmallPower>
+
+<table class="xx-table">
+    <tr>
+        <th style="padding-left:25px;">年份</th>
+        <th>函授站</th>
+        <th>专业</th>
+        <th>科目类型</th>
+        <th>学期</th>
+        <th>科目</th>
+        <th>特殊条件</th>
+        <th>过期时间</th>
+        <th>是否过期</th>
+        <th width="160">操作</th>
+    </tr>
+
+    @foreach (var smallpower in Model)
+    {
+        <tr>
+            <td style="padding-left:25px;">@smallpower.y_year</td>
+            <td>@{ Write(smallpower.y_subSchoolId.HasValue ? smallpower.YD_Sys_SubSchool.y_name : "全部站点");}</td>
+            <td>@{ Write(smallpower.y_majorId.HasValue ? smallpower.YD_Edu_Major.y_name : "全部专业");}</td>
+            <td>@{ Write(smallpower.y_courseType.HasValue ? ((CourseType)smallpower.y_courseType.Value).ToString() : "全部类型");}</td>
+            <td>@{ Write(smallpower.y_term.HasValue ? smallpower.y_term.Value.ToString() : "全部学期");}</td>
+            <td>@{ Write(smallpower.y_courseId.HasValue ? smallpower.YD_Edu_Course.y_name : "全部课程");}</td>
+            <td>@{ Write(smallpower.y_scorelimit.HasValue ? ((ScoreLimit)smallpower.y_scorelimit.Value).ToString() : "无");}</td>
+
+            <td>@smallpower.y_endTime.ToShortDateString()</td>
+
+            @if (smallpower.y_endTime >= DateTime.Now)
+            {
+                <td style="color:blue">可用</td>
+            }
+            else
+            {
+                <td style="color:red">已过期</td>
+            }
+            <td><a class="bfont2" href="javascript:delpower(@smallpower.id)">删除</a></td>
+        </tr>
+    }
+</table>

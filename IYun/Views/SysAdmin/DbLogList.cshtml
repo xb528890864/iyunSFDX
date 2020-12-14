@@ -1,0 +1,9 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<VW_DbLog>
+
+@{ Html.RenderPartial("DbLogTable"); }
+<div class="">
+    <span class="spanfysm">共 @Model.TotalPageCount 页 @Model.TotalItemCount 条记录，当前为第 @Model.CurrentPageIndex 页</span>
+    @Ajax.Pager(Model, new PagerOptions {NumericPagerItemCount = 7, PageIndexParameterName = "id", PrevPageText = "上页", NextPageText = "下页", FirstPageText = "首页", LastPageText = "尾页", ContainerTagName = "ul", CssClass = "pagination", CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>", DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>", PagerItemTemplate = "<li>{0}</li>" }, new MvcAjaxOptions { UpdateTargetId = "ajaxtable", HttpMethod = "Post", DataFormId = "searchForm", LoadingElementId = "loadingDiv", OnBegin = "$('#ajaxtable').fadeOut('10')", OnComplete = "$('#ajaxtable').fadeIn('10')" }).AjaxOptions(a => a.SetUpdateTargetId("ajaxtable"))
+</div>

@@ -1,0 +1,159 @@
+﻿@using System.Configuration
+@using IYun.Models
+@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@model PagedList<VW_Sts_News>
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+    var admin = ViewBag.admin;
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <script type="text/javascript" src="~/Views/Edu/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    <script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="~/Scripts/MvcPager.js"></script>
+    <link href="~/Content/kindeditor-4.1.10/themes/default/default.css" rel="stylesheet" />
+    <script src="~/Content/kindeditor-4.1.10/kindeditor-min.js"></script>
+    <script src="~/Content/kindeditor-4.1.10/lang/zh_CN.js"></script>
+
+
+
+
+
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+        });
+        KindEditor.ready(function (K) {
+            var editor = K.editor({
+                allowFileManager: true,
+                uploadJson: '../../Content/kindeditor-4.1.10/asp.net/excelUpload.ashx',//文件处理程序
+                fileManagerJson: '../../Content/kindeditor-4.1.10/asp.net/file_manager_json.ashx',
+                imageSizeLimit: '10MB',
+                imageUploadLimit: 10
+            });
+            K('#insertfile').click(function () {
+                editor.loadPlugin('insertfile', function () {
+                    editor.plugin.fileDialog({
+                        fileUrl: K('#url').val(),
+                        clickFn: function (url, title) {
+                            K('#url').val(url);
+                            editor.hideDialog();
+                        }
+                    });
+                });
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        <div id="main-tl">
+            <div class="left-t">教务管理</div>
+            <div class="left-c">
+                @{
+                    foreach (var modulePower in modulePowers)
+                    {
+                        if (modulePower.y_url.ToLower() == "/edu/News".ToLower())
+                        {
+                            <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                        else
+                        {
+                            <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div id="main-tr">
+            <div class="right-nav">
+                <form action="/Edu/News" id="searchForm" method="post">
+                    <div class="zc-inn">
+                        <span>类别</span>
+                        <select class="cx-sel" name="type" style="width: 80px;">
+                            <option value="0">全部</option>
+                            <option value="1">教学</option>
+                            <option value="2">学籍</option>
+                            <option value="3">提醒</option>
+                            <option value="4">其他</option>
+                        </select>
+                    </div>
+                    <div class="zc-inn"><input type="submit" style="margin-top:0px; height:32px; line-height:30px;" class="cx-sub" value="查找" /></div>
+                </form>
+                <div class="cli">
+                    @{
+                        if (admin == 1 || admin == 3 || admin==7)
+                        {
+                            <a style="height: 32px; line-height: 30px; float: right; margin: 20px 20px 0 0;" class="zc-sub2" href="/Edu/NewAddPage">添加</a>
+                        }
+                    }
+                    <div class="nava1">
+                        <a class="nava2" href="javascript:;" style="height: 35px; line-height: 30px; float: right; margin: -32px 30px 30px 20px; behavior: url(../../Content/manage/style/js/pie.htc); position: relative; z-index: 2; cursor: pointer; background: #f9a717; color: #fff; padding: 0 15px; height: 30px; width: 70px;">数据导出</a>
+                        <div class="show-bg"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="loadingDiv" style="display:none"><img src="~/Content/manage/images/loading.gif" /></div>
+            <div id="ajaxtable">
+                @Html.Partial("NewsList", Model)
+            </div>
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+</body>
+</html>
+<script>
+    function deletenews(id) {
+        if (confirm("确认删除此专业信息？")) {
+            $.ajax({
+                type: "post",
+                url: "/Edu/NewDelete",
+                data: {
+                    id: id
+                },
+                success: function (data) {
+                    if (data == "ok") {
+                        alert("删除成功");
+                        location.reload();
+                    } else {
+                        alert(data);
+                    }
+                },
+                error: function (msg) {
+                    alert("未知错误");
+                }
+            });
+        }
+    }
+</script>

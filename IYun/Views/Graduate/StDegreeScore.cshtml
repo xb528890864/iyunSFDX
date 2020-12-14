@@ -1,0 +1,166 @@
+﻿@using System.Configuration
+@using IYun.Common
+@using IYun.Models
+@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@model List<YD_Graduate_StudentScore>
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+    var man = (int)SexEnum.Man;
+    var woman = (int)SexEnum.WoMan;
+    int adminid = ViewBag.admin;
+    var batchid = ViewBag.id;
+    var stuyear = 0;
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+        <script type="text/javascript" src="js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+        <script type="text/javascript" src="js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    @*<script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>*@
+    <script src="~/Content/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="~/Scripts/MvcPager.js"></script>
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });
+
+    </script>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        <div id="main-tl">
+            <div class="left-t">毕业管理</div>
+            <div class="left-c">
+                @{
+                    foreach (var modulePower in modulePowers)
+                    {
+                        if (modulePower.y_url.ToLower() == "/Graduate/StudentGegreeEnglish".ToLower())
+                        {
+                            <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                        else
+                        {
+                            <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div id="main-tr" class="tb-chk">
+            <form id="searchForm" action="/Graduate/StDegreeScore/@batchid" name="searchForm" method="post">
+                <div class="zc-head">
+                    <a class="fhui" href="#" style="margin-right: 10px; margin-top: 10px;" onclick="history.go(-1)">返回</a>
+                    @*<a class="cx-sub" href="javascript:DownDegreeScore()" style="margin-top: 10px; height: 32px; line-height: 30px;">数据导出</a>*@
+                    <div class="show-bg"></div>
+                </div>
+            </form>
+            <div id="loadingDiv" style="display:none"><img src="~/Content/images/loading.gif" /></div>
+            <div id="ajaxtable">
+                <table class="xx-table ydong-tab">
+                    <tr>
+                        @*<th style="padding-left:25px;">考试时间</th>*@
+                        <th style="padding-left:25px;">准考证号</th>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>年级</th>
+                        <th>专业</th>
+                        <th>身份证号</th>
+                        <th>总分</th>
+                        <th>主观分</th>
+                        <th>结论</th>
+                    </tr>
+                    @{
+                        foreach (var student in Model)
+                        {
+                            <tr>
+                                @*<td style="padding-left:25px;">@student.y_examtime.ToString("yyyy-MM-dd")</td>*@
+                                <td>@student.y_admissionNum</td>
+                                <td>@student.y_stuname</td>
+                                @{
+                                    if (student.y_sex == 0)
+                                    {
+                                        <td>男</td>
+                                    }
+                                    else
+                                    {
+                                        <td>女</td>
+                                    }
+                                }
+                                <td>@student.y_inYear</td>
+                                <td>@student.YD_Sts_StuInfo.YD_Edu_Major.y_name</td>
+                                <td>@student.y_cardId</td>
+                                <td>@student.y_sumsore</td>
+                                <td>@student.y_subjectivitysore</td>
+
+                                @{
+                                    if (student.y_verdict == 0)
+                                    {
+                                        <td>未通过</td>
+                                    }
+                                    else
+                                    {
+                                        <td>通过</td>
+                                    }
+                                }
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+</body>
+</html>
+<script>
+    function DownDegreeScore() {
+        var batchid=@ViewBag.id;
+        $.ajax({
+            type: "post",
+            url: "/Graduate/DownloadDegreeScore",
+            data: {
+                batchid: batchid
+            },
+            success: function (data) {
+                if (data.indexOf("xls") > 0) {
+                    location.href = data;
+                } else {
+                    eval(data);
+                }
+            },
+            error: function () {
+                alert("未知错误");
+            }
+        });
+
+    }
+</script>

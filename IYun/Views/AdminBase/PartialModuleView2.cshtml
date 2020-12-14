@@ -1,0 +1,43 @@
+﻿@using IYun.Models
+@model string    
+@{ 
+
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+}
+
+<div id="main-tl">
+    <div class="left-t">成绩管理</div>
+    <ul class="left-c">
+        @{
+           
+                foreach (var modulePower in modulePowers)
+                {
+                    if (modulePower.y_url.ToLower() == "/Score/ClassScoreAuditList".ToLower())
+                    {
+                        <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                    }
+                    else
+                    {
+                        <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                    }
+                }
+           
+        }
+    </ul>
+</div>
+<script>
+/***********LEFT下拉**************/
+$(document).ready(function(){
+    $('.left-c li .firsta').click(function () {
+        $('.left-c li.le_on1').find(".lev66").slideToggle();
+        $('.left-c li.le_on1').toggleClass("le_on1");
+
+        //	$(".lev66").css("display","none")
+        var parent = $(this).parent('li');
+        parent.find(".lev66").slideToggle();
+        parent.toggleClass("le_on1");
+    });    
+});
+
+</script>

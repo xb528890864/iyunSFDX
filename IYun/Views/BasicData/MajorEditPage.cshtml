@@ -1,0 +1,170 @@
+﻿@using IYun.Common
+@using System.Configuration
+@using IYun.Models
+@using IYun.Object
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+    var entity = (YD_Edu_Major)ViewBag.entity;
+    var schoolName = ConfigurationManager.AppSettings["SchoolName"].ToString();
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+        <script type="text/javascript" src="~/Views/SysAdmin/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+        <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    <script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });
+
+    </script>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        <div id="main-tl">
+            <div class="left-t">基础数据管理</div>
+            <div class="left-c">
+                @{
+                    foreach (var modulePower in modulePowers)
+                    {
+                        if (modulePower.y_url.ToLower() == "/basicdata/MajorManager".ToLower())
+                        {
+                            <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                        else
+                        {
+                            <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div id="main-tr">
+            <div class="tjia"><span>编辑专业</span><a class="fhui" href="/basicdata/MajorManager">返回</a></div>
+            <form action="/SysAdmin/SubSchooledit" method="post">
+                <table class="cx-table">
+                    <tr>
+                        <td class="td1">专业</td>
+                        <td>
+                            @Html.Action("MajorLibrary", "Helper", new HelperParameterM { index = entity.y_majorLibId })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1">专业层次</td>
+                        <td>
+                            @Html.Action("EduType", "Helper", new HelperParameterM { index = entity.y_eduTypeId })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1">学习形式</td>
+                        <td>
+                            @Html.Action("StuType", "Helper", new HelperParameterM { index = entity.y_stuTypeId })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td1">学费</td>
+                        <td><input type="text" class="cx-inp" id="y_needFee" value="@entity.y_needFee" placeholder="学费"><input type="hidden" id="id" value="@entity.id"></td>
+                    </tr>
+                 
+                    <tr>
+                        <td class="td1">代码</td>
+                        <td><input type="text" class="cx-inp" id="y_code" value="@entity.y_code" placeholder="代码"></td>
+                    </tr>
+                    <tr>
+                        <td class="td1">专业类型</td>
+                        <td><input type="text" class="cx-inp" id="y_majortype" value="@entity.y_majortype"  placeholder="专业类型" /></td>
+                    </tr>
+
+                    <tr>
+                        <td class="td1">学制</td>
+                        <td><input type="text" class="cx-inp" id="y_stuYear" value="@entity.y_stuYear"  placeholder="学制" /></td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="td1">&nbsp;</td>
+                        <td><input class="cx-sub" type="button" onclick="save()" value="保存"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+</body>
+
+</html>
+<script type="text/javascript">
+    function save() {
+        var y_needFee = $("#y_needFee").val();
+        //if (y_name == "") {
+        //    alert("名称必填");
+        //    return;
+        //}
+
+        var y_code = $("#y_code").val();
+        if (y_code == "") {
+            alert("代码必填");
+            return;
+        }
+        var MajorLibrary = $("#MajorLibrary").val();
+        var EduType = $("#EduType").val();
+        var StuType = $("#StuType").val();
+        var y_majortype = $("#y_majortype").val();
+        var y_stuYear = $("#y_stuYear").val();
+
+     
+        var id = $("#id").val();
+        if (id == "") {
+            alert("未知错误");
+            return;
+        }
+        $.ajax({
+            type: "post",
+            url: "/basicdata/MajorEdit",
+            data: {
+                id: id,
+                y_code: y_code,
+                MajorLibrary: MajorLibrary,
+                EduType: EduType,
+                StuType: StuType,
+                y_majortype: y_majortype,
+                y_needFee: y_needFee,
+                y_stuYear: y_stuYear
+            },
+            success: function (data) {
+                if (data == "ok") {
+                    window.location.href = '/basicdata/MajorManager';
+                } else {
+                    alert(data);
+                }
+            },
+            error: function (msg) {
+                alert("未知错误");
+            }
+        });
+    }
+</script>

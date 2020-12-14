@@ -1,0 +1,184 @@
+﻿@using System.Configuration
+@using IYun.Models
+@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@model YT_ActivityVideo
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.7.4/skins/default/aliplayer-min.css" />
+    <script type="text/javascript" charset="utf-8" src="//g.alicdn.com/de/prismplayer/2.7.4/aliplayer-min.js"></script>
+    <script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="~/Scripts/MvcPager.js"></script>
+    <script src="https://cdn.bootcss.com/lrsjng.jquery-qrcode/0.14.0/jquery-qrcode.min.js"></script>
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+        });
+
+    </script>
+    <style>
+        .fengxian {
+            font-size: 18px;
+            padding: 0 30px;
+            cursor: pointer
+        }
+
+        #myModal {
+            position: fixed;
+            width: 300px;
+            top: 50%;
+            left: 50%;
+            margin-left: -150px;
+            z-index: 999;
+            background: #fff;
+            padding-bottom: 20px;
+            margin-top: -160px;
+            display: none
+        }
+
+            #myModal h2 {
+                font-size: 20px;
+                text-align: center;
+                color: #333;
+                line-height: 60px
+            }
+
+            #myModal canvas {
+                display: block;
+                width: 90%;
+                margin: 0 auto
+            }
+
+        .gg {
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            font-size: 20px;
+            background: #ffffff;
+            color: #808080;
+            line-height: 26px;
+            width: 30px;
+            text-align: center;
+            cursor: pointer;
+            height: 30px;
+            border-radius: 50%
+        }
+    </style>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        <div id="main-tl">
+            <div class="left-t">基础数据管理</div>
+            <div class="left-c">
+                @{
+                    foreach (var modulePower in modulePowers)
+                    {
+                        if (modulePower.y_url.ToLower() == "/basicdata/ActivityVideo".ToLower())
+                        {
+                            <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                        else
+                        {
+                            <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div id="main-tr">
+            <div class="tjia">
+                <span>@Model.y_name</span>
+                <a class="fhui" href="/basicdata/ActivityVideo">返回</a>
+                <font class="fr fengxian"><i class="icon-quote-left icon-share"></i>分享到手机</font>
+            </div>
+
+            <div class="prism-player" id="player-con"></div>
+            <script>
+                let urlStr = `@Html.Raw(Model.y_url)`;
+                let urlJson = JSON.parse(urlStr);
+                if (urlJson.SD === '' || urlJson.SD === null) {
+                    delete urlJson.SD;
+                }
+                if (urlJson.HD === '' || urlJson.HD === null) {
+                    delete urlJson.HD;
+                }
+                var player = new Aliplayer({
+                    "id": "player-con",
+                    "source": JSON.stringify(urlJson),
+                    "width": "100%",
+                    "height": "750px",
+                    "autoplay": true,
+                    "isLive": true,
+                    "rePlay": false,
+                    "playsinline": true,
+                    "preload": true,
+                    "controlBarVisibility": "hover",
+                    "useH5Prism": true
+                }, function (player) {
+                    console.log("播放器创建了。");
+                }
+                );
+            </script>
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+         <div id="myQRCode">
+            <h2>手机扫码</h2>
+             <div class="gg">x</div>
+         </div>
+    </div>
+    <script>
+        let qrCodeText = 'http://' + window.location.host + '/basicdata/PhoneLiveVideo/'+@Model.id;
+        $('#myQRCode').qrcode({
+            render: 'canvas',
+            minVersion: 1,
+            maxVersion: 40,
+            ecLevel: 'L',
+            left: 0,
+            top: 0,
+            size: 250,
+            fill: '#000',
+            background: null,
+            text: qrCodeText,
+            radius: 1,
+            quiet: 0,
+            model: 0,
+        });
+        //分享
+        $(document).ready(function () {
+            $(".fengxian").click(function () {
+                $("#myModal").fadeIn();//缓慢出现
+            });
+            $("#myModal .gg").click(function () {
+                $("#myModal").fadeOut();//缓慢消失
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,368 @@
+﻿@using System.Configuration
+@using IYun.Models
+@using IYun.Object
+@using IYun.Common
+@model List<IYun.Models.YD_Fee_StuFeeTb>
+@{
+    Layout = null;
+    var xinshen = ConfigurationManager.AppSettings["xinsheng"];
+    var schoolname = ConfigurationManager.AppSettings["SchoolName"];
+    int edutypeid = ViewBag.edutypeid;
+    int majorliyid = ViewBag.majorliyid;
+    int stutypeid = ViewBag.stutypeid;
+    int subschoolid = ViewBag.subschoolid;
+    int year = ViewBag.year;
+    int term = ViewBag.term ?? 0;
+    var adminrole = ViewBag.adminroleid;
+
+}
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css?v=1" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <script type="text/javascript" src="~/Content/manage/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    @*<script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>*@
+    <script src="~/Content/IYun/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="~/Content/manage/ComboboxBind.js?v=1"></script>  
+    <script src="~/Content/EasyUI/easyloader.js"></script>
+    <link href="~/Content/EasyUI/combo.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/combobox.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/panel.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/textbox.css" rel="stylesheet" />
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function() {
+            if (window.PIE) {
+                $('.rounded').each(function() {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });
+        function myPrint(obj) {
+            var newWindow = window.open("/student/SubschoolNoRegisterStudent", "_blank");//打印窗口要换成页面的url
+            var docStr = obj.innerHTML;
+            newWindow.document.write(docStr);
+            newWindow.document.close();
+            newWindow.print();
+            newWindow.close();
+        }
+    </script>
+    <style>
+        table {
+            width: 100%;
+            font-size: 18px;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        .dc-t {
+            color: #333333;
+            font-size: 24px;
+            text-align: center;
+            margin-top: 35px;
+            line-height: 26px;
+        }
+
+        .xinshengtable {
+            color: #555555;
+            font-size: 14px;
+        }
+
+            .xinshengtable th {
+                text-align: center;
+            }
+
+            .xinshengtable td {
+                text-align: center;
+            }
+    </style>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        @Html.Partial("../AdminBase/PartialModuleView", "/student/NewlyRegister")
+        <div id="main-tr">
+            <form action="/Student/SubschoolNoRegisterStudent" id="searchForm" name="searchForm" method="post">
+            <div class="zc-head">
+                <div class="zc-inn">
+                    <span>入学年份</span>
+                    @Html.Action("EnrollYearOld", "Helper", new HelperParameterM {style = "width:100px;font-size: 18px", index = year})
+                </div>
+                @if (adminrole != 4)
+                {
+                    <div class="zc-inn">
+                        <span>函授站</span>
+                        @Html.Action("SubSchool", "Helper", new HelperParameterM { className = "easyui-combobox" })
+                    </div>
+                }
+                <div class="zc-inn">
+                    <span>层次</span>
+                    @Html.Action("EduType", "Helper", new HelperParameterM {style = "width:100px;font-size: 18px", index = edutypeid})
+                </div>
+                <div class="zc-inn">
+                    <span>专业</span>
+                    @Html.Action("MajorLibrary", "Helper", new HelperParameterM { className = "easyui-combobox" })
+                </div>
+                <div class="zc-inn">
+                    <span>学习形式</span>
+                    @Html.Action("StuType", "Helper", new HelperParameterM {style = "width:100px;font-size: 18px", index = stutypeid})
+                </div>
+                <div class="zc-inn">
+                    <span>学年</span>
+                    <select class="cx-sel" name="term" id="term" style="width: 60px;" data="@term">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <script>
+                        $(function() {
+                            var a = $('#term').attr('data');
+                            $('#term option').each(function() {
+                                if (a.indexOf($(this).val()) != -1) {
+                                    $(this).attr('selected', true);
+                                }
+                            });
+                        });
+                    </script>
+                </div>
+                <a class="fhui" href="javascript:;" onclick="history.go(-1)">返回</a>
+            </div>
+                <div class="zc-head">          
+                    <a class="cx-sub" style="float: right; margin-top: 10px; margin-left: 680px; margin-left: 10px; height: 32px; line-height: 30px;" href="javascript:myPrint(document.getElementById('ajaxtable'))">数据打印</a>
+                    <a class="cx-sub" href="javascript:DownNewAndMajor()" style="float: right;margin-top: 10px; margin-left: 680px; margin-left: 10px; height: 32px; line-height: 30px;">数据导出</a>
+                    <input style="float: right;margin-top: 10px; height: 32px; line-height: 30px;" class="cx-sub" type="button" onclick="guolv()" value="查找" />
+                     <div class="show-bg"></div>
+                </div>
+            </form>
+            <div id="loadingDiv" style="display:none"><img src="~/Content/images/loading.gif" /></div>
+            <div id="ajaxtable">
+                <div class="dc-t" style="text-align: center;">@ConfigurationManager.AppSettings["SchoolTable"]函授站所有成人高等学历教育未注册学生名册</div>
+                <table class="xinshengtable xx-table">
+                    <tr>
+                        <th colspan="9" style="background: #ddd;">
+                            <span style="margin-left: 10px; width: 15%">年级：@ViewBag.year</span>
+                            <span style="margin-left: 10px; width: 15%">层次：@ViewBag.edutype</span>
+                            <span style="margin-left: 10px;width: 35%">专业：@ViewBag.majorli</span>
+                            <span style="margin-left: 70px; width: 15%">学习形式：@ViewBag.stutypetype</span>
+                            <span style="margin-left: 10px; width: 15%">注册人数：@ViewBag.count</span>
+                            <span style="margin-left: 10px; width: 15%">函授站名称：@ViewBag.subschool</span>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="width: 15%; margin-left:10px;">考生号</th>
+                        <th style="width: 15%">学号</th>
+                        <th style="width: 15%">姓名</th>
+                        <th style="width: 10%">性别</th>
+                        <th style="width: 10%">身份证</th>
+                        <th style="width: 10%">联系电话</th>
+                        <th style="width: 10%">联系地址</th>
+                        <th style="width: 10%">所属函授站</th>
+                        <th style="width: 10%">备注</th>
+                    </tr>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td style="width: 15%; margin-left:10px;">@item.YD_Sts_StuInfo.y_examNum</td>
+                                <td style="width: 15%">@item.YD_Sts_StuInfo.y_stuNum</td>
+                                <td style="width: 15%">@item.YD_Sts_StuInfo.y_name</td>
+                                <td style="width: 10%">@Html.Raw(item.YD_Sts_StuInfo.y_sex == 1 ? "女" : "男") </td>
+                                <td style="width: 10%">@item.YD_Sts_StuInfo.y_cardId</td>
+                                <td style="width: 10%">@item.YD_Sts_StuInfo.y_tel</td>
+                                <td style="width: 10%">@item.YD_Sts_StuInfo.y_address</td>
+                                @if (schoolname == ComEnum.SchoolName.JXLG.ToString())
+                                {
+                                    <td style="width: 10%">@item.YD_Sts_StuInfo.YD_Sys_SubSchool.y_nameabbreviation</td>
+                                }
+                                else
+                                {
+                                    <td style="width: 10%">@item.YD_Sts_StuInfo.YD_Sys_SubSchool.y_name</td>
+                                }
+                                <td>&nbsp;</td>
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>      
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+<script>
+
+    function guolv() {
+        $("#searchForm").attr("action", "/Student/SubschoolNoRegisterStudent");
+        $("#searchForm").submit();
+    }
+    function butOnClick() {
+        if (event.keyCode == "13") {
+            document.form1.submint();
+        }
+    }
+    function DownNewAndMajor() {
+        $.ajax({
+            type: "post",
+            url: "/Student/DownloaSubschoolNoRegister",
+            data: $("#searchForm").serialize(),
+            success: function (data) {
+                if (data.indexOf("xls") > 0) {
+                    location.href = data;
+                } else {
+                    eval(data);
+                }
+            },
+            error: function () {
+                alert("未知错误");
+            }
+        });
+    }
+    function yearchangeCompleold() {  //年度改变回调
+        SearchSchool();
+    }
+    function eduTypechangeComple() {   //层次改变回调
+        SearchMajorLibrary();
+    }
+    function schoolchangeComple() { //站点改变回调
+        SearchMajorLibrary();
+    }
+    function SearchSchool() {
+        var year = $('#EnrollYearOld').val();
+        //$('#SubSchool').attr("disabled", true);
+        $('#SubSchool').combobox("disable");
+        $.ajax({
+            url: '@Url.Action("GetSchoolByYear_Stu", "Helper")',
+            data: {
+                year: year
+            },
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                //$('#SubSchool').bindData(data, 'y_subSchoolId', 'schoolName');
+                //$('#SubSchool').attr("disabled", false);
+                LoadCombobox('#SubSchool', data, 'y_subSchoolId', 'schoolName');
+                SearchMajorLibrary();
+            },
+            error: function () {
+                //$('#SubSchool').attr("disabled", false);
+                $('#SubSchool').combobox("enable");
+            }
+        });
+    }
+    function SearchMajorLibrary() {
+        //var schoolId = $('#SubSchool').val();
+        var schoolId = $('#SubSchool').combobox('getValue');
+        if (@adminrole== 4)
+        {
+            schoolId = 0;
+        }
+        var edutypeId = $('#EduType').val();
+        var year = $('#EnrollYearOld').val();
+        //$('#MajorLibrary').attr("disabled", true);
+        $('#MajorLibrary').combobox("disable");
+        $.ajax({
+            async: false,
+            url: '@Url.Action("GetFeeMajorLibrary_Stu", "Helper")',
+            data: {
+                schoolId: schoolId,
+                edutypeId: edutypeId,
+                year:year
+            },
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                //$('#MajorLibrary').attr("disabled", false);
+                //$('#MajorLibrary').bindData(data, 'y_majorLibId', 'majorLibraryName');
+                LoadCombobox('#MajorLibrary', data, 'y_majorLibId', 'majorLibraryName');
+            },
+            error: function () {
+                //$('#MajorLibrary').attr("disabled", false);
+                $('#MajorLibrary').combobox("enable");
+            }
+        });
+    }
+    //EasyUi
+    $(document).ready(function () {
+        //设置面板长度
+        $('select.easyui-combobox').attr("panelHeight", "400");
+        //设置面板宽度
+        $('select.easyui-combobox').css("width", "250px");
+
+        easyloader.css = false;
+
+        easyloader.load('combobox', function () { // 加载指定模块
+            $('select.easyui-combobox').combobox({
+                onHidePanel: function () {
+                    if (isNaN($(this).combobox('getValue'))) {
+                        var $this = $(this);
+
+                        var valueField = $this.combobox('options').valueField;
+                        var textField = $this.combobox('options').textField;
+
+                        var text = $this.combobox('getValue');
+                        var data = $this.combobox('getData');
+
+                        $.each(data, function (i, n) {
+                            if (eval('n.' + textField).indexOf(text) >= 0) {
+                                $this.combobox('setValue', eval('n.' + valueField));
+                                return false;
+                            }
+                        });
+                        if (isNaN($(this).combobox('getValue'))) {
+                            $this.combobox('setValue', 0);
+                        }
+                    }
+                }
+            });
+            $(".combo").click(function() {
+                if ($(this).prev().combobox("panel").is(":visible")) {
+                    //$(this).prev().combobox("hidePanel");
+                } else {
+                    $(this).prev().combobox("showPanel");
+                }
+            });
+            //注册联动
+            $('#SubSchool').combobox({
+                onChange: function () {
+                    if (!isNaN($(this).combobox('getValue'))) {
+                        SearchMajorLibrary();
+                    }
+                }
+            });
+        });
+        easyloader.onLoad = function (name){
+            if (name.length == 1 &&name[0] == "combobox") {
+
+                //赋初始值 (赋值时会触发onchange事件)
+                $('#SubSchool').combobox('setValue', @subschoolid);
+                $('#MajorLibrary').combobox('setValue', @majorliyid);
+            }
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,318 @@
+﻿@using System.Configuration
+@using IYun.Models
+@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@model PagedList<YD_Edu_SmallPower>
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+    var yes = (int)YesOrNo.Yes;
+    var no = (int)YesOrNo.No;
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css?v=1" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <script type="text/javascript" src="~/Content/manage/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    <script src="~/Content/IYun/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="~/Scripts/MvcPager.js"></script>
+    <script src="~/Content/manage/ComboboxBind.js?v=1"></script>  
+    <script src="~/Content/EasyUI/easyloader.js"></script>
+    <link href="~/Content/EasyUI/combo.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/combobox.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/panel.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/textbox.css" rel="stylesheet" />
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });
+    </script>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        <div id="main-tl">
+            <div class="left-t">系统设置</div>
+            <div class="left-c">
+                @{
+                    foreach (var modulePower in modulePowers)
+                    {
+                        if (modulePower.y_url.ToLower() == "/sysadmin/smallpower".ToLower())
+                        {
+                            <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                        else
+                        {
+                            <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div id="main-tr">
+            <form action="/SysAdmin/SmallPower/" id="searchForm" method="post">
+                <div class="zc-head">
+                    <div class="zc-inn">
+                        <span>学生年份</span>
+                        @Html.Action("EnrollYear2", "Helper", new HelperParameterM
+                   {
+                       style = "width:100px;font-size: 18px;",
+                       name = "year",
+                   })
+                    </div>
+
+                    <div class="zc-inn">
+                        <span>函授站</span>
+                        @Html.Action("SubSchool", "Helper", new HelperParameterM { className = "easyui-combobox" })
+                    </div>
+                    <div class="zc-inn">
+                        <span>专业</span>
+                        @Html.Action("Major", "Helper", new HelperParameterM { className = "easyui-combobox" })
+                    </div>
+                    <div class="zc-inn">
+                        <span>学期</span>
+                        <select id="Term" name="Term" class="dl-sel" style="width:150px;font-size:20px;" onchange="Term_Change()">
+                            <option selected="selected" value="0">不限</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+
+                    <div class="zc-inn">
+                        <span>科目</span>
+                        @Html.Action("Course", "Helper", new HelperParameterM { className = "easyui-combobox", whereSql = " select * from YD_Edu_course where id in (select y_course from YD_TeaPlan_ClasscourseDes) " })
+                    </div>
+                    <div class="zc-inn">
+                        <span>是否过期</span>
+                        <select name="state" class="cx-sel" style="width: 120px;font-size:20px;">
+                            <option value="-1">不限</option>
+                            <option value="@yes">可用</option>
+                            <option value="@no">已过期</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="zc-head">
+                    <a style="height: 32px; line-height: 30px; float: right; width: 80px; margin: 12px 12px 0 0;" class="cx-sub" href="/SysAdmin/AddSmallPower">添加权限</a>
+                    @*<a style="height: 32px; line-height: 30px; float: right; width: 80px; margin: 12px 12px 0 0;" class="cx-sub" href="javascript:DowonSmallPower()">数据导出</a>*@
+                    <input style="height: 32px; line-height: 30px; float: right; width: 80px; margin: 12px 12px 0 0;" type="submit" class="cx-sub" value="查找" />
+                </div>
+            </form>
+            <div id="loadingDiv" style="display: none"><img src="~/Content/images/loading.gif" /></div>
+            <div id="ajaxtable">
+                @Html.Partial("SmallPowerList", Model)
+            </div>
+        </div>
+    </div>
+    @*</div>*@
+    @Html.Action("Foot", "AdminBase")
+    <script>
+        function delpower(id) {
+            if (confirm("确认删除此权限信息？")) {
+                $.ajax({
+                    url: '/SysAdmin/DeleSmallPowerById/' + id,
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (data) {
+                        alert(data.msg);
+                        if (data.isok) {
+                            window.location = "/SysAdmin/SmallPower";
+                        }
+                    }
+                });
+            }
+        }
+
+        function butOnClick() {
+            if (event.keyCode == "13") {
+                var button = document.getElementById("bsubmit"); //bsubmit 为botton按钮的id
+                button.click();
+                return false;
+            }
+            return false;
+        }
+
+        function DowonSmallPower() {
+            $.ajax({
+                type: "POST",
+                url: "/SysAdmin/DownloadSmallPower/",
+                data: form2Json("searchForm"),
+                success: function (data) {
+                    if (data == "no") {
+                        alert("错误");
+                    } else {
+                        window.location.href = data;
+                    }
+                }
+            });
+        }
+
+        function yearchangeComple2() {
+            SearchMajor();
+        }
+
+        function schoolchangeComple() { //函授站回调
+            SearchMajor();
+        }
+
+        function Majorchange_Comple() {
+            SearchCourse();
+        }
+
+        function Term_Change() {
+            SearchCourse();
+        }
+
+        function SearchMajor() {
+            //var schoolId = $('#SubSchool').val();
+            var schoolId = $('#SubSchool').combobox('getValue');
+            var year = $('#EnrollYear2').val();
+
+
+            //$('#Major').attr("disabled", true);
+            $('#Major').combobox("disable");
+            $.ajax({
+                url: '@Url.Action("GetMajor_Teaplan", "Helper")',
+                data: {
+                    schoolId: schoolId,
+                    year: year
+                },
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    //$('#Major').bindData(data, 'id', 'majorName');
+                    //$('#Major').attr("disabled", false);
+                    LoadCombobox('#Major', data, 'id', 'majorName');
+                    SearchCourse();
+                },
+                error: function () {
+                    //$('#Major').attr("disabled", false);
+                    $('#Major').combobox("enable");
+                }
+            });
+        }
+
+        function SearchCourse() {
+            //var majorid = $('#Major').val();
+            var majorid = $('#Major').combobox('getValue');
+            //var schoolId = $('#SubSchool').val();
+            var schoolId = $('#SubSchool').combobox('getValue');
+            var year = $('#EnrollYear2').val();
+            var term = $('#Term').val();
+
+            //$('#course').attr("disabled", true);
+            $('#course').combobox("disable");
+            $.ajax({
+                url: '@Url.Action("GetCourse_S", "Helper")',
+                data: {
+                    majorId: majorid,
+                    schoolId: schoolId,
+                    year: year,
+                    term: term
+                },
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    //$('#course').attr("disabled", false);
+                    //$('#course').bindData(data, 'id', 'y_name');
+                    LoadCombobox('#course', data, 'id', 'y_name');
+                },
+                error: function () {
+                    //$('#course').attr("disabled", false);
+                    $('#course').combobox("enable");
+                }
+            });
+        }
+
+        //EasyUi
+        $(document).ready(function () {
+            //设置面板长度
+            $('select.easyui-combobox').attr("panelHeight", "400");
+            //设置面板宽度
+            $('select.easyui-combobox').css("width", "250px");
+
+            easyloader.css = false;
+
+            easyloader.load('combobox', function () { // 加载指定模块
+                $('select.easyui-combobox').combobox({
+                    onHidePanel: function () {
+                        if (isNaN($(this).combobox('getValue'))) {
+                            var $this = $(this);
+
+                            var valueField = $this.combobox('options').valueField;
+                            var textField = $this.combobox('options').textField;
+
+                            var text = $this.combobox('getValue');
+                            var data = $this.combobox('getData');
+
+                            $.each(data, function (i, n) {
+                                if (eval('n.' + textField).indexOf(text) >= 0) {
+                                    $this.combobox('setValue', eval('n.' + valueField));
+                                    return false;
+                                }
+                            });
+
+                            if (isNaN($(this).combobox('getValue'))) {
+                                $this.combobox('setValue', 0);
+                            }
+
+                        }
+                    }
+                });
+
+                $(".combo").click(function() {
+                    if ($(this).prev().combobox("panel").is(":visible")) {
+                        //$(this).prev().combobox("hidePanel");
+                    } else {
+                        $(this).prev().combobox("showPanel");
+                    }
+                });
+
+          
+            });
+
+            easyloader.onLoad = function (name){
+                if (name.length == 1 &&name[0] == "combobox") {
+                    
+                    //赋初始值 (赋值时会触发onchange事件)
+                    @*$('#SubSchool').combobox('setValue', @school);
+                    $('#Major').combobox('setValue', @major);*@
+                    }
+            }
+        });
+    </script>
+</body>
+</html>

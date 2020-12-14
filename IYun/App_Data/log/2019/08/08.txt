@@ -1,0 +1,48 @@
+
+ 
+记录时间：2019-08-08 14:39:23,560 
+线程ID:[5] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：未能找到文件“G:\江西师范对照表模板.xlsx”。
+ 
+
+ 
+记录时间：2019-08-08 14:39:23,612 
+线程ID:[5] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /TeaPlan/ADDcorrespondence
+ 
+
+ 
+记录时间：2019-08-08 14:39:23,612 
+线程ID:[5] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2019-08-08 14:39:23,612 
+线程ID:[5] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.IO.FileNotFoundException: 未能找到文件“G:\江西师范对照表模板.xlsx”。
+文件名:“G:\江西师范对照表模板.xlsx”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access)
+   在 IYun.Controllers.TeaPlanController.ADDcorrespondence() 位置 G:\江西师范大学\trunk\IYun\Controllers\TeaPlanController.cs:行号 4620
+   在 System.Web.Mvc.ActionMethodDispatcher.<>c__DisplayClass1.<WrapVoidAction>b__0(ControllerBase controller, Object[] parameters)
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)

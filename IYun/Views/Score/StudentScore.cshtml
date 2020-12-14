@@ -1,0 +1,434 @@
+﻿@using System.Configuration
+@using System.Web.UI.WebControls
+@using IYun.Models
+@using IYun.Object
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+    var stuId = (int)ViewBag.stuId;
+    var term = (int)ViewBag.term;
+    var scoreScale = (YD_Edu_ScoreScale)ViewBag.scoreScale;
+    var normalScore = scoreScale.y_normalScale;
+    var termScore = scoreScale.y_termScale;
+    var majorId = (int)ViewBag.majorId;
+    var year = (int)ViewBag.year;
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+        <script type="text/javascript" src="~/Views/Edu/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+        <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    <script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet"/>
+    <script src="~/Content/IYun/js/jquery.editable-select.min.js"></script>
+    <link href="~/Content/IYun/style/jquery.editable-select.min.css" rel="stylesheet" />
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            $("#term").val(@term);
+
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            $(".normalScore").keyup(function () {
+                var normalScore = $(this);
+                var father = normalScore.parent().parent();
+                var termScore = $(".termScore", father);
+                var totalScore = $(".totalScore", father);
+                //平时分
+                var termStr = termScore.val().trim();
+                var normal;
+                if (termStr == "") {
+                    var normalStr = normalScore.val().trim();
+                    if (normalStr == "") {
+                        normalStr = "0";
+                    }
+                    normalStr = normalStr.replace(/[^\w]/ig, '');
+                    normal = Number(normalStr);
+                    if (normal > 100) {
+                        normal = 100;
+                    }
+                    if (normal < 0) {
+                        normal = 0;
+                    }
+                    normalScore.val(normal);
+
+                    //考试分
+                    termStr = "0";
+                }
+                termStr = termStr.replace(/[^\w]/ig, '');
+                var term = Number(termStr);
+                if (term > 100) {
+                    term = 100;
+                }
+                if (term < 0) {
+                    term = 0;
+                }
+                termScore.val(term);
+                //总评分
+                var total = term * Number('@termScore') + normal * Number('@normalScore');
+                totalScore.val(total / 100);
+
+            });       
+            $(".termScore").keyup(function () {
+                var termScore = $(this);
+                var father = termScore.parent().parent();
+                var normalScore = $(".normalScore", father);
+                var totalScore = $(".totalScore", father);
+                //平时分
+                var normalStr = normalScore.val().trim();
+                if (normalStr == "") {
+                    normalStr = "0";
+                }
+                normalStr = normalStr.replace(/[^\w]/ig, '');
+                var normal = Number(normalStr);
+                if (normal > 100) {
+                    normal = 100;
+                }
+                if (normal < 0) {
+                    normal = 0;
+                }
+                normalScore.val(normal);
+
+                //考试分
+                var termStr = termScore.val().trim();
+                if (termStr == "") {
+                    termStr = "0";
+                }
+                termStr = termStr.replace(/[^\w]/ig, '');
+                var term = Number(termStr);
+                if (term > 100) {
+                    term = 100;
+                }
+                if (term < 0) {
+                    term = 0;
+                }
+                termScore.val(term);
+
+                //总评分
+                var total = term * Number('@termScore') + normal * Number('@normalScore');
+                totalScore.val(total / 100);
+
+            });
+
+
+
+
+        });
+
+    </script>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        <div id="main-tl">
+            <div class="left-t">成绩管理</div>
+            <div class="left-c">
+                @{
+                    foreach (var modulePower in modulePowers)
+                    {
+                        if (modulePower.y_url.ToLower() == "/score/recordscore".ToLower())
+                        {
+                            <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                        else
+                        {
+                            <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div id="main-tr">
+            <form action="/Score/StudentScore/@stuId" id="searchForm" method="post">
+                <div class="zc-inn">
+                    <span style="padding-left:30px;">学期</span>
+                    <select class="cx-sel" name="term" id="term">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <input style="margin-top:10px; height:32px; line-height:30px;" class="cx-sub" type="submit" value="查找" />
+                <input style="margin-top:10px; height:32px; line-height:30px;" class="cx-sub" type="button" onclick="save()" value="保存" />
+            </form>
+            <table class="xx-table">
+                <tr>
+                    <th style="padding-left:30px;">姓名</th>
+                    <th>课程名称</th>
+                    <th>学期</th>
+                    <th>及格分数</th>
+                    <th>平时分</th>
+                    <th>考试分</th>
+                    <th>总分</th>
+                    @*<th>操作</th>*@
+                </tr>
+                @{
+                    var isTeach = (bool)ViewBag.isTeach;
+                    if (isTeach)
+                    {
+                        var teachPlanDesList = (List<VW_TeachPlanDes>)ViewBag.teachPlanDesList;
+                        using (var yunEntities = new IYunEntities())
+                        {
+                            for (var i = 0; i < teachPlanDesList.Count; i++)
+                            {
+                                var cid = teachPlanDesList[i].y_courseId;
+                                var score = yunEntities.VW_Score.FirstOrDefault(u => u.y_stuId == stuId && term == u.y_term && u.y_courseId == cid);
+                                if (score == null)
+                                {
+                                    <tr class="score score_@i">
+                                        <td style="padding-left:30px;">
+                                            @ViewBag.stuName
+                                        </td>
+                                        <td>@teachPlanDesList[i].courseName</td>
+                                        <td>@term</td>
+                                        <td>@teachPlanDesList[i].y_score</td>
+                                        <td>
+                                            <input type="text" class="cx-inp normalScore" data-id="@term" data-courseId="@teachPlanDesList[i].y_courseId" style="width:70px;" value="0" onchange="normalscore(@term,@teachPlanDesList[i].y_courseId)"/>
+                                        </td>
+                                        <td><input type="text" class="cx-inp termScore" data-id2="@term" data-courseId2="@teachPlanDesList[i].y_courseId" style="width:70px;" value="0" onchange="termscore(@term,@teachPlanDesList[i].y_courseId)"/></td>
+                                        <td><input type="text" class="cx-inp totalScore" style="width: 70px;" readonly="readonly" value="0" /><input type="hidden" class="courseId" value="@teachPlanDesList[i].y_courseId" /></td>
+                                        @*<td><input type="button" style="margin: 0; height: 34px;" class="cx-sub" name="save_@i" onclick="save_one(@i)" value="保存" /></td>*@
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr class="score score_@i">
+                                        <td style="padding-left:30px;">
+                                            @ViewBag.stuName
+                                        </td>
+                                        <td>@teachPlanDesList[i].courseName</td>
+                                        <td>@term</td>
+                                        <td>@teachPlanDesList[i].y_score</td>
+                                        <td>
+                                            <input type="text" class="cx-inp normalScore" data-id="@term" data-courseId="@teachPlanDesList[i].y_courseId" style="width:70px;" value="@score.y_normalScore" onchange="normalscore(@term,@teachPlanDesList[i].y_courseId)" />
+                                        </td>
+                                        <td><input type="text" class="cx-inp termScore" data-courseId2="@teachPlanDesList[i].y_courseId" data-id2="@term" style="width:70px;" value="@score.y_termScore" onchange="termscore(@term,@teachPlanDesList[i].y_courseId)"/></td>
+                                        <td><input type="text" class="cx-inp totalScore" readonly="readonly" style="width: 70px;" value="@score.y_totalScore" /><input type="hidden" class="courseId" value="@teachPlanDesList[i].y_courseId" /></td>
+                                        @*<td><input type="button" class="cx-sub" style=" margin: 0; height: 34px;" name="save_@i" onclick="save_one(@i)" value="保存" /></td>*@
+                                    </tr>
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td></td>
+                            <td colspan="5"><span style="position:relative; top:10px;font-size: 35px;"><a href="/Edu/TeachPlanAddPage/?year=@year&majorId=@majorId">该学期没有教学计划，请先<font color="green">添加教学计划</font></a></span></td>
+                            <td></td>
+                        </tr>
+                    }
+                }
+
+
+            </table>
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+</body>
+</html>
+<script>
+    @*function normalscore(term,courseId) {      
+        var normalScores = $(".normalScore");
+        var normalScore = "";
+        for (var i = 0; i < normalScores.length; i++) {
+            if ($(normalScores[i]).attr("data-id") == term && $(normalScores[i]).attr("data-courseId")==courseId ) {
+                normalScore += $(".normalScore").eq(i);
+            }
+        }
+        var father = normalScore.parent().parent();
+        var termScore = $(".termScore", father);
+        var totalScore = $(".totalScore", father);
+        //平时分
+        var termStr = termScore.val().trim();
+        var normal;
+        if (termStr == "") {
+            var normalStr = normalScore.val().trim();
+            if (normalStr == "") {
+                normalStr = "0";
+            }
+            normalStr = normalStr.replace(/[^\w]/ig, '');
+            normal = Number(normalStr);
+            if (normal > 100) {
+                normal = 100;
+            }
+            if (normal < 0) {
+                normal = 0;
+            }
+            normalScore.val(normal);
+
+            //考试分
+            termStr = "0";
+        }
+        termStr = termStr.replace(/[^\w]/ig, '');
+        var term = Number(termStr);
+        if (term > 100) {
+            term = 100;
+        }
+        if (term < 0) {
+            term = 0;
+        }
+        termScore.val(term);
+        //总评分
+        var total = term * Number('@termScore') + normal * Number('@normalScore');
+        totalScore.val(total / 100);
+    }
+    function termscore(term,courseId) {
+        var termScores = $(".termScore");
+      
+        var termScore = "";
+        for (var i = 0; i < termScores.length; i++) {
+            if ($(termScores[i]).attr("data-id2") == term && $(normalScores[i]).attr("data-courseId2")==courseId) {
+                termScore += $(".termScore").eq(i);
+            }
+        }
+        var father = termScore.parent().parent();
+        var normalScore = $(".normalScore", father);
+        var totalScore = $(".totalScore", father);
+        //平时分
+        var normalStr = normalScore.val().trim();
+        if (normalStr == "") {
+            normalStr = "0";
+        }
+        normalStr = normalStr.replace(/[^\w]/ig, '');
+        var normal = Number(normalStr);
+        if (normal > 100) {
+            normal = 100;
+        }
+        if (normal < 0) {
+            normal = 0;
+        }
+        normalScore.val(normal);
+
+        //考试分
+        var termStr = termScore.val().trim();
+        if (termStr == "") {
+            termStr = "0";
+        }
+        termStr = termStr.replace(/[^\w]/ig, '');
+        var term = Number(termStr);
+        if (term > 100) {
+            term = 100;
+        }
+        if (term < 0) {
+            term = 0;
+        }
+        termScore.val(term);
+
+        //总评分
+        var total = term * Number('@termScore') + normal * Number('@normalScore');
+        totalScore.val(total / 100);
+    }*@
+    //生成各个字段集合，其中用“<>”隔开
+    function save() {
+        var scoreList = $(".score");
+        var term = "@term";
+        var stuId = "@stuId";
+        var normalScore = "";
+        var termScore = "";
+        var totalScore = "";
+        var courseId = "";
+        if (scoreList.length == 0) {
+            alert("无成绩");
+            return;
+        }
+        for (var i = 0; i < scoreList.length; i++) {
+            var nowObj = $(scoreList[i]);
+            normalScore += $(".normalScore", nowObj).val();
+            termScore += $(".termScore", nowObj).val();
+            totalScore += $(".totalScore", nowObj).val();
+            courseId += $(".courseId", nowObj).val();
+            if (i + 1 < scoreList.length) {
+                normalScore += "<>";
+                termScore += "<>";
+                totalScore += "<>";
+                courseId += "<>";
+            }
+        }
+        $.ajax({
+            type: "post",
+            url: "/Score/UpdateStuScore",
+            data: {
+                stuId: stuId,
+                term: term,
+                normalScore: normalScore,
+                termScore: termScore,
+                totalScore: totalScore,
+                courseId: courseId
+            },
+            success: function (data) {
+                if (data == "ok") {
+                    alert("成绩更新成功");
+                } else {
+                    alert(data);
+                }
+            },
+            error: function (msg) {
+                alert("未知错误");
+            }
+        });
+    }
+
+    function save_one(num) {
+        var term = "@term";
+        var stuId = "@stuId";
+        //var scoreList = $(".score_" + num);
+        var nowObj = $(".score_" + num);
+        var normalScore = "";
+        var termScore = "";
+        var totalScore = "";
+        var courseId = "";
+        normalScore = $(".normalScore", nowObj).val();
+        termScore = $(".termScore", nowObj).val();
+        totalScore = $(".totalScore", nowObj).val();
+        courseId = $(".courseId", nowObj).val();
+        $.ajax({
+            type: "post",
+            url: "/Score/UpdateStuScoreOne",
+            data: {
+                stuId: stuId,
+                term: term,
+                normalScore: normalScore,
+                termScore: termScore,
+                totalScore: totalScore,
+                courseId: courseId
+            },
+            success: function (data) {
+                if (data == "ok") {
+                    alert("成绩更新成功");
+                   
+                } else {
+                    alert(data);
+                }
+            },
+            error: function (msg) {
+                alert("未知错误");
+            }
+        });
+    }
+</script>

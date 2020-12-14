@@ -1,0 +1,41 @@
+﻿@using System.Configuration
+@using IYun.Common
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<VW_StuInfo>
+@{
+    var adminroleid = ViewBag.adminroleid;
+}
+<table class="xx-table">
+    <tr>
+        <th style="padding-left:25px;">姓名</th>
+        <th>专业</th>
+        <th>层次</th>
+        <th>学习形式</th>
+        @{
+            if (adminroleid != 4)
+            {
+                <th>学习中心</th>
+            }
+        }
+        <th>入学年份</th>
+        
+    </tr>
+
+    @foreach (VW_StuInfo student in Model)
+    {
+        <tr>
+            <td style="padding-left:25px;">@student.y_name</td>
+            <td>@student.majorLibraryName</td>
+            <td>@student.eduTypeName</td>
+            <td>@student.stuTypeName</td>
+            @{
+                if (adminroleid != 4)
+                {
+                    <td>@student.schoolName</td>
+                }
+            }
+            <td>@student.y_inYear</td>
+        </tr>
+                }
+</table>

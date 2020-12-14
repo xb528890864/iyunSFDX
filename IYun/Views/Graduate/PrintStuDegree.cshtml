@@ -1,0 +1,314 @@
+﻿@using System.Collections
+@using System.Configuration
+@using IYun.Common
+@using IYun.Models
+@using IYun.Controllers.ControllerObject
+@model List<ScoreStatistics_Course>
+@{
+    Layout = null;
+    var stuInfo = (VW_StuInfo)ViewBag.stuInfo;
+    var degreescore=ViewBag.degreescore ?? 0;
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <script type="text/javascript" src="~/Content/manage/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    <script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="~/Content/manage/js/laydate.js"></script> <!-- 日历控件 -->
+
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+            $(".dc-btn").click(function () {
+                $(".dc-btn").attr("display", "none");
+            });
+        });
+        function myPrint(obj) {
+            var newWindow = window.open("/Graduate/PrintStuDegree", "_blank");//打印窗口要换成页面的url
+            $("#prev").hide();
+            var docStr = obj.innerHTML;
+            newWindow.document.write(docStr);
+            newWindow.document.close();
+            newWindow.print();
+            newWindow.close();
+            $("#prev").show();
+        }
+    </script>
+</head>
+<body>
+    @Html.Action("Top", "AdminBase")
+    <style>
+        .dc-box {
+            width: 1000px;
+            background: #fff;
+            overflow: hidden;
+            min-height: 400px;
+            box-shadow: 0 0 5px #e6e8eb;
+            margin: 0 auto;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .dc-t {
+            color: #333333;
+            font-size: 24px;
+            text-align: center;
+            margin-top: 35px;
+            line-height: 26px;
+        }
+
+        .dc-sp {
+            text-align: center;
+            color: #333333;
+            font-size: 14px;
+            padding: 10px 0;
+        }
+
+        .dc-btn {
+            background: #f9a717;
+            width: 78px;
+            height: 30px;
+            border: 1px solid #fcd186;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+            display: block;
+            position: absolute;
+            right: 60px;
+            top: 60px;
+            border-radius: 3px;
+            -webkit-border-radius: 3px;
+            -ms-border-radius: 3px;
+        }
+    </style>
+
+    <div class="dc-box" id="print" style="width: 1000px;">
+        <a class="dc-btn" href="javascript:myPrint(document.getElementById('print'))" id="prev">数据打印</a>
+        <div class="dc-t" style="text-align: center; font-weight: bold; font-size: 26px; margin-top: 60px; font-family: 微软雅黑;">江西省普通高校授予成人本科毕业生学士学位申请表</div>
+        <table width="100%" class="basic-mod-table" style="margin: 0 auto; margin-top: 20px; border-collapse: collapse;" cellpadding="0">
+            <tr>
+                <td>
+                    <table border="1" style="width: 100%; border-collapse: collapse;" bordercolor="33333">
+                        <tr>
+                            <td width="8%" style="line-height: 50px; text-align: center;">姓名</td>
+                            <td width="10%" style="line-height: 50px; text-align: center;">@stuInfo.y_name</td>
+                            <td width="8%" style="line-height: 50px; text-align: center;">性别</td>
+                            <td width="8%" style="line-height: 50px; text-align: center;">@(stuInfo.y_sex == 0 ? "男" : "女")</td>
+                            <td width="8%" style="line-height: 50px; text-align: center;">年龄</td>
+                            <td width="8%" style="line-height: 50px; text-align: center;">&nbsp;</td>
+                            <td width="8%" style="line-height: 50px; text-align: center;">民族</td>
+                            <td width="8%" style="line-height: 50px; text-align: center;">@stuInfo.nationName</td>
+                            <td width="8%" style="line-height: 50px; text-align: center;">入学时间</td>
+                            <td width="8%" style="line-height: 50px; text-align: center;">@stuInfo.y_inYear</td>
+                            <td width="20%" rowspan="4" style="line-height: 50px; text-align: center;">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="line-height: 50px; text-align: center;">毕业学校</td>
+                            <td colspan="3" style="line-height: 50px; text-align: center;">@ConfigurationManager.AppSettings["SchoolTable"]</td>
+                            <td style="line-height: 50px; text-align: center;">专业</td>
+                            <td colspan="2" style="line-height: 50px; text-align: center;">@stuInfo.majorLibraryName</td>
+                            <td style="line-height: 50px; text-align: center;">专科专业</td>
+                            <td colspan="2" style="line-height: 50px; text-align: center;">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="line-height: 50px; text-align: center;">通信地址（含邮编）</td>
+                            <td colspan="7" style="line-height: 50px; text-align: center;">@stuInfo.y_address</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="line-height: 50px; text-align: center;">授予学位学位门类</td>
+                            <td colspan="2" style="line-height: 50px; text-align: center;">&nbsp;</td>
+                            <td colspan="2" style="line-height: 50px; text-align: center;">学位证书编号</td>
+                            <td colspan="3" style="line-height: 50px; text-align: center;">&nbsp;</td>
+                        </tr>
+                        @if (Model != null && Model.Any())
+                        {
+                            var count = 0;
+                            // 主干课程
+                            var termlist = Model.GroupBy(u => new
+                            {
+                                u.CourseId,
+                                u.CourseName
+                            }).Select(u => u.Key).OrderBy(u => u.CourseId).ToList();
+                            <tr>
+                                <td rowspan="8">
+                                    <p align="center">
+                                        主 <br />
+                                        干 <br />
+                                        课 <br />
+                                        程 <br />
+                                        成 <br />
+                                        绩
+                                    </p>
+                                </td>
+                                <td colspan="3" style="line-height: 50px; text-align: center;">课程名称</td>
+                                <td colspan="3" style="line-height: 50px; text-align: center;">成绩</td>
+                                <td colspan="3" style="line-height: 50px; text-align: center;">课程名称</td>
+                                <td style="line-height: 50px; text-align: center;">成绩</td>
+                            </tr>
+                            for (int i = 0; i < termlist.Count; i = i + 2)
+                            {
+                                <tr>
+                                    <td colspan="3" style="line-height: 50px; text-align: center;">@Model[i].CourseName</td>
+                                    <td colspan="3" style="line-height: 50px; text-align: center;">@Model[i].TotalScore</td>
+                                    @if (i + 1 < termlist.Count)
+                                    {
+                                        for (int j = i + 1; j < termlist.Count;)
+                                        {
+                                            <td colspan="3" style="line-height: 50px; text-align: center;">@Model[j].CourseName</td>
+                                            <td style="line-height: 50px; text-align: center;">@Model[j].TotalScore</td>
+                                            break;
+                                        }
+                                    }
+                                    else
+                                    {
+                                            <td colspan = "3" style = "line-height: 50px; text-align: center;" > &nbsp;</td>
+                                           <td style = "line-height: 50px; text-align: center;" >&nbsp; </td>
+                                    }
+                                </tr>
+                                count++;
+                            }
+                            if (count < 6)
+                            {
+                                for (int h = 0; h < 6 - count; h++)
+                                {
+                                    <tr>
+                                        <td colspan="3" style="line-height: 50px; text-align: center;">&nbsp;</td>
+                                        <td colspan="3" style="line-height: 50px; text-align: center;">&nbsp;</td>
+                                        <td colspan="3" style="line-height: 50px; text-align: center;">&nbsp;</td>
+                                        <td style="line-height: 50px; text-align: center;">&nbsp;</td>
+                                    </tr>
+                                }
+                            }
+                            <tr>
+                                <td colspan="3" style="line-height: 50px; text-align: center;">&nbsp;</td>
+                                <td colspan="3" style="line-height: 50px; text-align: center;">&nbsp;</td>
+                                <td colspan="3" style="line-height: 50px; text-align: center;">主干课程平均成绩</td>
+                                <td style="line-height: 50px; text-align: center;">
+
+                                    @{
+                                        var average = Model.Average(u => u.TotalScore);
+                                    }
+                                    @if (average != null)
+                                    {
+                                        @average.Value.ToString("f2")
+                                    }
+                                </td>
+                            </tr>
+                        }
+                        <tr>
+                            <td style="line-height: 50px; text-align: center;">其它</td>
+                            <td colspan="3" style="line-height: 50px; text-align: center;">政治理论课</td>
+                            <td colspan="3" style="line-height: 50px; text-align: center;">&nbsp;</td>
+                            <td colspan="3" style="line-height: 50px; text-align: center;">毕业论文（或设计）</td>
+                            <td style="line-height: 50px; text-align: center;">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2" style="line-height: 50px; text-align: center;">学位考试成绩</td>
+                            <td colspan="3" style="line-height: 50px; text-align: center;">全省学位外语考试</td>
+                            <td colspan="3" style="line-height: 50px; text-align: center;">@degreescore</td>
+                            <td colspan="3" style="line-height: 50px; text-align: center;">基础课（学校组织）</td>
+                            <td style="line-height: 50px; text-align: center;">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="line-height: 50px; text-align: center;">专业课甲（学校组织）</td>
+                            <td colspan="3" style="line-height: 50px; text-align: center;">&nbsp;</td>
+                            <td colspan="3" style="line-height: 50px; text-align: center;">专业课乙（学校组织）</td>
+                            <td style="line-height: 50px; text-align: center;">&nbsp;</td>
+                        </tr>
+                    </table>
+                    <div class="abnormal-div2">
+                        <h2>注：</h2>
+                        1、专科专业指专科学生读本科前所学专业；<br />
+                        2、高教自学考试学生入学时间为第一门课程开考时间；<br />
+                        3、毕业鉴定自学考试学生由单位鉴定。<br />
+                        4、请用钢笔碳素墨水填写。<br />
+                        5、此表格一式两份，必须正反面打印
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table class="scoretable" border="1" cellpadding="0" style="border-collapse: collapse; margin-top: 200px; width: 100%;" bordercolor="#333333;">
+                        <tr>
+                            <td height="95" style="text-align: center;">毕业鉴定（含德智体诸方面)</td>
+                            <td colspan="10">
+                                <textarea class="textarea1" style="display: block; width: 100%; height: 100%; padding: 10px; background: none; font-size: 14px; line-height: 24px; height: 160px; border: 0; resize: none;" disabled="disabled" placeholder=""></textarea>
+                                <div class="basic-mod1" style="text-align: right;padding-right: 10px;">
+                                    <span style="padding-right: 40px; float: right;">日（章）</span>
+                                    <span style="padding-right: 40px; float: right;">月</span>
+                                    <span style="padding-right: 40px; float: right;">年</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="95" style="text-align: center;">成人管理部门推荐意见</td>
+                            <td colspan="10">
+                                <textarea class="textarea1" style="display: block; width: 100%; height: 100%; padding: 10px; background: none; font-size: 14px; line-height: 24px; height: 160px; border: 0; resize: none;" disabled="disabled" placeholder=""></textarea>
+                                <div class="basic-mod1" style="text-align: right; padding-right: 10px;">
+                                    <div style="padding-right: 40px;">继续教育学院（章）：</div>
+                                    <span style="padding-right: 40px; float: right;">日（章）</span>
+                                    <span style="padding-right: 40px; float: right;">月</span>
+                                    <span style="padding-right: 40px; float: right;">年</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="95" style="text-align: center;">学校学位工作主管部门意见</td>
+                            <td colspan="10">
+                                <textarea class="textarea1" style="display: block; width: 100%; height: 100%; padding: 10px; background: none; font-size: 14px; line-height: 24px; height: 160px; border: 0; resize: none;" disabled="disabled" placeholder=""></textarea>
+                                <div class="basic-mod1" style="text-align: right; padding-right: 10px;">
+                                    <div style="padding-right: 40px;">校（院）学位工作主管部门（章）：</div>
+                                    <span style="padding-right: 40px; float: right;">日（章）</span>
+                                    <span style="padding-right: 40px; float: right;">月</span>
+                                    <span style="padding-right: 40px; float: right;">年</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="95" style="text-align: center;">校学位评定委员会意见</td>
+                            <td colspan="10">
+                                <textarea class="textarea1" style="display: block; width: 100%; height: 100%; padding: 10px; background: none; font-size: 14px; line-height: 24px; height: 160px; border: 0; resize: none;" disabled="disabled" placeholder=""></textarea>
+                                <div class="basic-mod1" style="text-align: right; padding-right: 10px;">
+                                    <div style="padding-right: 40px;">校（院）学位评定委员会主席（章）：</div>
+                                    <span style="padding-right: 40px; float: right;">日（章）</span>
+                                    <span style="padding-right: 40px; float: right;">月</span>
+                                    <span style="padding-right: 40px; float: right;">年</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="95" style="text-align: center;">备注</td>
+                            <td colspan="10">
+                                <textarea class="textarea1" style="display: block; width: 100%; height: 100%; padding: 10px; background: none; font-size: 14px; line-height: 24px; height: 160px; border: 0; resize: none;" disabled="disabled" placeholder=""></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    @Html.Action("Foot", "AdminBase")
+</body>
+</html>

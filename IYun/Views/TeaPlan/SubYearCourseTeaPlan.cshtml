@@ -1,0 +1,115 @@
+﻿@using System.Configuration
+@using IYun.Models
+@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@model PagedList<YD_Edu_Course>
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+    var year = Convert.ToInt32(ConfigurationManager.AppSettings["xinsheng"]);
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <script type="text/javascript" src="js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    @*<script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>*@
+    <script src="~/Content/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="~/Scripts/MvcPager.js"></script>
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });
+
+    </script>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        <div id="main-tl">
+            <div class="left-t">教务管理</div>
+            <div class="left-c">
+                @{
+                    foreach (var modulePower in modulePowers)
+                    {
+                        if (modulePower.y_url.ToLower() == "/TeaPlan/SubYearCourseTeaPlan".ToLower())
+                        {
+                            <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                        else
+                        {
+                            <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div id="main-tr">
+            <form action="" id="searchForm" method="post">
+                <div class="cli">
+                    <div class="zc-inn">
+                        <span style="margin-left: 20px;">年度</span>
+                        @Html.Action("EnrollYear2", "Helper", new HelperParameterM {style = "width:200px;font-size: 18px;", index = year})
+                    </div>
+                    <div class="zc-inn">
+                        <span style="margin-left: 20px;">函授站</span>
+                        @Html.Action("SubSchool", "Helper", new HelperParameterM { style = "width:200px;font-size: 18px;", index = year })
+                    </div>
+                    <div class="zc-head">
+                        <input style="margin-top: 10px; height: 32px; line-height: 30px; float: right" class="cx-sub" type="submit" value="查找" />
+                    </div>
+                </div>
+            </form>
+
+            <div id="loadingDiv" style="display: none">
+                <img src="~/Content/images/loading.gif" />
+            </div>
+            <div id="ajaxtable">
+                @Html.Partial("CoursePlanList", Model)
+            </div>
+        </div>
+    </div>
+    <script>
+    $(document).ready(function() {
+        $("#uploadsub").click(function() {
+            $(".show-c").css('display', 'none');
+            $(".upload").click(function() {
+                $(this).parents(".nava1").find(".show-bg").stop().fadeTo(500, 1);
+                $(this).parents(".nava1").find(".show-c").css("display", "block");
+            });
+            $(".close").click(function() {
+                $(this).parents(".nava1").find(".show-bg").css('display', 'none');
+                $(this).parents(".nava1").find(".show-c").css("display", "none");
+            });
+        });
+    });
+
+    </script>
+    @Html.Action("Foot", "AdminBase")
+</body>
+</html>

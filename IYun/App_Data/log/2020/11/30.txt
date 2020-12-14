@@ -1,0 +1,94 @@
+
+ 
+记录时间：2020-11-30 11:15:23,615 
+线程ID:[6] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：无法在发送 HTTP 标头之后进行重定向。
+ 
+
+ 
+记录时间：2020-11-30 11:15:23,705 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /Graduate/PrintGridShow
+ 
+
+ 
+记录时间：2020-11-30 11:15:23,705 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-11-30 11:15:23,707 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.Web.HttpException (0x80004005): 无法在发送 HTTP 标头之后进行重定向。
+   在 System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   在 System.Web.HttpResponseWrapper.Redirect(String url)
+   在 IYun.Controllers.AdminBaseController.get_YdAdminRoleId() 位置 E:\云端\老版教务项目\江西师范\trunk\IYun\Controllers\AdminBaseController.cs:行号 28
+   在 IYun.Controllers.GraduateController.PrintGridShow() 位置 E:\云端\老版教务项目\江西师范\trunk\IYun\Controllers\GraduateController.cs:行号 7461
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
+
+ 
+记录时间：2020-11-30 14:22:00,089 
+线程ID:[6] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：无法在发送 HTTP 标头之后进行重定向。
+ 
+
+ 
+记录时间：2020-11-30 14:22:00,839 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /Graduate/PrintGridShow
+ 
+
+ 
+记录时间：2020-11-30 14:22:00,839 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2020-11-30 14:22:00,840 
+线程ID:[6] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.Web.HttpException (0x80004005): 无法在发送 HTTP 标头之后进行重定向。
+   在 System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   在 System.Web.HttpResponseWrapper.Redirect(String url)
+   在 IYun.Controllers.AdminBaseController.get_YdAdminRoleId() 位置 E:\云端\老版教务项目\江西师范\trunk\IYun\Controllers\AdminBaseController.cs:行号 28
+   在 IYun.Controllers.GraduateController.PrintGridShow() 位置 E:\云端\老版教务项目\江西师范\trunk\IYun\Controllers\GraduateController.cs:行号 7461
+   在 lambda_method(Closure , ControllerBase , Object[] )
+   在 System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass42.<BeginInvokeSynchronousActionMethod>b__41()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<>c__DisplayClass39.<BeginInvokeActionMethodWithFilters>b__33()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass4f.<InvokeActionMethodFilterAsynchronously>b__49()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)

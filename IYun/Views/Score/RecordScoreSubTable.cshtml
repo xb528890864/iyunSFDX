@@ -1,0 +1,22 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YD_Sys_SubSchool>
+
+<table class="xx-table ydong-tab">
+    <tr>
+        <th>函授站</th>
+        <th>函授站代码</th>
+        <th>操作</th>
+    </tr>
+    @{
+        foreach (var ydSysAdmin in Model)
+        {
+            <tr>
+                <td>@ydSysAdmin.y_name</td>
+                <td>@ydSysAdmin.y_code</td>
+                <td><a class="bfont2" href="/Score/RecordScoreMajor/?subId=@ydSysAdmin.id">选择专业</a></td>
+            </tr>
+        }
+    }
+</table>
+

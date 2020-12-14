@@ -1,0 +1,147 @@
+﻿@using System.Configuration
+@using IYun.Models
+@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@model PagedList<VW_DbLog>
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <scripttype="text/javascript" src="js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    <script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="~/Scripts/MvcPager.js"></script>
+    <script src="~/Content/manage/js/laydate.js"></script>  <!-- 日历控件 -->
+    <script type="text/javascript">
+      
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });
+
+    </script>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        <div id="main-tl">
+            <div class="left-t">系统设置</div>
+            <div class="left-c">
+                @{
+                    foreach (var modulePower in modulePowers)
+                    {
+                        if (modulePower.y_url.ToLower() == "/sysadmin/dblog".ToLower())
+                        {
+                            <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                        else
+                        {
+                            <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div id="main-tr">
+            <div class="zc-head show-par">
+                <form action="/SysAdmin/DbLog" id="searchForm" method="post">
+                    <div class="zc-inn">
+                        <span>操作类别</span>
+                        @Html.Action("LogType", "Helper", new HelperParameterM { name = "Y_logTypeID", className = "cx-sel" })
+                    </div>
+                    <div class="zc-inn">
+                        <span>操作时间</span>
+                        <input type="text" class="laydate-icon cx-inp" name="startTime" id="start" style="width:110px; height:32px;	line-height:32px;" />
+                        至
+                        <input type="text" class="laydate-icon cx-inp" name="endTime" id="end" style="width:110px; height:32px;	line-height:32px;" />
+                    </div>
+                    <div class="zc-inn">
+                        <span>操作员</span>
+                        <input type="text" class="cx-inp" name="Y_userName" style="width:80px;" />
+                    </div>
+                    <div class="zc-inn">
+                        <input style="margin-top: 0px; height: 32px; line-height: 30px;" class="cx-sub close" type="submit" value="查找"/>
+                        <a class="cx-sub" href="javascript:DownDblog()" style="margin-top: 0px; height: 32px; line-height: 30px;">数据导出</a>
+                    </div>
+                </form>
+            </div>
+            <div id="loadingDiv" style="display:none"><img src="~/Content/images/loading.gif" /></div>
+            <div id="ajaxtable">
+                @Html.Partial("DbLogList", Model)
+            </div>
+
+
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+
+    <script>
+        //日期范围限制
+        var start = {
+            elem: '#start',
+            format: 'YYYY-MM-DD',
+            istime: true,
+            istoday: false,
+            choose: function (datas) {
+                end.min = datas; //开始日选好后，重置结束日的最小日期
+                end.start = datas //将结束日的初始值设定为开始日
+            }
+        };
+        var end = {
+            elem: '#end',
+            format: 'YYYY-MM-DD',
+            istime: true,
+            istoday: false,
+            choose: function (datas) {
+                start.max = datas; //结束日选好后，充值开始日的最大日期
+            }
+        };
+        laydate(start);
+        laydate(end);
+
+        function DownDblog() {
+            $.ajax({
+                type: "post",
+                url: "/SysAdmin/DownDbLog",
+                data: $("#searchForm").serialize(),
+                success: function (data) {
+                    if (data.indexOf("xls") > 0) {
+                        location.href = data;
+                    } else {
+                        eval(data);
+                    }
+                },
+                error: function () {
+                    alert("未知错误");
+                }
+            });
+        }
+    </script>
+</body>
+</html>

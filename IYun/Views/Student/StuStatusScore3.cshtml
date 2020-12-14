@@ -1,0 +1,420 @@
+﻿@using System.Collections
+@using System.Configuration
+@using IYun.Common
+@using IYun.Models
+@using IYun.Controllers.ControllerObject
+@model List<ScoreStatistics_Course>
+@{
+    Layout = null;
+    var strange = (VW_Strange)ViewBag.strange ?? new VW_Strange(); ;  //学生异动信息
+    var stuInfo = (VW_StuInfo)ViewBag.stuInfo;
+
+    var changetag = "";
+    if (strange.y_strangeType == 1)
+    {
+        var majorid = Convert.ToInt32(strange.y_contentA);
+        var ydEduMajor = new IYunEntities().YD_Edu_Major.Find(majorid);
+        if (ydEduMajor != null)
+        {
+            changetag = ydEduMajor.y_name;
+        }
+    }
+    if (strange.y_strangeType == 2)
+    {
+        var schoolid = Convert.ToInt32(strange.y_contentA);
+        var ydSysSubSchool = new IYunEntities().YD_Sys_SubSchool.Find(schoolid);
+        if (ydSysSubSchool != null)
+        {
+            changetag = ydSysSubSchool.y_name;
+        }
+    }
+    var changetagB = "";
+    if (strange.y_strangeType == 1)
+    {
+        var majorid = Convert.ToInt32(strange.y_contentB);
+        var ydEduMajor = new IYunEntities().YD_Edu_Major.Find(majorid);
+        if (ydEduMajor != null)
+        {
+            changetagB = ydEduMajor.y_name;
+        }
+    }
+    if (strange.y_strangeType == 2)
+    {
+        var schoolid = Convert.ToInt32(strange.y_contentB);
+        var ydSysSubSchool = new IYunEntities().YD_Sys_SubSchool.Find(schoolid);
+        if (ydSysSubSchool != null)
+        {
+            changetagB = ydSysSubSchool.y_name;
+        }
+    }
+
+    var MaxTerm = 0;
+
+    if (Model != null && Model.Any())
+    {
+        MaxTerm = Model.Max(u => u.Term);
+    }
+
+    //var yearint = (MaxTerm + 1) / 2;
+    var yearint = 5;
+    Hashtable ht = new Hashtable();
+    ht[1] = "一";
+    ht[2] = "二";
+    ht[3] = "三";
+    ht[4] = "四";
+    ht[5] = "五";
+    ht[6] = "六";
+    ht[7] = "七";
+    ht[8] = "八";
+    ht[9] = "九";
+    ht[10] = "十";
+    ht[11] = "十一";
+    ht[12] = "十二";
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <script type="text/javascript" src="~/Content/manage/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    <script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="~/Content/manage/js/laydate.js"></script> <!-- 日历控件 -->
+
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+            $(".dc-btn").click(function () {
+                $(".dc-btn").attr("display", "none");
+            });
+        });
+        function myPrint(obj) {
+            var newWindow = window.open("/student/stustatusscore", "_blank");//打印窗口要换成页面的url
+            $("#prev").hide();
+            var docStr = obj.innerHTML;
+            newWindow.document.write(docStr);
+            newWindow.document.close();
+            newWindow.print();
+            newWindow.close();
+            $("#prev").show();
+        }
+    </script>
+</head>
+<body>
+    @Html.Action("Top", "AdminBase")
+    <style>
+        .dc-box {
+            width: 1000px;
+            background: #fff;
+            overflow: hidden;
+            min-height: 400px;
+            box-shadow: 0 0 5px #e6e8eb;
+            margin: 0 auto;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .dc-t {
+            color: #333333;
+            font-size: 24px;
+            text-align: center;
+            margin-top: 35px;
+            line-height: 26px;
+        }
+
+        .dc-sp {
+            text-align: center;
+            color: #333333;
+            font-size: 14px;
+            padding: 10px 0;
+        }
+
+        .dc-btn {
+            background: #f9a717;
+            width: 78px;
+            height: 30px;
+            border: 1px solid #fcd186;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+            display: block;
+            position: absolute;
+            right: 60px;
+            top: 100px;
+            border-radius: 3px;
+            -webkit-border-radius: 3px;
+            -ms-border-radius: 3px;
+        }
+
+        .dc-table {
+            margin-top: 10px;
+            width: 1000px;
+            text-align: center;
+            color: #333333;
+            overflow: hidden;
+            margin-bottom: 5px;
+        }
+
+            .dc-table td {
+                line-height: 60px;
+            }
+
+        .scoretable {
+            width: 1000px;
+            text-align: center;
+            color: #333333;
+            overflow: hidden;
+        }
+
+            .scoretable td {
+                line-height: 45px;
+            }
+    </style>
+    <div class="dc-box" id="print" style="width: 1000px;">
+        <a class="dc-btn" href="javascript:myPrint(document.getElementById('print'))" id="prev">数据打印</a>
+        @if (ConfigurationManager.AppSettings["SchoolName"] == ComEnum.SchoolName.JXSFDX.ToString())
+        {
+            <img src="~/Content/images/logo.jpg" style="width: 110px; position: absolute;right:780px;top: 38px;" />
+        }
+        else if (ConfigurationManager.AppSettings["SchoolName"] == ComEnum.SchoolName.GNSFDX.ToString())
+        {
+            <img src="~/Content/images/logo3.jpg" style="width: 110px; position: absolute;right:780px;top: 38px;" />
+        }
+        <div class="dc-t" style="text-align: center; font-weight: bold; font-size: 26px; margin-top: 60px; font-family: 微软雅黑;">@ConfigurationManager.AppSettings["SchoolTable"]成人高等学历教育学生成绩单</div>
+        <div class="dc-sp" style="text-align: center; margin-top: 30px; font-size: 18px; font-family: 微软雅黑;">
+            <span> 教学点：@stuInfo.schoolName &nbsp;&nbsp;&nbsp;年级：@stuInfo.y_inYear &nbsp;&nbsp;&nbsp;</span><br /><br />
+            <span>专业：@stuInfo.majorLibraryName&nbsp;&nbsp;&nbsp; 层次：@stuInfo.eduTypeName&nbsp;&nbsp;&nbsp;学习形式：@stuInfo.stuTypeName&nbsp;&nbsp;&nbsp;</span><br /><br />
+            <span> 学制：@stuInfo.y_stuYear &nbsp;&nbsp;&nbsp;姓名：@stuInfo.y_name&nbsp;&nbsp;&nbsp;学号：@stuInfo.y_stuNum&nbsp;&nbsp;&nbsp;身份证号：@stuInfo.y_cardId</span>
+             
+        </div>
+        <br />
+        <table class="basstable" style="margin: 0 auto; border-collapse: collapse; text-align: center; width: 1000px; font-size: 18px;">
+            <tr>
+                <td style="line-height: 80px;">
+                    @if (Model != null && Model.Any())
+            {
+                        <table class="scoretable" border="1" cellpadding="0" style="border-collapse: collapse; font-size: 18px; text-align: center; width: 1000px;" bordercolor="#333333;">
+                            @for (int i = 1; i <= yearint && i <= 2; i++)
+                            {
+                                var firterm = Model.Where(u => u.Term == (i * 2 - 1)).ToList();
+                                var secterm = Model.Where(u => u.Term == (i * 2)).ToList();
+                                var firtermCount = firterm.Count;
+                                var sectermCount = secterm.Count;
+                                var maxCount = firtermCount > sectermCount ? firtermCount : sectermCount;
+
+                                <tr>
+                                    <td colspan="3" style="text-align: center; font-weight: bold; line-height: 30px; font-size: 18px; font-family: 微软雅黑; width: 25%;">
+                                        @{ Write("第" + ht[i * 2 - 1] + "学期"); }
+                                    </td>
+                                    <td colspan="3" style="text-align: center; font-weight: bold; line-height: 30px; font-size: 18px; font-family: 微软雅黑;width: 25%;">
+                                        @{ Write("第" + ht[i * 2] + "学期"); }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="text-align: center; height: 30px; font-weight: bold; font-family: 微软雅黑; width: 25%;">课程</td>
+                                    @*<td style="text-align: center; height: 30px; font-weight: bold; font-family: 微软雅黑; width: 10%;">总学时</td>*@
+                                    <td style="text-align: center; height: 30px; font-weight: bold; font-family: 微软雅黑; width: 25%;">成绩</td>
+                                    <td colspan="2" style="text-align: center; height: 30px; font-weight: bold; font-family: 微软雅黑; width: 25%;">课程</td>
+                                    @*<td style="text-align: center; height: 30px; font-weight: bold; font-family: 微软雅黑; width: 10%;">总学时</td>*@
+                                    <td style="text-align: center; height: 30px; font-weight: bold; font-family: 微软雅黑; width: 25%;">成绩</td>
+                                </tr>
+                                            for (int j = 0; j < 4; j++)
+                                            {
+                                                <tr>
+                                                    @if (firtermCount >= j + 1)
+                                                    {
+                                                        if (firterm[j].y_isMain && firterm[j].y_sampleexam == true)
+                                                        {
+                                                            <td colspan="2" style="height: 25px;font-size: 23px;">@{ Write(firtermCount < j + 1 ? "" : firterm[j].CourseName + "**"); }</td>
+                                                                }
+                                                                else if (firterm[j].y_isMain)
+                                                                {
+                                                                    <td colspan="2" style="height: 25px;font-size: 23px;">@{ Write(firtermCount < j + 1 ? "" : firterm[j].CourseName + "*"); }</td>
+                                                                        }
+                                                                        else if (firterm[j].y_sampleexam == true)
+                                                                        {
+                                                                            <td colspan="2" style="height: 25px;font-size: 23px;">@{ Write(firtermCount < j + 1 ? "" : firterm[j].CourseName + "*"); }</td>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <td colspan="2" style="height: 25px;font-size: 23px;">@{ Write(firtermCount < j + 1 ? "" : firterm[j].CourseName); }</td>
+                                                                                            }
+                                                                                        }
+                                                                                        else
+                                                                                        {
+                                                                                            <td colspan="2" style="height: 25px;font-size: 23px;">@{ Write(firtermCount < j + 1 ? "" : firterm[j].CourseName); }</td>
+                                                                                                }
+
+                                                    @*<td style="height: 25px;font-size: 23px;">@{ Write(firtermCount < j + 1 ? "" : (firterm[j].SelfPeriod + firterm[j].TeaPeriod) + ""); }</td>*@
+                                                    <td style="height: 25px;font-size: 23px;">@{ Write(firtermCount < j + 1 ? "" : firterm[j].TotalScore.HasValue ? C(firterm[j].TotalScore.Value, firterm[j].CourseName) : "0"); }</td>
+
+                                                    @if (sectermCount >= j + 1)
+                                                    {
+                                                        if (secterm[j].y_isMain && secterm[j].y_sampleexam == true)
+                                                        {
+                                                            <td colspan="2" style="height: 25px;font-size: 23px;">@{ Write(sectermCount < j + 1 ? "" : secterm[j].CourseName + "**"); }</td>
+                                                                }
+                                                                else if (secterm[j].y_isMain)
+                                                                {
+                                                                    <td colspan="2" style="height: 25px;font-size: 23px;">@{ Write(sectermCount < j + 1 ? "" : secterm[j].CourseName + "*"); }</td>
+                                                                        }
+                                                                        else if (secterm[j].y_sampleexam == true)
+                                                                        {
+                                                                            <td colspan="2" style="height: 25px;font-size: 23px;">@{ Write(sectermCount < j + 1 ? "" : secterm[j].CourseName + "*"); }</td>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <td colspan="2" style="height: 25px;font-size: 23px;">@{ Write(sectermCount < j + 1 ? "" : secterm[j].CourseName); }</td>
+                                                                                            }
+                                                                                        }
+                                                                                        else
+                                                                                        {
+                                                                                            <td colspan="2" style="height: 25px;font-size: 23px;">@{ Write(sectermCount < j + 1 ? "" : secterm[j].CourseName); }</td>
+                                                                                                }
+                                                    @*<td style="height: 25px;font-size: 23px;">@{ Write(sectermCount < j + 1 ? "" : (secterm[j].SelfPeriod + secterm[j].TeaPeriod) + ""); }</td>*@
+                                                    <td style="height: 25px;font-size: 23px;">@{ Write(sectermCount < j + 1 ? "" : secterm[j].TotalScore.HasValue ? C(secterm[j].TotalScore.Value, secterm[j].CourseName) : "0"); }</td>
+                                                </tr>
+                                                            }
+                                                        }
+                      
+                            @for (int i = 3; i <= yearint; i++)
+                            {
+                                var firterm = Model.Where(u => u.Term == (i * 2 - 1)).ToList();
+                                var secterm = Model.Where(u => u.Term == (i * 2)).ToList();
+                                var firtermCount = firterm.Count;
+                                var sectermCount = secterm.Count;
+                                var maxCount = firtermCount > sectermCount ? firtermCount : sectermCount;
+
+                                <tr>
+                                    <td colspan="3" style="text-align: center; font-weight: bold; line-height: 30px; font-size: 18px; font-family: 微软雅黑; width: 60%;">
+                                        @{ Write("第" + ht[i * 2 - 1] + "学期"); }
+                                    </td>
+                                    <td colspan="3" style="text-align: center; font-weight: bold; line-height: 30px; font-size: 18px; font-family: 微软雅黑;width: 40%;">
+                                        @{ Write("第" + ht[i * 2] + "学期"); }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="text-align: center; height: 30px; font-weight: bold; font-family: 微软雅黑; width: 25%;">课程</td>
+                                    @*<td style="text-align: center; height: 30px; font-weight: bold; font-family: 微软雅黑; width: 10%;">总学时</td>*@
+                                    <td style="text-align: center; height: 30px; font-weight: bold; font-family: 微软雅黑; width: 25%;">成绩</td>
+                                    <td colspan="2" style="text-align: center; height: 30px; font-weight: bold; font-family: 微软雅黑; width: 25%;">课程</td>
+                                    @*<td style="text-align: center; height: 30px; font-weight: bold; font-family: 微软雅黑; width: 10%;">总学时</td>*@
+                                    <td style="text-align: center; height: 30px; font-weight: bold; font-family: 微软雅黑; width: 25%;">成绩</td>
+                                </tr>
+
+                                            for (int j = 0; j < 4; j++)
+                                            {
+                                                <tr>
+                                                    @if (firtermCount >= j + 1)
+                                                    {
+                                                        if (firterm[j].y_isMain && firterm[j].y_sampleexam == true)
+                                                        {
+                                                            <td colspan="2" style="height: 25px;font-size: 23px;">@{ Write(firtermCount < j + 1 ? "" : firterm[j].CourseName + "**"); }</td>
+                                                                }
+                                                                else if (firterm[j].y_isMain)
+                                                                {
+                                                                    <td colspan="2" style="height: 25px;font-size: 23px;">@{ Write(firtermCount < j + 1 ? "" : firterm[j].CourseName + "*"); }</td>
+                                                                        }
+                                                                        else if (firterm[j].y_sampleexam == true)
+                                                                        {
+                                                                            <td colspan="2" style="height: 25px;font-size: 23px;">@{ Write(firtermCount < j + 1 ? "" : firterm[j].CourseName + "*"); }</td>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <td colspan="2" style="height: 25px;font-size: 23px;">@{ Write(firtermCount < j + 1 ? "" : firterm[j].CourseName); }</td>
+                                                                                            }
+                                                                                        }
+                                                                                        else
+                                                                                        {
+                                                                                            <td colspan="2" style="height: 25px;font-size: 23px;">@{ Write(firtermCount < j + 1 ? "" : firterm[j].CourseName); }</td>
+                                                                                                }
+                                                    @*<td style="height: 25px;font-size: 23px;">@{ Write(firtermCount < j + 1 ? "" : (firterm[j].SelfPeriod + firterm[j].TeaPeriod) + ""); }</td>*@
+                                                    <td style="height: 25px;font-size: 23px;">@{ Write(firtermCount < j + 1 ? "" : firterm[j].TotalScore.HasValue ? C(firterm[j].TotalScore.Value, firterm[j].CourseName) : "0"); }</td>
+                                                    @if (sectermCount >= j + 1)
+                                                    {
+                                                        if (secterm[j].y_isMain && secterm[j].y_sampleexam == true)
+                                                        {
+                                                            <td colspan="2" style="height: 25px;font-size: 23px;">@{ Write(sectermCount < j + 1 ? "" : secterm[j].CourseName + "**"); }</td>
+                                                                }
+                                                                else if (secterm[j].y_isMain)
+                                                                {
+                                                                    <td colspan="2" style="height: 25px;font-size: 23px;">@{ Write(sectermCount < j + 1 ? "" : secterm[j].CourseName + "*"); }</td>
+                                                                        }
+                                                                        else if (secterm[j].y_sampleexam == true)
+                                                                        {
+                                                                            <td colspan="2" style="height: 25px;font-size: 23px;">@{ Write(sectermCount < j + 1 ? "" : secterm[j].CourseName + "*"); }</td>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <td colspan="2" style="height: 25px;font-size: 23px;">@{ Write(sectermCount < j + 1 ? "" : secterm[j].CourseName); }</td>
+                                                                                            }
+                                                                                        }
+                                                                                        else
+                                                                                        {
+                                                                                            <td colspan="2" style="height: 25px;font-size: 23px;">@{ Write(sectermCount < j + 1 ? "" : secterm[j].CourseName); }</td>
+                                                                                                }
+                                                    @*<td style="height: 25px;font-size: 23px;">@{ Write(sectermCount < j + 1 ? "" : (secterm[j].SelfPeriod + secterm[j].TeaPeriod) + ""); }</td>*@
+                                                    <td style="height: 25px;font-size: 23px;">@{ Write(sectermCount < j + 1 ? "" : secterm[j].TotalScore.HasValue ? C(secterm[j].TotalScore.Value, secterm[j].CourseName) : "0"); }</td>
+                                                </tr>
+                                                            }
+                                                        }
+
+                            <tr>
+
+                                <td colspan="3" style="height: 200px; vertical-align: bottom;">
+                                    <span style="padding-left: 220px;">成绩审核人（签名）</span><br />
+                                    @if (stuInfo.id == 15872)
+                                    {
+                                        <span style="padding-left: 220px;">2017年12月20日</span>
+                                    }
+                                    else
+                                    {
+                                        <span style="padding-left: 220px;"></span>@DateTime.Now.ToString("yyyy年MM月dd日")
+                                    }
+
+                                </td>
+                                <td colspan="3" style="height: 200px; vertical-align: bottom;">
+                                    <span style="padding-left: 220px;">学校审核（盖章）</span><br />
+                                    @if (stuInfo.id == 15872)
+                                    {
+                                        <span style="padding-left: 220px;">2017年12月20日</span>
+                                    }
+                                    else
+                                    {
+                                        <span style="padding-left: 220px;"></span>@DateTime.Now.ToString("yyyy年MM月dd日")
+                                    }
+                                </td>
+                            </tr>
+                        </table>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span>未找到此专业的教学计划</span>
+                                                        }
+                </td>
+            </tr>
+        </table>
+       
+    </div>
+
+    @Html.Action("Foot", "AdminBase")
+</body>
+</html>

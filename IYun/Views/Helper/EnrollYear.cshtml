@@ -1,0 +1,54 @@
+﻿@using IYun.Models;
+@using IYun.Object
+@{
+    Layout = null;
+    var data = ViewData["data"] as List<int>;
+    data = data ?? new List<int>();
+    var para = ViewData["para"] as HelperParameterM;
+    para = para ?? new HelperParameterM();
+    if (string.IsNullOrWhiteSpace(para.className))
+    {
+        para.className = "dl-sel";                       //默认样式CLASS
+    }
+    if (string.IsNullOrWhiteSpace(para.id))
+    {
+        para.id = "EnrollYear";                            //默认ID
+    }
+    if (string.IsNullOrWhiteSpace(para.name))
+    {
+        para.name = "EnrollYear";                          //默认name
+    }
+    if (!para.index.HasValue)
+    {
+        para.index = 0;                                 //默认选中
+    }
+}
+<select class="@para.className" id="@para.id" name="@para.name" style="@para.style" onchange="GetEnrollYear()">
+    <option value='0' selected="selected">全部</option>
+    @foreach (int year in data)
+    {
+        if (year == para.index)
+        {
+            <option value='@year' selected="selected">@year</option>
+        }
+        else
+        {
+            <option value='@year'>@year</option>
+        }
+
+    }
+</select>
+<script>
+    function GetEnrollYear() {
+        try {
+            if (typeof (eval('yearchangeComple')) == "function") {
+                var id = $("#@para.id").val();
+                yearchangeComple(id);
+            }
+        } catch (e) {
+            //alert("not function");
+        }
+    }
+
+
+</script>

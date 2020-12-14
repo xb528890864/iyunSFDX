@@ -1,0 +1,117 @@
+﻿@using System.Configuration
+@using IYun.Models
+@using IYun.Object
+@{
+    var newsstu = ViewBag.newslist as List<YD_Edu_News> ?? new List<YD_Edu_News>();
+    var newsedu = ViewBag.listedu as List<YD_Edu_News> ?? new List<YD_Edu_News>();
+    var newstixi = ViewBag.listtixi as List<YD_Edu_News> ?? new List<YD_Edu_News>();
+    var newsqita = ViewBag.listqita as List<YD_Edu_News> ?? new List<YD_Edu_News>();
+    Layout = null;
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <scripttype="text/javascript" src="js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    <script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/kindeditor-4.1.10/themes/default/default.css" rel="stylesheet"/>
+    <script src="~/Content/kindeditor-4.1.10/kindeditor-min.js"></script>
+    <script src="~/Content/kindeditor-4.1.10/lang/zh_CN.js"></script>
+
+
+    <link href="~/Content/news/css.css" rel="stylesheet" />
+    <link href="~/Content/news/news.css" rel="stylesheet"/>
+    <link href="~/Content/news/reset.css" rel="stylesheet" />
+
+  
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function() {
+            if (window.PIE) {
+                $('.rounded').each(function() {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+        });    
+    </script>
+</head>
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="nn-k1" style="overflow: hidden; margin-top: 40px;">
+        <div class="nn-k2">
+            <div class="nn-k">
+                <div class="nn-bt">学籍新闻<a href="/Edu/News">MORE</a></div>
+                <ul class="nn-ul">
+                    @{
+                        foreach (var news1 in newsstu)
+                        {
+                            <li style="border-bottom: 1px dashed #cccccc;">
+                                <a style="width:350px;display:block;overflow: hidden;   white-space: nowrap;-o-text-overflow: ellipsis;text-overflow: ellipsis;" href="/Edu/NewDes?id=@news1.id">@news1.y_title</a><span>@news1.y_appytime.ToString("yy-MM-dd")</span>
+                            </li>
+                        }
+                    }          
+                </ul>
+            </div>
+            <div class="nn-k">
+                <div class="nn-bt">教学新闻<a href="/Edu/News">MORE</a></div>
+                <ul class="nn-ul">
+                      @{
+                        foreach (var news1 in newsedu)
+                        {
+                            <li style="border-bottom: 1px dashed #cccccc;">
+                               <a style="width:350px;display:block;overflow: hidden;   white-space: nowrap;-o-text-overflow: ellipsis;text-overflow: ellipsis;" href="/Edu/NewDes?id=@news1.id">@news1.y_title</a>
+                                <span>@news1.y_appytime.ToString("yy-MM-dd")</span>
+                            </li>
+                        }
+                      }
+                </ul>
+            </div>
+            <div class="nn-k">
+                <div class="nn-bt">提醒新闻<a href="/Edu/News">MORE</a></div>
+                <ul class="nn-ul">
+                    @{
+                        foreach (var news1 in newstixi)
+                        {
+                            <li style="border-bottom: 1px dashed #cccccc">
+                                <a style="width: 350px; display: block; overflow: hidden; white-space: nowrap; -o-text-overflow: ellipsis; text-overflow: ellipsis;" href="/Edu/NewDes?id=@news1.id">@news1.y_title</a>
+                                <span>@news1.y_appytime.ToString("yy-MM-dd")</span>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+            <div class="nn-k">
+                <div class="nn-bt">其他新闻<a href="/Edu/News">MORE</a></div>
+                <ul class="nn-ul">
+                    @{
+                        foreach (var news1 in newsqita)
+                        {
+                            <li style="border-bottom: 1px dashed #cccccc">
+                                <a style="width: 350px; display: block; overflow: hidden; white-space: nowrap; -o-text-overflow: ellipsis; text-overflow: ellipsis;" href="/Edu/NewDes?id=@news1.id">@news1.y_title</a>
+                                <span>@news1.y_appytime.ToString("yy-MM-dd")</span>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+
+</body>
+</html>

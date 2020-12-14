@@ -1,0 +1,51 @@
+﻿@using IYun.Models;
+@using IYun.Object
+@{
+    Layout = null;
+    var data = ViewData["data"] as List<YD_Edu_StuType>;
+    data = data ?? new List<YD_Edu_StuType>();
+    var para = ViewData["para"] as HelperParameterM;
+    para = para ?? new HelperParameterM();
+    if (string.IsNullOrWhiteSpace(para.className))
+    {
+        para.className = "dl-sel";                       //默认样式CLASS
+    }
+    if (string.IsNullOrWhiteSpace(para.id))
+    {
+        para.id = "StuType";                            //默认ID
+    }
+    if (string.IsNullOrWhiteSpace(para.name))
+    {
+        para.name = "StuType";                          //默认name
+    }
+    if (!para.index.HasValue)
+    {
+        para.index = 0;                                 //默认选中
+    }
+}
+<select class="@para.className" id="@para.id" name="@para.name" style="@para.style" onchange="GetSelect()">
+    <option value="0">全部</option>
+    @foreach (var stuType in data)
+    {
+        if (stuType.id == para.index)
+        {
+            <option value='@stuType.id' selected="selected">@stuType.y_name</option>
+        }
+        else
+        {
+            <option value='@stuType.id'>@stuType.y_name</option>
+        }
+    }
+</select>
+<script>
+    function GetSelect() {
+        try {
+            if (typeof (eval('stuTypechangeComple')) == "function") {
+                var edu = $("#@para.id").val();
+                stuTypechangeComple(edu);
+            }
+        } catch (e) {
+            //alert("not function");
+        }
+    }
+</script>

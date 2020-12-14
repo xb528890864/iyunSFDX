@@ -1,0 +1,175 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@using System.Configuration
+@using IYun.Common
+@model PagedList<VW_Strange>
+@{
+    var adminroled = ViewBag.admin;
+    var schoolname = ConfigurationManager.AppSettings["SchoolName"].ToString();
+}
+<style>
+    .xx-table td, .xx-table th {
+        text-align: center;
+    }
+</style>
+<table class="xx-table">
+    <tr>
+        <th width="8%" style="padding-left:25px; text-align:left;"><input id="all" class="rad cktb zz8" type="checkbox">申请人</th>
+        <th width="10%">学号</th>
+        <th width="10%">考生号</th>
+        <th width="10%">学习中心</th>
+        <th width="5%">申请类型</th>
+
+        <th width="15%">转入</th>
+        <th width="15%">转出</th>
+        <th width="5%">申请材料</th>
+        <th width="5%">申请时间</th>
+        <th width="10%">详情</th>
+    </tr>
+    @foreach (VW_Strange strange in Model)
+    {
+        var changetag = "";
+        if (strange.y_strangeType == 1)
+        {
+            var majorid = Convert.ToInt32(strange.y_contentA);
+            var ydEduMajor = new IYunEntities().YD_Edu_Major.Find(majorid);
+            if (ydEduMajor != null)
+            {
+                changetag = ydEduMajor.y_name;
+            }
+        }
+        if (strange.y_strangeType == 2)
+        {
+            var schoolid = Convert.ToInt32(strange.y_contentA);
+            var ydSysSubSchool = new IYunEntities().YD_Sys_SubSchool.Find(schoolid);
+            if (ydSysSubSchool != null)
+            {
+                changetag = ydSysSubSchool.y_name;
+            }
+        }
+        var changetagB = "";
+        if (strange.y_strangeType == 1)
+        {
+            var majorid = Convert.ToInt32(strange.y_contentB);
+            var ydEduMajor = new IYunEntities().YD_Edu_Major.Find(majorid);
+            if (ydEduMajor != null)
+            {
+                changetagB = ydEduMajor.y_name;
+            }
+        }
+        if (strange.y_strangeType == 2)
+        {
+            var schoolid = Convert.ToInt32(strange.y_contentB);
+            var ydSysSubSchool = new IYunEntities().YD_Sys_SubSchool.Find(schoolid);
+            if (ydSysSubSchool != null)
+            {
+                changetagB = ydSysSubSchool.y_name;
+            }
+        }
+        <tr>
+            <td style="padding-left:25px; text-align:left;">
+                <label>
+                    <input data-id="@strange.id" type="checkbox" name="check" class="mycb" />@strange.studentName
+                </label>
+            </td>
+            <td>@strange.y_stuNum</td>
+            <td>@strange.y_examNum</td>
+            @if (schoolname == ComEnum.SchoolName.JXLG.ToString())
+            {
+                <td>@strange.y_nameabbreviation</td>
+            }
+            else
+            {
+                <td>@strange.schoolName</td>
+            }
+            <td>@strange.strangeTypeName</td>
+            @{
+                if (strange.y_strangeType == 1)
+                {
+                    <td>@changetag</td>
+                    <td>@changetagB</td>
+
+                }
+                else if (strange.y_strangeType == 2)
+                {
+                    <td>@changetag</td>
+                    <td>@changetagB</td>
+                }
+                else
+                {
+                    <td></td>
+                    <td></td>
+                }
+            }
+            @if (!string.IsNullOrEmpty(strange.y_url))
+            {
+                <td><a href="@strange.y_url"/>下载</td>
+            }
+            else
+            {
+                <td>无</td>
+            }
+            <td>@strange.y_applyTime.ToString("yyyy-MM-dd")</td>
+            <td>
+                <a class="bfont" target="_blank" href="/Student/StuInfoChangeDetail/@strange.id">查看</a>
+                @if (adminroled != 4)
+                {
+                    <a class="bfont" href="javascript:deleteChange(@strange.id)">删除</a>
+                }
+                @if (strange.y_strangeType == 6) 
+                {
+                    <a class="bfont" target="_blank" href="/Student/PrintStuStrange/@strange.id">申请表</a>
+                }
+                @if (strange.y_strangeType == 5 || strange.y_strangeType==3)
+                {
+                    <a class="bfont" target="_blank" href="/Student/PrintStrangeStop/@strange.id">申请表</a>
+                }
+                @if (strange.y_strangeType == 1 || strange.y_strangeType ==2)
+                {
+                    <a class="bfont" target="_blank" href="/Student/PrintStrangeMajororSub/@strange.id">申请表</a>
+                }
+
+            </td>
+        </tr>
+                }
+</table>
+<script>
+    //全选或取消全选功能
+    $(function () {
+        //$("#all").click(function () {
+        //    $("input[name='check']").attr("checked", $(this)[0].checked);
+        //});
+        $("input[name='check']").click(function () {
+            var bl = $("input[name='check'").length == $("input[name='check']:checked").length;
+            $("#all").attr("checked", bl);
+        });
+        $(".zz8").click(function () {
+            var checkedStatus = this.checked;
+            var checkbox = $(this).parents('table').find('tr td input:checkbox');
+            checkbox.each(function () {
+                this.checked = checkedStatus;
+            });
+        });
+    });
+
+    function deleteChange(id) {
+        if (confirm("确认删除此信息？")) {
+            $.ajax({
+                type: "post",
+                url: "/Student/DeleteChange",
+                data: {
+                    ids: id
+                },
+                success: function (data) {
+                    if (data == "ok") {
+                        alert("删除成功");
+                        $('#searchForm').submit();
+                    }
+                },
+                error: function () {
+                    alert("未知错误");
+                }
+            });
+        }
+    }
+</script>

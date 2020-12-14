@@ -1,0 +1,199 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YD_Edu_SubTeachPlanTemp>
+
+@{
+    foreach (var ydEduScoreTemp in Model)
+    {
+        <div class="xx-js">
+            <input type="hidden" class="id" value="@ydEduScoreTemp.id" />
+            <div class="td-drop jj2">
+                @{
+                    if (ydEduScoreTemp.y_subSchoolId == 0)
+                    {
+                        string[] subNames = ydEduScoreTemp.y_subNameMatch.Split(new char[] { ',' });
+                        var id = "sub" + ydEduScoreTemp.id;
+                        <span style="padding-left: 30px;">
+                            <b>函授站：</b>
+                            <input class="cx-inp subschool" style="border:solid 1px red;width: 100px" value="@ydEduScoreTemp.y_subSchoolName" id="@id" type="text" >
+                            &nbsp;匹配函授站：@{
+                                foreach (var subName in subNames)
+                                {
+                                    <a href="javascript:matchSub('@subName','@id')"><font color="green">@subName  &nbsp;</font></a>
+                                }
+                            }
+                            <a href="javascript:addSub('@ydEduScoreTemp.y_subSchoolName')"><font color="blue">添加至库中</font></a>
+                        </span>
+                                }
+                                else
+                                {
+                                    <span style="padding-left: 30px;">
+                                        <b>函授站：</b>
+                                        <input class="cx-inp subschool" style="width: 100px" value="@ydEduScoreTemp.y_subSchoolName" type="text" >
+                                    </span>
+                                }
+
+                                if (ydEduScoreTemp.y_majorLibId == 0)
+                                {
+                                    string[] majorNames = ydEduScoreTemp.y_majorNameMatch.Split(new char[] { ',' });
+                                    var id = "major" + ydEduScoreTemp.id;
+                        <span style="padding-left: 30px;">
+                            <b>专业名：</b>
+                            <input class="cx-inp majorLib" style="border:solid 1px red;width: 100px" value="@ydEduScoreTemp.y_majorLib" id="@id" type="text" >
+                            &nbsp;匹配专业：@{
+                                foreach (var majorName in majorNames)
+                                {
+                                    <a href="javascript:matchMajor('@majorName','@id')"><font color="green">@majorName  &nbsp;</font></a>
+                                }
+                            }
+                            <a href="javascript:addMajor('@ydEduScoreTemp.y_majorLib')"><font color="blue">添加至库中</font></a>
+                        </span>
+                                }
+                                else
+                                {
+                                    <span style="padding-left: 30px;">
+                                        <b>专业名：</b>
+                                        <input class="cx-inp majorLib" style="width: 100px" value="@ydEduScoreTemp.y_majorLib" type="text" >
+                                    </span>
+                                }
+                                if (ydEduScoreTemp.y_stuTypeId == 0)
+                                {
+                                    <span style="padding-left: 30px;">
+                                        <b>学习形式：</b>
+                                        <input class="cx-inp stuTypeName" style="border: solid 1px red; width: 100px" value="@ydEduScoreTemp.y_stuTypeName" type="text" >
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span style="padding-left: 30px;">
+                                        <b>学习形式：</b>
+                                        <input class="cx-inp stuTypeName" style="width: 100px" value="@ydEduScoreTemp.y_stuTypeName" type="text" >
+                                    </span>
+                                }
+                                if (ydEduScoreTemp.y_eduTypeId == 0)
+                                {
+                                    <span style="padding-left: 30px;">
+                                        <b>培养层次：</b>
+                                        <input class="cx-inp eduTypeName" style="border: solid 1px red; width: 100px" value="@ydEduScoreTemp.y_eduTypeName" type="text" >
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span style="padding-left: 30px;">
+                                        <b>培养层次：</b>
+                                        <input class="cx-inp eduTypeName" style="width: 100px" value="@ydEduScoreTemp.y_eduTypeName" type="text" >
+                                    </span>
+                                }
+                                if (ydEduScoreTemp.y_courseId == 0)
+                                {
+                                    string[] courseNames = ydEduScoreTemp.y_courseNameMatch.Split(new char[] { ',' });
+                                    var id = "course" + ydEduScoreTemp.id;
+                                    <span style="padding-left: 30px;">
+                                        <b>课程名：</b>
+                                        <input class="cx-inp courseName" style="border: solid 1px red; width: 100px" value="@ydEduScoreTemp.y_courseName" id="@id" type="text" >
+                                        &nbsp;匹配课程：@{
+                                            foreach (var majorName in courseNames)
+                                            {
+                                                <a href="javascript:matchcourse('@majorName','@id')"><font color="green">@majorName  &nbsp;</font></a>
+                                            }
+                                        }
+                                        <a href="javascript:addcourse('@ydEduScoreTemp.y_courseName')"><font color="blue">添加至库中</font></a>
+                                    </span>
+                                            }
+                                            else
+                                            {
+                                                <span style="padding-left: 30px;">
+                                                    <b>课程名：</b>
+                                                    <input class="cx-inp courseName" style="width: 100px" value="@ydEduScoreTemp.y_courseName" type="text" >
+                                                </span>
+                                            }
+                                            if (ydEduScoreTemp.y_courseTypeId == 0)
+                                            {
+                                                <span style="padding-left: 30px;">
+                                                    <b>课程类型：</b>
+                                                    <input class="cx-inp courseType" style="border: solid 1px red; width: 100px" value="@ydEduScoreTemp.y_courseType" type="text" >
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span style="padding-left: 30px;">
+                                                    <b>课程类型：</b>
+                                                    <input class="cx-inp courseType" style="width: 100px" value="@ydEduScoreTemp.y_courseType" type="text" >
+                                                </span>
+                                            }
+                                            if (ydEduScoreTemp.y_term == 0)
+                                            {
+                                                <span style="padding-left: 30px;">
+                                                    <b>学期：</b>
+                                                    <input class="cx-inp term" style="border: solid 1px red; width: 100px" value="@ydEduScoreTemp.y_term" type="text" >
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span style="padding-left: 30px;">
+                                                    <b>学期：</b>
+                                                    <input class="cx-inp term" style="width: 100px" value="@ydEduScoreTemp.y_term" type="text" >
+                                                </span>
+                                            }
+                                            if (ydEduScoreTemp.y_stuTime == 0)
+                                            {
+                                                <span style="padding-left: 30px;">
+                                                    <b>学时：</b>
+                                                    <input class="cx-inp stuTime" style="border: solid 1px red; width: 100px" value="@ydEduScoreTemp.y_stuTime" type="text">
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span style="padding-left: 30px;">
+                                                    <b>学时：</b>
+                                                    <input class="cx-inp stuTime" style="width: 100px" value="@ydEduScoreTemp.y_stuTime" type="text" >
+                                                </span>
+                                            }
+                                            if (ydEduScoreTemp.y_score == 0)
+                                            {
+                                                <span style="padding-left: 30px;">
+                                                    <b>及格分数：</b>
+                                                    <input class="cx-inp score" style="border: solid 1px red; width: 100px" value="@ydEduScoreTemp.y_score" type="text" >
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span style="padding-left: 30px;">
+                                                    <b>及格分数：</b>
+                                                    <input class="cx-inp score" style="width: 100px" value="@ydEduScoreTemp.y_score" type="text" >
+                                                </span>
+                                            }
+                                            if (ydEduScoreTemp.y_teachPlanType == 0)
+                                            {
+                                                <span style="padding-left: 30px;">
+                                                    <b>教学计划类型：</b>
+                                                    <input class="cx-inp teachPlanType" style="border: solid 1px red; width: 100px" value="@ydEduScoreTemp.y_teachPlanType" type="text" >
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span style="padding-left: 30px;">
+                                                    <b>教学计划类型：</b>
+                                                    <input class="cx-inp teachPlanType" style="width: 100px" value="@ydEduScoreTemp.y_teachPlanType" type="text" >
+                                                </span>
+                                            }
+                                            if (ydEduScoreTemp.y_year == 0)
+                                            {
+                                                <span style="padding-left: 30px;">
+                                                    <b>入学年度：</b>
+                                                    <input class="cx-inp year" style="border: solid 1px red; width: 100px" value="@ydEduScoreTemp.y_year" type="text" >
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span style="padding-left: 30px;">
+                                                    <b>入学年度：</b>
+                                                    <input class="cx-inp year" style="width: 100px" value="@ydEduScoreTemp.y_year" type="text">
+                                                </span>
+                                            }
+                }
+            </div>
+            <a class="gr_edit" @*href="javascript:;"*@ onclick="StudentInfoGetEdit(this);">展开</a>
+        </div>
+                                            }
+}

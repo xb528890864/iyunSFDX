@@ -1,0 +1,49 @@
+﻿@using IYun.Common;
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YD_Sts_StuInfoTemp>
+@{
+    foreach (var teachPlantemp in Model)
+    {
+        <div class="xx-js">
+            @{
+                if (teachPlantemp.y_name == "")
+                {
+                    <div class="x-js1">&nbsp;&nbsp;</div>
+                }
+                else
+                {
+                    <div class="x-js1">@teachPlantemp.y_name</div>
+                }
+            }
+
+            <div class="td-drop">
+                <span style="padding-left: 30px;"><b>学号：</b>@teachPlantemp.y_stuNum</span>
+                <span style="padding-left: 30px;"><b>考生号：</b>@teachPlantemp.y_examNum</span>
+                <span style="padding-left: 30px;"><b>性别：</b>@teachPlantemp.y_sexName</span>
+                <span style="padding-left: 30px;"><b>专业：</b>@teachPlantemp.y_majorLibName</span>
+                @if (KeyValue.NationAndPolitics.Contains(ViewData["SchoolName"].ToString()))
+                {
+                    <span style="padding-left: 30px;"><b>民族：</b>@teachPlantemp.y_nationName</span>
+                    <span style="padding-left: 30px;"><b>招生类别：</b>@teachPlantemp.y_recruitTypeName</span>
+                    <span style="padding-left: 30px;"><b>职业类别：</b>@teachPlantemp.y_professionTypeName</span>
+                    <span style="padding-left: 30px;"><b>文化程度：</b>@teachPlantemp.y_cultureExtentName</span>
+                    <span style="padding-left: 30px;"><b>考生特征：</b>@teachPlantemp.y_examFeatureName</span>
+                    <span style="padding-left: 30px;"><b>外语语种：</b>@teachPlantemp.y_foreignLanguageName</span>
+                }
+                <span style="padding-left: 30px;"><b>学习形式：</b>@teachPlantemp.y_stuTypeName</span>
+                <span style="padding-left: 30px;"><b>层次：</b>@teachPlantemp.y_eduTypeName</span>
+                <span style="padding-left: 30px;"><b>入学年份：</b>@teachPlantemp.y_inYear</span>
+                <span style="padding-left: 30px;"><b>身份证：</b>@teachPlantemp.y_cardId</span>
+                <span style="padding-left: 30px;"><b>出生日期：</b>@teachPlantemp.y_birthday</span>
+                @*<span style="padding-left: 30px;"><b>函授站：</b>@teachPlantemp.y_subSchoolName</span>*@
+                
+                <span style="padding-left: 30px;"><b>电话：</b>@teachPlantemp.y_tel</span>
+                <span style="padding-left: 30px;"><b>地址：</b>@teachPlantemp.y_address</span>
+                <span style="padding-left: 30px;"><b>学籍状态：</b>@teachPlantemp.y_stuStateName</span>
+            </div>
+            <a class="gr_edit" @*href="javascript:;"*@ onclick="StudentInfoGetEdit(this);">展开</a>
+
+        </div>
+                }
+}

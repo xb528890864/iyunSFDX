@@ -1,0 +1,223 @@
+﻿@using System.Configuration
+@using IYun.Models
+@using IYun.Object
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+    var adminroleid = ViewBag.adminrole;
+    var strange = ViewData["strange"] as VW_Strange;
+    strange = strange ?? new VW_Strange();
+    const string approvalstatus = "待审批状态";
+    var sex = strange.y_sex == (int)SexEnum.Man ? "男" : "女";
+    var changetag = "";
+    if (strange.y_strangeType == 1)
+    {
+        var majorid = Convert.ToInt32(strange.y_contentA);
+        var ydEduMajor = new IYunEntities().YD_Edu_Major.Find(majorid);
+        if (ydEduMajor != null)
+        {
+            changetag = ydEduMajor.y_name;
+        }
+    }
+    if (strange.y_strangeType == 2)
+    {
+        var schoolid = Convert.ToInt32(strange.y_contentA);
+        var ydSysSubSchool = new IYunEntities().YD_Sys_SubSchool.Find(schoolid);
+        if (ydSysSubSchool != null)
+        {
+            changetag = ydSysSubSchool.y_name;
+        }
+    }
+    if (strange.y_strangeType == 6 && strange.y_contentA != null)
+    {
+        var nationid = Convert.ToInt32(strange.y_contentA);
+        var ydStsNation = new IYunEntities().YD_Sts_Nation.Find(nationid);
+        if (ydStsNation != null)
+        {
+            changetag = ydStsNation.y_name;
+        }
+    }
+    var changetagB = "";
+    if (strange.y_strangeType == 1)
+    {
+        var majorid = Convert.ToInt32(strange.y_contentB);
+        var ydEduMajor = new IYunEntities().YD_Edu_Major.Find(majorid);
+        if (ydEduMajor != null)
+        {
+            changetagB = ydEduMajor.y_name;
+        }
+    }
+    if (strange.y_strangeType == 2)
+    {
+        var schoolid = Convert.ToInt32(strange.y_contentB);
+        var ydSysSubSchool = new IYunEntities().YD_Sys_SubSchool.Find(schoolid);
+        if (ydSysSubSchool != null)
+        {
+            changetagB = ydSysSubSchool.y_name;
+        }
+    }
+    if (strange.y_strangeType == 6 && strange.y_contentB != null)
+    {
+        var nationid = Convert.ToInt32(strange.y_contentB);
+        var ydStsNation = new IYunEntities().YD_Sts_Nation.Find(nationid);
+        if (ydStsNation != null)
+        {
+            changetagB = ydStsNation.y_name;
+        }
+    }
+
+
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <scripttype="text/javascript" src="js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    <script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });
+
+    </script>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        @Html.Partial("../AdminBase/PartialModuleView", "/student/StudentInfoChangeAll")
+        <div id="main-tr">
+            <div class="ydong-t">
+                <a class="on" href="/Student/StudentInfoChangeAll">待处理</a>
+                <a href="/Student/StudentInfoChangeB">已通过</a>
+                <a href="/Student/StudentInfoChangeC">已拒绝</a>
+            </div>
+            <div class="sq-t">申请详情</div>
+            <div class="sq-c">
+                <p><b>申请人：</b>@strange.studentName</p>
+                <p><b>性别：</b>@sex</p>
+                <p><b>身份证：</b>@strange.y_cardId</p>
+                <p><b>学号：</b>@strange.y_stuNum</p>
+                <p><b>学习中心：</b>@strange.schoolName</p>
+                <p><b>入学批次：</b>@strange.y_inYear</p>
+                <p><b>专业/层次：</b>@strange.majorName</p>
+                <p><b>学籍状态：</b>@strange.stuStateName</p>
+                <p><b>电话：</b>@strange.y_tel</p>
+                <p><b>地址：</b>@strange.y_address</p>
+                <p><b>异动类型：</b>@strange.strangeTypeName</p>
+                @if (strange.y_strangeType == 1)
+                {
+                    <p><b>具体内容：</b></p>
+                    <p>转出专业：@changetagB</p>
+                    <p>转入专业：@changetag</p>
+                }
+                @if (strange.y_strangeType == 2)
+                {
+                    <p><b>具体内容：</b></p>
+                    <p>转出函授站：@changetagB</p>
+                    <p>转入函授站：@changetag</p>
+                }
+                @if (strange.y_strangeType == 6)
+                {
+                    <p>
+                        <b>具体内容：</b>
+                    </p>
+                    if (strange.y_contentI != null && strange.y_contentJ != null)
+                    {
+                        <p>原姓名：@strange.y_contentJ</p>
+                        <p>修改姓名：@strange.y_contentI</p>
+                    }
+                    if (strange.y_contentC != null && strange.y_contentD != null)
+                    {
+                        <p>原性别：@strange.y_contentD</p>
+                        <p>修改性别：@strange.y_contentC</p>
+                    }
+                    if (strange.y_contentE != null && strange.y_contentF != null)
+                    {
+                        <p>原出生日期：@strange.y_contentF</p>
+                        <p>修改出生日期：@strange.y_contentE</p>
+                    }
+                    if (strange.y_contentG != null && strange.y_contentH != null)
+                    {
+                        <p>原身份证：@strange.y_contentH</p>
+                        <p>修改身份证：@strange.y_contentG</p>
+                    }
+                    if (strange.y_contentA != null && strange.y_contentB != null)
+                    {
+                        <p>转出民族：@changetagB</p>
+                        <p>转入民族：@changetag</p>
+                    }
+                }
+                <p><b>申请理由：</b></p>
+                <textarea id="y_applyReason" name="y_applyReason" style="width:600px;height:100px;" readonly="readonly">@strange.y_applyReason</textarea>
+                <p>申请时间：@strange.y_applyTime</p>
+                <p style="font-size:18px; font-weight:bold;">学校审批情况：</p>
+                <p>状态：@approvalstatus</p>
+                @if (adminroleid != 4)
+                {
+                    <p style="font-size: 18px; font-weight: bold;color:red;">审批:</p>
+                    <p><label style="margin-right:30px;"><input class="rad" value="2" name="approval" checked="checked" type="radio" />通过&nbsp;<input class="rad" name="approval" value="3" type="radio" />退回</label></p>
+                    <p><b>审批理由：</b></p>
+                    <p><textarea id="applyReason" name="applyReason" style="width: 800px; height: 200px;"></textarea></p>
+                    <input type="button" onclick="subminb()" class="cx-sub" value="提 交" />
+                }
+                @*<a style="float:left; margin-top:28px;" class="fhui" href="#" onclick="history.go(-1)">返回列表</a>*@
+            </div>
+
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+    <script>
+        function subminb() {
+            var temp = document.getElementsByName("approval");
+            for (var i = 0; i < temp.length; i++) {
+                if (temp[i].checked)
+                    var approval = temp[i].value;
+            }
+            var reason = $('#applyReason').val();
+            if (!confirm('确认提交审批结果?')) {
+                return;
+            }
+            var data = {};
+            data.y_approvalReason = reason;
+            data.id = '@strange.id';
+            data.y_approvalStatus = approval;
+
+            $.ajax({
+                url: '/Student/StuStrangeApprova',
+                type: 'post',
+                data: data,
+                dataType: 'json',
+                success: function (datab) {
+                    alert(datab.msg);
+                    if (datab.isok) {
+                        window.location = "/Student/StudentInfoChangeAll";
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

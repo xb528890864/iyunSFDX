@@ -1,0 +1,162 @@
+﻿
+@using IYun.Common
+@using IYun.Models
+@{
+    Layout = null;
+    var webInfo = (YD_Sys_WebInfo)ViewBag.WebInfo;
+    var webUploadFlag = KeyValue.WEBUPLOADFLAG;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>网站配置</title>
+    <link href="~/Content/EasyUI-1.4/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI-1.4/themes/icon.css" rel="stylesheet" />
+    <script src="~/Content/EasyUI-1.4/jquery.min.js"></script>
+    <script src="~/Content/EasyUI-1.4/jquery.easyui.min.js"></script>
+    <script src="~/Content/EasyUI-1.4/locale/easyui-lang-zh_CN.js"></script>
+    <link href="~/Content/kindeditor-4.1.10/themes/default/default.css" rel="stylesheet" />
+    <script src="~/Content/kindeditor-4.1.10/kindeditor-min.js"></script>
+    <script src="~/Content/kindeditor-4.1.10/lang/zh_CN.js"></script>
+    <script>
+        //消息提醒框
+        function message(mes) {
+            $.messager.show({
+                title: '消息',
+                msg: mes,
+                timeout: 5000,
+                showType: 'slide'
+            });
+        }
+
+        var editorUploadImg;
+        var editorText;
+        KindEditor.ready(function (K) {
+            editorUploadImg = K.editor({
+                allowFileManager: true,
+                uploadJson: '../../Content/kindeditor-4.1.10/asp.net/upload_json.ashx?type=' + '@webUploadFlag',
+                fileManagerJson: '../../Content/kindeditor-4.1.10/asp.net/file_manager_json.ashx',
+                imageSizeLimit: '10MB',
+                imageUploadLimit: 10
+
+            });
+
+            K('#y_webLogo_img').click(function () {
+                editorUploadImg.loadPlugin('image', function () {
+                    editorUploadImg.plugin.imageDialog({
+                        showRemote: false,
+                        imageUrl: K('#y_webLogo').val(),
+                        clickFn: function (url, title, width, height, border, align) {
+                            K('#y_webLogo').val(url);
+                            $("#y_webLogo_imgShow").attr("src", url);
+                            editorUploadImg.hideDialog();
+                        }
+                    });
+                });
+            });
+
+
+            editorText = K.create('textarea[name="y_webFoot"]', {
+                allowFileManager: true
+            });
+
+        });
+
+    </script>
+
+</head>
+<body>
+    <div class="easyui-panel" title="网站基本配置" style="width:90%">
+        <div style="padding:10px 60px 20px 60px">
+            <form id="webInfoForm" method="post">
+                <input type="hidden" id="id" name="id" value="@webInfo.id" />
+                <table cellpadding="5">
+                    <tr>
+                        <td>网站名称：</td>
+                        <td><input class="easyui-textbox" type="text" id="y_webName" name="y_webName" data-options="required:true" style="width:300px" value="@webInfo.y_webName"></input></td>
+                    </tr>
+                    <tr>
+                        <td>网站描述：</td>
+                        <td><input class="easyui-textbox" type="text" id="y_webDes" name="y_webDes" data-options="multiline:true" style="height: 60px; width: 300px" value="@webInfo.y_webDes"></input></td>
+                    </tr>
+                    <tr>
+                        <td>网站关键字:</td>
+                        <td><input class="easyui-textbox" type="text" id="y_webKey" name="y_webKey" data-options="multiline:true" style="height: 60px; width: 300px" value="@webInfo.y_webKey"></input></td>
+                    </tr>
+                    <tr>
+                        <td>网站标题:</td>
+                        <td><input class="easyui-textbox" id="y_webTitle" name="y_webTitle" style="width:300px" value="@webInfo.y_webTitle"></input></td>
+                    </tr>
+                    <tr>
+                        <td>网站Logo:</td>
+                        <td>
+                            <input type="text" id="y_webLogo" name="y_webLogo" style="width:300px" value="@webInfo.y_webLogo" /> <input type="button" id="y_webLogo_img" value="选择图片" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <img src="@webInfo.y_webLogo" id="y_webLogo_imgShow" style="width:300px;height: 200px " />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>网站页尾:</td>
+                        <td>
+                            <textarea id="y_webFoot" name="y_webFoot" style="width:800px;height:300px;">@webInfo.y_webFoot</textarea>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <div style="text-align:center;padding:5px">
+                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">保存</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">清空</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        function clearForm() {
+            $('#webInfoForm').form('clear');
+            editorText.html('');
+        }
+        function submitForm() {
+            if ($('#webInfoForm').form('validate')) {
+            } else {
+                return;
+            }
+            var id = $('#id').val();
+            var y_webName = $('#y_webName').textbox('getValue');
+            var y_webDes = $('#y_webDes').textbox('getValue');
+            var y_webKey = $('#y_webKey').textbox('getValue');
+            var y_webTitle = $('#y_webTitle').textbox('getValue');
+            var y_webLogo = $('#y_webLogo').val();
+            var y_webFoot = editorText.html();
+
+
+            $.ajax({
+                type: "POST",
+                url: "/SysAdmin/WebInfoUpdate",
+                data: {
+                    id: id,
+                    y_webName: y_webName,
+                    y_webDes: y_webDes,
+                    y_webKey: y_webKey,
+                    y_webTitle: y_webTitle,
+                    y_webLogo: y_webLogo,
+                    y_webFoot: y_webFoot
+                },
+                success: function (data) {
+                    if (data == "ok") {
+                        message("保存成功");
+                    } else {
+                        message(data);
+                    }
+                },
+                error: function (msg) { message("未知错误！==" + msg); }
+            });
+        }
+    </script>
+</body>
+</html>

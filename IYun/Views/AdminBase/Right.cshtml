@@ -1,0 +1,231 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Role</title>
+    <link href="~/Content/EasyUI-1.4/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI-1.4/themes/icon.css" rel="stylesheet" />
+    <script src="~/Content/EasyUI-1.4/jquery.min.js"></script>
+    <script src="~/Content/EasyUI-1.4/jquery.easyui.min.js"></script>
+    <script src="~/Content/EasyUI-1.4/locale/easyui-lang-zh_CN.js"></script>
+    <script>
+        function addTabs(url, name) {
+            if ($('#tt').tabs('exists', name)) {
+                //如果是具体权限管理页面则重新加载
+                if (name.indexOf("*") >= 0) {
+                    $("#tt").tabs('close', name);
+                    $("#tt").tabs('add', {
+                        title: name,
+                        content: '<iframe frameborder="0" style="width:100%;height:99%;" border="0" src="' + url + '"></iframe>',
+                        closable: true
+                    });
+                }
+                $('#tt').tabs('select', name);
+                return;
+            }
+            $("#tt").tabs('add', {
+                title: name,
+                content: '<iframe frameborder="0" style="width:100%;height:99%;" border="0" src="' + url + '"></iframe>',
+                closable: true
+            });
+        }
+    </script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            overflow: hidden;
+            height: 80%;
+            width: 100%;
+            overflow: auto;
+        }
+    </style>
+    <script>
+        //消息提醒框
+        function message(mes) {
+            $.messager.show({
+                title: '消息',
+                msg: mes,
+                timeout: 5000,
+                showType: 'slide'
+            });
+        }
+        function LoginVerify() {
+            $('#LoginForm').form('submit', {
+                success: function (data) {
+                    if (data == "ok") {
+                        $('#loginDiv').window('close');
+                        message("登录成功");
+                    } else {
+                        message(data);
+                    }
+                }
+            });
+        }
+
+        function changeCode() {
+            var imgNode = $("#codeImg");
+            imgNode.attr("src", "/AdminBase/Code?t=" + (new Date()).valueOf());
+        }
+        function openLoginDiv() {
+            $('#loginDiv').window('open');
+            changeCode();
+        }
+    </script>
+</head>
+<body>
+    @Html.Action("TopMessage", "AdminBase")
+
+    <div id="loginDiv" class="easyui-window" title="登录" style="width:40%;height:40%"
+         data-options="iconCls:'icon-save',modal:true,closed:true">
+        <div style="margin: 10px 60px 20px 60px;width: 90%">
+            @using (Ajax.BeginForm("LoginVerify", "AdminBase", new { }, new AjaxOptions { }, new { id = "LoginForm" }))
+            {
+                <table cellpadding="5">
+                    <tr>
+                        <td>登录名:</td>
+                        <td><input class="easyui-textbox" type="text" data-options="required:true" missingmessage="不能为空" name="adminname" /></td>
+                    </tr>
+                    <tr>
+                        <td>密码:</td>
+                        <td><input class="easyui-textbox" type="text" id="password" name="password" data-options="required:true" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td>验证码:</td>
+                        <td>
+                            <input class="easyui-textbox" type="text" data-options="required:true" missingmessage="不能为空" name="code" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>点击更换:</td>
+                        <td><img id="codeImg" src="/AdminBase/Code" onclick="changeCode()" /></td>
+                    </tr>
+                </table>
+            }
+            <div style="text-align:center;padding:5px">
+                <a href="javascript:LoginVerify()" class="easyui-linkbutton">登录</a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="tt" class="easyui-tabs" data-options="fit:true">
+
+    </div>
+
+    <div id="rcmenu" class="easyui-menu" style="">
+        <div data-options="iconCls:'icon-clear'" id="closecur">
+            关闭
+        </div>
+        <div id="closeall">
+            关闭全部
+        </div>
+        <div id="closeother">
+            关闭其他
+        </div>
+        <div class="menu-sep"></div>
+        <div id="closeright">
+            关闭右侧标签页
+        </div>
+        <div id="closeleft">
+            关闭左侧标签页
+        </div>
+        <div class="menu-sep"></div>
+        <div id="reload">
+            刷新
+        </div>
+    </div>
+
+    <script>
+        var index;
+        var title;
+
+        $(function () {
+
+            $('#tt').tabs({
+                onContextMenu: function (e, titleA, indexA) {
+                    e.preventDefault();
+                    $('#rcmenu').menu('show', {
+                        left: e.pageX,
+                        top: e.pageY
+                    });
+                    index = indexA;
+                    title = titleA;
+                }
+            });
+
+            $("#tt").tabs('add', {
+                title: '首页',
+                content: '<iframe frameborder="0" style="width:100%;height:99%;" border="0" src="/AdminBase/Board"></iframe>'
+            });
+
+            //关闭当前标签页
+            $("#closecur").bind("click", function () {
+                if (index == 0) {
+                    return;
+                }
+                $('#tt').tabs('close', index);
+            });
+            //关闭所有标签页
+            $("#closeall").bind("click", function () {
+                var tablist = $('#tt').tabs('tabs');
+                for (var i = tablist.length - 1; i >= 0; i--) {
+                    if (i == 0) {
+                        continue;
+                    }
+                    $('#tt').tabs('close', i);
+                }
+            });
+            //关闭非当前标签页（先关闭右侧，再关闭左侧）
+            $("#closeother").bind("click", function () {
+                var tablist = $('#tt').tabs('tabs');
+                for (var i = tablist.length - 1; i > index; i--) {
+                    if (i == 0) {
+                        continue;
+                    }
+                    $('#tt').tabs('close', i);
+                }
+                var num = index - 1;
+                for (var i = num; i > 0; i--) {
+                    $('#tt').tabs('close', 1);
+                }
+            });
+            //关闭当前标签页右侧标签页
+            $("#closeright").bind("click", function () {
+                var tablist = $('#tt').tabs('tabs');
+                for (var i = tablist.length - 1; i > index; i--) {
+                    $('#tt').tabs('close', i);
+                }
+            });
+            //关闭当前标签页左侧标签页
+            $("#closeleft").bind("click", function () {
+                var num = index - 1;
+                for (var i = 0; i < num; i++) {
+                    $('#tt').tabs('close', 1);
+                }
+            });
+            //刷新标签页
+            $("#reload").bind("click", function () {
+                var tab = $('#tt').tabs('getTab', index);
+                var content = tab.panel('options').content;
+                $('#tt').tabs('update', {
+                    tab: tab,
+                    options: {
+                        title: title,
+                        content: content
+                    }
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
+

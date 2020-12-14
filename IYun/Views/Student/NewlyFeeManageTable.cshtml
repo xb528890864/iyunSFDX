@@ -1,0 +1,589 @@
+﻿@using System.Configuration
+@using IYun.Common
+@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YD_Sts_StuInfo>
+@{
+    var adminrole = ViewBag.admin;
+    var feeYear = 1;
+    var schoolname = ConfigurationManager.AppSettings["SchoolName"];
+}
+
+<table class="xx-table ydong-tab">
+    <tr>
+        @if (adminrole == 4)
+        {
+            <label>
+                <a class="cx-sub" href="javascript:checkboxAll()"
+                   style="margin-left: 10px; height: 32px; line-height: 30px; float: left;">全部处理</a>
+                <a class="cx-sub" href="javascript:checkboxAllNO()"
+                   style="margin-left: 10px; height: 32px; line-height: 30px; float: left;">全部取消</a>
+            </label>
+            <th style="padding-left: 25px; width: 80px; text-align: left;">
+                <label>姓名</label>
+            </th>
+        }
+        else
+        {
+            <th style="padding-left: 25px; width: 80px; text-align: left;">
+                <label>
+                    @*<input id="all" onclick="AllSel(this)" class="rad cktb zz8" type="checkbox">*@姓名
+                </label>
+            </th>
+        }
+        <th>考生号</th>
+        <th>身份证号</th>
+        <th>入学时间</th>
+        <th>站点</th>
+        @if (schoolname == ComEnum.SchoolName.ZYYDX.ToString())
+        {
+            <th>专业</th>
+        }
+        else
+        {
+            if (KeyValue.StuedutypeAnDyear.Contains(ViewData["SchoolName"].ToString()))
+            {
+                <th>学习形式</th>
+                <th>层次</th>
+                <th>学制</th>
+            }
+        }
+        <th>缴费学年</th>
+        <th>缴费注册</th>
+        @*<th>注册审核</th>*@
+        <th>预注册</th>
+        <th>原因</th>
+        @if (adminrole != 3)
+        {
+            <th>是否预注册</th>
+        }
+    </tr>
+    @{
+        foreach (var stu in Model)
+        {
+            var tb = stu.YD_Fee_StuFeeTb.FirstOrDefault(u => u.y_feeYear == feeYear);
+            <tr>
+                <td style="padding-left: 25px; text-align: left;">
+                    <label>
+                        @stu.y_name
+                    </label>
+                </td>
+                <td>@stu.y_examNum</td>
+                <td>@stu.y_cardId</td>
+                <td>@stu.y_inYear</td>
+                @if (schoolname == ComEnum.SchoolName.JXLG.ToString())
+                {
+                    <td>@stu.YD_Sys_SubSchool.y_nameabbreviation</td>
+                }
+                else
+                {
+                    <td>@stu.YD_Sys_SubSchool.y_name</td>
+                }
+                @if (schoolname == ComEnum.SchoolName.ZYYDX.ToString())
+                {
+                    <td>@stu.YD_Edu_Major.y_name</td>
+                }
+                else
+                {
+                    if (KeyValue.StuedutypeAnDyear.Contains(ViewData["SchoolName"].ToString()))
+                    {
+                        <td>@stu.YD_Edu_Major.YD_Edu_StuType.y_name</td>
+                        <td>@stu.YD_Edu_Major.YD_Edu_EduType.y_name</td>
+                        <td>@stu.YD_Edu_Major.y_stuYear</td>
+                    }
+                }
+
+                <td>第 @feeYear 学年</td>
+                @{
+                    if (tb != null && tb.y_isUp == 0)
+                    {
+                        <td>
+                            已申请注册
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            未申请注册
+                        </td>
+                    }
+                }
+                @{
+                    if (tb != null && tb.y_planconductOK == 1)
+                    {
+                        <td>是</td>
+                    }
+                    else if (tb != null && tb.y_planconductOK == 0)
+                    {
+                        <td>否</td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                }
+                @{
+
+                    if (tb != null)
+                    {
+                        <td> @tb.y_NoplanconductReason</td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                }
+                @if (adminrole == 1 || adminrole == 4)
+                {
+                    <td>
+                        <a class="bfont2" style="float: right;" href="javascript:RevocationPlanconduct(@stu.id,@feeYear)">撤销</a>
+                        <div class="nava1" style="float: right; margin-right: 15px;">
+                            <a class="nava2" style="line-height: 40px; margin-left: 20px;" href="javascript:;"><img class="falseimg" src="~/Content/images/toolbar_del.gif" /></a>
+                            <div class="show-bg"></div>
+                            <div class="show-c">
+                                <form action="/Student/NewlyPlanCheckNo/" method="post">
+                                    <div class="tbt">取消注册资格</div>
+                                    <a class="close close8" href="javascript:;"></a>
+                                    <table class="cx-table">
+                                        <tr>
+                                            <td class="td1">原因</td>
+                                            <td>
+                                                <select class="cx-inp reason" name="PlanReason" style="width: 180px;" data-id2="@stu.id">
+                                                    <option value="休学">休学</option>
+                                                    <option value="转学">转学</option>
+                                                    <option value="没交学费">没交学费</option>
+                                                    <option value="不读">不读</option>
+                                                </select>
+                                                @*<input type="text" name="PlanReason" class="cx-inp reason" placeholder="必填" data-id2="@stu.y_stuId" value=""/>*@
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td1">&nbsp;</td>
+                                            <td><a class="cx-set close" href="javascript:;">取消</a><input class="cx-sub close" type="button" value="确定" onclick="checkboxfalse(@stu.id, @feeYear)" /></td>
+                                        </tr>
+                                    </table>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="nava1" style="float: right; margin-right: 15px;">
+                            <a class="nava2too" data-nava="@stu.id" style="line-height: 40px;" href="javascript:;"><img class="trueimg" src="~/Content/images/toolbar_ok.gif" onclick="checkboxteue(@stu.id, @feeYear)" /></a>
+                            <div class="show-bg"></div>
+                            <div class="show-c">
+                                <form action="/Student/Checkbocwanshanstu/" method="post">
+                                    <div class="tbt">完善学生信息</div>
+                                    <a class="close close8" href="javascript:;"></a>
+                                    <table class="cx-table">
+                                        <tr>
+                                            <td class="td1">电话</td>
+                                            <td><input type="text" name="tel" class="cx-inp tel" placeholder="必填" data-idtel="@stu.id" value="" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td1">地址</td>
+                                            <td><input type="text" name="adress" class="cx-inp adress" placeholder="必填" data-idadress="@stu.id" value="" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td1">&nbsp;</td>
+                                            <td><a class="cx-set close" href="javascript:;">取消</a><input class="cx-sub close" type="button" value="确定" onclick="Checkbocwanshanstu(@stu.id, @feeYear)" /></td>
+                                        </tr>
+                                    </table>
+                                </form>
+                            </div>
+                        </div>
+                    </td>
+                }
+            </tr>
+        }
+    }
+</table>
+<div class="zc-bom">
+    @*<label><input onclick="AllSel(this)" class="rad cktb" type="checkbox">全选</label>*@
+    @*<a class="zc-sub2" href="javascript:registerzSome()">申请注册</a>
+        <a class="zc-sub2" href="javascript:registersomeno()">取消申请注册</a>
+        <a class="zc-sub2" href="javascript:registerzbatchSome()">批量申请注册</a>*@
+</div>
+<script>
+    //全选或取消全选功能
+    $(function () {
+        $(".mycb").click(function () {
+            var bl = $(".mycb").length == $(".mycb:checked").length;
+            $("#all").attr("checked", bl);
+        });
+        $(".zz8").click(function () {
+            var checkedStatus = this.checked;
+            var checkbox = $(this).parents('table').find('tr td input:checkbox');
+            checkbox.each(function () {
+                this.checked = checkedStatus;
+            });
+        });
+        $(".show-c2").css('display', 'none');
+
+        $(".show-bg2").css('display', 'none');
+
+    });
+    //弹框填原因
+    $(".falseimg").click(function () {
+        $(".show-c").css('display', 'none');
+        $(".nava2").click(function () {
+            $(this).parents(".nava1").find(".show-bg").stop().fadeTo(500, 1);
+            $(this).parents(".nava1").find(".show-c").css("display", "block");
+        });
+        $(".close").click(function () {
+            $(this).parents(".nava1").find(".show-bg").css('display', 'none');
+            $(this).parents(".nava1").find(".show-c").css("display", "none");
+        });
+    });
+    //勾选学生或者取消学生--暂时没用
+    function checkboxOnclick(checkbox) {
+        if (checkbox.checked == true)
+        {
+            var cbs = $(".mycb");
+            if (cbs.length <= 0) {
+                alert("请先选择学生");
+                return;
+            }
+            var ids = "";
+            for (var i = 0; i < cbs.length; i++) {
+                if (cbs[i].checked) {
+                    ids += $(cbs[i]).attr("data-id");
+                    if (i + 1 < cbs.length) {
+                        ids += ",";
+                    }
+                }
+            }
+            $.ajax({
+                type: "post",
+                url: "/Student/StuFeeCheck",
+                data: {
+                    ids: ids
+                },
+                success: function (data) {
+                    if (data == "ok") {
+                    } else {
+                        alert(data);
+                    }
+                },
+                error: function () {
+                    alert("未知错误");
+                }
+            });
+
+        }
+        else
+        {
+            var cbs = $(".mycb");
+            if (cbs.length <= 0) {
+                alert("请先选择学生");
+                return;
+            }
+            var ids = "";
+            for (var i = 0; i < cbs.length; i++) {
+                ids += $(cbs[i]).attr("data-id");
+                if (i + 1 < cbs.length) {
+                    ids += ",";
+                }
+            }
+            $.ajax({
+                type: "post",
+                url: "/Student/StuFeeCheckno",
+                data: {
+                    ids: ids
+                },
+                success: function (data) {
+                    if (data == "ok") {
+                    } else {
+                        alert(data);
+                    }
+                },
+                error: function () {
+                    alert("未知错误");
+                }
+            });
+        }
+    }
+    //打勾学生为审核学生是否信息完善
+    function checkboxteue(stuId,feeYear) {
+        var nava = $(".nava2too");
+        var na = 0;
+        for (var i = 0; i < nava.length; i++) {
+            if ($(nava[i]).attr("data-nava") == stuId) {
+                na = i;
+            }
+        }
+        $.ajax({
+            type: "post",
+            url: "/Student/NewlyPlanCheck",
+            data: {
+                stuId: stuId,
+                feeYear:feeYear
+            },
+            success: function (data) {
+                if (data == "ok") {
+                    if (@Model.CurrentPageIndex==1) {
+                        $("#searchForm").submit();
+                    } else {
+                        var url = window.location.href;
+                        $("#searchForm").submit();
+                        window.location.href = url;
+                    }
+                }
+                //else if (data == "请完善学生信息") {
+                //    alert(data);
+                //    $(".show-c").css('display', 'none');
+                //    $('.nava2too').eq(na).parents(".nava1").find(".show-bg").stop().fadeTo(500, 1);
+                //    $('.nava2too').eq(na).parents(".nava1").find(".show-c").css("display", "block");
+                //    $(".close").click(function () {
+                //        $('.trueimg').eq(na).parents(".nava1").find(".show-bg").css('display', 'none');
+                //        $('.trueimg').eq(na).parents(".nava1").find(".show-c").css("display", "none");
+                //    });
+                //}
+                else {
+                    alert(data);
+                }
+            },
+            error: function () {
+                alert("未知错误");
+            }
+        });
+    }
+    //在线完善学生信息
+    function Checkbocwanshanstu(stuId,feeYear) {
+        var tel = $(".tel");
+        if (tel.length <= 0) {
+            alert("请勾选学生");
+            return;
+        }
+        var reasontel = "";
+        for (var i = 0; i < tel.length; i++) {
+            if ($(tel[i]).attr("data-idtel")==stuId) {
+                reasontel += $(".tel").eq(i).val();
+            }
+        }
+        var adress = $(".adress");
+        if (adress.length <= 0) {
+            alert("请勾选学生");
+            return;
+        }
+        var reasonadre = "";
+        for (var i = 0; i < adress.length; i++) {
+            if ($(adress[i]).attr("data-idadress")==stuId) {
+                reasonadre += $(".adress").eq(i).val();
+            }
+        }
+        $.ajax({
+            type: "post",
+            url: "/Student/NewlyPlanCheckwanshan",
+            data: {
+                stuId: stuId,
+                feeYear:feeYear,
+                tel:reasontel,
+                adress:reasonadre
+            },
+            success: function (data) {
+                if (data == "ok") {
+                    alert("修改成功");
+                    if (@Model.CurrentPageIndex==1) {
+                        $("#searchForm").submit();
+                    } else {
+                        var url = window.location.href;
+                        $("#searchForm").submit();
+                        window.location.href = url;
+                    }
+                } else {
+                    alert(data);
+                }
+            },
+            error: function () {
+                alert("未知错误");
+            }
+        });
+    }
+    //取消学生注册资格
+    function checkboxfalse(stuId,feeYear) {
+        var PlanReason = $(".reason");
+        if (PlanReason.length <= 0) {
+            alert("请先选择学生");
+            return;
+        }
+        var reason = "";
+        for (var i = 0; i < PlanReason.length; i++) {
+            if ($(PlanReason[i]).attr("data-id2")==stuId) {
+                reason += $(".reason").eq(i).val();
+            }
+        }
+        $.ajax({
+            type: "post",
+            url: "/Student/NewlyPlanCheckNo",
+            data: {
+                stuId: stuId,
+                feeYear:feeYear,
+                PlanReason: reason
+            },
+            success: function (data) {
+                if (data == "ok") {
+                    if (@Model.CurrentPageIndex == 1) {
+                        $("#searchForm").submit();
+                    } else {
+                        var url = window.location.href;
+                        $("#searchForm").submit();
+                        window.location.href = url;
+                    }
+                } else {
+                    alert(data);
+                }
+            },
+            error: function() {
+                alert("未知错误");
+            }
+        });
+    }
+
+    //撤销对学生的操作
+    function RevocationPlanconduct(id,feeyear) {
+        if (confirm("确认是否撤销之前操作？")) {
+            $.ajax({
+                type: "post",
+                url: "/Student/RevocationPlanconduct",
+                data: {
+                    id: id,
+                    feeYear:feeyear
+                },
+                success: function(data) {
+                    if (data == "ok") {
+                        alert("撤销成功");
+                        if (@Model.CurrentPageIndex==1) {
+                            $("#searchForm").submit();
+                        } else {
+                            var url = window.location.href;
+                            $("#searchForm").submit();
+                            window.location.href = url;
+                        }
+                    } else {
+                        alert(data);
+                    }
+                },
+                error: function () {
+                    alert("未知错误");
+                }
+            });
+        }
+    }
+    //注释掉没用上的代码
+    function noregisterSome() {
+        var cbs = $(".mycb");
+        if (cbs.length <= 0) {
+            alert("请先选择学生");
+            return;
+        }
+        //var term = $("#term");
+
+        //if (term == "") {
+        //    alert("未选择学期");
+        //    return;
+        //}
+        var ids = "";
+        for (var i = 0; i < cbs.length; i++) {
+            if (cbs[i].checked) {
+                ids += $(cbs[i]).attr("data-id");
+                if (i + 1 < cbs.length) {
+                    ids += ",";
+                }
+            }
+        }
+        $.ajax({
+            type: "post",
+            url: "/Student/StuRegisterSomeNo",
+            data: {
+                ids: ids
+                //term: term
+            },
+            success: function (data) {
+                if (data == "ok") {
+                    alert("取消注册成功");
+                    location.reload(true);
+                } else {
+                    alert(data);
+                }
+            },
+            error: function () {
+                alert("未知错误");
+            }
+        });
+    }
+    //全部选中本站点所有学生
+    function checkboxAll() {
+        if (confirm("确认是否将未预注册学生全部设置为预注册？")) {
+            var inYear = $("#EnrollYear").val();
+            if (inYear == 0|| inYear==null) {
+                alert("请选择年份");
+                return;
+            }
+            var feeyear = $("#term").val();
+
+            $.ajax({
+                type: "post",
+                url: "/Student/CheckboxtruePlanCheck",
+                data: {
+                    //ids: ids
+                    inYear: inYear,
+                    term: feeyear
+                },
+                success: function(data) {
+                    $('#ajaxtable').fadeIn('10');
+                    $('#loadingDiv').hide();
+                    if (data == "ok") {
+                        alert("设置成功");
+                        $("#searchForm").submit();
+                    } else {
+                        alert(data);
+                        $("#searchForm").submit();
+                    }
+                },
+                error: function() {
+                    $('#ajaxtable').fadeIn('10');
+                    $('#loadingDiv').hide();
+                    alert("未知错误");
+                }
+            });
+        }
+    }
+    //全部取消本站点所有预注册学生
+    function checkboxAllNO() {
+        if (confirm("确认是否将预注册学生全部取消？")) {
+            var inYear = $("#EnrollYear").val();
+            if (inYear == 0 || inYear==null) {
+                alert("请选择年份");
+                return;
+            }
+            var feeyear = $("#term").val();
+
+            $.ajax({
+                type: "post",
+                url: "/Student/CheckboxfalsePlanCheck",
+                data: {
+                    //ids: ids
+                    inYear: inYear,
+                    term: feeyear
+                },
+                success: function(data) {
+                    $('#ajaxtable').fadeIn('10');
+                    $('#loadingDiv').hide();
+                    if (data == "ok") {
+                        alert("设置成功");
+                        $("#searchForm").submit();
+                    } else {
+                        alert(data);
+                        $("#searchForm").submit();
+                    }
+                },
+                error: function() {
+                    $('#ajaxtable').fadeIn('10');
+                    $('#loadingDiv').hide();
+                    alert("未知错误");
+                }
+            });
+        }
+    }
+
+
+</script>

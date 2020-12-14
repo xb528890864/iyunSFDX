@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "UploadExcel";
+}
+
+<script src="~/Content/js/jquery-1.9.1.min.js"></script>
+<h1>请先点上个页面的导出，下载一个模版！</h1>
+<form id="postForm">
+    <input type="file" name="file" id="avatar"/><br />
+    <input type="button" onclick="upload()" value="提交" />
+</form>
+
+<script>
+    function upload() {
+        var files = $('#avatar').prop('files');
+
+        var data = new FormData();
+        data.append('avatar', files[0]);
+
+        $.ajax({
+            url: "/Score/UploadUrlHandle",
+            type: 'POST',
+            data: data,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                if (data.status == "ok") {
+                    alert("上传成功");
+                } else {
+                    alert("上传失败");
+                }
+            }, error: function () {
+                alert("网络连接错误");
+            }
+        });
+    }
+</script>

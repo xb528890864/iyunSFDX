@@ -1,0 +1,197 @@
+﻿@using System.Configuration
+@using IYun.Models
+@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@model PagedList<VW_StrangeReportTotal>
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css?v=1" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+        <script type="text/javascript" src="js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+        <script type="text/javascript" src="js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    @*<script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>*@
+    <script src="~/Content/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="~/Scripts/MvcPager.js"></script>
+    <script src="~/Content/manage/ComboboxBind.js?v=1"></script> 
+    <script src="~/Content/EasyUI/easyloader.js"></script>
+    <link href="~/Content/EasyUI/combo.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/combobox.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/panel.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/textbox.css" rel="stylesheet" />
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });
+
+    </script>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        <div id="main-tl">
+            <div class="left-t">统计报表</div>
+            <div class="left-c">
+                @{
+                    foreach (var modulePower in modulePowers)
+                    {
+                        if (modulePower.y_url.ToLower() == "/report/StrangeReport".ToLower())
+                        {
+                            <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                        else
+                        {
+                            <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div id="main-tr" class="tb-chk">
+            <form id="searchForm" action="/report/StrangeReport" name="searchForm" method="post">
+                <div class="zc-head">
+                    <div class="zc-inn">
+                        <span>入学年份</span>
+                        @Html.Action("EnrollYear", "Helper", new HelperParameterM {id = "year", name = "year", style = "width:80px;"})
+                    </div>
+                    <div class="zc-inn">
+                        <span>函授站</span>
+                        @Html.Action("SubSchool", "Helper", new HelperParameterM { className = "easyui-combobox" })
+                    </div>
+                    <input style="margin-top:10px; height:32px; line-height:30px;" class="cx-sub" type="submit" value="查找" />
+                    <a class="cx-sub" href="javascript:DownStrangeTotal()" style="margin-top:10px; height:32px; line-height:30px;">数据导出</a>
+                    <div class="show-bg"></div>
+                </div>
+            </form>
+            <div id="loadingDiv" style="display:none"><img src="~/Content/images/loading.gif" /></div>
+            <div id="ajaxtable">
+                @Html.Partial("StrangeTotalList", Model)
+            </div>
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+</body>
+</html>
+<script>
+   
+    //函授站异动统计导出
+    function DownStrangeTotal() {
+        $.ajax({
+            type: "post",
+            url: "/report/DownloadStrangeTotal",
+            data: $("#searchForm").serialize(),
+            success: function (data) {
+                if (data.indexOf("xls") > 0) {
+                    location.href = data;
+                } else {
+                    eval(data);
+                }
+            },
+            error: function () {
+                alert("未知错误");
+            }
+        });
+    }
+    function yearchangeComple() {  //年度改变回调
+        SearchSchool();
+    }
+    function SearchSchool() {
+        var year = $('#year').val();
+        $('#SubSchool').attr("disabled", true);
+        $.ajax({
+            url: '@Url.Action("GetSchoolByYear_Stu", "Helper")',
+            data: {
+                year: year
+            },
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                $('#SubSchool').bindData(data, 'y_subSchoolId', 'schoolName');
+                $('#SubSchool').attr("disabled", false);
+            },
+            error: function () {
+                $('#SubSchool').attr("disabled", false);
+            }
+        });
+    }
+    //EasyUi
+    $(document).ready(function () {
+        //设置面板长度
+        $('select.easyui-combobox').attr("panelHeight", "400");
+        //设置面板宽度
+        $('select.easyui-combobox').css("width", "250px");
+
+        easyloader.css = false;
+
+        easyloader.load('combobox', function () { // 加载指定模块
+            $('select.easyui-combobox').combobox({
+                onHidePanel: function () {
+                    if (isNaN($(this).combobox('getValue'))) {
+                        var $this = $(this);
+
+                        var valueField = $this.combobox('options').valueField;
+                        var textField = $this.combobox('options').textField;
+
+                        var text = $this.combobox('getValue');
+                        var data = $this.combobox('getData');
+
+                        $.each(data, function (i, n) {
+                            if (eval('n.' + textField).indexOf(text) >= 0) {
+                                $this.combobox('setValue', eval('n.' + valueField));
+                                return false;
+                            }
+                        });
+
+                        if (isNaN($(this).combobox('getValue'))) {
+                            $this.combobox('setValue', 0);
+                        }
+
+                    }
+                }
+            });
+            $(".combo").click(function() {
+                if ($(this).prev().combobox("panel").is(":visible")) {
+                    //$(this).prev().combobox("hidePanel");
+                } else {
+                    $(this).prev().combobox("showPanel");
+                }
+            });
+        });
+
+        easyloader.onLoad = function (name){
+            if (name.length == 1 &&name[0] == "combobox") {
+
+                //赋初始值 (赋值时会触发onchange事件)
+                @*$('#SubSchool').combobox('setValue', @subschool);*@
+            }
+        }
+    });
+</script>

@@ -1,0 +1,171 @@
+﻿@using System.Configuration
+@using IYun.Models
+@using IYun.Object
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+    var entityList = (List<YD_Edu_Course>)ViewBag.entityList;
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <script type="text/javascript" src="~/Views/Edu/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    <script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/kindeditor-4.1.10/themes/default/default.css" rel="stylesheet" />
+    <script src="~/Content/kindeditor-4.1.10/kindeditor-min.js"></script>
+    <script src="~/Content/kindeditor-4.1.10/lang/zh_CN.js"></script>
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+        });
+        KindEditor.ready(function (K) {
+            var editor = K.editor({
+                allowFileManager: true,
+                uploadJson: '../../Content/kindeditor-4.1.10/asp.net/excelUpload.ashx',//文件处理程序
+                fileManagerJson: '../../Content/kindeditor-4.1.10/asp.net/file_manager_json.ashx',
+                imageSizeLimit: '10MB',
+                imageUploadLimit: 10
+            });
+            K('#insertfile').click(function () {
+                editor.loadPlugin('insertfile', function () {
+                    editor.plugin.fileDialog({
+                        fileUrl: K('#url').val(),
+                        clickFn: function (url, title) {
+                            K('#url').val(url);
+                            editor.hideDialog();
+                        }
+                    });
+                });
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        <div id="main-tl">
+            <div class="left-t">教务管理</div>
+            <div class="left-c">
+                @{
+                    foreach (var modulePower in modulePowers)
+                    {
+                        if (modulePower.y_url.ToLower() == "/edu/course".ToLower())
+                        {
+                            <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                        else
+                        {
+                            <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div id="main-tr">
+            <div class="right-nav">
+                <form action="/Edu/Course" id="searchForm" method="post">
+                    <div class="zc-inn">
+                        <span style="margin-left: 30px">课程名</span>
+                        <input name="y_name" style="width:120px;" type="text" class="cx-inp" />
+                    </div>
+                    <div class="zc-inn"><input type="submit" style="margin-top:0px; height:32px; line-height:30px;" class="cx-sub" value="查找" /></div>
+                </form>
+                <div class="nava1">
+                    <a class="nava2" href="javascript:;">批量导入</a>
+                    <div class="show-bg"></div>
+                    <div class="show-c">
+                        <div class="tbt">批量添加课程</div>
+                        <a class="close close8" href="javascript:;"></a>
+                        <div class="dr-c">
+                            <input type="text" id="url" value="" /> <input type="button" id="insertfile" value="选择文件" />
+                            <p>导入格式说明：</p>
+                            <p>文件类型：xls或者xlsx</p>
+                            <p>第一行为列名，共有2列，分别是:课程名，课程代码。</p>
+                            <p>都为必填项</p>
+                            <p><a href="~/File/mould/%e5%ad%a6%e7%94%9f%e4%bf%a1%e6%81%af%e5%af%bc%e5%85%a5%e6%a8%a1%e6%9d%bf.xlsx"><font color="green">课程信息导入模板.xlsx</font></a></p>
+                        </div>
+                        <div class="cx-bom">
+                            <a class="cx-sub" href="javascript:uploadExcel()">开始导入</a><a class="cx-set close" href="javascript:;">取消</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="cli">
+                    <a style="height:32px; line-height:30px; float:right; margin:20px 20px 0 0;" class="zc-sub2" href="/Edu/CourseNameCheckUp">重名检查</a>
+                    <a style="height:32px; line-height:30px; float:right; margin:20px 20px 0 0;" class="zc-sub2" href="/Edu/CourseCodeCheckUp">重代码检查</a>
+                    <a style="height:32px; line-height:30px; float:right; margin:20px 20px 0 0;" class="zc-sub2" href="/Edu/CourseAddPage">添加</a>
+                </div>
+            </div>
+            <table class="xx-table ydong-tab">
+                <tr>
+                    <th>课程</th>
+                    <th>课程代码</th>
+                    <th>操作</th>
+                </tr>
+                @{
+                    foreach (var ydSysAdmin in entityList)
+                    {
+                        <tr>
+                            <td>@ydSysAdmin.y_name</td>
+                            <td>@ydSysAdmin.y_code</td>
+                            <td><a class="bfont2" href="/Edu/CourseEditPage/@ydSysAdmin.id">修改</a><a class="bfont2" href="javascript:deletecourse(@ydSysAdmin.id)">删除</a></td>
+                        </tr>
+                    }
+                }
+            </table>
+
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+</body>
+</html>
+<script>
+    function deleteCourse(id) {
+        if (confirm("确认删除此信息？")) {
+        $.ajax({
+            type: "post",
+            url: "/Edu/courseDelete",
+            data: {
+                id: id
+            },
+            success: function (data) {
+                if (data == "ok") {
+                    location.reload();
+                } else {
+                    alert(data);
+                }
+            },
+            error: function (msg) {
+                alert("未知错误");
+            }
+        });
+}
+    }
+    function uploadExcel() {
+        var fileName = $("#url").val();
+        window.location.href = "/Edu/Uploadcourse/?filename=" + fileName;
+    }
+</script>

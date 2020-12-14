@@ -1,0 +1,65 @@
+﻿@using IYun.Models
+@model string
+@{ 
+
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+}
+
+<div id="main-tl">
+    <div class="left-t">学籍管理</div>
+    <ul class="left-c">
+        @{
+            foreach (var modulePower in modulePowers)
+            {
+                if (modulePower.children.Any(u => u.y_url.ToLower() == Model.ToLower()))
+                {
+                    <li class="le_on1">
+                        <a class="on firsta" href="javascript:;">@modulePower.y_moudleName</a>
+                        <div class="lev66" style="display:block;">
+                            @foreach (var item in modulePower.children)
+                            {
+                                if (item.y_url.ToLower() == Model.ToLower())
+                                {
+                                    <a class="on" href="@item.y_url">@item.y_moudleName</a>
+                                }
+                                else
+                                {
+                                    <a href="@item.y_url">@item.y_moudleName</a>
+                                }
+
+                            }
+                        </div>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a class="firsta" href="javascript:;">@modulePower.y_moudleName</a>
+                        <div class="lev66">
+                            @foreach (var item in modulePower.children)
+                            {
+                                <a href="@item.y_url">@item.y_moudleName</a>
+                            }
+                        </div>
+                    </li>
+                }
+            }
+        }
+    </ul>
+</div>
+<script>
+/***********LEFT下拉**************/
+$(document).ready(function(){
+    $('.left-c li .firsta').click(function () {
+        $('.left-c li.le_on1').find(".lev66").slideToggle();
+        $('.left-c li.le_on1').toggleClass("le_on1");
+
+        //	$(".lev66").css("display","none")
+        var parent = $(this).parent('li');
+        parent.find(".lev66").slideToggle();
+        parent.toggleClass("le_on1");
+    });    
+});
+
+</script>

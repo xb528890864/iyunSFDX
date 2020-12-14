@@ -1,0 +1,240 @@
+﻿@using System.Configuration
+@using IYun.Models
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+    var entity = (YD_Sts_StuNumCol)ViewBag.entity;
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+        <script type="text/javascript" src="js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+        <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    <script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });   
+    </script>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        @Html.Partial("../AdminBase/PartialModuleView", "/student/StuNum")     
+        <div id="main-tr">
+            <div style=" color:#555; margin:20px 0 0 25px; font-size:14px;">当前组成顺序：@entity.y_one @entity.y_two @entity.y_three @entity.y_four @entity.y_five</div>
+            <table class="cx-table" style="margin-top:10px;">
+                <tr>
+                    <td>
+                        <select class="dl-sel" id="y_1" onchange="removeOption(this);" style="width: 220px;">
+                            <option value=" ">选择</option>
+                            <option value="年份">年份</option>
+                            <option value="学习形式">学习形式</option>
+                            <option value="层次">层次</option>
+                            <option value="函授站">函授站</option>
+                            <option value="专业">专业</option>
+                        </select>
+                        <input type="hidden" id="hidden_y_1" value="选择" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select class="dl-sel" id="y_2" onchange="removeOption(this);" style="width: 220px;">
+                            <option value=" ">选择</option>
+                            <option value="年份">年份</option>
+                            <option value="学习形式">学习形式</option>
+                            <option value="层次">层次</option>
+                            <option value="函授站">函授站</option>
+                            <option value="专业">专业</option>
+                        </select>
+                        <input type="hidden" id="hidden_y_2" value="选择" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select class="dl-sel" id="y_3" onchange="removeOption(this);" style="width: 220px;">
+                            <option value=" ">选择</option>
+                            <option value="年份">年份</option>
+                            <option value="学习形式">学习形式</option>
+                            <option value="层次">层次</option>
+                            <option value="函授站">函授站</option>
+                            <option value="专业">专业</option>
+                        </select>
+                        <input type="hidden" id="hidden_y_3" value="选择" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select class="dl-sel" id="y_4" onchange="removeOption(this);" style="width: 220px;">
+                            <option value=" ">选择</option>
+                            <option value="年份">年份</option>
+                            <option value="学习形式">学习形式</option>
+                            <option value="层次">层次</option>
+                            <option value="函授站">函授站</option>
+                            <option value="专业">专业</option>
+                        </select>
+                        <input type="hidden" id="hidden_y_4" value="选择" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select class="dl-sel" id="y_5" style="width: 220px;">
+                            <option value=" ">选择</option>
+                            <option value="年份">年份</option>
+                            <option value="学习形式">学习形式</option>
+                            <option value="层次">层次</option>
+                            <option value="函授站">函授站</option>
+                            <option value="专业">专业</option>
+                        </select>
+                        <input type="hidden" id="hidden_y_5" value="选择" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><input class="cx-sub" type="button" onclick="save()" value="设置" /></td>
+                </tr>
+            </table>
+
+
+
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+</body>
+</html>
+<script>
+    function save() {
+        var y_one = $("#y_1").val();
+        var y_two = $("#y_2").val();
+        var y_three = $("#y_3").val();
+        var y_four = $("#y_4").val();
+        var y_five = $("#y_5").val();
+        if (y_one == y_two && y_one != " ") {
+            alert("存在相同的选项");
+            return;
+        }
+        if (y_one == y_three && y_one != " ") {
+            alert("存在相同的选项");
+            return;
+        }
+        if (y_one == y_four && y_one != " ") {
+            alert("存在相同的选项");
+            return;
+        }
+        if (y_one == y_five && y_one != " ") {
+            alert("存在相同的选项");
+            return;
+        }
+        if (y_two == y_three && y_two != " ") {
+            alert("存在相同的选项");
+            return;
+        }
+        if (y_two == y_four && y_two != " ") {
+            alert("存在相同的选项");
+            return;
+        }
+        if (y_two == y_five && y_two != " ") {
+            alert("存在相同的选项");
+            return;
+        }
+        if (y_three == y_four && y_three != " ") {
+            alert("存在相同的选项");
+            return;
+        }
+        if (y_three == y_five && y_three != " ") {
+            alert("存在相同的选项");
+            return;
+        }
+        if (y_four == y_five && y_four != " ") {
+            alert("存在相同的选项");
+            return;
+        }
+        $.ajax({
+            type: "post",
+            url: "/Student/StuNumColSave",
+            data: {
+                y_one: y_one,
+                y_two: y_two,
+                y_three: y_three,
+                y_four: y_four,
+                y_five: y_five
+            },
+            success: function (data) {
+                if (data == "ok") {
+                    location.reload();
+                } else {
+                    alert(data);
+                }
+            },
+            error: function (msg) {
+                alert("未知错误");
+            }
+        });
+    }
+
+    $(function () {
+        $("#y_2").attr("disabled", true);
+        $("#y_3").attr("disabled", true);
+        $("#y_4").attr("disabled", true);
+        $("#y_5").attr("disabled", true);
+    });
+
+    function removeOption(obj) {
+        var oldVal;
+        var newVal;
+        var eleId = $(obj).attr("id");
+        var num = eleId.split("_")[1];
+        oldVal = $("#hidden_" + $(obj).attr("id")).val();
+        newVal = $(obj).val();
+        for (var i = 1; i <= 5; i++) {
+            if (i > num) {
+
+                $("#y_" + i + " option[value='" + $(obj).val() + "']").remove();
+                if (oldVal != "选择") {
+                    if ($("#y_" + i + " option[value='" + oldVal + "']").length <= 0) {
+                        $("#y_" + i).append("<option value='" + oldVal + "'>" + oldVal + "</option>");
+                    }
+                }
+            }
+        }
+        $("#y_" + (parseInt(num) + parseInt(1))).attr("disabled", false);
+        //$("#" + id + " option[value='" + $(obj).val() + "']").remove();
+        //if (oldVal != "选择") {
+        //    $("#" + id).append("<option value='" + oldVal + "'>" + oldVal + "</option>");
+        //}
+        oldVal = newVal;
+        $("#hidden_" + $(obj).attr("id")).val(oldVal);
+    }
+
+    function isAddOpt(val) {
+        var result = true;
+        $("select option:selected").each(function () {
+            if ($(this).html() == val) {
+                result = false;
+            }
+        });
+        return result;
+    }
+</script>

@@ -1,0 +1,571 @@
+﻿@using System.Collections
+@using System.Configuration
+@using IYun.Common
+@using IYun.Models
+@using IYun.Controllers.ControllerObject
+@model List<ScoreStatistics_Course>
+@{
+    Layout = null;
+    var strange = (VW_Strange)ViewBag.strange ?? new VW_Strange(); ;  //学生异动信息
+    var stuInfo = (VW_StuInfo)ViewBag.stuInfo;
+
+    /* var strange = (VW_Strange)ViewBag.strange ?? new VW_Strange(); ; */ //学生异动信息
+
+    var changetag = "";
+    if (strange.y_strangeType == 1)
+    {
+        var majorid = Convert.ToInt32(strange.y_contentA);
+        var ydEduMajor = new IYunEntities().YD_Edu_Major.Find(majorid);
+        if (ydEduMajor != null)
+        {
+            changetag = ydEduMajor.y_name;
+        }
+    }
+    if (strange.y_strangeType == 2)
+    {
+        var schoolid = Convert.ToInt32(strange.y_contentA);
+        var ydSysSubSchool = new IYunEntities().YD_Sys_SubSchool.Find(schoolid);
+        if (ydSysSubSchool != null)
+        {
+            changetag = ydSysSubSchool.y_name;
+        }
+    }
+    var changetagB = "";
+    if (strange.y_strangeType == 1)
+    {
+        var majorid = Convert.ToInt32(strange.y_contentB);
+        var ydEduMajor = new IYunEntities().YD_Edu_Major.Find(majorid);
+        if (ydEduMajor != null)
+        {
+            changetagB = ydEduMajor.y_name;
+        }
+    }
+    if (strange.y_strangeType == 2)
+    {
+        var schoolid = Convert.ToInt32(strange.y_contentB);
+        var ydSysSubSchool = new IYunEntities().YD_Sys_SubSchool.Find(schoolid);
+        if (ydSysSubSchool != null)
+        {
+            changetagB = ydSysSubSchool.y_name;
+        }
+    }
+    var MaxTerm = 0;
+
+    if (Model != null && Model.Any())
+    {
+        MaxTerm = Model.Max(u => u.Term);
+    }
+
+    var yearint = (MaxTerm + 1) / 2;
+    Hashtable ht = new Hashtable();
+    ht[1] = "一";
+    ht[2] = "二";
+    ht[3] = "三";
+    ht[4] = "四";
+    ht[5] = "五";
+    ht[6] = "六";
+    ht[7] = "七";
+    ht[8] = "八";
+    ht[9] = "九";
+    ht[10] = "十";
+    ht[11] = "十一";
+    ht[12] = "十二";
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <script type="text/javascript" src="~/Content/manage/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    <script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="~/Content/manage/js/laydate.js"></script> <!-- 日历控件 -->
+
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+            $(".dc-btn").click(function () {
+                $(".dc-btn").attr("display", "none");
+            });
+        });
+        function myPrint(obj) {
+            var newWindow = window.open("/student/stustatusscore", "_blank");//打印窗口要换成页面的url
+            $("#prev").hide();
+            var docStr = obj.innerHTML;
+            newWindow.document.write(docStr);
+            newWindow.document.close();
+            newWindow.print();
+            newWindow.close();
+            $("#prev").show();
+        }
+    </script>
+</head>
+<body>
+    @Html.Action("Top", "AdminBase")
+    <style>
+        .dc-box {
+            width: 1000px;
+            background: #fff;
+            overflow: hidden;
+            min-height: 400px;
+            box-shadow: 0 0 5px #e6e8eb;
+            margin: 0 auto;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .dc-t {
+            color: #333333;
+            font-size: 24px;
+            text-align: center;
+            margin-top: 35px;
+            line-height: 26px;
+        }
+
+        .dc-sp {
+            text-align: center;
+            color: #333333;
+            font-size: 14px;
+            padding: 10px 0;
+        }
+
+        .dc-btn {
+            background: #f9a717;
+            width: 78px;
+            height: 30px;
+            border: 1px solid #fcd186;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+            display: block;
+            position: absolute;
+            right: 60px;
+            top: 100px;
+            border-radius: 3px;
+            -webkit-border-radius: 3px;
+            -ms-border-radius: 3px;
+        }
+
+        .dc-table {
+            margin-top: 10px;
+            width: 1000px;
+            text-align: center;
+            color: #333333;
+            overflow: hidden;
+            margin-bottom: 5px;
+        }
+
+            .dc-table td {
+                line-height: 60px;
+            }
+
+        .scoretable {
+            width: 1000px;
+            text-align: center;
+            color: #333333;
+            overflow: hidden;
+        }
+
+            .scoretable td {
+                line-height: 45px;
+            }
+    </style>
+
+    <div class="dc-box" id="print" style="width: 1000px;">
+        <a class="dc-btn" href="javascript:myPrint(document.getElementById('print'))" id="prev">数据打印</a>
+            @if (ConfigurationManager.AppSettings["SchoolName"] == ComEnum.SchoolName.JXKJSFDX.ToString())
+            {
+                <img src="~/Content/images/logo2.jpg" style="width: 110px; position: absolute;right:780px;top: 38px;" />
+            }
+            <div class="dc-t" style="text-align: center; font-weight: bold; font-size: 26px; margin-top: 60px; font-family: 微软雅黑;">@ConfigurationManager.AppSettings["SchoolTable"]成人高等学历教育学生学籍表</div>
+            <div class="dc-sp" style="text-align: center; margin-top: 30px; font-size: 18px; font-family: 微软雅黑;">
+                教学单位：@stuInfo.schoolName &nbsp;&nbsp;&nbsp;年级：@stuInfo.y_inYear &nbsp;&nbsp;&nbsp;专业：@stuInfo.majorLibraryName<br /><br />
+                <span>层次：@stuInfo.eduTypeName&nbsp;&nbsp;&nbsp;学习形式：@stuInfo.stuTypeName&nbsp;&nbsp;&nbsp; 学制：@stuInfo.y_stuYear &nbsp;&nbsp;&nbsp;姓名：@stuInfo.y_name&nbsp;&nbsp;&nbsp;学号：@stuInfo.y_stuNum</span>
+            </div>
+            <br />
+            <table class="basstable" style="margin: 0 auto; border-collapse: collapse; text-align: center; width: 1000px; font-size: 18px;">
+                <tr>
+                    <td>
+                        <table class="dc-table" border="1" style="font-size: 18px; text-align: center; width: 1000px; margin-bottom: 60px; border-collapse: collapse;" bordercolor="#333333;">
+                            <tr>
+
+                                <td style="line-height: 50px;" width="95">姓名</td>
+                                <td style="line-height: 50px;" width="95">@stuInfo.y_name</td>
+                                <td style="line-height: 50px;" width="75">性别</td>
+                                @{
+                                    if (stuInfo.y_sex == 0)
+                                    {
+                                        <td style="line-height: 50px;" width="75px">男</td>
+                                    }
+                                    else
+                                    {
+                                        <td width="75px" style="line-height: 50px;">女</td>
+                                    }
+                                }
+                                <td style="line-height: 50px;" width="95">出生年月日</td>
+                                <td style="line-height: 50px;" width="95">@stuInfo.y_birthday.ToString("yyyy-MM-dd")</td>
+                                <td style="line-height: 50px;" width="95">民族</td>
+                                <td style="line-height: 50px;" width="95">@stuInfo.nationName</td>
+                                <td width="95px" style="line-height: 50px;">籍贯</td>
+                                 
+                                <td width="100px" style="line-height: 50px;">@stuInfo.y_origin</td>
+                                @{
+                                    if (ConfigurationManager.AppSettings["SchoolName"] == ComEnum.SchoolName.JXSFDX.ToString())
+                                    {
+                                        <td style="height: 270px;" rowspan="5" width="250px;" border="1"><img style="height: 100%; width: 80%;" src="@KeyValue.UpdateStudentImg(stuInfo.y_examNum)" /></td>
+                                    }
+                                    else
+                                    {
+                                        <td style="height: 270px" rowspan="5" width="250px;" border="1">&nbsp;</td>
+                                    }
+                                }
+
+                            </tr>
+                            <tr>
+                                <td width="95px" style="line-height: 50px;">政治面貌</td>
+                                <td colspan="3" style="line-height: 50px;">@stuInfo.politicsName</td>
+                                <td width="74px" style="line-height: 50px;">身份证号</td>
+                                <td colspan="5" style="line-height: 50px;">@stuInfo.y_cardId</td>
+
+
+                            </tr>
+                            <tr>
+                                <td style="line-height: 50px;">工作单位</td>
+                                <td colspan="5" style="line-height: 50px;">&nbsp;</td>
+                                <td style="line-height: 50px;">电话</td>
+                                <td style="line-height: 50px;">@stuInfo.y_tel</td>
+                                <td style="line-height: 50px;">邮政编码</td>
+                                <td style="line-height: 50px;">@stuInfo.y_postalcode</td>
+                            </tr>
+                            <tr>
+                                <td style="line-height: 50px;">通讯地址</td>
+                                <td colspan="5" style="line-height: 50px;">@stuInfo.y_address</td>
+                                <td style="line-height: 50px;">电话</td>
+                                <td style="line-height: 50px;">@stuInfo.y_tel</td>
+                                <td style="line-height: 50px;">邮政编码</td>
+                                <td style="line-height: 50px;">@stuInfo.y_postalcode</td>
+                            </tr>
+
+                            @*<tr>
+                                <td style="line-height: 80px;">学籍异动</td>
+                                @{
+                                    foreach (var str in strange)
+                                    {
+                                        if (str != null)
+                                        {
+                                            if (str.y_stuId == stuInfo.id)
+                                            {
+                                                <td colspan="9" style="line-height: 80px;">
+                                                    @if (str.y_strangeType == 1)
+                                                    {
+                                                        <text>&nbsp;&nbsp;&nbsp;转出专业：</text>
+                                                        @changetagB<text>&nbsp;&nbsp;&nbsp; 转入专业：</text>
+                                                        @changetag
+                                                    }
+                                                    @if (str.y_strangeType == 2)
+                                                    {
+                                                        <text>&nbsp;&nbsp;&nbsp;转出函授站：</text>
+                                                        @changetagB<text>&nbsp;&nbsp;&nbsp; 转入函授站：</text>
+                                                        @changetag
+                                                    }
+                                                </td>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <td colspan="9">&nbsp;</td>
+                                        }
+                                    }
+                                }
+                            </tr>*@
+                            <tr>
+                                <td style="line-height: 80px;font-size: 23px;">学籍异动</td>
+                                @{
+                                    if (strange != null)
+                                    {
+                                        <td colspan="5" style="line-height: 80px;font-size: 23px;">
+                                            @if (strange.y_strangeType == 1)
+                                            {
+                                                <text>&nbsp;&nbsp;&nbsp;转出专业：</text>
+                                                @changetagB<text>&nbsp;&nbsp;&nbsp; 转入专业：</text>
+                                                @changetag
+                                            }
+                                            @if (strange.y_strangeType == 2)
+                                            {
+                                                <text>&nbsp;&nbsp;&nbsp;转出函授站：</text>
+                                                @changetagB<text>&nbsp;&nbsp;&nbsp; 转入函授站：</text>
+                                                @changetag
+                                            }
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td colspan="9">&nbsp;</td>
+                                    }
+                                }
+                            </tr>
+                            <tr>
+                                <td style="line-height: 50px;">毕业证号</td>
+                                <td colspan="5" style="line-height: 50px;">&nbsp;</td>
+                                <td rowspan="2" style="line-height: 50px;">奖惩情况</td>
+                                <td rowspan="2" colspan="4" style="line-height: 50px;">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td style="line-height: 50px;">学位证号</td>
+                                <td colspan="5" style="line-height: 50px;">&nbsp;</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="line-height: 80px;">
+                        @if (Model != null && Model.Any())
+                        {
+                            <table class="scoretable" border="1" cellpadding="0" style="border-collapse: collapse; font-size: 18px; text-align: center; width: 1000px;" bordercolor="#333333;">
+                                @for (int i = 1; i <= yearint && i <= 1; i++)
+                                {
+                                    var firterm = Model.Where(u => u.Term == (i * 2 - 1)).ToList();
+                                    var secterm = Model.Where(u => u.Term == (i * 2)).ToList();
+                                    var threeterm = Model.Where(u => u.Term == (i * 2 + 1)).ToList();
+                                    var fourerm = Model.Where(u => u.Term == (i * 2 + 2)).ToList();
+                                    var firtermCount = firterm.Count;
+                                    var sectermCount = secterm.Count;
+                                    var threeCount = threeterm.Count;
+                                    var fourCount = fourerm.Count;
+                                    var maxCount = firtermCount > sectermCount ? firtermCount : sectermCount;
+
+                                    <tr>
+                                        <td colspan="3" style="width:25%; text-align: center; font-weight: bold; line-height: 50px; font-size: 18px; font-family: 微软雅黑;">
+                                            @{ Write("第" + ht[i * 2 - 1] + "学期"); }
+                                        </td>
+                                        <td colspan="3" style="width:25%; text-align: center; font-weight: bold; line-height: 50px; font-size: 18px; font-family: 微软雅黑;">
+                                            @{ Write("第" + ht[i * 2] + "学期"); }
+                                        </td>
+                                        <td colspan="3" style="width:25%;text-align: center; font-weight: bold; line-height: 50px; font-size: 18px; font-family: 微软雅黑;">
+                                            @{ Write("第" + ht[i * 2 + 1] + "学期"); }
+                                        </td>
+                                        <td colspan="3" style="width:25%;text-align: center; font-weight: bold; line-height: 50px; font-size: 18px; font-family: 微软雅黑;">
+                                            @{ Write("第" + ht[i * 2 + 2] + "学期"); }
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2" style="width:14%;text-align: center; height: 80px; font-weight: bold; font-family: 微软雅黑;">课程名称</td>
+                                        <td colspan="2" style="width:10%;text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">成绩</td>
+                                        <td rowspan="2" style="width:14%;text-align: center; height: 80px; font-weight: bold; font-family: 微软雅黑;">课程名称</td>
+                                        <td colspan="2" style="width:10%;text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">成绩</td>
+                                        <td rowspan="2" style="width:14%;text-align: center; height: 80px; font-weight: bold; font-family: 微软雅黑;">课程名称</td>
+                                        <td colspan="2" style="width:10%;text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">成绩</td>
+                                        <td rowspan="2" style="width:14%;text-align: center; height: 80px; font-weight: bold; font-family: 微软雅黑;">课程名称</td>
+                                        <td colspan="2" style="width:10%;text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">成绩</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">考试</td>
+                                        <td style="text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">补考</td>
+                                        <td style="text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">考试</td>
+                                        <td style="text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">补考</td>
+                                        <td style="text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">考试</td>
+                                        <td style="text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">补考</td>
+                                        <td style="text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">考试</td>
+                                        <td style="text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">补考</td>
+                                    </tr>
+                                                for (int j = 0; j < 10; j++)
+                                                {
+                                                    <tr>
+                                                        <td style="height: 40px;">@{ Write(firtermCount < j + 1 ? "" : firterm[j].CourseName); }</td>
+                                                        <td style="height: 40px;">@{ Write(firtermCount < j + 1 ? "" : firterm[j].TotalScore.HasValue ? S(firterm[j].TotalScore.Value) : "0"); }</td>
+                                                        <td style="height: 40px;">&nbsp; </td>
+                                                        <td style="height: 40px;">@{ Write(sectermCount < j + 1 ? "" : secterm[j].CourseName); }</td>
+                                                        <td style="height: 40px;">@{ Write(sectermCount < j + 1 ? "" : secterm[j].TotalScore.HasValue ? S(secterm[j].TotalScore.Value) : "0"); }</td>
+                                                        <td style="height: 40px;">&nbsp; </td>
+
+                                                        <td style="height: 40px;">@{ Write(threeCount < j + 1 ? "" : threeterm[j].CourseName); }</td>
+                                                        <td style="height: 40px;">@{ Write(threeCount < j + 1 ? "" : threeterm[j].TotalScore.HasValue ? S(threeterm[j].TotalScore.Value) : "0"); }</td>
+                                                        <td style="height: 40px;">&nbsp; </td>
+                                                        <td style="height: 40px;">@{ Write(fourCount < j + 1 ? "" : fourerm[j].CourseName); }</td>
+                                                        <td style="height: 40px;">@{ Write(fourCount < j + 1 ? "" : fourerm[j].TotalScore.HasValue ? S(fourerm[j].TotalScore.Value) : "0"); }</td>
+                                                        <td style="height: 40px;">&nbsp; </td>
+
+                                                    </tr>
+                                                                }
+                                                            }
+                            </table>
+                            <table class="scoretable" border="0" cellpadding="0" style="border-collapse: collapse; font-size: 18px; text-align: center; width: 1000px; margin-top: 220px;" bordercolor="#333333;">
+                                <tr>
+                                    <td colspan="4">
+                                        <table border="1" cellpadding="0" style="float: left; width: 70%; border-collapse: collapse;">
+                                            @*<= yearint注释掉的条件 *@
+                                            @for (int i = 3; i <= 4; i++)
+                                            {
+
+                                                var firterm = Model.Where(u => u.Term == (i * 2 - 1)).ToList();
+                                                var secterm = Model.Where(u => u.Term == (i * 2)).ToList();
+                                                var threeterm = Model.Where(u => u.Term == (i * 2 + 1)).ToList();
+                                                var tenterm = Model.Where(u => u.Term == (i * 2 + 2)).ToList(); //第10学期
+                                                var firtermCount = firterm.Count;
+                                                var sectermCount = secterm.Count;
+                                                var threeCount = threeterm.Count;
+                                                var tenCount = tenterm.Count;
+                                                var maxCount = firtermCount > sectermCount ? firtermCount : sectermCount;
+                                                <tr>
+                                                    @if (i > 3)
+                                                    {
+                                                        <td colspan="3" style="width: 25%; text-align: center; font-weight: bold; line-height: 50px; font-size: 18px; font-family: 微软雅黑;">
+                                                            @{ Write("第" + ht[i * 2] + "学期"); }
+                                                        </td>
+                                                        <td colspan="3" style="width: 25%; text-align: center; font-weight: bold; line-height: 50px; font-size: 18px; font-family: 微软雅黑;">
+                                                            @{ Write("第" + ht[i * 2 + 1] + "学期"); }
+                                                        </td>
+                                                        <td colspan="3" style="width: 25%; text-align: center; font-weight: bold; line-height: 50px; font-size: 18px; font-family: 微软雅黑;">
+                                                            @{ Write("第" + ht[i * 2 + 2] + "学期"); }
+                                                        </td>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <td colspan="3" style="width: 25%; text-align: center; font-weight: bold; line-height: 50px; font-size: 18px; font-family: 微软雅黑;">
+                                                                        @{ Write("第" + ht[i * 2 - 1] + "学期"); }
+                                                                    </td>
+                                                                    <td colspan="3" style="width: 25%; text-align: center; font-weight: bold; line-height: 50px; font-size: 18px; font-family: 微软雅黑;">
+                                                                        @{ Write("第" + ht[i * 2] + "学期"); }
+                                                                    </td>
+                                                                    <td colspan="3" style="width: 25%; text-align: center; font-weight: bold; line-height: 50px; font-size: 18px; font-family: 微软雅黑;">
+                                                                        @{ Write("第" + ht[i * 2 + 1] + "学期"); }
+                                                                    </td>
+                                                                            }
+                                                </tr>
+                                                <tr>
+                                                    <td rowspan="2" style="width: 14%; text-align: center; height: 80px; font-weight: bold; font-family: 微软雅黑;">课程名称</td>
+                                                    <td colspan="2" style="width: 10%; text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">成绩</td>
+                                                    <td rowspan="2" style="width: 14%; text-align: center; height: 80px; font-weight: bold; font-family: 微软雅黑;">课程名称</td>
+                                                    <td colspan="2" style="width: 10%; text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">成绩</td>
+                                                    <td rowspan="2" style="width: 14%; text-align: center; height: 80px; font-weight: bold; font-family: 微软雅黑;">课程名称</td>
+                                                    <td colspan="2" style="width: 10%; text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">成绩</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">考试</td>
+                                                    <td style="text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">补考</td>
+                                                    <td style="text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">考试</td>
+                                                    <td style="text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">补考</td>
+                                                    <td style="text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">考试</td>
+                                                    <td style="text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">补考</td>
+                                                </tr>
+                                                                            for (int j = 0; j < 9; j++)
+                                                                            {
+                                                                                <tr>
+                                                                                    @if (i > 3)
+                                                                                    {
+                                                                                        <td style="height: 40px;">@{ Write(sectermCount < j + 1 ? "" : secterm[j].CourseName); }</td>
+                                                                                        <td style="text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">@{ Write(sectermCount < j + 1 ? "" : secterm[j].TotalScore.HasValue ? S(secterm[j].TotalScore.Value) : "0"); }</td>
+                                                                                        <td style="text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">&nbsp;</td>
+                                                                                        <td style="height: 40px;">@{ Write(threeCount < j + 1 ? "" : threeterm[j].CourseName); }</td>
+                                                                                        <td style="text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">@{ Write(threeCount < j + 1 ? "" : threeterm[j].TotalScore.HasValue ? S(threeterm[j].TotalScore.Value) : "0"); }</td>
+                                                                                        <td style="text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">&nbsp;</td>
+                                                                                        <td style="height: 40px;">@{ Write(tenCount < j + 1 ? "" : tenterm[j].CourseName); }</td>
+                                                                                        <td style="text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">@{ Write(tenCount < j + 1 ? "" : tenterm[j].TotalScore.HasValue ? S(tenterm[j].TotalScore.Value) : "0"); }</td>
+                                                                                        <td style="text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">&nbsp;</td>
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                <td style="height: 40px;">@{ Write(firtermCount < j + 1 ? "" : firterm[j].CourseName); }</td>
+                                                                                                <td style="text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">@{ Write(firtermCount < j + 1 ? "" : firterm[j].TotalScore.HasValue ? S(firterm[j].TotalScore.Value) : "0"); }</td>
+                                                                                                <td style="text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">&nbsp;</td>
+                                                                                                <td style="height: 40px;">@{ Write(sectermCount < j + 1 ? "" : secterm[j].CourseName); }</td>
+                                                                                                <td style="text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">@{ Write(sectermCount < j + 1 ? "" : secterm[j].TotalScore.HasValue ? S(secterm[j].TotalScore.Value) : "0"); }</td>
+                                                                                                <td style="text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">&nbsp;</td>
+                                                                                                <td style="height: 40px;">@{ Write(threeCount < j + 1 ? "" : threeterm[j].CourseName); }</td>
+                                                                                                <td style="text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">@{ Write(threeCount < j + 1 ? "" : threeterm[j].TotalScore.HasValue ? S(threeterm[j].TotalScore.Value) : "0"); }</td>
+                                                                                                <td style="text-align: center; height: 40px; font-weight: bold; font-family: 微软雅黑;">&nbsp;</td>
+                                                                                                    }
+                                                                                </tr>
+                                                                                                        }
+                                                                                                    }
+                                        </table>
+
+                                        <table border="1" cellpadding="0" style="width:25%; float:right; width: 30%;border-collapse: collapse;">
+                                            @*<tr>
+                                                <td colspan="2" style="height:50px;text-align: center;">专业实习情况</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height:82px; width: 5%;text-align: center;">时间</td>
+                                                <td style="height: 82px;text-align: center;">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height:80px;text-align: center;width:5%">地点</td>
+                                                <td style="height: 80px;text-align: center;">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height:200px;text-align: center;width:5%">实习内容</td>
+                                                <td style="height: 200px;text-align: center;">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="height: 80px;text-align: center; width: 5%">成绩</td>
+                                                <td style="height: 80px;text-align: center;">&nbsp;</td>
+                                            </tr>*@
+                                            <tr>
+                                                <td colspan="2" style="height: 70px;text-align: center;">本科毕业生学士学位情况</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width:70%;height: 70px;text-align: center;">政治理论课程成绩</td>
+                                                <td style="height: 70px;text-align: center;">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width:70%;height: 70px;text-align: center;">学士学位用英语统考成绩</td>
+                                                <td style="height: 70px;text-align: center;">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width:70%;height: 80px;text-align: center;">专业主干课程平均成绩</td>
+                                                <td style="height: 40px;text-align: center;">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width:70%;height: 80px;text-align: center;">毕业论文（设计）成绩</td>
+                                                <td style="height: 80px;text-align: center;">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 70%;height: 220px;text-align: center;">学位授予审核结论</td>
+                                                <td style="height: 270px;text-align: center;">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <p style="text-align: left;padding-bottom: 267px; padding-left:5px;">学校审核意见：</p>
+                                                    <span style="float: right; padding-right:50px;">学校 （盖章）</span><br />
+                                                    <span style="padding-right: 80px;">&nbsp;</span>年<span style="padding-right: 20px;">&nbsp;</span>月
+                                                    <span style="padding-right: 20px;">&nbsp;</span>日
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                            </table>
+
+
+                                                                                                    }
+                                                                                                    else
+                                                                                                    {
+                                                                                                        <span>未找到此专业的教学计划</span>
+                                                                                                    }
+                    </td>
+                </tr>
+            </table>
+    </div>
+
+    @Html.Action("Foot", "AdminBase")
+</body>
+</html>

@@ -1,0 +1,3585 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IYun.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--生成过程中发现错误:
+警告 6013: 表/视图“jxsfdxNew.dbo.Sheet1”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+        <EntityType Name="Sheet1">
+          <Property Name="major" Type="nvarchar" MaxLength="255" />
+          <Property Name="cc" Type="nvarchar" MaxLength="255" />
+          <Property Name="majorName" Type="nvarchar" MaxLength="255" />
+          <Property Name="majorId" Type="nvarchar" MaxLength="255" />
+          <Property Name="courseId" Type="nvarchar" MaxLength="255" />
+          <Property Name="courseName" Type="nvarchar" MaxLength="255" />
+          <Property Name="term" Type="nvarchar" MaxLength="255" />
+          <Property Name="year" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <!--生成过程中发现错误:
+警告 6013: 表/视图“jxsfdxNew.dbo.SheetLufen”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+        <EntityType Name="SheetLufen">
+          <Property Name="majorid" Type="nvarchar" MaxLength="255" />
+          <Property Name="courseid" Type="nvarchar" MaxLength="255" />
+          <Property Name="term" Type="nvarchar" MaxLength="255" />
+          <Property Name="year" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <!--生成过程中发现错误:
+警告 6013: 表/视图“jxsfdxNew.dbo.SheetRoot”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+        <EntityType Name="SheetRoot">
+          <Property Name="major" Type="nvarchar" MaxLength="255" />
+          <Property Name="cc" Type="nvarchar" MaxLength="255" />
+          <Property Name="majorName" Type="nvarchar" MaxLength="255" />
+          <Property Name="majorId" Type="nvarchar" MaxLength="255" />
+          <Property Name="courseId" Type="nvarchar" MaxLength="255" />
+          <Property Name="courseName" Type="nvarchar" MaxLength="255" />
+          <Property Name="term" Type="nvarchar" MaxLength="255" />
+          <Property Name="year" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <!--生成过程中发现错误:
+警告 6013: 表/视图“jxsfdxNew.dbo.SheetRooy”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+        <EntityType Name="SheetRooy">
+          <Property Name="major" Type="nvarchar" MaxLength="255" />
+          <Property Name="cc" Type="nvarchar" MaxLength="255" />
+          <Property Name="majorName" Type="nvarchar" MaxLength="255" />
+          <Property Name="majorId" Type="nvarchar" MaxLength="255" />
+          <Property Name="courseId" Type="nvarchar" MaxLength="255" />
+          <Property Name="courseName" Type="nvarchar" MaxLength="255" />
+          <Property Name="term" Type="nvarchar" MaxLength="255" />
+          <Property Name="year" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <EntityType Name="YD_Edu_Course">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Edu_CourseCorrespondence">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_inyear" Type="int" Nullable="false" />
+    <Property Name="y_qingshuMajorlib" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="y_qingshuEdutype" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_qingshuCourse" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="y_qingshuTerm" Type="int" Nullable="false" />
+    <Property Name="y_MajorID" Type="int" Nullable="false" />
+    <Property Name="y_CourseID" Type="int" Nullable="false" />
+    <Property Name="y_Term" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Edu_CourseType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_courseTypeCode" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Edu_CultureExtent">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Edu_EduType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_eduTypeCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Edu_ExamFeature">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_TZF" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Edu_ForeignLanguage">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Edu_FormTemp">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_code" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_nameMatch" Type="nvarchar" MaxLength="500" />
+    <Property Name="y_isOk" Type="int" Nullable="false" />
+    <Property Name="y_eduTypeId" Type="int" />
+  </EntityType>
+  <EntityType Name="YD_Edu_GradCondition">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_isUse" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Edu_Major">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_majorLibId" Type="int" Nullable="false" />
+    <Property Name="y_stuTypeId" Type="int" Nullable="false" />
+    <Property Name="y_eduTypeId" Type="int" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_needFee" Type="int" />
+    <Property Name="y_code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_stuYear" Type="int" Nullable="false" />
+    <Property Name="y_majortype" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_GridType" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_StandardCode" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="YD_Edu_MajorLibrary">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="y_code" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Edu_MajorTeachPlan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_year" Type="int" Nullable="false" />
+    <Property Name="y_majorId" Type="int" Nullable="false" />
+    <Property Name="y_teachPlanId" Type="int" Nullable="false" />
+    <Property Name="y_teaPlanType" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Edu_News">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_type" Type="int" />
+    <Property Name="y_subSchoolId" Type="int" />
+    <Property Name="y_title" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_content" Type="nvarchar(max)" />
+    <Property Name="y_appyname" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_appytime" Type="datetime" Nullable="false" />
+    <Property Name="y_hits" Type="int" />
+    <Property Name="y_usable" Type="int" />
+  </EntityType>
+  <EntityType Name="YD_Edu_ProfessionType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Edu_QingCourse">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_qingId" Type="int" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_nid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Edu_QingStuInfo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_qingId" Type="int" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_stuNum" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_cardId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_nid" Type="int" Nullable="false" />
+    <Property Name="y_qingSubId" Type="int" Nullable="false" />
+    <Property Name="y_qingMajorId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Edu_RecruitType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_ZJTD" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Edu_Score">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_stuId" Type="int" Nullable="false" />
+    <Property Name="y_term" Type="int" Nullable="false" />
+    <Property Name="y_normalScore" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="y_termScore" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="y_workScore" Type="decimal" Precision="18" Scale="1" />
+    <Property Name="y_totalScore" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="y_courseId" Type="int" Nullable="false" />
+    <Property Name="y_type" Type="int" Nullable="false" />
+    <Property Name="y_time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="YD_Edu_ScoreScale">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_normalScale" Type="int" Nullable="false" />
+    <Property Name="y_termScale" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Edu_ScoreTemp">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_stuId" Type="int" />
+    <Property Name="y_stuNum" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_examNum" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_term" Type="int" />
+    <Property Name="y_courseId" Type="int" />
+    <Property Name="y_course" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_normalScore" Type="decimal" Precision="18" Scale="1" />
+    <Property Name="y_termScore" Type="decimal" Precision="18" Scale="1" />
+    <Property Name="y_workScore" Type="decimal" Precision="18" Scale="1" />
+    <Property Name="y_totalScore" Type="decimal" Precision="18" Scale="1" />
+    <Property Name="y_stuName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_isOk" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Edu_ScoreTest">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_stuId" Type="int" Nullable="false" />
+    <Property Name="y_term" Type="int" Nullable="false" />
+    <Property Name="y_normalScore" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="y_termScore" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="y_workScore" Type="decimal" Precision="18" Scale="1" />
+    <Property Name="y_totalScore" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="y_courseId" Type="int" Nullable="false" />
+    <Property Name="y_type" Type="int" Nullable="false" />
+    <Property Name="y_time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="YD_Edu_SmallPower">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_year" Type="int" Nullable="false" />
+    <Property Name="y_adminId" Type="int" Nullable="false" />
+    <Property Name="y_subSchoolId" Type="int" />
+    <Property Name="y_majorId" Type="int" />
+    <Property Name="y_courseType" Type="int" />
+    <Property Name="y_courseId" Type="int" />
+    <Property Name="y_scorelimit" Type="int" />
+    <Property Name="y_endTime" Type="datetime" Nullable="false" />
+    <Property Name="y_createTime" Type="datetime" Nullable="false" />
+    <Property Name="y_term" Type="int" />
+  </EntityType>
+  <EntityType Name="YD_Edu_StuState">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_stuStateCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Edu_StuType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_stuTypeCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Edu_TeachPlan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_teaPlanName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_term" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Edu_TeachplanDes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_teaPlanId" Type="int" Nullable="false" />
+    <Property Name="y_courseId" Type="int" Nullable="false" />
+    <Property Name="y_courseTypeId" Type="int" Nullable="false" />
+    <Property Name="y_stuTime" Type="int" Nullable="false" />
+    <Property Name="y_score" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="y_faceTime1" Type="int" />
+    <Property Name="y_faceTime2" Type="int" />
+    <Property Name="y_task" Type="int" />
+  </EntityType>
+  <EntityType Name="YD_Edu_TeachPlanTemp">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_year" Type="int" />
+    <Property Name="y_majorId" Type="int" />
+    <Property Name="y_major" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_majorLibId" Type="int" />
+    <Property Name="y_majorLib" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_majorNameMatch" Type="nvarchar" MaxLength="500" />
+    <Property Name="y_stuTypeId" Type="int" />
+    <Property Name="y_stuTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_eduTypeId" Type="int" />
+    <Property Name="y_eduTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_term" Type="int" />
+    <Property Name="y_courseId" Type="int" />
+    <Property Name="y_courseName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_courseNameMatch" Type="nvarchar" MaxLength="500" />
+    <Property Name="y_courseTypeId" Type="int" />
+    <Property Name="y_courseType" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuTime" Type="int" />
+    <Property Name="y_teachPlanType" Type="int" />
+    <Property Name="y_score" Type="decimal" Precision="18" Scale="1" />
+    <Property Name="y_isok" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Fee_AllBili">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_inYear" Type="int" />
+    <Property Name="y_stuTypeId" Type="int" />
+    <Property Name="y_eduTypeId" Type="int" Nullable="false" />
+    <Property Name="y_feeYear" Type="int" />
+    <Property Name="y_bili" Type="int" Nullable="false" />
+    <Property Name="y_time" Type="datetime" />
+    <Property Name="y_Visible" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Fee_AllFeeSys">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_inYear" Type="int" Nullable="false" />
+    <Property Name="y_feeYear" Type="int" Nullable="false" />
+    <Property Name="y_stuTypeId" Type="int" Nullable="false" />
+    <Property Name="y_eduTypeId" Type="int" Nullable="false" />
+    <Property Name="y_stuFee" Type="int" Nullable="false" />
+    <Property Name="y_bookFee" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Fee_MajorLiFeeSys">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_majorlivraryid" Type="int" Nullable="false" />
+    <Property Name="y_inYear" Type="int" Nullable="false" />
+    <Property Name="y_feeYear" Type="int" Nullable="false" />
+    <Property Name="y_stuTypeId" Type="int" Nullable="false" />
+    <Property Name="y_eduTypeId" Type="int" Nullable="false" />
+    <Property Name="y_StuFee" Type="int" Nullable="false" />
+    <Property Name="y_bookFee" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Fee_StuFeeTb">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_stuId" Type="int" Nullable="false" />
+    <Property Name="y_feeYear" Type="int" Nullable="false" />
+    <Property Name="y_isUp" Type="int" Nullable="false" />
+    <Property Name="y_isCheckFee" Type="int" Nullable="false" />
+    <Property Name="y_needFee" Type="int" Nullable="false" />
+    <Property Name="y_needUpFee" Type="int" Nullable="false" />
+    <Property Name="y_planconductOK" Type="int" />
+    <Property Name="y_NoplanconductReason" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_invoiceOK" Type="int" />
+    <Property Name="y_invoiceMoney" Type="int" />
+    <Property Name="y_invoiceUp" Type="int" />
+    <Property Name="y_invoiceCheck" Type="int" />
+    <Property Name="y_createtime" Type="datetime" />
+    <Property Name="y_registerYear" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Fee_StuInvoicee">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_subSchoolId" Type="int" Nullable="false" />
+    <Property Name="schoolCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="schoolName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="totalcount" Type="int" Nullable="false" />
+    <Property Name="needtotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="y_stuid" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="y_time" Type="datetime" Nullable="false" />
+    <Property Name="y_check" Type="int" Nullable="false" />
+    <Property Name="y_feeyear" Type="int" />
+    <Property Name="y_inyear" Type="int" />
+  </EntityType>
+  <EntityType Name="YD_Fee_StuRegistrBatch">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_subSchoolId" Type="int" Nullable="false" />
+    <Property Name="schoolCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="schoolName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="totalcount" Type="int" Nullable="false" />
+    <Property Name="needtotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="y_stuid" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="y_time" Type="datetime" Nullable="false" />
+    <Property Name="y_check" Type="int" Nullable="false" />
+    <Property Name="y_feeyear" Type="int" />
+    <Property Name="y_inyear" Type="int" />
+    <Property Name="tuitiontotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="governorName" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="YD_Fee_SubFeeBili">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_inYear" Type="int" />
+    <Property Name="y_subSchoolId" Type="int" />
+    <Property Name="y_stuTypeId" Type="int" />
+    <Property Name="y_eduTypeId" Type="int" Nullable="false" />
+    <Property Name="y_feeYear" Type="int" />
+    <Property Name="y_bili" Type="int" Nullable="false" />
+    <Property Name="y_time" Type="datetime" />
+    <Property Name="y_Visible" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Fee_SubFeeSys">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_subSchoolId" Type="int" Nullable="false" />
+    <Property Name="y_inYear" Type="int" />
+    <Property Name="y_feeYear" Type="int" />
+    <Property Name="y_stuTypeId" Type="int" />
+    <Property Name="y_eduTypeId" Type="int" Nullable="false" />
+    <Property Name="y_StuFee" Type="int" Nullable="false" />
+    <Property Name="y_bookFee" Type="int" />
+    <Property Name="y_majorid" Type="int" />
+  </EntityType>
+  <EntityType Name="YD_Graduate_Bachelor">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_SubSchoolId" Type="int" Nullable="false" />
+    <Property Name="SchoolName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="totalcount" Type="int" Nullable="false" />
+    <Property Name="y_stuid" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="y_inyear" Type="int" Nullable="false" />
+    <Property Name="y_time" Type="datetime" Nullable="false" />
+    <Property Name="y_check" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Graduate_EnglishScoreTemp">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_examtime" Type="nvarchar" MaxLength="500" />
+    <Property Name="y_admissionNum" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_stuname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_sex" Type="int" />
+    <Property Name="y_inYear" Type="int" Nullable="false" />
+    <Property Name="y_cardId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_subjectivitysore" Type="int" />
+    <Property Name="y_sumsore" Type="int" />
+    <Property Name="y_explain" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_verdict" Type="int" />
+    <Property Name="y_remark" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_isOk" Type="int" Nullable="false" />
+    <Property Name="y_stuId" Type="int" />
+    <Property Name="y_adopttime" Type="nvarchar" MaxLength="500" />
+    <Property Name="y_namePinyin" Type="nvarchar" MaxLength="500" />
+    <Property Name="y_subschoolname" Type="nvarchar" MaxLength="500" />
+    <Property Name="y_createtime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="YD_Graduate_SampleExamScore">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_stuId" Type="int" Nullable="false" />
+    <Property Name="y_courseId" Type="int" Nullable="false" />
+    <Property Name="y_totalScore" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Graduate_StudentApply">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_SubSchoolId" Type="int" Nullable="false" />
+    <Property Name="SchoolName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="totalcount" Type="int" Nullable="false" />
+    <Property Name="y_stuid" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="y_inyear" Type="int" Nullable="false" />
+    <Property Name="y_time" Type="datetime" Nullable="false" />
+    <Property Name="y_check" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Graduate_StudentScore">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_examtime" Type="nvarchar" MaxLength="500" />
+    <Property Name="y_admissionNum" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_stuname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_sex" Type="int" />
+    <Property Name="y_inYear" Type="int" Nullable="false" />
+    <Property Name="y_cardId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_subjectivitysore" Type="int" />
+    <Property Name="y_sumsore" Type="int" />
+    <Property Name="y_explain" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_verdict" Type="int" />
+    <Property Name="y_remark" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_isdel" Type="int" />
+    <Property Name="y_stuId" Type="int" />
+    <Property Name="y_adopttime" Type="nvarchar" MaxLength="500" />
+    <Property Name="y_namePinyin" Type="nvarchar" MaxLength="500" />
+    <Property Name="y_subschoolname" Type="nvarchar" MaxLength="500" />
+    <Property Name="y_createtime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="YD_Sts_Nation">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_code" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Sts_Politics">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_code" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Sts_StrangeType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="y_viewUrl" Type="nvarchar" MaxLength="100" />
+    <Property Name="y_applyNotice" Type="nvarchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="YD_Sts_StuInfo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_stuNum" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_examNum" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_sex" Type="int" Nullable="false" />
+    <Property Name="y_inYear" Type="int" Nullable="false" />
+    <Property Name="y_cardId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_majorId" Type="int" Nullable="false" />
+    <Property Name="y_subSchoolId" Type="int" />
+    <Property Name="y_stuStateId" Type="int" Nullable="false" />
+    <Property Name="y_img" Type="nvarchar" MaxLength="200" />
+    <Property Name="y_tel" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_mail" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_address" Type="nvarchar" MaxLength="500" />
+    <Property Name="y_registerState" Type="nvarchar" MaxLength="100" />
+    <Property Name="y_isChangePlan" Type="int" Nullable="false" />
+    <Property Name="y_changePlanId" Type="int" />
+    <Property Name="y_loginName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_password" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuStrange" Type="int" />
+    <Property Name="y_isdel" Type="int" Nullable="false" />
+    <Property Name="y_nationId" Type="int" />
+    <Property Name="y_politicsId" Type="int" />
+    <Property Name="y_birthday" Type="datetime" Nullable="false" />
+    <Property Name="y_graduationdata" Type="datetime" />
+    <Property Name="y_graduationschool" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_registrationNum" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_postalcode" Type="nvarchar" MaxLength="100" />
+    <Property Name="y_foreignLanguageId" Type="int" />
+    <Property Name="y_recruitTypeId" Type="int" />
+    <Property Name="y_professionTypeId" Type="int" />
+    <Property Name="y_cultureExtentId" Type="int" />
+    <Property Name="y_examFeatureId" Type="int" />
+    <Property Name="y_isMoneyOk" Type="int" />
+    <Property Name="y_applyOK" Type="int" />
+    <Property Name="y_ischeck" Type="int" />
+    <Property Name="y_degreeOK" Type="int" />
+    <Property Name="y_realYear" Type="int" />
+    <Property Name="y_studentType" Type="int" />
+    <Property Name="y_isgraduate" Type="bit" />
+    <Property Name="y_isPay" Type="int" />
+    <Property Name="isCheckForSchool" Type="bit" />
+    <Property Name="y_graduateNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_bachelordegree" Type="bit" />
+    <Property Name="isbachelorForcheck" Type="bit" />
+    <Property Name="y_bachelordegreeCheck" Type="bit" />
+    <Property Name="y_examScore" Type="int" />
+    <Property Name="Y_generateWhether" Type="bit" />
+    <Property Name="y_origin" Type="nvarchar" MaxLength="100" />
+    <Property Name="y_degreeNum" Type="nvarchar" MaxLength="100" />
+    <Property Name="y_scoreOk" Type="int" />
+    <Property Name="y_ImgIsok" Type="int" />
+    <Property Name="y_IsWorking" Type="int" />
+    <Property Name="y_parentName1" Type="varchar" MaxLength="50" />
+    <Property Name="y_parentCard1" Type="varchar" MaxLength="50" />
+    <Property Name="y_parentCardType1" Type="varchar" MaxLength="50" />
+    <Property Name="y_parentName2" Type="varchar" MaxLength="50" />
+    <Property Name="y_parentCard2" Type="varchar" MaxLength="50" />
+    <Property Name="y_parentCardType2" Type="varchar" MaxLength="50" />
+    <Property Name="y_cardType" Type="varchar" MaxLength="50" />
+    <Property Name="y_graduateImg" Type="varchar" MaxLength="100" />
+    <Property Name="y_enrollYear" Type="int" />
+    <Property Name="y_classNum" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="YD_Sts_StuInfo_copy1">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_stuNum" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_examNum" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_sex" Type="int" Nullable="false" />
+    <Property Name="y_inYear" Type="int" Nullable="false" />
+    <Property Name="y_cardId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_majorId" Type="int" Nullable="false" />
+    <Property Name="y_subSchoolId" Type="int" />
+    <Property Name="y_stuStateId" Type="int" Nullable="false" />
+    <Property Name="y_img" Type="nvarchar" MaxLength="200" />
+    <Property Name="y_tel" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_mail" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_address" Type="nvarchar" MaxLength="500" />
+    <Property Name="y_registerState" Type="nvarchar" MaxLength="100" />
+    <Property Name="y_isChangePlan" Type="int" Nullable="false" />
+    <Property Name="y_changePlanId" Type="int" />
+    <Property Name="y_loginName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_password" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuStrange" Type="int" />
+    <Property Name="y_isdel" Type="int" Nullable="false" />
+    <Property Name="y_nationId" Type="int" />
+    <Property Name="y_politicsId" Type="int" />
+    <Property Name="y_birthday" Type="datetime" Nullable="false" />
+    <Property Name="y_graduationdata" Type="datetime" />
+    <Property Name="y_graduationschool" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_registrationNum" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_postalcode" Type="nvarchar" MaxLength="100" />
+    <Property Name="y_foreignLanguageId" Type="int" />
+    <Property Name="y_recruitTypeId" Type="int" />
+    <Property Name="y_professionTypeId" Type="int" />
+    <Property Name="y_cultureExtentId" Type="int" />
+    <Property Name="y_examFeatureId" Type="int" />
+    <Property Name="y_isMoneyOk" Type="int" />
+    <Property Name="y_applyOK" Type="int" />
+    <Property Name="y_ischeck" Type="int" />
+    <Property Name="y_degreeOK" Type="int" />
+    <Property Name="y_realYear" Type="int" />
+    <Property Name="y_studentType" Type="int" />
+    <Property Name="y_isgraduate" Type="bit" />
+    <Property Name="y_isPay" Type="int" />
+    <Property Name="isCheckForSchool" Type="bit" />
+    <Property Name="y_graduateNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_bachelordegree" Type="bit" />
+    <Property Name="isbachelorForcheck" Type="bit" />
+    <Property Name="y_bachelordegreeCheck" Type="bit" />
+    <Property Name="y_examScore" Type="int" />
+    <Property Name="Y_generateWhether" Type="bit" />
+    <Property Name="y_origin" Type="nvarchar" MaxLength="100" />
+    <Property Name="y_degreeNum" Type="nvarchar" MaxLength="100" />
+    <Property Name="y_scoreOk" Type="int" />
+    <Property Name="y_ImgIsok" Type="int" />
+    <Property Name="y_IsWorking" Type="int" />
+    <Property Name="y_parentName1" Type="varchar" MaxLength="50" />
+    <Property Name="y_parentCard1" Type="varchar" MaxLength="50" />
+    <Property Name="y_parentCardType1" Type="varchar" MaxLength="50" />
+    <Property Name="y_parentName2" Type="varchar" MaxLength="50" />
+    <Property Name="y_parentCard2" Type="varchar" MaxLength="50" />
+    <Property Name="y_parentCardType2" Type="varchar" MaxLength="50" />
+    <Property Name="y_cardType" Type="varchar" MaxLength="50" />
+    <Property Name="y_graduateImg" Type="varchar" MaxLength="100" />
+    <Property Name="y_enrollYear" Type="int" />
+    <Property Name="y_classNum" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="YD_Sts_StuInfoTemp">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_sex" Type="int" />
+    <Property Name="y_sexName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_inYear" Type="int" />
+    <Property Name="y_cardId" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_majorId" Type="int" />
+    <Property Name="y_majorLibId" Type="int" />
+    <Property Name="y_majorLibName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_majorNameMatch" Type="nvarchar(max)" />
+    <Property Name="y_subSchoolId" Type="int" />
+    <Property Name="y_subSchoolName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_subNameMatch" Type="nvarchar(max)" />
+    <Property Name="y_stuTypeId" Type="int" />
+    <Property Name="y_stuTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_eduTypeId" Type="int" />
+    <Property Name="y_eduTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuNum" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_examNum" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_tel" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_address" Type="nvarchar" MaxLength="500" />
+    <Property Name="y_stuStateId" Type="int" />
+    <Property Name="y_stuStateName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_isOk" Type="int" Nullable="false" />
+    <Property Name="y_birthday" Type="datetime" />
+    <Property Name="y_nationId" Type="int" />
+    <Property Name="y_politicsId" Type="int" />
+    <Property Name="y_nationName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_politicsName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_graduationdata" Type="datetime" />
+    <Property Name="y_graduationschool" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_registrationNum" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_postalcode" Type="nvarchar" MaxLength="100" />
+    <Property Name="y_foreignLanguageId" Type="int" />
+    <Property Name="y_foreignLanguageName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_recruitTypeId" Type="int" />
+    <Property Name="y_recruitTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_professionTypeId" Type="int" />
+    <Property Name="y_professionTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_cultureExtentId" Type="int" />
+    <Property Name="y_cultureExtentName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_examFeatureId" Type="int" />
+    <Property Name="y_examFeatureName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="YD_Sts_StuNumCol">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_one" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_two" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_three" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_four" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_five" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="YD_Sts_StuStrange">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_strangeType" Type="int" Nullable="false" />
+    <Property Name="y_applyTime" Type="datetime" Nullable="false" />
+    <Property Name="y_applyReason" Type="nvarchar(max)" />
+    <Property Name="y_approvalReason" Type="nvarchar(max)" />
+    <Property Name="y_approvalTime" Type="datetime" />
+    <Property Name="y_approvalStatus" Type="int" Nullable="false" />
+    <Property Name="y_approvalAdmin" Type="int" />
+    <Property Name="y_applyAdmin" Type="int" Nullable="false" />
+    <Property Name="y_contentA" Type="nvarchar" MaxLength="200" />
+    <Property Name="y_contentB" Type="nvarchar" MaxLength="200" />
+    <Property Name="y_contentC" Type="nvarchar" MaxLength="200" />
+    <Property Name="y_contentD" Type="nvarchar" MaxLength="200" />
+    <Property Name="y_contentE" Type="nvarchar" MaxLength="200" />
+    <Property Name="y_isExecutive" Type="int" Nullable="false" />
+    <Property Name="y_ExecutiveTime" Type="datetime" />
+    <Property Name="y_stuId" Type="int" Nullable="false" />
+    <Property Name="y_isdel" Type="int" />
+    <Property Name="y_contentF" Type="nvarchar" MaxLength="200" />
+    <Property Name="y_contentG" Type="nvarchar" MaxLength="200" />
+    <Property Name="y_contentH" Type="nvarchar" MaxLength="200" />
+    <Property Name="y_contentI" Type="nvarchar" MaxLength="200" />
+    <Property Name="y_contentJ" Type="nvarchar" MaxLength="200" />
+    <Property Name="y_url" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="YD_Sts_SubSchoolStuInfo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_subSchoolId" Type="int" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_examNum" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_cardId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_isdel" Type="int" Nullable="false" />
+    <Property Name="y_hide" Type="int" />
+    <Property Name="y_year" Type="int" />
+    <Property Name="y_majorId" Type="int" />
+    <Property Name="y_stuTypeId" Type="int" />
+    <Property Name="y_eduTypeId" Type="int" />
+  </EntityType>
+  <EntityType Name="YD_Sts_SubStuTemp">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_subSchoolId" Type="int" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_examNum" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_cardId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_cardIdTemp" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_isOk" Type="int" Nullable="false" />
+    <Property Name="y_year" Type="int" />
+  </EntityType>
+  <EntityType Name="YD_Sys_Admin">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="y_password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_roleID" Type="int" Nullable="false" />
+    <Property Name="y_time" Type="datetime" Nullable="false" />
+    <Property Name="y_realName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_realpassword" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_qinshuName" Type="nvarchar" MaxLength="500" />
+    <Property Name="y_qinshuPwd" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="YD_Sys_AdminCourseLink">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_adminId" Type="int" Nullable="false" />
+    <Property Name="y_courseId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Sys_AdminSubLink">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_adminId" Type="int" Nullable="false" />
+    <Property Name="y_subSchoolId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Sys_DbLog">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_userID" Type="int" Nullable="false" />
+    <Property Name="Y_userName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Y_logTypeID" Type="int" Nullable="false" />
+    <Property Name="y_time" Type="datetime" Nullable="false" />
+    <Property Name="y_remark" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="YD_Sys_DbLogType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_logType" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Sys_File">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_time" Type="datetime" />
+    <Property Name="y_createduser" Type="int" />
+    <Property Name="y_role" Type="int" />
+    <Property Name="y_createdName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_path" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="YD_Sys_Module">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="y_url" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="y_parentID" Type="int" Nullable="false" />
+    <Property Name="y_level" Type="int" Nullable="false" />
+    <Property Name="y_sort" Type="int" Nullable="false" />
+    <Property Name="y_vaild" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Sys_Power">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_roleID" Type="int" Nullable="false" />
+    <Property Name="y_moduleID" Type="int" Nullable="false" />
+    <Property Name="y_menu" Type="int" Nullable="false" />
+    <Property Name="y_insert" Type="int" Nullable="false" />
+    <Property Name="y_delete" Type="int" Nullable="false" />
+    <Property Name="y_update" Type="int" Nullable="false" />
+    <Property Name="y_select" Type="int" Nullable="false" />
+    <Property Name="y_down" Type="int" />
+  </EntityType>
+  <EntityType Name="YD_Sys_PrintCss">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_printid" Type="int" />
+    <Property Name="y_divdatatype" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_range" Type="nvarchar(max)" />
+    <Property Name="y_fontsize" Type="nvarchar" MaxLength="20" />
+    <Property Name="y_bold" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="YD_Sys_PrintTemplate">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_time" Type="datetime" />
+    <Property Name="y_dataview" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_url" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="YD_Sys_Role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_Sys_SubSchool">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_nameabbreviation" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_formername" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_schooltype" Type="int" />
+    <Property Name="y_address" Type="nvarchar" MaxLength="100" />
+    <Property Name="y_contact" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_tel" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_cash" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="YD_TeaPlan_Class">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_majorId" Type="int" Nullable="false" />
+    <Property Name="y_teaPlanType" Type="int" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="y_remark" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="y_subSchoolId" Type="int" Nullable="false" />
+    <Property Name="y_year" Type="int" Nullable="false" />
+    <Property Name="y_templetId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_TeaPlan_ClassCourseDes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_classTeaPlanId" Type="int" Nullable="false" />
+    <Property Name="y_course" Type="int" Nullable="false" />
+    <Property Name="y_team" Type="int" Nullable="false" />
+    <Property Name="y_selfPeriod" Type="int" />
+    <Property Name="y_teaPeriod" Type="int" />
+    <Property Name="y_taskPeriod" Type="int" />
+    <Property Name="y_courseType" Type="int" />
+    <Property Name="y_isMain" Type="bit" Nullable="false" />
+    <Property Name="y_selfPeriod2" Type="int" />
+    <Property Name="y_teaPeriod2" Type="int" />
+    <Property Name="y_sampleexam" Type="bit" />
+    <Property Name="y_score" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="YD_TeaPlan_ExamPlan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="y_majorName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_courseName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_time" Type="datetime" Nullable="false" />
+    <Property Name="y_subSchoolName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_year" Type="int" Nullable="false" />
+    <Property Name="y_term" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_TeaPlan_Templet">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_majorId" Type="int" Nullable="false" />
+    <Property Name="y_teaPlanType" Type="int" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="y_remark" Type="nvarchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YD_TeaPlan_TempletCourseDes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_templetId" Type="int" Nullable="false" />
+    <Property Name="y_course" Type="int" Nullable="false" />
+    <Property Name="y_team" Type="int" Nullable="false" />
+    <Property Name="y_selfPeriod" Type="int" />
+    <Property Name="y_teaPeriod" Type="int" />
+    <Property Name="y_taskPeriod" Type="int" />
+    <Property Name="y_courseType" Type="int" />
+    <Property Name="y_isMain" Type="bit" Nullable="false" />
+    <Property Name="y_selfPeriod2" Type="int" />
+    <Property Name="y_teaPeriod2" Type="int" />
+    <Property Name="y_sampleexam" Type="bit" />
+  </EntityType>
+  <EntityType Name="YT_ActivityVideo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_starttime" Type="datetime" />
+    <Property Name="y_endtime" Type="datetime" />
+    <Property Name="y_createdtime" Type="datetime" />
+    <Property Name="y_url" Type="nvarchar(max)" />
+    <Property Name="y_isOpen" Type="int" />
+  </EntityType>
+  <EntityType Name="YT_Faculty">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar(max)" />
+    <Property Name="y_createtime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="YT_Grade">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_createtime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="YT_GraduationRegistration">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar(max)" />
+    <Property Name="y_stuNum" Type="nvarchar(max)" />
+    <Property Name="y_cardId" Type="nvarchar(max)" />
+    <Property Name="y_sex" Type="int" />
+    <Property Name="y_inYear" Type="int" />
+    <Property Name="y_majorId" Type="nvarchar(max)" />
+    <Property Name="y_subSchoolId" Type="nvarchar(max)" />
+    <Property Name="y_nationId" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_tel" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_birthday" Type="datetime" />
+    <Property Name="y_address" Type="nvarchar(max)" />
+    <Property Name="y_mail" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="YT_Mechanism">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_code" Type="int" />
+    <Property Name="y_name" Type="nvarchar(max)" />
+    <Property Name="y_address" Type="nvarchar(max)" />
+    <Property Name="y_tel" Type="nvarchar(max)" />
+    <Property Name="y_img" Type="nvarchar(max)" />
+    <Property Name="y_Createtime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="YT_RegisterSettings">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_inyear" Type="int" />
+    <Property Name="y_starttime" Type="datetime" />
+    <Property Name="y_endtime" Type="datetime" />
+    <Property Name="y_Remarks" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="YT_Teacher">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_subSchoolId" Type="int" />
+    <Property Name="y_createtime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="YT_Term">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_createtime" Type="datetime" />
+    <Property Name="y_code" Type="int" />
+    <Property Name="y_year" Type="int" />
+  </EntityType>
+  <EntityType Name="Z_test">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="exam" Type="nvarchar" MaxLength="255" />
+    <Property Name="sub" Type="nvarchar" MaxLength="255" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“jxsfdxNew.dbo.VW_Admin”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VW_Admin">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_adminName" />
+      <PropertyRef Name="y_password" />
+      <PropertyRef Name="y_roleID" />
+      <PropertyRef Name="y_time" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="y_adminName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="y_password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_realName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_roleID" Type="int" Nullable="false" />
+    <Property Name="y_time" Type="datetime" Nullable="false" />
+    <Property Name="y_roleName" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“jxsfdxNew.dbo.VW_AllBili”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VW_AllBili">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_inYear" />
+      <PropertyRef Name="y_feeYear" />
+      <PropertyRef Name="y_stuTypeId" />
+      <PropertyRef Name="y_eduTypeId" />
+      <PropertyRef Name="y_bili" />
+      <PropertyRef Name="y_Visible" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="y_inYear" Type="int" Nullable="false" />
+    <Property Name="y_feeYear" Type="int" Nullable="false" />
+    <Property Name="y_stuTypeId" Type="int" Nullable="false" />
+    <Property Name="y_eduTypeId" Type="int" Nullable="false" />
+    <Property Name="y_bili" Type="int" Nullable="false" />
+    <Property Name="eduTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_eduTypeCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="stuTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuTypeCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_time" Type="datetime" />
+    <Property Name="y_Visible" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“jxsfdxNew.dbo.VW_AllFeeSys”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VW_AllFeeSys">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_inYear" />
+      <PropertyRef Name="y_feeYear" />
+      <PropertyRef Name="y_stuTypeId" />
+      <PropertyRef Name="y_eduTypeId" />
+      <PropertyRef Name="y_stuFee" />
+      <PropertyRef Name="y_bookFee" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="y_inYear" Type="int" Nullable="false" />
+    <Property Name="y_feeYear" Type="int" Nullable="false" />
+    <Property Name="y_stuTypeId" Type="int" Nullable="false" />
+    <Property Name="y_eduTypeId" Type="int" Nullable="false" />
+    <Property Name="y_stuFee" Type="int" Nullable="false" />
+    <Property Name="y_bookFee" Type="int" Nullable="false" />
+    <Property Name="eduTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_eduTypeCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="stuTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuTypeCode" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“jxsfdxNew.dbo.VW_DbLog”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VW_DbLog">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_userID" />
+      <PropertyRef Name="y_userName" />
+      <PropertyRef Name="y_logTypeID" />
+      <PropertyRef Name="y_time" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="y_userID" Type="int" Nullable="false" />
+    <Property Name="y_userName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_logTypeID" Type="int" Nullable="false" />
+    <Property Name="y_time" Type="datetime" Nullable="false" />
+    <Property Name="y_remark" Type="nvarchar" MaxLength="200" />
+    <Property Name="y_logType" Type="nvarchar" MaxLength="20" />
+    <Property Name="y_adminName" Type="nvarchar" MaxLength="20" />
+    <Property Name="y_password" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_roleID" Type="int" />
+    <Property Name="y_roleName" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“jxsfdxNew.dbo.VW_Major”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VW_Major">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_majorLibId" />
+      <PropertyRef Name="y_stuTypeId" />
+      <PropertyRef Name="y_eduTypeId" />
+      <PropertyRef Name="y_name" />
+      <PropertyRef Name="y_code" />
+      <PropertyRef Name="y_stuYear" />
+      <PropertyRef Name="stuTypeName" />
+      <PropertyRef Name="y_stuTypeCode" />
+      <PropertyRef Name="eduTypeName" />
+      <PropertyRef Name="y_eduTypeCode" />
+      <PropertyRef Name="majorLibraryName" />
+      <PropertyRef Name="majorLibraryCode" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="y_majorLibId" Type="int" Nullable="false" />
+    <Property Name="y_stuTypeId" Type="int" Nullable="false" />
+    <Property Name="y_eduTypeId" Type="int" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_stuYear" Type="int" Nullable="false" />
+    <Property Name="y_StandardCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="stuTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_stuTypeCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="eduTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_eduTypeCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="majorLibraryName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="majorLibraryCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_majortype" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_needFee" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“jxsfdxNew.dbo.VW_MajorLiFeeSys”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VW_MajorLiFeeSys">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_majorlivraryid" />
+      <PropertyRef Name="y_inYear" />
+      <PropertyRef Name="y_feeYear" />
+      <PropertyRef Name="y_stuTypeId" />
+      <PropertyRef Name="y_eduTypeId" />
+      <PropertyRef Name="y_StuFee" />
+      <PropertyRef Name="y_bookFee" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="y_majorlivraryid" Type="int" Nullable="false" />
+    <Property Name="y_inYear" Type="int" Nullable="false" />
+    <Property Name="y_feeYear" Type="int" Nullable="false" />
+    <Property Name="y_stuTypeId" Type="int" Nullable="false" />
+    <Property Name="y_eduTypeId" Type="int" Nullable="false" />
+    <Property Name="y_StuFee" Type="int" Nullable="false" />
+    <Property Name="y_bookFee" Type="int" Nullable="false" />
+    <Property Name="eduTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_eduTypeCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="majorlibraryname" Type="nvarchar" MaxLength="100" />
+    <Property Name="y_code" Type="nvarchar" MaxLength="50" />
+    <Property Name="stuTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuTypeCode" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“jxsfdxNew.dbo.VW_MajorTeachPlan”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VW_MajorTeachPlan">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_year" />
+      <PropertyRef Name="y_majorId" />
+      <PropertyRef Name="y_teachPlanId" />
+      <PropertyRef Name="y_teaPlanType" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="y_year" Type="int" Nullable="false" />
+    <Property Name="y_majorId" Type="int" Nullable="false" />
+    <Property Name="y_teachPlanId" Type="int" Nullable="false" />
+    <Property Name="y_majorLibId" Type="int" />
+    <Property Name="y_stuTypeId" Type="int" />
+    <Property Name="y_eduTypeId" Type="int" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_code" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuYear" Type="int" />
+    <Property Name="stuTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuTypeCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="eduTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_eduTypeCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="majorLibraryName" Type="nvarchar" MaxLength="100" />
+    <Property Name="majorLibraryCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_teaPlanName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_teaPlanType" Type="int" Nullable="false" />
+    <Property Name="y_term" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“jxsfdxNew.dbo.VW_MajorTeachPlanDes”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VW_MajorTeachPlanDes">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_year" />
+      <PropertyRef Name="y_majorId" />
+      <PropertyRef Name="y_teachPlanId" />
+      <PropertyRef Name="y_teaPlanType" />
+      <PropertyRef Name="y_teachplandesid" />
+      <PropertyRef Name="y_teaPlanId" />
+      <PropertyRef Name="y_courseId" />
+      <PropertyRef Name="y_courseTypeId" />
+      <PropertyRef Name="y_stuTime" />
+      <PropertyRef Name="y_score" />
+      <PropertyRef Name="y_courseSid" />
+      <PropertyRef Name="y_coursecode" />
+      <PropertyRef Name="y_coursename" />
+      <PropertyRef Name="y_coursetypesid" />
+      <PropertyRef Name="y_coursetypename" />
+      <PropertyRef Name="y_courseTypeCode" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="y_year" Type="int" Nullable="false" />
+    <Property Name="y_majorId" Type="int" Nullable="false" />
+    <Property Name="y_teachPlanId" Type="int" Nullable="false" />
+    <Property Name="y_majorLibId" Type="int" />
+    <Property Name="y_stuTypeId" Type="int" />
+    <Property Name="y_eduTypeId" Type="int" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_code" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuYear" Type="int" />
+    <Property Name="stuTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuTypeCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="eduTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_eduTypeCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="majorLibraryName" Type="nvarchar" MaxLength="100" />
+    <Property Name="majorLibraryCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_teaPlanName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_teaPlanType" Type="int" Nullable="false" />
+    <Property Name="y_term" Type="int" />
+    <Property Name="y_teachplandesid" Type="int" Nullable="false" />
+    <Property Name="y_teaPlanId" Type="int" Nullable="false" />
+    <Property Name="y_courseId" Type="int" Nullable="false" />
+    <Property Name="y_courseTypeId" Type="int" Nullable="false" />
+    <Property Name="y_stuTime" Type="int" Nullable="false" />
+    <Property Name="y_score" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="y_faceTime1" Type="int" />
+    <Property Name="y_faceTime2" Type="int" />
+    <Property Name="y_task" Type="int" />
+    <Property Name="y_courseSid" Type="int" Nullable="false" />
+    <Property Name="y_coursecode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_coursename" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_coursetypesid" Type="int" Nullable="false" />
+    <Property Name="y_coursetypename" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_courseTypeCode" Type="int" Nullable="false" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“jxsfdxNew.dbo.VW_Power”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VW_Power">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_roleID" />
+      <PropertyRef Name="y_moduleID" />
+      <PropertyRef Name="y_menu" />
+      <PropertyRef Name="y_insert" />
+      <PropertyRef Name="y_delete" />
+      <PropertyRef Name="y_update" />
+      <PropertyRef Name="y_select" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="y_roleID" Type="int" Nullable="false" />
+    <Property Name="y_moduleID" Type="int" Nullable="false" />
+    <Property Name="y_menu" Type="int" Nullable="false" />
+    <Property Name="y_insert" Type="int" Nullable="false" />
+    <Property Name="y_delete" Type="int" Nullable="false" />
+    <Property Name="y_update" Type="int" Nullable="false" />
+    <Property Name="y_select" Type="int" Nullable="false" />
+    <Property Name="y_roleName" Type="nvarchar" MaxLength="20" />
+    <Property Name="y_moudleName" Type="nvarchar" MaxLength="20" />
+    <Property Name="y_vaild" Type="int" />
+    <Property Name="y_level" Type="int" />
+    <Property Name="y_sort" Type="int" />
+    <Property Name="y_url" Type="nvarchar" MaxLength="200" />
+    <Property Name="y_parentID" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“jxsfdxNew.dbo.VW_Score”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VW_Score">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_stuId" />
+      <PropertyRef Name="y_term" />
+      <PropertyRef Name="y_normalScore" />
+      <PropertyRef Name="y_termScore" />
+      <PropertyRef Name="y_totalScore" />
+      <PropertyRef Name="y_courseId" />
+      <PropertyRef Name="y_type" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="y_stuId" Type="int" Nullable="false" />
+    <Property Name="y_stuNum" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_cardId" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_term" Type="int" Nullable="false" />
+    <Property Name="y_normalScore" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="y_termScore" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="y_totalScore" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="y_courseId" Type="int" Nullable="false" />
+    <Property Name="y_courseCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_courseName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_examNum" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_sex" Type="int" />
+    <Property Name="y_inYear" Type="int" />
+    <Property Name="y_majorId" Type="int" />
+    <Property Name="y_subSchoolId" Type="int" />
+    <Property Name="y_stuStateId" Type="int" />
+    <Property Name="y_politicsId" Type="int" />
+    <Property Name="y_nationId" Type="int" />
+    <Property Name="y_img" Type="nvarchar" MaxLength="200" />
+    <Property Name="y_tel" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_mail" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_address" Type="nvarchar" MaxLength="500" />
+    <Property Name="y_registerState" Type="nvarchar" MaxLength="100" />
+    <Property Name="y_isChangePlan" Type="int" />
+    <Property Name="y_changePlanId" Type="int" />
+    <Property Name="y_loginName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_password" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuStrange" Type="int" />
+    <Property Name="y_isdel" Type="int" />
+    <Property Name="schoolCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="schoolName" Type="nvarchar" MaxLength="50" />
+    <Property Name="stuStateName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuStateCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="nationName" Type="nvarchar" MaxLength="50" />
+    <Property Name="politicsName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_majorLibId" Type="int" />
+    <Property Name="y_stuTypeId" Type="int" />
+    <Property Name="y_eduTypeId" Type="int" />
+    <Property Name="majorName" Type="nvarchar" MaxLength="50" />
+    <Property Name="majorCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuYear" Type="int" />
+    <Property Name="stuTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuTypeCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="eduTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_eduTypeCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="majorLibraryName" Type="nvarchar" MaxLength="100" />
+    <Property Name="majorLibraryCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_workScore" Type="decimal" Precision="18" Scale="1" />
+    <Property Name="y_type" Type="int" Nullable="false" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“jxsfdxNew.dbo.VW_ScoreFirst”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VW_ScoreFirst">
+    <Key>
+      <PropertyRef Name="y_stuId" />
+    </Key>
+    <Property Name="y_stuName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuId" Type="int" Nullable="false" />
+    <Property Name="y_stuNum" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_subSchoolId" Type="int" />
+    <Property Name="y_majorId" Type="int" />
+    <Property Name="majorName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“jxsfdxNew.dbo.VW_Strange”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VW_Strange">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_strangeType" />
+      <PropertyRef Name="y_applyTime" />
+      <PropertyRef Name="y_approvalStatus" />
+      <PropertyRef Name="y_applyAdmin" />
+      <PropertyRef Name="y_isExecutive" />
+      <PropertyRef Name="y_stuId" />
+      <PropertyRef Name="strangeTypeName" />
+      <PropertyRef Name="studentName" />
+      <PropertyRef Name="y_examNum" />
+      <PropertyRef Name="y_sex" />
+      <PropertyRef Name="y_inYear" />
+      <PropertyRef Name="y_cardId" />
+      <PropertyRef Name="y_majorId" />
+      <PropertyRef Name="y_stuStateId" />
+      <PropertyRef Name="y_isChangePlan" />
+      <PropertyRef Name="y_isdel" />
+      <PropertyRef Name="y_birthday" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="y_strangeType" Type="int" Nullable="false" />
+    <Property Name="y_applyTime" Type="datetime" Nullable="false" />
+    <Property Name="y_applyReason" Type="nvarchar(max)" />
+    <Property Name="y_approvalReason" Type="nvarchar(max)" />
+    <Property Name="y_approvalTime" Type="datetime" />
+    <Property Name="y_approvalStatus" Type="int" Nullable="false" />
+    <Property Name="y_approvalAdmin" Type="int" />
+    <Property Name="y_applyAdmin" Type="int" Nullable="false" />
+    <Property Name="y_contentA" Type="nvarchar" MaxLength="200" />
+    <Property Name="y_contentB" Type="nvarchar" MaxLength="200" />
+    <Property Name="y_contentC" Type="nvarchar" MaxLength="200" />
+    <Property Name="y_contentD" Type="nvarchar" MaxLength="200" />
+    <Property Name="y_contentE" Type="nvarchar" MaxLength="200" />
+    <Property Name="y_isExecutive" Type="int" Nullable="false" />
+    <Property Name="y_ExecutiveTime" Type="datetime" />
+    <Property Name="y_stuId" Type="int" Nullable="false" />
+    <Property Name="strangeTypeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="y_viewUrl" Type="nvarchar" MaxLength="100" />
+    <Property Name="y_applyNotice" Type="nvarchar" MaxLength="300" />
+    <Property Name="studentName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_stuNum" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_examNum" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_sex" Type="int" Nullable="false" />
+    <Property Name="y_inYear" Type="int" Nullable="false" />
+    <Property Name="y_cardId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_majorId" Type="int" Nullable="false" />
+    <Property Name="y_subSchoolId" Type="int" />
+    <Property Name="y_stuStateId" Type="int" Nullable="false" />
+    <Property Name="y_politicsId" Type="int" />
+    <Property Name="y_nationId" Type="int" />
+    <Property Name="y_img" Type="nvarchar" MaxLength="200" />
+    <Property Name="y_tel" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_mail" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_address" Type="nvarchar" MaxLength="500" />
+    <Property Name="y_registerState" Type="nvarchar" MaxLength="100" />
+    <Property Name="y_isChangePlan" Type="int" Nullable="false" />
+    <Property Name="y_changePlanId" Type="int" />
+    <Property Name="y_loginName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_password" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuStrange" Type="int" />
+    <Property Name="y_isdel" Type="int" Nullable="false" />
+    <Property Name="schoolCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="schoolName" Type="nvarchar" MaxLength="50" />
+    <Property Name="stuStateName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuStateCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="nationName" Type="nvarchar" MaxLength="50" />
+    <Property Name="politicsName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_majorLibId" Type="int" />
+    <Property Name="y_stuTypeId" Type="int" />
+    <Property Name="y_eduTypeId" Type="int" />
+    <Property Name="majorName" Type="nvarchar" MaxLength="50" />
+    <Property Name="majorCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuYear" Type="int" />
+    <Property Name="stuTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuTypeCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="eduTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_eduTypeCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="majorLibraryName" Type="nvarchar" MaxLength="100" />
+    <Property Name="majorLibraryCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_contentAName" Type="nvarchar" MaxLength="100" />
+    <Property Name="y_contentBName" Type="nvarchar" MaxLength="100" />
+    <Property Name="y_straisdel" Type="int" />
+    <Property Name="y_contentF" Type="nvarchar" MaxLength="200" />
+    <Property Name="y_contentH" Type="nvarchar" MaxLength="200" />
+    <Property Name="y_contentG" Type="nvarchar" MaxLength="200" />
+    <Property Name="y_contentI" Type="nvarchar" MaxLength="200" />
+    <Property Name="y_contentJ" Type="nvarchar" MaxLength="200" />
+    <Property Name="y_birthday" Type="datetime" Nullable="false" />
+    <Property Name="y_nameabbreviation" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_url" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“jxsfdxNew.dbo.VW_StrangeReportTotal”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VW_StrangeReportTotal">
+    <Key>
+      <PropertyRef Name="y_approvalStatus" />
+      <PropertyRef Name="y_strangeType" />
+      <PropertyRef Name="strangeTypeName" />
+      <PropertyRef Name="y_inYear" />
+    </Key>
+    <Property Name="totalStuCount" Type="int" />
+    <Property Name="approvalstatus" Type="varchar" MaxLength="6" />
+    <Property Name="y_approvalStatus" Type="int" Nullable="false" />
+    <Property Name="y_strangeType" Type="int" Nullable="false" />
+    <Property Name="strangeTypeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="y_subSchoolId" Type="int" />
+    <Property Name="y_inYear" Type="int" Nullable="false" />
+    <Property Name="schoolName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_nameabbreviation" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“jxsfdxNew.dbo.VW_Sts_News”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VW_Sts_News">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_appytime" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="y_type" Type="int" />
+    <Property Name="y_subSchoolId" Type="int" />
+    <Property Name="y_title" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_content" Type="nvarchar" MaxLength="500" />
+    <Property Name="y_appyname" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_appytime" Type="datetime" Nullable="false" />
+    <Property Name="y_hits" Type="int" />
+    <Property Name="y_usable" Type="int" />
+    <Property Name="y_subschoolcode" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_subschoolname" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“jxsfdxNew.dbo.VW_StuInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VW_StuInfo">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_name" />
+      <PropertyRef Name="y_examNum" />
+      <PropertyRef Name="y_sex" />
+      <PropertyRef Name="y_inYear" />
+      <PropertyRef Name="y_cardId" />
+      <PropertyRef Name="y_majorId" />
+      <PropertyRef Name="y_stuStateId" />
+      <PropertyRef Name="y_isChangePlan" />
+      <PropertyRef Name="y_isdel" />
+      <PropertyRef Name="y_birthday" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_stuNum" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_examNum" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_sex" Type="int" Nullable="false" />
+    <Property Name="y_inYear" Type="int" Nullable="false" />
+    <Property Name="y_cardId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_majorId" Type="int" Nullable="false" />
+    <Property Name="y_subSchoolId" Type="int" />
+    <Property Name="y_stuStateId" Type="int" Nullable="false" />
+    <Property Name="y_politicsId" Type="int" />
+    <Property Name="y_nationId" Type="int" />
+    <Property Name="y_img" Type="nvarchar" MaxLength="200" />
+    <Property Name="y_tel" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_mail" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_address" Type="nvarchar" MaxLength="500" />
+    <Property Name="y_registerState" Type="nvarchar" MaxLength="100" />
+    <Property Name="y_isChangePlan" Type="int" Nullable="false" />
+    <Property Name="y_changePlanId" Type="int" />
+    <Property Name="y_loginName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_password" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuStrange" Type="int" />
+    <Property Name="y_isdel" Type="int" Nullable="false" />
+    <Property Name="y_classNum" Type="nvarchar" MaxLength="50" />
+    <Property Name="schoolCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="schoolName" Type="nvarchar" MaxLength="50" />
+    <Property Name="stuStateName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuStateCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="nationName" Type="nvarchar" MaxLength="50" />
+    <Property Name="politicsName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_majorLibId" Type="int" />
+    <Property Name="y_stuTypeId" Type="int" />
+    <Property Name="y_eduTypeId" Type="int" />
+    <Property Name="majorName" Type="nvarchar" MaxLength="50" />
+    <Property Name="majorCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuYear" Type="int" />
+    <Property Name="stuTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuTypeCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="eduTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_eduTypeCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="majorLibraryName" Type="nvarchar" MaxLength="100" />
+    <Property Name="majorLibraryCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_StandardCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="subSchoolCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_birthday" Type="datetime" Nullable="false" />
+    <Property Name="y_isMoneyOk" Type="int" />
+    <Property Name="y_applyOK" Type="int" />
+    <Property Name="y_ischeck" Type="int" />
+    <Property Name="y_degreeOK" Type="int" />
+    <Property Name="y_graduationdata" Type="datetime" />
+    <Property Name="y_graduationschool" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_registrationNum" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_postalcode" Type="nvarchar" MaxLength="100" />
+    <Property Name="y_foreignLanguageId" Type="int" />
+    <Property Name="y_recruitTypeId" Type="int" />
+    <Property Name="y_professionTypeId" Type="int" />
+    <Property Name="y_cultureExtentId" Type="int" />
+    <Property Name="y_examFeatureId" Type="int" />
+    <Property Name="y_foreignLanguageCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_foreignLanguageName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_cultureExtentCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_cultureExtentName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_professionTypeCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_professionTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_recruitTypeCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_recruitTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_ZJTD" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_examFeatureCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_examFeatureName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_TZF" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_nameabbreviation" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_formername" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_studentType" Type="int" />
+    <Property Name="y_realYear" Type="int" />
+    <Property Name="y_isgraduate" Type="bit" />
+    <Property Name="y_isPay" Type="int" />
+    <Property Name="y_graduateNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="isCheckForSchool" Type="bit" />
+    <Property Name="y_bachelordegree" Type="bit" />
+    <Property Name="isbachelorForcheck" Type="bit" />
+    <Property Name="y_bachelordegreeCheck" Type="bit" />
+    <Property Name="y_examScore" Type="int" />
+    <Property Name="y_origin" Type="nvarchar" MaxLength="100" />
+    <Property Name="y_degreeNum" Type="nvarchar" MaxLength="100" />
+    <Property Name="y_scoreOk" Type="int" />
+    <Property Name="subaddress" Type="nvarchar" MaxLength="100" />
+    <Property Name="subcontact" Type="nvarchar" MaxLength="50" />
+    <Property Name="subtel" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_IsWorking" Type="int" />
+    <Property Name="y_cardType" Type="varchar" MaxLength="50" />
+    <Property Name="y_parentCard1" Type="varchar" MaxLength="50" />
+    <Property Name="y_parentCard2" Type="varchar" MaxLength="50" />
+    <Property Name="y_parentName1" Type="varchar" MaxLength="50" />
+    <Property Name="y_parentName2" Type="varchar" MaxLength="50" />
+    <Property Name="y_parentCardType1" Type="varchar" MaxLength="50" />
+    <Property Name="y_parentCardType2" Type="varchar" MaxLength="50" />
+    <Property Name="y_ImgIsok" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“jxsfdxNew.dbo.VW_SubFeeBili”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VW_SubFeeBili">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_inYear" />
+      <PropertyRef Name="y_feeYear" />
+      <PropertyRef Name="y_stuTypeId" />
+      <PropertyRef Name="y_eduTypeId" />
+      <PropertyRef Name="y_bili" />
+      <PropertyRef Name="y_subSchoolId" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="y_inYear" Type="int" Nullable="false" />
+    <Property Name="y_feeYear" Type="int" Nullable="false" />
+    <Property Name="y_stuTypeId" Type="int" Nullable="false" />
+    <Property Name="y_eduTypeId" Type="int" Nullable="false" />
+    <Property Name="y_bili" Type="int" Nullable="false" />
+    <Property Name="y_subSchoolId" Type="int" Nullable="false" />
+    <Property Name="subSchoolName" Type="nvarchar" MaxLength="50" />
+    <Property Name="eduTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_eduTypeCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="stuTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuTypeCode" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“jxsfdxNew.dbo.VW_SubFeeSys”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VW_SubFeeSys">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_inYear" />
+      <PropertyRef Name="y_feeYear" />
+      <PropertyRef Name="y_stuTypeId" />
+      <PropertyRef Name="y_eduTypeId" />
+      <PropertyRef Name="y_stuFee" />
+      <PropertyRef Name="y_bookFee" />
+      <PropertyRef Name="y_subSchoolId" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="y_inYear" Type="int" Nullable="false" />
+    <Property Name="y_feeYear" Type="int" Nullable="false" />
+    <Property Name="y_stuTypeId" Type="int" Nullable="false" />
+    <Property Name="y_eduTypeId" Type="int" Nullable="false" />
+    <Property Name="y_stuFee" Type="int" Nullable="false" />
+    <Property Name="y_bookFee" Type="int" Nullable="false" />
+    <Property Name="y_subSchoolId" Type="int" Nullable="false" />
+    <Property Name="subSchoolName" Type="nvarchar" MaxLength="50" />
+    <Property Name="eduTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_eduTypeCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="stuTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuTypeCode" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“jxsfdxNew.dbo.VW_SubFeeTotal”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VW_SubFeeTotal">
+    <Key>
+      <PropertyRef Name="y_inYear" />
+      <PropertyRef Name="y_feeYear" />
+    </Key>
+    <Property Name="totalStuCount" Type="int" />
+    <Property Name="noUpStuCount" Type="int" />
+    <Property Name="hasUpStuCount" Type="int" />
+    <Property Name="totalFee" Type="int" />
+    <Property Name="totalUpFee" Type="int" />
+    <Property Name="totalFeeChae" Type="int" />
+    <Property Name="totalNeedUpFee" Type="int" />
+    <Property Name="y_subSchoolId" Type="int" />
+    <Property Name="y_inYear" Type="int" Nullable="false" />
+    <Property Name="y_feeYear" Type="int" Nullable="false" />
+    <Property Name="schoolName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“jxsfdxNew.dbo.VW_SubschoolAdmin”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VW_SubschoolAdmin">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_name" />
+      <PropertyRef Name="y_code" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_adminId" Type="int" />
+    <Property Name="y_subSchoolId" Type="int" />
+    <Property Name="y_adminName" Type="nvarchar" MaxLength="20" />
+    <Property Name="y_realName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_nameabbreviation" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_formername" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“jxsfdxNew.dbo.VW_SubSchoolStuInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VW_SubSchoolStuInfo">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_subSchoolId" />
+      <PropertyRef Name="y_name" />
+      <PropertyRef Name="y_examNum" />
+      <PropertyRef Name="y_cardId" />
+      <PropertyRef Name="y_isdel" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="y_subSchoolId" Type="int" Nullable="false" />
+    <Property Name="y_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_examNum" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_cardId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="schoolName" Type="nvarchar" MaxLength="50" />
+    <Property Name="schoolCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_isdel" Type="int" Nullable="false" />
+    <Property Name="y_hide" Type="int" />
+    <Property Name="y_nameabbreviation" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_formername" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_schooltype" Type="int" />
+    <Property Name="y_year" Type="int" />
+    <Property Name="y_majorName" Type="nvarchar" MaxLength="100" />
+    <Property Name="y_eduTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_stuTypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="y_majorId" Type="int" />
+    <Property Name="y_stuTypeId" Type="int" />
+    <Property Name="y_eduTypeId" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“jxsfdxNew.dbo.VW_TeachPlanDes”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VW_TeachPlanDes">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="y_teaPlanId" />
+      <PropertyRef Name="y_courseId" />
+      <PropertyRef Name="y_courseTypeId" />
+      <PropertyRef Name="y_stuTime" />
+      <PropertyRef Name="y_score" />
+      <PropertyRef Name="y_code" />
+      <PropertyRef Name="courseName" />
+      <PropertyRef Name="courseTypeName" />
+      <PropertyRef Name="y_courseTypeCode" />
+      <PropertyRef Name="y_teaPlanName" />
+      <PropertyRef Name="y_term" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="y_teaPlanId" Type="int" Nullable="false" />
+    <Property Name="y_courseId" Type="int" Nullable="false" />
+    <Property Name="y_courseTypeId" Type="int" Nullable="false" />
+    <Property Name="y_stuTime" Type="int" Nullable="false" />
+    <Property Name="y_score" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+    <Property Name="y_code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="courseName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="courseTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_courseTypeCode" Type="int" Nullable="false" />
+    <Property Name="y_teaPlanName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="y_term" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__YD_Sts_St__y_cul__2630A1B7">
+    <End Role="YD_Edu_CultureExtent" Type="Self.YD_Edu_CultureExtent" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo_copy1" Type="Self.YD_Sts_StuInfo_copy1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_CultureExtent">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo_copy1">
+        <PropertyRef Name="y_cultureExtentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__YD_Sts_St__y_exa__2724C5F0">
+    <End Role="YD_Edu_ExamFeature" Type="Self.YD_Edu_ExamFeature" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo_copy1" Type="Self.YD_Sts_StuInfo_copy1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_ExamFeature">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo_copy1">
+        <PropertyRef Name="y_examFeatureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__YD_Sts_St__y_for__2818EA29">
+    <End Role="YD_Edu_ForeignLanguage" Type="Self.YD_Edu_ForeignLanguage" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo_copy1" Type="Self.YD_Sts_StuInfo_copy1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_ForeignLanguage">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo_copy1">
+        <PropertyRef Name="y_foreignLanguageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__YD_Sts_St__y_maj__2077C861">
+    <End Role="YD_Edu_Major" Type="Self.YD_Edu_Major" Multiplicity="1" />
+    <End Role="YD_Sts_StuInfo_copy1" Type="Self.YD_Sts_StuInfo_copy1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Major">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo_copy1">
+        <PropertyRef Name="y_majorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__YD_Sts_St__y_nat__24485945">
+    <End Role="YD_Sts_Nation" Type="Self.YD_Sts_Nation" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo_copy1" Type="Self.YD_Sts_StuInfo_copy1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sts_Nation">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo_copy1">
+        <PropertyRef Name="y_nationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__YD_Sts_St__y_pol__253C7D7E">
+    <End Role="YD_Sts_Politics" Type="Self.YD_Sts_Politics" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo_copy1" Type="Self.YD_Sts_StuInfo_copy1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sts_Politics">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo_copy1">
+        <PropertyRef Name="y_politicsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__YD_Sts_St__y_pro__290D0E62">
+    <End Role="YD_Edu_ProfessionType" Type="Self.YD_Edu_ProfessionType" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo_copy1" Type="Self.YD_Sts_StuInfo_copy1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_ProfessionType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo_copy1">
+        <PropertyRef Name="y_professionTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__YD_Sts_St__y_rec__2A01329B">
+    <End Role="YD_Edu_RecruitType" Type="Self.YD_Edu_RecruitType" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo_copy1" Type="Self.YD_Sts_StuInfo_copy1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_RecruitType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo_copy1">
+        <PropertyRef Name="y_recruitTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__YD_Sts_St__y_stu__226010D3">
+    <End Role="YD_Sts_StuStrange" Type="Self.YD_Sts_StuStrange" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo_copy1" Type="Self.YD_Sts_StuInfo_copy1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sts_StuStrange">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo_copy1">
+        <PropertyRef Name="y_stuStrange" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__YD_Sts_St__y_stu__2354350C">
+    <End Role="YD_Edu_StuState" Type="Self.YD_Edu_StuState" Multiplicity="1" />
+    <End Role="YD_Sts_StuInfo_copy1" Type="Self.YD_Sts_StuInfo_copy1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_StuState">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo_copy1">
+        <PropertyRef Name="y_stuStateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__YD_Sts_St__y_sub__216BEC9A">
+    <End Role="YD_Sys_SubSchool" Type="Self.YD_Sys_SubSchool" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo_copy1" Type="Self.YD_Sts_StuInfo_copy1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_SubSchool">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo_copy1">
+        <PropertyRef Name="y_subSchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_y_eduType">
+    <End Role="YD_Edu_EduType" Type="Self.YD_Edu_EduType" Multiplicity="1" />
+    <End Role="YD_Fee_AllBili" Type="Self.YD_Fee_AllBili" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_EduType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Fee_AllBili">
+        <PropertyRef Name="y_eduTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_y_eduTypeId">
+    <End Role="YD_Edu_EduType" Type="Self.YD_Edu_EduType" Multiplicity="1" />
+    <End Role="YD_Fee_SubFeeSys" Type="Self.YD_Fee_SubFeeSys" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_EduType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Fee_SubFeeSys">
+        <PropertyRef Name="y_eduTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_y_majorid">
+    <End Role="YD_Edu_Major" Type="Self.YD_Edu_Major" Multiplicity="0..1" />
+    <End Role="YD_Fee_SubFeeSys" Type="Self.YD_Fee_SubFeeSys" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Major">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Fee_SubFeeSys">
+        <PropertyRef Name="y_majorid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_y_subSchoolId">
+    <End Role="YD_Sys_SubSchool" Type="Self.YD_Sys_SubSchool" Multiplicity="1" />
+    <End Role="YD_Fee_SubFeeSys" Type="Self.YD_Fee_SubFeeSys" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_SubSchool">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Fee_SubFeeSys">
+        <PropertyRef Name="y_subSchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_Major_YD_Edu_EduType">
+    <End Role="YD_Edu_EduType" Type="Self.YD_Edu_EduType" Multiplicity="1" />
+    <End Role="YD_Edu_Major" Type="Self.YD_Edu_Major" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_EduType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_Major">
+        <PropertyRef Name="y_eduTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_Major_YD_Edu_MajorLibrary">
+    <End Role="YD_Edu_MajorLibrary" Type="Self.YD_Edu_MajorLibrary" Multiplicity="1" />
+    <End Role="YD_Edu_Major" Type="Self.YD_Edu_Major" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_MajorLibrary">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_Major">
+        <PropertyRef Name="y_majorLibId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_Major_YD_Edu_StuType">
+    <End Role="YD_Edu_StuType" Type="Self.YD_Edu_StuType" Multiplicity="1" />
+    <End Role="YD_Edu_Major" Type="Self.YD_Edu_Major" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_StuType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_Major">
+        <PropertyRef Name="y_stuTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_MajorTeachPlan_YD_Edu_Major">
+    <End Role="YD_Edu_Major" Type="Self.YD_Edu_Major" Multiplicity="1" />
+    <End Role="YD_Edu_MajorTeachPlan" Type="Self.YD_Edu_MajorTeachPlan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Major">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_MajorTeachPlan">
+        <PropertyRef Name="y_majorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_MajorTeachPlan_YD_Edu_TeachPlan">
+    <End Role="YD_Edu_TeachPlan" Type="Self.YD_Edu_TeachPlan" Multiplicity="1" />
+    <End Role="YD_Edu_MajorTeachPlan" Type="Self.YD_Edu_MajorTeachPlan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_TeachPlan">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_MajorTeachPlan">
+        <PropertyRef Name="y_teachPlanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_Score_YD_Edu_Course">
+    <End Role="YD_Edu_Course" Type="Self.YD_Edu_Course" Multiplicity="1" />
+    <End Role="YD_Edu_Score" Type="Self.YD_Edu_Score" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_Score">
+        <PropertyRef Name="y_courseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_Score_YD_Sts_StuInfo">
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="1" />
+    <End Role="YD_Edu_Score" Type="Self.YD_Edu_Score" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sts_StuInfo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_Score">
+        <PropertyRef Name="y_stuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_ScoreTest_YD_Edu_Course">
+    <End Role="YD_Edu_Course" Type="Self.YD_Edu_Course" Multiplicity="1" />
+    <End Role="YD_Edu_ScoreTest" Type="Self.YD_Edu_ScoreTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_ScoreTest">
+        <PropertyRef Name="y_courseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_ScoreTest_YD_Sts_StuInfo">
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="1" />
+    <End Role="YD_Edu_ScoreTest" Type="Self.YD_Edu_ScoreTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sts_StuInfo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_ScoreTest">
+        <PropertyRef Name="y_stuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_SmallPower_YD_Edu_Course">
+    <End Role="YD_Edu_Course" Type="Self.YD_Edu_Course" Multiplicity="0..1" />
+    <End Role="YD_Edu_SmallPower" Type="Self.YD_Edu_SmallPower" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_SmallPower">
+        <PropertyRef Name="y_courseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_SmallPower_YD_Edu_Major">
+    <End Role="YD_Edu_Major" Type="Self.YD_Edu_Major" Multiplicity="0..1" />
+    <End Role="YD_Edu_SmallPower" Type="Self.YD_Edu_SmallPower" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Major">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_SmallPower">
+        <PropertyRef Name="y_majorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_SmallPower_YD_Sys_SubSchool">
+    <End Role="YD_Sys_SubSchool" Type="Self.YD_Sys_SubSchool" Multiplicity="0..1" />
+    <End Role="YD_Edu_SmallPower" Type="Self.YD_Edu_SmallPower" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_SubSchool">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_SmallPower">
+        <PropertyRef Name="y_subSchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_TeachplanDes_YD_Edu_Course">
+    <End Role="YD_Edu_Course" Type="Self.YD_Edu_Course" Multiplicity="1" />
+    <End Role="YD_Edu_TeachplanDes" Type="Self.YD_Edu_TeachplanDes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_TeachplanDes">
+        <PropertyRef Name="y_courseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_TeachplanDes_YD_Edu_CourseType">
+    <End Role="YD_Edu_CourseType" Type="Self.YD_Edu_CourseType" Multiplicity="1" />
+    <End Role="YD_Edu_TeachplanDes" Type="Self.YD_Edu_TeachplanDes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_CourseType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_TeachplanDes">
+        <PropertyRef Name="y_courseTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Edu_TeachplanDes_YD_Edu_TeachPlan">
+    <End Role="YD_Edu_TeachPlan" Type="Self.YD_Edu_TeachPlan" Multiplicity="1" />
+    <End Role="YD_Edu_TeachplanDes" Type="Self.YD_Edu_TeachplanDes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_TeachPlan">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Edu_TeachplanDes">
+        <PropertyRef Name="y_teaPlanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Graduate_SampleExamScore_YD_Edu_Course">
+    <End Role="YD_Edu_Course" Type="Self.YD_Edu_Course" Multiplicity="1" />
+    <End Role="YD_Graduate_SampleExamScore" Type="Self.YD_Graduate_SampleExamScore" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Graduate_SampleExamScore">
+        <PropertyRef Name="y_courseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuInfo_YD_Edu_CultureExtent">
+    <End Role="YD_Edu_CultureExtent" Type="Self.YD_Edu_CultureExtent" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_CultureExtent">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo">
+        <PropertyRef Name="y_cultureExtentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuInfo_YD_Edu_ExamFeature">
+    <End Role="YD_Edu_ExamFeature" Type="Self.YD_Edu_ExamFeature" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_ExamFeature">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo">
+        <PropertyRef Name="y_examFeatureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuInfo_YD_Edu_ForeignLanguage">
+    <End Role="YD_Edu_ForeignLanguage" Type="Self.YD_Edu_ForeignLanguage" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_ForeignLanguage">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo">
+        <PropertyRef Name="y_foreignLanguageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuInfo_YD_Edu_Major">
+    <End Role="YD_Edu_Major" Type="Self.YD_Edu_Major" Multiplicity="1" />
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Major">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo">
+        <PropertyRef Name="y_majorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuInfo_YD_Edu_ProfessionType">
+    <End Role="YD_Edu_ProfessionType" Type="Self.YD_Edu_ProfessionType" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_ProfessionType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo">
+        <PropertyRef Name="y_professionTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuInfo_YD_Edu_RecruitType">
+    <End Role="YD_Edu_RecruitType" Type="Self.YD_Edu_RecruitType" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_RecruitType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo">
+        <PropertyRef Name="y_recruitTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuInfo_YD_Edu_StuState">
+    <End Role="YD_Edu_StuState" Type="Self.YD_Edu_StuState" Multiplicity="1" />
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_StuState">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo">
+        <PropertyRef Name="y_stuStateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuInfo_YD_Fee_StuFeeTb">
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="1" />
+    <End Role="YD_Fee_StuFeeTb" Type="Self.YD_Fee_StuFeeTb" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sts_StuInfo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Fee_StuFeeTb">
+        <PropertyRef Name="y_stuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuInfo_YD_Graduate_StudentScore">
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="0..1" />
+    <End Role="YD_Graduate_StudentScore" Type="Self.YD_Graduate_StudentScore" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sts_StuInfo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Graduate_StudentScore">
+        <PropertyRef Name="y_stuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuInfo_YD_Sts_Nation">
+    <End Role="YD_Sts_Nation" Type="Self.YD_Sts_Nation" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sts_Nation">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo">
+        <PropertyRef Name="y_nationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuInfo_YD_Sts_Politics">
+    <End Role="YD_Sts_Politics" Type="Self.YD_Sts_Politics" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sts_Politics">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo">
+        <PropertyRef Name="y_politicsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuInfo_YD_Sts_StuStrange">
+    <End Role="YD_Sts_StuStrange" Type="Self.YD_Sts_StuStrange" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sts_StuStrange">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo">
+        <PropertyRef Name="y_stuStrange" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuStrange_YD_Sts_StrangeType">
+    <End Role="YD_Sts_StrangeType" Type="Self.YD_Sts_StrangeType" Multiplicity="1" />
+    <End Role="YD_Sts_StuStrange" Type="Self.YD_Sts_StuStrange" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sts_StrangeType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuStrange">
+        <PropertyRef Name="y_strangeType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_StuStrange_YD_Sts_StuInfo">
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="1" />
+    <End Role="YD_Sts_StuStrange" Type="Self.YD_Sts_StuStrange" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sts_StuInfo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuStrange">
+        <PropertyRef Name="y_stuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_SubSchoolStuInfo_YD_Sys_SubSchool">
+    <End Role="YD_Sys_SubSchool" Type="Self.YD_Sys_SubSchool" Multiplicity="1" />
+    <End Role="YD_Sts_SubSchoolStuInfo" Type="Self.YD_Sts_SubSchoolStuInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_SubSchool">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_SubSchoolStuInfo">
+        <PropertyRef Name="y_subSchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sts_SubStuTemp_YD_Sys_SubSchool">
+    <End Role="YD_Sys_SubSchool" Type="Self.YD_Sys_SubSchool" Multiplicity="1" />
+    <End Role="YD_Sts_SubStuTemp" Type="Self.YD_Sts_SubStuTemp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_SubSchool">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_SubStuTemp">
+        <PropertyRef Name="y_subSchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_SYS_A_REFERENCE_YD_SYS_R">
+    <End Role="YD_Sys_Role" Type="Self.YD_Sys_Role" Multiplicity="1" />
+    <End Role="YD_Sys_Admin" Type="Self.YD_Sys_Admin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_Role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sys_Admin">
+        <PropertyRef Name="y_roleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sys_AdminCourseLink_YD_Edu_Course">
+    <End Role="YD_Edu_Course" Type="Self.YD_Edu_Course" Multiplicity="1" />
+    <End Role="YD_Sys_AdminCourseLink" Type="Self.YD_Sys_AdminCourseLink" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sys_AdminCourseLink">
+        <PropertyRef Name="y_courseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sys_AdminCourseLink_YD_Sys_Admin">
+    <End Role="YD_Sys_Admin" Type="Self.YD_Sys_Admin" Multiplicity="1" />
+    <End Role="YD_Sys_AdminCourseLink" Type="Self.YD_Sys_AdminCourseLink" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_Admin">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sys_AdminCourseLink">
+        <PropertyRef Name="y_adminId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sys_AdminSubLink_YD_Sys_Admin">
+    <End Role="YD_Sys_Admin" Type="Self.YD_Sys_Admin" Multiplicity="1" />
+    <End Role="YD_Sys_AdminSubLink" Type="Self.YD_Sys_AdminSubLink" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_Admin">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sys_AdminSubLink">
+        <PropertyRef Name="y_adminId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_SYS_D_REFERENCE_YD_SYS_A">
+    <End Role="YD_Sys_Admin" Type="Self.YD_Sys_Admin" Multiplicity="1" />
+    <End Role="YD_Sys_DbLog" Type="Self.YD_Sys_DbLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_Admin">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sys_DbLog">
+        <PropertyRef Name="y_userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_SYS_D_REFERENCE_YD_SYS_D">
+    <End Role="YD_Sys_DbLogType" Type="Self.YD_Sys_DbLogType" Multiplicity="1" />
+    <End Role="YD_Sys_DbLog" Type="Self.YD_Sys_DbLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_DbLogType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sys_DbLog">
+        <PropertyRef Name="Y_logTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_SYS_P_REFERENCE_YD_SYS_M">
+    <End Role="YD_Sys_Module" Type="Self.YD_Sys_Module" Multiplicity="1" />
+    <End Role="YD_Sys_Power" Type="Self.YD_Sys_Power" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_Module">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sys_Power">
+        <PropertyRef Name="y_moduleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_SYS_P_REFERENCE_YD_SYS_R">
+    <End Role="YD_Sys_Role" Type="Self.YD_Sys_Role" Multiplicity="1" />
+    <End Role="YD_Sys_Power" Type="Self.YD_Sys_Power" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_Role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sys_Power">
+        <PropertyRef Name="y_roleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sys_PrintCss_YD_Sys_PrintTemplate1">
+    <End Role="YD_Sys_PrintTemplate" Type="Self.YD_Sys_PrintTemplate" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="YD_Sys_PrintCss" Type="Self.YD_Sys_PrintCss" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_PrintTemplate">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sys_PrintCss">
+        <PropertyRef Name="y_printid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sys_SubSchool_YD_Graduate_Bachelor">
+    <End Role="YD_Sys_SubSchool" Type="Self.YD_Sys_SubSchool" Multiplicity="1" />
+    <End Role="YD_Graduate_Bachelor" Type="Self.YD_Graduate_Bachelor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_SubSchool">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Graduate_Bachelor">
+        <PropertyRef Name="y_SubSchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sys_SubSchool_YD_Graduate_StudentApply">
+    <End Role="YD_Sys_SubSchool" Type="Self.YD_Sys_SubSchool" Multiplicity="1" />
+    <End Role="YD_Graduate_StudentApply" Type="Self.YD_Graduate_StudentApply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_SubSchool">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Graduate_StudentApply">
+        <PropertyRef Name="y_SubSchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_Sys_SubSchool_YD_Sts_StuInfo">
+    <End Role="YD_Sys_SubSchool" Type="Self.YD_Sys_SubSchool" Multiplicity="0..1" />
+    <End Role="YD_Sts_StuInfo" Type="Self.YD_Sts_StuInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_SubSchool">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_Sts_StuInfo">
+        <PropertyRef Name="y_subSchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_TeaPlan_Class_YD_Edu_Major">
+    <End Role="YD_Edu_Major" Type="Self.YD_Edu_Major" Multiplicity="1" />
+    <End Role="YD_TeaPlan_Class" Type="Self.YD_TeaPlan_Class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Major">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_TeaPlan_Class">
+        <PropertyRef Name="y_majorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_TeaPlan_Class_YD_Sys_SubSchool">
+    <End Role="YD_Sys_SubSchool" Type="Self.YD_Sys_SubSchool" Multiplicity="1" />
+    <End Role="YD_TeaPlan_Class" Type="Self.YD_TeaPlan_Class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_SubSchool">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_TeaPlan_Class">
+        <PropertyRef Name="y_subSchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_TeaPlan_Class_YD_TeaPlan_Templet">
+    <End Role="YD_TeaPlan_Templet" Type="Self.YD_TeaPlan_Templet" Multiplicity="1" />
+    <End Role="YD_TeaPlan_Class" Type="Self.YD_TeaPlan_Class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_TeaPlan_Templet">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_TeaPlan_Class">
+        <PropertyRef Name="y_templetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_TeaPlan_ClassCourseDes_YD_Edu_Course">
+    <End Role="YD_Edu_Course" Type="Self.YD_Edu_Course" Multiplicity="1" />
+    <End Role="YD_TeaPlan_ClassCourseDes" Type="Self.YD_TeaPlan_ClassCourseDes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_TeaPlan_ClassCourseDes">
+        <PropertyRef Name="y_course" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_TeaPlan_ClassCourseDes_YD_TeaPlan_Class">
+    <End Role="YD_TeaPlan_Class" Type="Self.YD_TeaPlan_Class" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="YD_TeaPlan_ClassCourseDes" Type="Self.YD_TeaPlan_ClassCourseDes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_TeaPlan_Class">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_TeaPlan_ClassCourseDes">
+        <PropertyRef Name="y_classTeaPlanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_TeaPlan_Templet_YD_Edu_Major">
+    <End Role="YD_Edu_Major" Type="Self.YD_Edu_Major" Multiplicity="1" />
+    <End Role="YD_TeaPlan_Templet" Type="Self.YD_TeaPlan_Templet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Major">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_TeaPlan_Templet">
+        <PropertyRef Name="y_majorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_TeaPlan_TempletCourseDes_YD_Edu_Course">
+    <End Role="YD_Edu_Course" Type="Self.YD_Edu_Course" Multiplicity="1" />
+    <End Role="YD_TeaPlan_TempletCourseDes" Type="Self.YD_TeaPlan_TempletCourseDes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Edu_Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_TeaPlan_TempletCourseDes">
+        <PropertyRef Name="y_course" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YD_TeaPlan_TempletCourseDes_YD_TeaPlan_Templet">
+    <End Role="YD_TeaPlan_Templet" Type="Self.YD_TeaPlan_Templet" Multiplicity="1" />
+    <End Role="YD_TeaPlan_TempletCourseDes" Type="Self.YD_TeaPlan_TempletCourseDes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_TeaPlan_Templet">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YD_TeaPlan_TempletCourseDes">
+        <PropertyRef Name="y_templetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_YT_Teacher_YD_Sys_SubSchool">
+    <End Role="YD_Sys_SubSchool" Type="Self.YD_Sys_SubSchool" Multiplicity="0..1" />
+    <End Role="YT_Teacher" Type="Self.YT_Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YD_Sys_SubSchool">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="YT_Teacher">
+        <PropertyRef Name="y_subSchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="IYunStoreContainer">
+    <EntitySet Name="YD_Edu_Course" EntityType="Self.YD_Edu_Course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Edu_CourseCorrespondence" EntityType="Self.YD_Edu_CourseCorrespondence" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Edu_CourseType" EntityType="Self.YD_Edu_CourseType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Edu_CultureExtent" EntityType="Self.YD_Edu_CultureExtent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Edu_EduType" EntityType="Self.YD_Edu_EduType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Edu_ExamFeature" EntityType="Self.YD_Edu_ExamFeature" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Edu_ForeignLanguage" EntityType="Self.YD_Edu_ForeignLanguage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Edu_FormTemp" EntityType="Self.YD_Edu_FormTemp" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Edu_GradCondition" EntityType="Self.YD_Edu_GradCondition" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Edu_Major" EntityType="Self.YD_Edu_Major" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Edu_MajorLibrary" EntityType="Self.YD_Edu_MajorLibrary" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Edu_MajorTeachPlan" EntityType="Self.YD_Edu_MajorTeachPlan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Edu_News" EntityType="Self.YD_Edu_News" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Edu_ProfessionType" EntityType="Self.YD_Edu_ProfessionType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Edu_QingCourse" EntityType="Self.YD_Edu_QingCourse" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Edu_QingStuInfo" EntityType="Self.YD_Edu_QingStuInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Edu_RecruitType" EntityType="Self.YD_Edu_RecruitType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Edu_Score" EntityType="Self.YD_Edu_Score" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Edu_ScoreScale" EntityType="Self.YD_Edu_ScoreScale" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Edu_ScoreTemp" EntityType="Self.YD_Edu_ScoreTemp" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Edu_ScoreTest" EntityType="Self.YD_Edu_ScoreTest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Edu_SmallPower" EntityType="Self.YD_Edu_SmallPower" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Edu_StuState" EntityType="Self.YD_Edu_StuState" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Edu_StuType" EntityType="Self.YD_Edu_StuType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Edu_TeachPlan" EntityType="Self.YD_Edu_TeachPlan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Edu_TeachplanDes" EntityType="Self.YD_Edu_TeachplanDes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Edu_TeachPlanTemp" EntityType="Self.YD_Edu_TeachPlanTemp" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Fee_AllBili" EntityType="Self.YD_Fee_AllBili" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Fee_AllFeeSys" EntityType="Self.YD_Fee_AllFeeSys" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Fee_MajorLiFeeSys" EntityType="Self.YD_Fee_MajorLiFeeSys" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Fee_StuFeeTb" EntityType="Self.YD_Fee_StuFeeTb" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Fee_StuInvoicee" EntityType="Self.YD_Fee_StuInvoicee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Fee_StuRegistrBatch" EntityType="Self.YD_Fee_StuRegistrBatch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Fee_SubFeeBili" EntityType="Self.YD_Fee_SubFeeBili" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Fee_SubFeeSys" EntityType="Self.YD_Fee_SubFeeSys" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Graduate_Bachelor" EntityType="Self.YD_Graduate_Bachelor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Graduate_EnglishScoreTemp" EntityType="Self.YD_Graduate_EnglishScoreTemp" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Graduate_SampleExamScore" EntityType="Self.YD_Graduate_SampleExamScore" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Graduate_StudentApply" EntityType="Self.YD_Graduate_StudentApply" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Graduate_StudentScore" EntityType="Self.YD_Graduate_StudentScore" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Sts_Nation" EntityType="Self.YD_Sts_Nation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Sts_Politics" EntityType="Self.YD_Sts_Politics" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Sts_StrangeType" EntityType="Self.YD_Sts_StrangeType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Sts_StuInfo" EntityType="Self.YD_Sts_StuInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Sts_StuInfo_copy1" EntityType="Self.YD_Sts_StuInfo_copy1" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Sts_StuInfoTemp" EntityType="Self.YD_Sts_StuInfoTemp" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Sts_StuNumCol" EntityType="Self.YD_Sts_StuNumCol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Sts_StuStrange" EntityType="Self.YD_Sts_StuStrange" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Sts_SubSchoolStuInfo" EntityType="Self.YD_Sts_SubSchoolStuInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Sts_SubStuTemp" EntityType="Self.YD_Sts_SubStuTemp" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Sys_Admin" EntityType="Self.YD_Sys_Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Sys_AdminCourseLink" EntityType="Self.YD_Sys_AdminCourseLink" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Sys_AdminSubLink" EntityType="Self.YD_Sys_AdminSubLink" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Sys_DbLog" EntityType="Self.YD_Sys_DbLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Sys_DbLogType" EntityType="Self.YD_Sys_DbLogType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Sys_File" EntityType="Self.YD_Sys_File" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Sys_Module" EntityType="Self.YD_Sys_Module" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Sys_Power" EntityType="Self.YD_Sys_Power" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Sys_PrintCss" EntityType="Self.YD_Sys_PrintCss" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Sys_PrintTemplate" EntityType="Self.YD_Sys_PrintTemplate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Sys_Role" EntityType="Self.YD_Sys_Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_Sys_SubSchool" EntityType="Self.YD_Sys_SubSchool" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_TeaPlan_Class" EntityType="Self.YD_TeaPlan_Class" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_TeaPlan_ClassCourseDes" EntityType="Self.YD_TeaPlan_ClassCourseDes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_TeaPlan_ExamPlan" EntityType="Self.YD_TeaPlan_ExamPlan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_TeaPlan_Templet" EntityType="Self.YD_TeaPlan_Templet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YD_TeaPlan_TempletCourseDes" EntityType="Self.YD_TeaPlan_TempletCourseDes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YT_ActivityVideo" EntityType="Self.YT_ActivityVideo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YT_Faculty" EntityType="Self.YT_Faculty" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YT_Grade" EntityType="Self.YT_Grade" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YT_GraduationRegistration" EntityType="Self.YT_GraduationRegistration" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YT_Mechanism" EntityType="Self.YT_Mechanism" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YT_RegisterSettings" EntityType="Self.YT_RegisterSettings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YT_Teacher" EntityType="Self.YT_Teacher" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YT_Term" EntityType="Self.YT_Term" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Z_test" EntityType="Self.Z_test" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VW_Admin" EntityType="Self.VW_Admin" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_Admin].[id] AS [id], 
+    [VW_Admin].[y_adminName] AS [y_adminName], 
+    [VW_Admin].[y_password] AS [y_password], 
+    [VW_Admin].[y_realName] AS [y_realName], 
+    [VW_Admin].[y_phone] AS [y_phone], 
+    [VW_Admin].[y_roleID] AS [y_roleID], 
+    [VW_Admin].[y_time] AS [y_time], 
+    [VW_Admin].[y_roleName] AS [y_roleName]
+    FROM [dbo].[VW_Admin] AS [VW_Admin]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_AllBili" EntityType="Self.VW_AllBili" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_AllBili].[id] AS [id], 
+    [VW_AllBili].[y_inYear] AS [y_inYear], 
+    [VW_AllBili].[y_feeYear] AS [y_feeYear], 
+    [VW_AllBili].[y_stuTypeId] AS [y_stuTypeId], 
+    [VW_AllBili].[y_eduTypeId] AS [y_eduTypeId], 
+    [VW_AllBili].[y_bili] AS [y_bili], 
+    [VW_AllBili].[eduTypeName] AS [eduTypeName], 
+    [VW_AllBili].[y_eduTypeCode] AS [y_eduTypeCode], 
+    [VW_AllBili].[stuTypeName] AS [stuTypeName], 
+    [VW_AllBili].[y_stuTypeCode] AS [y_stuTypeCode], 
+    [VW_AllBili].[y_time] AS [y_time], 
+    [VW_AllBili].[y_Visible] AS [y_Visible]
+    FROM [dbo].[VW_AllBili] AS [VW_AllBili]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_AllFeeSys" EntityType="Self.VW_AllFeeSys" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_AllFeeSys].[id] AS [id], 
+    [VW_AllFeeSys].[y_inYear] AS [y_inYear], 
+    [VW_AllFeeSys].[y_feeYear] AS [y_feeYear], 
+    [VW_AllFeeSys].[y_stuTypeId] AS [y_stuTypeId], 
+    [VW_AllFeeSys].[y_eduTypeId] AS [y_eduTypeId], 
+    [VW_AllFeeSys].[y_stuFee] AS [y_stuFee], 
+    [VW_AllFeeSys].[y_bookFee] AS [y_bookFee], 
+    [VW_AllFeeSys].[eduTypeName] AS [eduTypeName], 
+    [VW_AllFeeSys].[y_eduTypeCode] AS [y_eduTypeCode], 
+    [VW_AllFeeSys].[stuTypeName] AS [stuTypeName], 
+    [VW_AllFeeSys].[y_stuTypeCode] AS [y_stuTypeCode]
+    FROM [dbo].[VW_AllFeeSys] AS [VW_AllFeeSys]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_DbLog" EntityType="Self.VW_DbLog" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_DbLog].[id] AS [id], 
+    [VW_DbLog].[y_userID] AS [y_userID], 
+    [VW_DbLog].[y_userName] AS [y_userName], 
+    [VW_DbLog].[y_logTypeID] AS [y_logTypeID], 
+    [VW_DbLog].[y_time] AS [y_time], 
+    [VW_DbLog].[y_remark] AS [y_remark], 
+    [VW_DbLog].[y_logType] AS [y_logType], 
+    [VW_DbLog].[y_adminName] AS [y_adminName], 
+    [VW_DbLog].[y_password] AS [y_password], 
+    [VW_DbLog].[y_roleID] AS [y_roleID], 
+    [VW_DbLog].[y_roleName] AS [y_roleName]
+    FROM [dbo].[VW_DbLog] AS [VW_DbLog]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_Major" EntityType="Self.VW_Major" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_Major].[id] AS [id], 
+    [VW_Major].[y_majorLibId] AS [y_majorLibId], 
+    [VW_Major].[y_stuTypeId] AS [y_stuTypeId], 
+    [VW_Major].[y_eduTypeId] AS [y_eduTypeId], 
+    [VW_Major].[y_name] AS [y_name], 
+    [VW_Major].[y_code] AS [y_code], 
+    [VW_Major].[y_stuYear] AS [y_stuYear], 
+    [VW_Major].[y_StandardCode] AS [y_StandardCode], 
+    [VW_Major].[stuTypeName] AS [stuTypeName], 
+    [VW_Major].[y_stuTypeCode] AS [y_stuTypeCode], 
+    [VW_Major].[eduTypeName] AS [eduTypeName], 
+    [VW_Major].[y_eduTypeCode] AS [y_eduTypeCode], 
+    [VW_Major].[majorLibraryName] AS [majorLibraryName], 
+    [VW_Major].[majorLibraryCode] AS [majorLibraryCode], 
+    [VW_Major].[y_majortype] AS [y_majortype], 
+    [VW_Major].[y_needFee] AS [y_needFee]
+    FROM [dbo].[VW_Major] AS [VW_Major]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_MajorLiFeeSys" EntityType="Self.VW_MajorLiFeeSys" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_MajorLiFeeSys].[id] AS [id], 
+    [VW_MajorLiFeeSys].[y_majorlivraryid] AS [y_majorlivraryid], 
+    [VW_MajorLiFeeSys].[y_inYear] AS [y_inYear], 
+    [VW_MajorLiFeeSys].[y_feeYear] AS [y_feeYear], 
+    [VW_MajorLiFeeSys].[y_stuTypeId] AS [y_stuTypeId], 
+    [VW_MajorLiFeeSys].[y_eduTypeId] AS [y_eduTypeId], 
+    [VW_MajorLiFeeSys].[y_StuFee] AS [y_StuFee], 
+    [VW_MajorLiFeeSys].[y_bookFee] AS [y_bookFee], 
+    [VW_MajorLiFeeSys].[eduTypeName] AS [eduTypeName], 
+    [VW_MajorLiFeeSys].[y_eduTypeCode] AS [y_eduTypeCode], 
+    [VW_MajorLiFeeSys].[majorlibraryname] AS [majorlibraryname], 
+    [VW_MajorLiFeeSys].[y_code] AS [y_code], 
+    [VW_MajorLiFeeSys].[stuTypeName] AS [stuTypeName], 
+    [VW_MajorLiFeeSys].[y_stuTypeCode] AS [y_stuTypeCode]
+    FROM [dbo].[VW_MajorLiFeeSys] AS [VW_MajorLiFeeSys]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_MajorTeachPlan" EntityType="Self.VW_MajorTeachPlan" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_MajorTeachPlan].[id] AS [id], 
+    [VW_MajorTeachPlan].[y_year] AS [y_year], 
+    [VW_MajorTeachPlan].[y_majorId] AS [y_majorId], 
+    [VW_MajorTeachPlan].[y_teachPlanId] AS [y_teachPlanId], 
+    [VW_MajorTeachPlan].[y_majorLibId] AS [y_majorLibId], 
+    [VW_MajorTeachPlan].[y_stuTypeId] AS [y_stuTypeId], 
+    [VW_MajorTeachPlan].[y_eduTypeId] AS [y_eduTypeId], 
+    [VW_MajorTeachPlan].[y_name] AS [y_name], 
+    [VW_MajorTeachPlan].[y_code] AS [y_code], 
+    [VW_MajorTeachPlan].[y_stuYear] AS [y_stuYear], 
+    [VW_MajorTeachPlan].[stuTypeName] AS [stuTypeName], 
+    [VW_MajorTeachPlan].[y_stuTypeCode] AS [y_stuTypeCode], 
+    [VW_MajorTeachPlan].[eduTypeName] AS [eduTypeName], 
+    [VW_MajorTeachPlan].[y_eduTypeCode] AS [y_eduTypeCode], 
+    [VW_MajorTeachPlan].[majorLibraryName] AS [majorLibraryName], 
+    [VW_MajorTeachPlan].[majorLibraryCode] AS [majorLibraryCode], 
+    [VW_MajorTeachPlan].[y_teaPlanName] AS [y_teaPlanName], 
+    [VW_MajorTeachPlan].[y_teaPlanType] AS [y_teaPlanType], 
+    [VW_MajorTeachPlan].[y_term] AS [y_term]
+    FROM [dbo].[VW_MajorTeachPlan] AS [VW_MajorTeachPlan]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_MajorTeachPlanDes" EntityType="Self.VW_MajorTeachPlanDes" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_MajorTeachPlanDes].[id] AS [id], 
+    [VW_MajorTeachPlanDes].[y_year] AS [y_year], 
+    [VW_MajorTeachPlanDes].[y_majorId] AS [y_majorId], 
+    [VW_MajorTeachPlanDes].[y_teachPlanId] AS [y_teachPlanId], 
+    [VW_MajorTeachPlanDes].[y_majorLibId] AS [y_majorLibId], 
+    [VW_MajorTeachPlanDes].[y_stuTypeId] AS [y_stuTypeId], 
+    [VW_MajorTeachPlanDes].[y_eduTypeId] AS [y_eduTypeId], 
+    [VW_MajorTeachPlanDes].[y_name] AS [y_name], 
+    [VW_MajorTeachPlanDes].[y_code] AS [y_code], 
+    [VW_MajorTeachPlanDes].[y_stuYear] AS [y_stuYear], 
+    [VW_MajorTeachPlanDes].[stuTypeName] AS [stuTypeName], 
+    [VW_MajorTeachPlanDes].[y_stuTypeCode] AS [y_stuTypeCode], 
+    [VW_MajorTeachPlanDes].[eduTypeName] AS [eduTypeName], 
+    [VW_MajorTeachPlanDes].[y_eduTypeCode] AS [y_eduTypeCode], 
+    [VW_MajorTeachPlanDes].[majorLibraryName] AS [majorLibraryName], 
+    [VW_MajorTeachPlanDes].[majorLibraryCode] AS [majorLibraryCode], 
+    [VW_MajorTeachPlanDes].[y_teaPlanName] AS [y_teaPlanName], 
+    [VW_MajorTeachPlanDes].[y_teaPlanType] AS [y_teaPlanType], 
+    [VW_MajorTeachPlanDes].[y_term] AS [y_term], 
+    [VW_MajorTeachPlanDes].[y_teachplandesid] AS [y_teachplandesid], 
+    [VW_MajorTeachPlanDes].[y_teaPlanId] AS [y_teaPlanId], 
+    [VW_MajorTeachPlanDes].[y_courseId] AS [y_courseId], 
+    [VW_MajorTeachPlanDes].[y_courseTypeId] AS [y_courseTypeId], 
+    [VW_MajorTeachPlanDes].[y_stuTime] AS [y_stuTime], 
+    [VW_MajorTeachPlanDes].[y_score] AS [y_score], 
+    [VW_MajorTeachPlanDes].[y_faceTime1] AS [y_faceTime1], 
+    [VW_MajorTeachPlanDes].[y_faceTime2] AS [y_faceTime2], 
+    [VW_MajorTeachPlanDes].[y_task] AS [y_task], 
+    [VW_MajorTeachPlanDes].[y_courseSid] AS [y_courseSid], 
+    [VW_MajorTeachPlanDes].[y_coursecode] AS [y_coursecode], 
+    [VW_MajorTeachPlanDes].[y_coursename] AS [y_coursename], 
+    [VW_MajorTeachPlanDes].[y_coursetypesid] AS [y_coursetypesid], 
+    [VW_MajorTeachPlanDes].[y_coursetypename] AS [y_coursetypename], 
+    [VW_MajorTeachPlanDes].[y_courseTypeCode] AS [y_courseTypeCode]
+    FROM [dbo].[VW_MajorTeachPlanDes] AS [VW_MajorTeachPlanDes]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_Power" EntityType="Self.VW_Power" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_Power].[id] AS [id], 
+    [VW_Power].[y_roleID] AS [y_roleID], 
+    [VW_Power].[y_moduleID] AS [y_moduleID], 
+    [VW_Power].[y_menu] AS [y_menu], 
+    [VW_Power].[y_insert] AS [y_insert], 
+    [VW_Power].[y_delete] AS [y_delete], 
+    [VW_Power].[y_update] AS [y_update], 
+    [VW_Power].[y_select] AS [y_select], 
+    [VW_Power].[y_roleName] AS [y_roleName], 
+    [VW_Power].[y_moudleName] AS [y_moudleName], 
+    [VW_Power].[y_vaild] AS [y_vaild], 
+    [VW_Power].[y_level] AS [y_level], 
+    [VW_Power].[y_sort] AS [y_sort], 
+    [VW_Power].[y_url] AS [y_url], 
+    [VW_Power].[y_parentID] AS [y_parentID]
+    FROM [dbo].[VW_Power] AS [VW_Power]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_Score" EntityType="Self.VW_Score" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_Score].[id] AS [id], 
+    [VW_Score].[y_stuId] AS [y_stuId], 
+    [VW_Score].[y_stuNum] AS [y_stuNum], 
+    [VW_Score].[y_cardId] AS [y_cardId], 
+    [VW_Score].[y_term] AS [y_term], 
+    [VW_Score].[y_normalScore] AS [y_normalScore], 
+    [VW_Score].[y_termScore] AS [y_termScore], 
+    [VW_Score].[y_totalScore] AS [y_totalScore], 
+    [VW_Score].[y_courseId] AS [y_courseId], 
+    [VW_Score].[y_courseCode] AS [y_courseCode], 
+    [VW_Score].[y_courseName] AS [y_courseName], 
+    [VW_Score].[y_stuName] AS [y_stuName], 
+    [VW_Score].[y_examNum] AS [y_examNum], 
+    [VW_Score].[y_sex] AS [y_sex], 
+    [VW_Score].[y_inYear] AS [y_inYear], 
+    [VW_Score].[y_majorId] AS [y_majorId], 
+    [VW_Score].[y_subSchoolId] AS [y_subSchoolId], 
+    [VW_Score].[y_stuStateId] AS [y_stuStateId], 
+    [VW_Score].[y_politicsId] AS [y_politicsId], 
+    [VW_Score].[y_nationId] AS [y_nationId], 
+    [VW_Score].[y_img] AS [y_img], 
+    [VW_Score].[y_tel] AS [y_tel], 
+    [VW_Score].[y_mail] AS [y_mail], 
+    [VW_Score].[y_address] AS [y_address], 
+    [VW_Score].[y_registerState] AS [y_registerState], 
+    [VW_Score].[y_isChangePlan] AS [y_isChangePlan], 
+    [VW_Score].[y_changePlanId] AS [y_changePlanId], 
+    [VW_Score].[y_loginName] AS [y_loginName], 
+    [VW_Score].[y_password] AS [y_password], 
+    [VW_Score].[y_stuStrange] AS [y_stuStrange], 
+    [VW_Score].[y_isdel] AS [y_isdel], 
+    [VW_Score].[schoolCode] AS [schoolCode], 
+    [VW_Score].[schoolName] AS [schoolName], 
+    [VW_Score].[stuStateName] AS [stuStateName], 
+    [VW_Score].[y_stuStateCode] AS [y_stuStateCode], 
+    [VW_Score].[nationName] AS [nationName], 
+    [VW_Score].[politicsName] AS [politicsName], 
+    [VW_Score].[y_majorLibId] AS [y_majorLibId], 
+    [VW_Score].[y_stuTypeId] AS [y_stuTypeId], 
+    [VW_Score].[y_eduTypeId] AS [y_eduTypeId], 
+    [VW_Score].[majorName] AS [majorName], 
+    [VW_Score].[majorCode] AS [majorCode], 
+    [VW_Score].[y_stuYear] AS [y_stuYear], 
+    [VW_Score].[stuTypeName] AS [stuTypeName], 
+    [VW_Score].[y_stuTypeCode] AS [y_stuTypeCode], 
+    [VW_Score].[eduTypeName] AS [eduTypeName], 
+    [VW_Score].[y_eduTypeCode] AS [y_eduTypeCode], 
+    [VW_Score].[majorLibraryName] AS [majorLibraryName], 
+    [VW_Score].[majorLibraryCode] AS [majorLibraryCode], 
+    [VW_Score].[y_workScore] AS [y_workScore], 
+    [VW_Score].[y_type] AS [y_type]
+    FROM [dbo].[VW_Score] AS [VW_Score]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_ScoreFirst" EntityType="Self.VW_ScoreFirst" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_ScoreFirst].[y_stuName] AS [y_stuName], 
+    [VW_ScoreFirst].[y_stuId] AS [y_stuId], 
+    [VW_ScoreFirst].[y_stuNum] AS [y_stuNum], 
+    [VW_ScoreFirst].[y_subSchoolId] AS [y_subSchoolId], 
+    [VW_ScoreFirst].[y_majorId] AS [y_majorId], 
+    [VW_ScoreFirst].[majorName] AS [majorName]
+    FROM [dbo].[VW_ScoreFirst] AS [VW_ScoreFirst]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_Strange" EntityType="Self.VW_Strange" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_Strange].[id] AS [id], 
+    [VW_Strange].[y_strangeType] AS [y_strangeType], 
+    [VW_Strange].[y_applyTime] AS [y_applyTime], 
+    [VW_Strange].[y_applyReason] AS [y_applyReason], 
+    [VW_Strange].[y_approvalReason] AS [y_approvalReason], 
+    [VW_Strange].[y_approvalTime] AS [y_approvalTime], 
+    [VW_Strange].[y_approvalStatus] AS [y_approvalStatus], 
+    [VW_Strange].[y_approvalAdmin] AS [y_approvalAdmin], 
+    [VW_Strange].[y_applyAdmin] AS [y_applyAdmin], 
+    [VW_Strange].[y_contentA] AS [y_contentA], 
+    [VW_Strange].[y_contentB] AS [y_contentB], 
+    [VW_Strange].[y_contentC] AS [y_contentC], 
+    [VW_Strange].[y_contentD] AS [y_contentD], 
+    [VW_Strange].[y_contentE] AS [y_contentE], 
+    [VW_Strange].[y_isExecutive] AS [y_isExecutive], 
+    [VW_Strange].[y_ExecutiveTime] AS [y_ExecutiveTime], 
+    [VW_Strange].[y_stuId] AS [y_stuId], 
+    [VW_Strange].[strangeTypeName] AS [strangeTypeName], 
+    [VW_Strange].[y_viewUrl] AS [y_viewUrl], 
+    [VW_Strange].[y_applyNotice] AS [y_applyNotice], 
+    [VW_Strange].[studentName] AS [studentName], 
+    [VW_Strange].[y_stuNum] AS [y_stuNum], 
+    [VW_Strange].[y_examNum] AS [y_examNum], 
+    [VW_Strange].[y_sex] AS [y_sex], 
+    [VW_Strange].[y_inYear] AS [y_inYear], 
+    [VW_Strange].[y_cardId] AS [y_cardId], 
+    [VW_Strange].[y_majorId] AS [y_majorId], 
+    [VW_Strange].[y_subSchoolId] AS [y_subSchoolId], 
+    [VW_Strange].[y_stuStateId] AS [y_stuStateId], 
+    [VW_Strange].[y_politicsId] AS [y_politicsId], 
+    [VW_Strange].[y_nationId] AS [y_nationId], 
+    [VW_Strange].[y_img] AS [y_img], 
+    [VW_Strange].[y_tel] AS [y_tel], 
+    [VW_Strange].[y_mail] AS [y_mail], 
+    [VW_Strange].[y_address] AS [y_address], 
+    [VW_Strange].[y_registerState] AS [y_registerState], 
+    [VW_Strange].[y_isChangePlan] AS [y_isChangePlan], 
+    [VW_Strange].[y_changePlanId] AS [y_changePlanId], 
+    [VW_Strange].[y_loginName] AS [y_loginName], 
+    [VW_Strange].[y_password] AS [y_password], 
+    [VW_Strange].[y_stuStrange] AS [y_stuStrange], 
+    [VW_Strange].[y_isdel] AS [y_isdel], 
+    [VW_Strange].[schoolCode] AS [schoolCode], 
+    [VW_Strange].[schoolName] AS [schoolName], 
+    [VW_Strange].[stuStateName] AS [stuStateName], 
+    [VW_Strange].[y_stuStateCode] AS [y_stuStateCode], 
+    [VW_Strange].[nationName] AS [nationName], 
+    [VW_Strange].[politicsName] AS [politicsName], 
+    [VW_Strange].[y_majorLibId] AS [y_majorLibId], 
+    [VW_Strange].[y_stuTypeId] AS [y_stuTypeId], 
+    [VW_Strange].[y_eduTypeId] AS [y_eduTypeId], 
+    [VW_Strange].[majorName] AS [majorName], 
+    [VW_Strange].[majorCode] AS [majorCode], 
+    [VW_Strange].[y_stuYear] AS [y_stuYear], 
+    [VW_Strange].[stuTypeName] AS [stuTypeName], 
+    [VW_Strange].[y_stuTypeCode] AS [y_stuTypeCode], 
+    [VW_Strange].[eduTypeName] AS [eduTypeName], 
+    [VW_Strange].[y_eduTypeCode] AS [y_eduTypeCode], 
+    [VW_Strange].[majorLibraryName] AS [majorLibraryName], 
+    [VW_Strange].[majorLibraryCode] AS [majorLibraryCode], 
+    [VW_Strange].[y_contentAName] AS [y_contentAName], 
+    [VW_Strange].[y_contentBName] AS [y_contentBName], 
+    [VW_Strange].[y_straisdel] AS [y_straisdel], 
+    [VW_Strange].[y_contentF] AS [y_contentF], 
+    [VW_Strange].[y_contentH] AS [y_contentH], 
+    [VW_Strange].[y_contentG] AS [y_contentG], 
+    [VW_Strange].[y_contentI] AS [y_contentI], 
+    [VW_Strange].[y_contentJ] AS [y_contentJ], 
+    [VW_Strange].[y_birthday] AS [y_birthday], 
+    [VW_Strange].[y_nameabbreviation] AS [y_nameabbreviation], 
+    [VW_Strange].[y_url] AS [y_url]
+    FROM [dbo].[VW_Strange] AS [VW_Strange]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_StrangeReportTotal" EntityType="Self.VW_StrangeReportTotal" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_StrangeReportTotal].[totalStuCount] AS [totalStuCount], 
+    [VW_StrangeReportTotal].[approvalstatus] AS [approvalstatus], 
+    [VW_StrangeReportTotal].[y_approvalStatus] AS [y_approvalStatus], 
+    [VW_StrangeReportTotal].[y_strangeType] AS [y_strangeType], 
+    [VW_StrangeReportTotal].[strangeTypeName] AS [strangeTypeName], 
+    [VW_StrangeReportTotal].[y_subSchoolId] AS [y_subSchoolId], 
+    [VW_StrangeReportTotal].[y_inYear] AS [y_inYear], 
+    [VW_StrangeReportTotal].[schoolName] AS [schoolName], 
+    [VW_StrangeReportTotal].[y_nameabbreviation] AS [y_nameabbreviation]
+    FROM [dbo].[VW_StrangeReportTotal] AS [VW_StrangeReportTotal]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_Sts_News" EntityType="Self.VW_Sts_News" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_Sts_News].[id] AS [id], 
+    [VW_Sts_News].[y_type] AS [y_type], 
+    [VW_Sts_News].[y_subSchoolId] AS [y_subSchoolId], 
+    [VW_Sts_News].[y_title] AS [y_title], 
+    [VW_Sts_News].[y_content] AS [y_content], 
+    [VW_Sts_News].[y_appyname] AS [y_appyname], 
+    [VW_Sts_News].[y_appytime] AS [y_appytime], 
+    [VW_Sts_News].[y_hits] AS [y_hits], 
+    [VW_Sts_News].[y_usable] AS [y_usable], 
+    [VW_Sts_News].[y_subschoolcode] AS [y_subschoolcode], 
+    [VW_Sts_News].[y_subschoolname] AS [y_subschoolname]
+    FROM [dbo].[VW_Sts_News] AS [VW_Sts_News]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_StuInfo" EntityType="Self.VW_StuInfo" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_StuInfo].[id] AS [id], 
+    [VW_StuInfo].[y_name] AS [y_name], 
+    [VW_StuInfo].[y_stuNum] AS [y_stuNum], 
+    [VW_StuInfo].[y_examNum] AS [y_examNum], 
+    [VW_StuInfo].[y_sex] AS [y_sex], 
+    [VW_StuInfo].[y_inYear] AS [y_inYear], 
+    [VW_StuInfo].[y_cardId] AS [y_cardId], 
+    [VW_StuInfo].[y_majorId] AS [y_majorId], 
+    [VW_StuInfo].[y_subSchoolId] AS [y_subSchoolId], 
+    [VW_StuInfo].[y_stuStateId] AS [y_stuStateId], 
+    [VW_StuInfo].[y_politicsId] AS [y_politicsId], 
+    [VW_StuInfo].[y_nationId] AS [y_nationId], 
+    [VW_StuInfo].[y_img] AS [y_img], 
+    [VW_StuInfo].[y_tel] AS [y_tel], 
+    [VW_StuInfo].[y_mail] AS [y_mail], 
+    [VW_StuInfo].[y_address] AS [y_address], 
+    [VW_StuInfo].[y_registerState] AS [y_registerState], 
+    [VW_StuInfo].[y_isChangePlan] AS [y_isChangePlan], 
+    [VW_StuInfo].[y_changePlanId] AS [y_changePlanId], 
+    [VW_StuInfo].[y_loginName] AS [y_loginName], 
+    [VW_StuInfo].[y_password] AS [y_password], 
+    [VW_StuInfo].[y_stuStrange] AS [y_stuStrange], 
+    [VW_StuInfo].[y_isdel] AS [y_isdel], 
+    [VW_StuInfo].[y_classNum] AS [y_classNum], 
+    [VW_StuInfo].[schoolCode] AS [schoolCode], 
+    [VW_StuInfo].[schoolName] AS [schoolName], 
+    [VW_StuInfo].[stuStateName] AS [stuStateName], 
+    [VW_StuInfo].[y_stuStateCode] AS [y_stuStateCode], 
+    [VW_StuInfo].[nationName] AS [nationName], 
+    [VW_StuInfo].[politicsName] AS [politicsName], 
+    [VW_StuInfo].[y_majorLibId] AS [y_majorLibId], 
+    [VW_StuInfo].[y_stuTypeId] AS [y_stuTypeId], 
+    [VW_StuInfo].[y_eduTypeId] AS [y_eduTypeId], 
+    [VW_StuInfo].[majorName] AS [majorName], 
+    [VW_StuInfo].[majorCode] AS [majorCode], 
+    [VW_StuInfo].[y_stuYear] AS [y_stuYear], 
+    [VW_StuInfo].[stuTypeName] AS [stuTypeName], 
+    [VW_StuInfo].[y_stuTypeCode] AS [y_stuTypeCode], 
+    [VW_StuInfo].[eduTypeName] AS [eduTypeName], 
+    [VW_StuInfo].[y_eduTypeCode] AS [y_eduTypeCode], 
+    [VW_StuInfo].[majorLibraryName] AS [majorLibraryName], 
+    [VW_StuInfo].[majorLibraryCode] AS [majorLibraryCode], 
+    [VW_StuInfo].[y_StandardCode] AS [y_StandardCode], 
+    [VW_StuInfo].[subSchoolCode] AS [subSchoolCode], 
+    [VW_StuInfo].[y_birthday] AS [y_birthday], 
+    [VW_StuInfo].[y_isMoneyOk] AS [y_isMoneyOk], 
+    [VW_StuInfo].[y_applyOK] AS [y_applyOK], 
+    [VW_StuInfo].[y_ischeck] AS [y_ischeck], 
+    [VW_StuInfo].[y_degreeOK] AS [y_degreeOK], 
+    [VW_StuInfo].[y_graduationdata] AS [y_graduationdata], 
+    [VW_StuInfo].[y_graduationschool] AS [y_graduationschool], 
+    [VW_StuInfo].[y_registrationNum] AS [y_registrationNum], 
+    [VW_StuInfo].[y_postalcode] AS [y_postalcode], 
+    [VW_StuInfo].[y_foreignLanguageId] AS [y_foreignLanguageId], 
+    [VW_StuInfo].[y_recruitTypeId] AS [y_recruitTypeId], 
+    [VW_StuInfo].[y_professionTypeId] AS [y_professionTypeId], 
+    [VW_StuInfo].[y_cultureExtentId] AS [y_cultureExtentId], 
+    [VW_StuInfo].[y_examFeatureId] AS [y_examFeatureId], 
+    [VW_StuInfo].[y_foreignLanguageCode] AS [y_foreignLanguageCode], 
+    [VW_StuInfo].[y_foreignLanguageName] AS [y_foreignLanguageName], 
+    [VW_StuInfo].[y_cultureExtentCode] AS [y_cultureExtentCode], 
+    [VW_StuInfo].[y_cultureExtentName] AS [y_cultureExtentName], 
+    [VW_StuInfo].[y_professionTypeCode] AS [y_professionTypeCode], 
+    [VW_StuInfo].[y_professionTypeName] AS [y_professionTypeName], 
+    [VW_StuInfo].[y_recruitTypeCode] AS [y_recruitTypeCode], 
+    [VW_StuInfo].[y_recruitTypeName] AS [y_recruitTypeName], 
+    [VW_StuInfo].[y_ZJTD] AS [y_ZJTD], 
+    [VW_StuInfo].[y_examFeatureCode] AS [y_examFeatureCode], 
+    [VW_StuInfo].[y_examFeatureName] AS [y_examFeatureName], 
+    [VW_StuInfo].[y_TZF] AS [y_TZF], 
+    [VW_StuInfo].[y_nameabbreviation] AS [y_nameabbreviation], 
+    [VW_StuInfo].[y_formername] AS [y_formername], 
+    [VW_StuInfo].[y_studentType] AS [y_studentType], 
+    [VW_StuInfo].[y_realYear] AS [y_realYear], 
+    [VW_StuInfo].[y_isgraduate] AS [y_isgraduate], 
+    [VW_StuInfo].[y_isPay] AS [y_isPay], 
+    [VW_StuInfo].[y_graduateNumber] AS [y_graduateNumber], 
+    [VW_StuInfo].[isCheckForSchool] AS [isCheckForSchool], 
+    [VW_StuInfo].[y_bachelordegree] AS [y_bachelordegree], 
+    [VW_StuInfo].[isbachelorForcheck] AS [isbachelorForcheck], 
+    [VW_StuInfo].[y_bachelordegreeCheck] AS [y_bachelordegreeCheck], 
+    [VW_StuInfo].[y_examScore] AS [y_examScore], 
+    [VW_StuInfo].[y_origin] AS [y_origin], 
+    [VW_StuInfo].[y_degreeNum] AS [y_degreeNum], 
+    [VW_StuInfo].[y_scoreOk] AS [y_scoreOk], 
+    [VW_StuInfo].[subaddress] AS [subaddress], 
+    [VW_StuInfo].[subcontact] AS [subcontact], 
+    [VW_StuInfo].[subtel] AS [subtel], 
+    [VW_StuInfo].[y_IsWorking] AS [y_IsWorking], 
+    [VW_StuInfo].[y_cardType] AS [y_cardType], 
+    [VW_StuInfo].[y_parentCard1] AS [y_parentCard1], 
+    [VW_StuInfo].[y_parentCard2] AS [y_parentCard2], 
+    [VW_StuInfo].[y_parentName1] AS [y_parentName1], 
+    [VW_StuInfo].[y_parentName2] AS [y_parentName2], 
+    [VW_StuInfo].[y_parentCardType1] AS [y_parentCardType1], 
+    [VW_StuInfo].[y_parentCardType2] AS [y_parentCardType2], 
+    [VW_StuInfo].[y_ImgIsok] AS [y_ImgIsok]
+    FROM [dbo].[VW_StuInfo] AS [VW_StuInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_SubFeeBili" EntityType="Self.VW_SubFeeBili" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_SubFeeBili].[id] AS [id], 
+    [VW_SubFeeBili].[y_inYear] AS [y_inYear], 
+    [VW_SubFeeBili].[y_feeYear] AS [y_feeYear], 
+    [VW_SubFeeBili].[y_stuTypeId] AS [y_stuTypeId], 
+    [VW_SubFeeBili].[y_eduTypeId] AS [y_eduTypeId], 
+    [VW_SubFeeBili].[y_bili] AS [y_bili], 
+    [VW_SubFeeBili].[y_subSchoolId] AS [y_subSchoolId], 
+    [VW_SubFeeBili].[subSchoolName] AS [subSchoolName], 
+    [VW_SubFeeBili].[eduTypeName] AS [eduTypeName], 
+    [VW_SubFeeBili].[y_eduTypeCode] AS [y_eduTypeCode], 
+    [VW_SubFeeBili].[stuTypeName] AS [stuTypeName], 
+    [VW_SubFeeBili].[y_stuTypeCode] AS [y_stuTypeCode]
+    FROM [dbo].[VW_SubFeeBili] AS [VW_SubFeeBili]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_SubFeeSys" EntityType="Self.VW_SubFeeSys" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_SubFeeSys].[id] AS [id], 
+    [VW_SubFeeSys].[y_inYear] AS [y_inYear], 
+    [VW_SubFeeSys].[y_feeYear] AS [y_feeYear], 
+    [VW_SubFeeSys].[y_stuTypeId] AS [y_stuTypeId], 
+    [VW_SubFeeSys].[y_eduTypeId] AS [y_eduTypeId], 
+    [VW_SubFeeSys].[y_stuFee] AS [y_stuFee], 
+    [VW_SubFeeSys].[y_bookFee] AS [y_bookFee], 
+    [VW_SubFeeSys].[y_subSchoolId] AS [y_subSchoolId], 
+    [VW_SubFeeSys].[subSchoolName] AS [subSchoolName], 
+    [VW_SubFeeSys].[eduTypeName] AS [eduTypeName], 
+    [VW_SubFeeSys].[y_eduTypeCode] AS [y_eduTypeCode], 
+    [VW_SubFeeSys].[stuTypeName] AS [stuTypeName], 
+    [VW_SubFeeSys].[y_stuTypeCode] AS [y_stuTypeCode]
+    FROM [dbo].[VW_SubFeeSys] AS [VW_SubFeeSys]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_SubFeeTotal" EntityType="Self.VW_SubFeeTotal" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_SubFeeTotal].[totalStuCount] AS [totalStuCount], 
+    [VW_SubFeeTotal].[noUpStuCount] AS [noUpStuCount], 
+    [VW_SubFeeTotal].[hasUpStuCount] AS [hasUpStuCount], 
+    [VW_SubFeeTotal].[totalFee] AS [totalFee], 
+    [VW_SubFeeTotal].[totalUpFee] AS [totalUpFee], 
+    [VW_SubFeeTotal].[totalFeeChae] AS [totalFeeChae], 
+    [VW_SubFeeTotal].[totalNeedUpFee] AS [totalNeedUpFee], 
+    [VW_SubFeeTotal].[y_subSchoolId] AS [y_subSchoolId], 
+    [VW_SubFeeTotal].[y_inYear] AS [y_inYear], 
+    [VW_SubFeeTotal].[y_feeYear] AS [y_feeYear], 
+    [VW_SubFeeTotal].[schoolName] AS [schoolName]
+    FROM [dbo].[VW_SubFeeTotal] AS [VW_SubFeeTotal]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_SubschoolAdmin" EntityType="Self.VW_SubschoolAdmin" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_SubschoolAdmin].[id] AS [id], 
+    [VW_SubschoolAdmin].[y_name] AS [y_name], 
+    [VW_SubschoolAdmin].[y_code] AS [y_code], 
+    [VW_SubschoolAdmin].[y_adminId] AS [y_adminId], 
+    [VW_SubschoolAdmin].[y_subSchoolId] AS [y_subSchoolId], 
+    [VW_SubschoolAdmin].[y_adminName] AS [y_adminName], 
+    [VW_SubschoolAdmin].[y_realName] AS [y_realName], 
+    [VW_SubschoolAdmin].[y_nameabbreviation] AS [y_nameabbreviation], 
+    [VW_SubschoolAdmin].[y_formername] AS [y_formername]
+    FROM [dbo].[VW_SubschoolAdmin] AS [VW_SubschoolAdmin]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_SubSchoolStuInfo" EntityType="Self.VW_SubSchoolStuInfo" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_SubSchoolStuInfo].[id] AS [id], 
+    [VW_SubSchoolStuInfo].[y_subSchoolId] AS [y_subSchoolId], 
+    [VW_SubSchoolStuInfo].[y_name] AS [y_name], 
+    [VW_SubSchoolStuInfo].[y_examNum] AS [y_examNum], 
+    [VW_SubSchoolStuInfo].[y_cardId] AS [y_cardId], 
+    [VW_SubSchoolStuInfo].[schoolName] AS [schoolName], 
+    [VW_SubSchoolStuInfo].[schoolCode] AS [schoolCode], 
+    [VW_SubSchoolStuInfo].[y_isdel] AS [y_isdel], 
+    [VW_SubSchoolStuInfo].[y_hide] AS [y_hide], 
+    [VW_SubSchoolStuInfo].[y_nameabbreviation] AS [y_nameabbreviation], 
+    [VW_SubSchoolStuInfo].[y_formername] AS [y_formername], 
+    [VW_SubSchoolStuInfo].[y_schooltype] AS [y_schooltype], 
+    [VW_SubSchoolStuInfo].[y_year] AS [y_year], 
+    [VW_SubSchoolStuInfo].[y_majorName] AS [y_majorName], 
+    [VW_SubSchoolStuInfo].[y_eduTypeName] AS [y_eduTypeName], 
+    [VW_SubSchoolStuInfo].[y_stuTypeName] AS [y_stuTypeName], 
+    [VW_SubSchoolStuInfo].[y_majorId] AS [y_majorId], 
+    [VW_SubSchoolStuInfo].[y_stuTypeId] AS [y_stuTypeId], 
+    [VW_SubSchoolStuInfo].[y_eduTypeId] AS [y_eduTypeId]
+    FROM [dbo].[VW_SubSchoolStuInfo] AS [VW_SubSchoolStuInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VW_TeachPlanDes" EntityType="Self.VW_TeachPlanDes" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_TeachPlanDes].[id] AS [id], 
+    [VW_TeachPlanDes].[y_teaPlanId] AS [y_teaPlanId], 
+    [VW_TeachPlanDes].[y_courseId] AS [y_courseId], 
+    [VW_TeachPlanDes].[y_courseTypeId] AS [y_courseTypeId], 
+    [VW_TeachPlanDes].[y_stuTime] AS [y_stuTime], 
+    [VW_TeachPlanDes].[y_score] AS [y_score], 
+    [VW_TeachPlanDes].[y_code] AS [y_code], 
+    [VW_TeachPlanDes].[courseName] AS [courseName], 
+    [VW_TeachPlanDes].[courseTypeName] AS [courseTypeName], 
+    [VW_TeachPlanDes].[y_courseTypeCode] AS [y_courseTypeCode], 
+    [VW_TeachPlanDes].[y_teaPlanName] AS [y_teaPlanName], 
+    [VW_TeachPlanDes].[y_term] AS [y_term]
+    FROM [dbo].[VW_TeachPlanDes] AS [VW_TeachPlanDes]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__YD_Sts_St__y_cul__2630A1B7" Association="Self.FK__YD_Sts_St__y_cul__2630A1B7">
+      <End Role="YD_Edu_CultureExtent" EntitySet="YD_Edu_CultureExtent" />
+      <End Role="YD_Sts_StuInfo_copy1" EntitySet="YD_Sts_StuInfo_copy1" />
+    </AssociationSet>
+    <AssociationSet Name="FK__YD_Sts_St__y_exa__2724C5F0" Association="Self.FK__YD_Sts_St__y_exa__2724C5F0">
+      <End Role="YD_Edu_ExamFeature" EntitySet="YD_Edu_ExamFeature" />
+      <End Role="YD_Sts_StuInfo_copy1" EntitySet="YD_Sts_StuInfo_copy1" />
+    </AssociationSet>
+    <AssociationSet Name="FK__YD_Sts_St__y_for__2818EA29" Association="Self.FK__YD_Sts_St__y_for__2818EA29">
+      <End Role="YD_Edu_ForeignLanguage" EntitySet="YD_Edu_ForeignLanguage" />
+      <End Role="YD_Sts_StuInfo_copy1" EntitySet="YD_Sts_StuInfo_copy1" />
+    </AssociationSet>
+    <AssociationSet Name="FK__YD_Sts_St__y_maj__2077C861" Association="Self.FK__YD_Sts_St__y_maj__2077C861">
+      <End Role="YD_Edu_Major" EntitySet="YD_Edu_Major" />
+      <End Role="YD_Sts_StuInfo_copy1" EntitySet="YD_Sts_StuInfo_copy1" />
+    </AssociationSet>
+    <AssociationSet Name="FK__YD_Sts_St__y_nat__24485945" Association="Self.FK__YD_Sts_St__y_nat__24485945">
+      <End Role="YD_Sts_Nation" EntitySet="YD_Sts_Nation" />
+      <End Role="YD_Sts_StuInfo_copy1" EntitySet="YD_Sts_StuInfo_copy1" />
+    </AssociationSet>
+    <AssociationSet Name="FK__YD_Sts_St__y_pol__253C7D7E" Association="Self.FK__YD_Sts_St__y_pol__253C7D7E">
+      <End Role="YD_Sts_Politics" EntitySet="YD_Sts_Politics" />
+      <End Role="YD_Sts_StuInfo_copy1" EntitySet="YD_Sts_StuInfo_copy1" />
+    </AssociationSet>
+    <AssociationSet Name="FK__YD_Sts_St__y_pro__290D0E62" Association="Self.FK__YD_Sts_St__y_pro__290D0E62">
+      <End Role="YD_Edu_ProfessionType" EntitySet="YD_Edu_ProfessionType" />
+      <End Role="YD_Sts_StuInfo_copy1" EntitySet="YD_Sts_StuInfo_copy1" />
+    </AssociationSet>
+    <AssociationSet Name="FK__YD_Sts_St__y_rec__2A01329B" Association="Self.FK__YD_Sts_St__y_rec__2A01329B">
+      <End Role="YD_Edu_RecruitType" EntitySet="YD_Edu_RecruitType" />
+      <End Role="YD_Sts_StuInfo_copy1" EntitySet="YD_Sts_StuInfo_copy1" />
+    </AssociationSet>
+    <AssociationSet Name="FK__YD_Sts_St__y_stu__226010D3" Association="Self.FK__YD_Sts_St__y_stu__226010D3">
+      <End Role="YD_Sts_StuStrange" EntitySet="YD_Sts_StuStrange" />
+      <End Role="YD_Sts_StuInfo_copy1" EntitySet="YD_Sts_StuInfo_copy1" />
+    </AssociationSet>
+    <AssociationSet Name="FK__YD_Sts_St__y_stu__2354350C" Association="Self.FK__YD_Sts_St__y_stu__2354350C">
+      <End Role="YD_Edu_StuState" EntitySet="YD_Edu_StuState" />
+      <End Role="YD_Sts_StuInfo_copy1" EntitySet="YD_Sts_StuInfo_copy1" />
+    </AssociationSet>
+    <AssociationSet Name="FK__YD_Sts_St__y_sub__216BEC9A" Association="Self.FK__YD_Sts_St__y_sub__216BEC9A">
+      <End Role="YD_Sys_SubSchool" EntitySet="YD_Sys_SubSchool" />
+      <End Role="YD_Sts_StuInfo_copy1" EntitySet="YD_Sts_StuInfo_copy1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_y_eduType" Association="Self.FK_y_eduType">
+      <End Role="YD_Edu_EduType" EntitySet="YD_Edu_EduType" />
+      <End Role="YD_Fee_AllBili" EntitySet="YD_Fee_AllBili" />
+    </AssociationSet>
+    <AssociationSet Name="FK_y_eduTypeId" Association="Self.FK_y_eduTypeId">
+      <End Role="YD_Edu_EduType" EntitySet="YD_Edu_EduType" />
+      <End Role="YD_Fee_SubFeeSys" EntitySet="YD_Fee_SubFeeSys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_y_majorid" Association="Self.FK_y_majorid">
+      <End Role="YD_Edu_Major" EntitySet="YD_Edu_Major" />
+      <End Role="YD_Fee_SubFeeSys" EntitySet="YD_Fee_SubFeeSys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_y_subSchoolId" Association="Self.FK_y_subSchoolId">
+      <End Role="YD_Sys_SubSchool" EntitySet="YD_Sys_SubSchool" />
+      <End Role="YD_Fee_SubFeeSys" EntitySet="YD_Fee_SubFeeSys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_Major_YD_Edu_EduType" Association="Self.FK_YD_Edu_Major_YD_Edu_EduType">
+      <End Role="YD_Edu_EduType" EntitySet="YD_Edu_EduType" />
+      <End Role="YD_Edu_Major" EntitySet="YD_Edu_Major" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_Major_YD_Edu_MajorLibrary" Association="Self.FK_YD_Edu_Major_YD_Edu_MajorLibrary">
+      <End Role="YD_Edu_MajorLibrary" EntitySet="YD_Edu_MajorLibrary" />
+      <End Role="YD_Edu_Major" EntitySet="YD_Edu_Major" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_Major_YD_Edu_StuType" Association="Self.FK_YD_Edu_Major_YD_Edu_StuType">
+      <End Role="YD_Edu_StuType" EntitySet="YD_Edu_StuType" />
+      <End Role="YD_Edu_Major" EntitySet="YD_Edu_Major" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_MajorTeachPlan_YD_Edu_Major" Association="Self.FK_YD_Edu_MajorTeachPlan_YD_Edu_Major">
+      <End Role="YD_Edu_Major" EntitySet="YD_Edu_Major" />
+      <End Role="YD_Edu_MajorTeachPlan" EntitySet="YD_Edu_MajorTeachPlan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_MajorTeachPlan_YD_Edu_TeachPlan" Association="Self.FK_YD_Edu_MajorTeachPlan_YD_Edu_TeachPlan">
+      <End Role="YD_Edu_TeachPlan" EntitySet="YD_Edu_TeachPlan" />
+      <End Role="YD_Edu_MajorTeachPlan" EntitySet="YD_Edu_MajorTeachPlan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_Score_YD_Edu_Course" Association="Self.FK_YD_Edu_Score_YD_Edu_Course">
+      <End Role="YD_Edu_Course" EntitySet="YD_Edu_Course" />
+      <End Role="YD_Edu_Score" EntitySet="YD_Edu_Score" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_Score_YD_Sts_StuInfo" Association="Self.FK_YD_Edu_Score_YD_Sts_StuInfo">
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+      <End Role="YD_Edu_Score" EntitySet="YD_Edu_Score" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_ScoreTest_YD_Edu_Course" Association="Self.FK_YD_Edu_ScoreTest_YD_Edu_Course">
+      <End Role="YD_Edu_Course" EntitySet="YD_Edu_Course" />
+      <End Role="YD_Edu_ScoreTest" EntitySet="YD_Edu_ScoreTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_ScoreTest_YD_Sts_StuInfo" Association="Self.FK_YD_Edu_ScoreTest_YD_Sts_StuInfo">
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+      <End Role="YD_Edu_ScoreTest" EntitySet="YD_Edu_ScoreTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_SmallPower_YD_Edu_Course" Association="Self.FK_YD_Edu_SmallPower_YD_Edu_Course">
+      <End Role="YD_Edu_Course" EntitySet="YD_Edu_Course" />
+      <End Role="YD_Edu_SmallPower" EntitySet="YD_Edu_SmallPower" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_SmallPower_YD_Edu_Major" Association="Self.FK_YD_Edu_SmallPower_YD_Edu_Major">
+      <End Role="YD_Edu_Major" EntitySet="YD_Edu_Major" />
+      <End Role="YD_Edu_SmallPower" EntitySet="YD_Edu_SmallPower" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_SmallPower_YD_Sys_SubSchool" Association="Self.FK_YD_Edu_SmallPower_YD_Sys_SubSchool">
+      <End Role="YD_Sys_SubSchool" EntitySet="YD_Sys_SubSchool" />
+      <End Role="YD_Edu_SmallPower" EntitySet="YD_Edu_SmallPower" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_TeachplanDes_YD_Edu_Course" Association="Self.FK_YD_Edu_TeachplanDes_YD_Edu_Course">
+      <End Role="YD_Edu_Course" EntitySet="YD_Edu_Course" />
+      <End Role="YD_Edu_TeachplanDes" EntitySet="YD_Edu_TeachplanDes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_TeachplanDes_YD_Edu_CourseType" Association="Self.FK_YD_Edu_TeachplanDes_YD_Edu_CourseType">
+      <End Role="YD_Edu_CourseType" EntitySet="YD_Edu_CourseType" />
+      <End Role="YD_Edu_TeachplanDes" EntitySet="YD_Edu_TeachplanDes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Edu_TeachplanDes_YD_Edu_TeachPlan" Association="Self.FK_YD_Edu_TeachplanDes_YD_Edu_TeachPlan">
+      <End Role="YD_Edu_TeachPlan" EntitySet="YD_Edu_TeachPlan" />
+      <End Role="YD_Edu_TeachplanDes" EntitySet="YD_Edu_TeachplanDes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Graduate_SampleExamScore_YD_Edu_Course" Association="Self.FK_YD_Graduate_SampleExamScore_YD_Edu_Course">
+      <End Role="YD_Edu_Course" EntitySet="YD_Edu_Course" />
+      <End Role="YD_Graduate_SampleExamScore" EntitySet="YD_Graduate_SampleExamScore" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuInfo_YD_Edu_CultureExtent" Association="Self.FK_YD_Sts_StuInfo_YD_Edu_CultureExtent">
+      <End Role="YD_Edu_CultureExtent" EntitySet="YD_Edu_CultureExtent" />
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuInfo_YD_Edu_ExamFeature" Association="Self.FK_YD_Sts_StuInfo_YD_Edu_ExamFeature">
+      <End Role="YD_Edu_ExamFeature" EntitySet="YD_Edu_ExamFeature" />
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuInfo_YD_Edu_ForeignLanguage" Association="Self.FK_YD_Sts_StuInfo_YD_Edu_ForeignLanguage">
+      <End Role="YD_Edu_ForeignLanguage" EntitySet="YD_Edu_ForeignLanguage" />
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuInfo_YD_Edu_Major" Association="Self.FK_YD_Sts_StuInfo_YD_Edu_Major">
+      <End Role="YD_Edu_Major" EntitySet="YD_Edu_Major" />
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuInfo_YD_Edu_ProfessionType" Association="Self.FK_YD_Sts_StuInfo_YD_Edu_ProfessionType">
+      <End Role="YD_Edu_ProfessionType" EntitySet="YD_Edu_ProfessionType" />
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuInfo_YD_Edu_RecruitType" Association="Self.FK_YD_Sts_StuInfo_YD_Edu_RecruitType">
+      <End Role="YD_Edu_RecruitType" EntitySet="YD_Edu_RecruitType" />
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuInfo_YD_Edu_StuState" Association="Self.FK_YD_Sts_StuInfo_YD_Edu_StuState">
+      <End Role="YD_Edu_StuState" EntitySet="YD_Edu_StuState" />
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuInfo_YD_Fee_StuFeeTb" Association="Self.FK_YD_Sts_StuInfo_YD_Fee_StuFeeTb">
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+      <End Role="YD_Fee_StuFeeTb" EntitySet="YD_Fee_StuFeeTb" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuInfo_YD_Graduate_StudentScore" Association="Self.FK_YD_Sts_StuInfo_YD_Graduate_StudentScore">
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+      <End Role="YD_Graduate_StudentScore" EntitySet="YD_Graduate_StudentScore" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuInfo_YD_Sts_Nation" Association="Self.FK_YD_Sts_StuInfo_YD_Sts_Nation">
+      <End Role="YD_Sts_Nation" EntitySet="YD_Sts_Nation" />
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuInfo_YD_Sts_Politics" Association="Self.FK_YD_Sts_StuInfo_YD_Sts_Politics">
+      <End Role="YD_Sts_Politics" EntitySet="YD_Sts_Politics" />
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuInfo_YD_Sts_StuStrange" Association="Self.FK_YD_Sts_StuInfo_YD_Sts_StuStrange">
+      <End Role="YD_Sts_StuStrange" EntitySet="YD_Sts_StuStrange" />
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuStrange_YD_Sts_StrangeType" Association="Self.FK_YD_Sts_StuStrange_YD_Sts_StrangeType">
+      <End Role="YD_Sts_StrangeType" EntitySet="YD_Sts_StrangeType" />
+      <End Role="YD_Sts_StuStrange" EntitySet="YD_Sts_StuStrange" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_StuStrange_YD_Sts_StuInfo" Association="Self.FK_YD_Sts_StuStrange_YD_Sts_StuInfo">
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+      <End Role="YD_Sts_StuStrange" EntitySet="YD_Sts_StuStrange" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_SubSchoolStuInfo_YD_Sys_SubSchool" Association="Self.FK_YD_Sts_SubSchoolStuInfo_YD_Sys_SubSchool">
+      <End Role="YD_Sys_SubSchool" EntitySet="YD_Sys_SubSchool" />
+      <End Role="YD_Sts_SubSchoolStuInfo" EntitySet="YD_Sts_SubSchoolStuInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sts_SubStuTemp_YD_Sys_SubSchool" Association="Self.FK_YD_Sts_SubStuTemp_YD_Sys_SubSchool">
+      <End Role="YD_Sys_SubSchool" EntitySet="YD_Sys_SubSchool" />
+      <End Role="YD_Sts_SubStuTemp" EntitySet="YD_Sts_SubStuTemp" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_SYS_A_REFERENCE_YD_SYS_R" Association="Self.FK_YD_SYS_A_REFERENCE_YD_SYS_R">
+      <End Role="YD_Sys_Role" EntitySet="YD_Sys_Role" />
+      <End Role="YD_Sys_Admin" EntitySet="YD_Sys_Admin" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sys_AdminCourseLink_YD_Edu_Course" Association="Self.FK_YD_Sys_AdminCourseLink_YD_Edu_Course">
+      <End Role="YD_Edu_Course" EntitySet="YD_Edu_Course" />
+      <End Role="YD_Sys_AdminCourseLink" EntitySet="YD_Sys_AdminCourseLink" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sys_AdminCourseLink_YD_Sys_Admin" Association="Self.FK_YD_Sys_AdminCourseLink_YD_Sys_Admin">
+      <End Role="YD_Sys_Admin" EntitySet="YD_Sys_Admin" />
+      <End Role="YD_Sys_AdminCourseLink" EntitySet="YD_Sys_AdminCourseLink" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sys_AdminSubLink_YD_Sys_Admin" Association="Self.FK_YD_Sys_AdminSubLink_YD_Sys_Admin">
+      <End Role="YD_Sys_Admin" EntitySet="YD_Sys_Admin" />
+      <End Role="YD_Sys_AdminSubLink" EntitySet="YD_Sys_AdminSubLink" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_SYS_D_REFERENCE_YD_SYS_A" Association="Self.FK_YD_SYS_D_REFERENCE_YD_SYS_A">
+      <End Role="YD_Sys_Admin" EntitySet="YD_Sys_Admin" />
+      <End Role="YD_Sys_DbLog" EntitySet="YD_Sys_DbLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_SYS_D_REFERENCE_YD_SYS_D" Association="Self.FK_YD_SYS_D_REFERENCE_YD_SYS_D">
+      <End Role="YD_Sys_DbLogType" EntitySet="YD_Sys_DbLogType" />
+      <End Role="YD_Sys_DbLog" EntitySet="YD_Sys_DbLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_SYS_P_REFERENCE_YD_SYS_M" Association="Self.FK_YD_SYS_P_REFERENCE_YD_SYS_M">
+      <End Role="YD_Sys_Module" EntitySet="YD_Sys_Module" />
+      <End Role="YD_Sys_Power" EntitySet="YD_Sys_Power" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_SYS_P_REFERENCE_YD_SYS_R" Association="Self.FK_YD_SYS_P_REFERENCE_YD_SYS_R">
+      <End Role="YD_Sys_Role" EntitySet="YD_Sys_Role" />
+      <End Role="YD_Sys_Power" EntitySet="YD_Sys_Power" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sys_PrintCss_YD_Sys_PrintTemplate1" Association="Self.FK_YD_Sys_PrintCss_YD_Sys_PrintTemplate1">
+      <End Role="YD_Sys_PrintTemplate" EntitySet="YD_Sys_PrintTemplate" />
+      <End Role="YD_Sys_PrintCss" EntitySet="YD_Sys_PrintCss" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sys_SubSchool_YD_Graduate_Bachelor" Association="Self.FK_YD_Sys_SubSchool_YD_Graduate_Bachelor">
+      <End Role="YD_Sys_SubSchool" EntitySet="YD_Sys_SubSchool" />
+      <End Role="YD_Graduate_Bachelor" EntitySet="YD_Graduate_Bachelor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sys_SubSchool_YD_Graduate_StudentApply" Association="Self.FK_YD_Sys_SubSchool_YD_Graduate_StudentApply">
+      <End Role="YD_Sys_SubSchool" EntitySet="YD_Sys_SubSchool" />
+      <End Role="YD_Graduate_StudentApply" EntitySet="YD_Graduate_StudentApply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_Sys_SubSchool_YD_Sts_StuInfo" Association="Self.FK_YD_Sys_SubSchool_YD_Sts_StuInfo">
+      <End Role="YD_Sys_SubSchool" EntitySet="YD_Sys_SubSchool" />
+      <End Role="YD_Sts_StuInfo" EntitySet="YD_Sts_StuInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_TeaPlan_Class_YD_Edu_Major" Association="Self.FK_YD_TeaPlan_Class_YD_Edu_Major">
+      <End Role="YD_Edu_Major" EntitySet="YD_Edu_Major" />
+      <End Role="YD_TeaPlan_Class" EntitySet="YD_TeaPlan_Class" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_TeaPlan_Class_YD_Sys_SubSchool" Association="Self.FK_YD_TeaPlan_Class_YD_Sys_SubSchool">
+      <End Role="YD_Sys_SubSchool" EntitySet="YD_Sys_SubSchool" />
+      <End Role="YD_TeaPlan_Class" EntitySet="YD_TeaPlan_Class" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_TeaPlan_Class_YD_TeaPlan_Templet" Association="Self.FK_YD_TeaPlan_Class_YD_TeaPlan_Templet">
+      <End Role="YD_TeaPlan_Templet" EntitySet="YD_TeaPlan_Templet" />
+      <End Role="YD_TeaPlan_Class" EntitySet="YD_TeaPlan_Class" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_TeaPlan_ClassCourseDes_YD_Edu_Course" Association="Self.FK_YD_TeaPlan_ClassCourseDes_YD_Edu_Course">
+      <End Role="YD_Edu_Course" EntitySet="YD_Edu_Course" />
+      <End Role="YD_TeaPlan_ClassCourseDes" EntitySet="YD_TeaPlan_ClassCourseDes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_TeaPlan_ClassCourseDes_YD_TeaPlan_Class" Association="Self.FK_YD_TeaPlan_ClassCourseDes_YD_TeaPlan_Class">
+      <End Role="YD_TeaPlan_Class" EntitySet="YD_TeaPlan_Class" />
+      <End Role="YD_TeaPlan_ClassCourseDes" EntitySet="YD_TeaPlan_ClassCourseDes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_TeaPlan_Templet_YD_Edu_Major" Association="Self.FK_YD_TeaPlan_Templet_YD_Edu_Major">
+      <End Role="YD_Edu_Major" EntitySet="YD_Edu_Major" />
+      <End Role="YD_TeaPlan_Templet" EntitySet="YD_TeaPlan_Templet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_TeaPlan_TempletCourseDes_YD_Edu_Course" Association="Self.FK_YD_TeaPlan_TempletCourseDes_YD_Edu_Course">
+      <End Role="YD_Edu_Course" EntitySet="YD_Edu_Course" />
+      <End Role="YD_TeaPlan_TempletCourseDes" EntitySet="YD_TeaPlan_TempletCourseDes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YD_TeaPlan_TempletCourseDes_YD_TeaPlan_Templet" Association="Self.FK_YD_TeaPlan_TempletCourseDes_YD_TeaPlan_Templet">
+      <End Role="YD_TeaPlan_Templet" EntitySet="YD_TeaPlan_Templet" />
+      <End Role="YD_TeaPlan_TempletCourseDes" EntitySet="YD_TeaPlan_TempletCourseDes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_YT_Teacher_YD_Sys_SubSchool" Association="Self.FK_YT_Teacher_YD_Sys_SubSchool">
+      <End Role="YD_Sys_SubSchool" EntitySet="YD_Sys_SubSchool" />
+      <End Role="YT_Teacher" EntitySet="YT_Teacher" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

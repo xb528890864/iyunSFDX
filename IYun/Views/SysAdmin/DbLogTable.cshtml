@@ -1,0 +1,24 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<VW_DbLog>
+
+<table class="xx-table ydong-tab">
+    <tr>
+        <th>操作员</th>
+        <th>操作类型</th>
+        <th>操作时间</th>
+        <th>备注</th>
+    </tr>
+    @{
+        foreach (var ydSysAdmin in Model)
+        {
+            <tr>
+                <td>@ydSysAdmin.y_adminName</td>
+                <td>@ydSysAdmin.y_logType</td>
+                <td>@ydSysAdmin.y_time</td>
+                <td>@ydSysAdmin.y_remark</td>
+            </tr>
+        }
+    }
+</table>
+

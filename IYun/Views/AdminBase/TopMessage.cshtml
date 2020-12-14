@@ -1,0 +1,76 @@
+﻿<link href="~/Content/aceadmin/assets/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/themes/TopMessage.css" rel="stylesheet" />
+<script src="~/Content/EasyUI-1.4/locale/easyui-lang-zh_CN.js"></script>
+<script>
+    function jumpRight(url, moduleName) {
+        var frames = window.parent.window.document.getElementById("main");
+        frames.contentWindow.addTabs(url, moduleName);
+        var rightIframe = parent.frames['main'].document;
+        $("#topMessage", rightIframe).css("display", "none");
+        $("#topUser", rightIframe).css("display", "none");
+    }
+</script>
+
+
+
+<ul class="tb-drop" id="topMessage" style="display: none">
+    <li class="tb-head">
+        <i class="fa fa-exclamation-triangle"></i>
+        通知
+    </li>
+
+    @*<li>
+        <a href="javascript:jumpRight('/MallAdmin/Order/?type=needSendOut','需发货订单管理*')">
+
+            <span class="tb-left">
+                <i class="tb-btn1 fa fa-comment"></i>
+                需发货订单
+            </span>
+            @if (orderTol != 0)
+            {
+                <span class="tb-num">+@orderTol</span>
+            }
+        </a>
+    </li>
+    <li>
+        <a href="javascript:jumpRight('/MallAdmin/ReturnHand/?type=needHand','需处理售后管理*')">
+
+            <span class="tb-left">
+                <i class="tb-btn2 fa fa-shopping-cart"></i>
+                需处理退货申请
+            </span>
+            @if (returnTol != 0)
+            {
+                <span style="background:#82AF6F;" class="tb-num">+@returnTol</span>
+            }
+        </a>
+    </li>
+    <li>
+        <a href="javascript:jumpRight('/MallAdmin/Evaluation/?type=needHand','需处理评价管理*')">
+
+            <span class="tb-left">
+                <i class="tb-btn3 fa fa-twitter"></i>
+                需处理评论
+            </span>
+            @if (evalTol != 0)
+            {
+                <span class="tb-num">+@evalTol</span>
+            }
+        </a>
+    </li>*@
+</ul>
+<ul class="tb-drop2" id="topUser" style="display: none">
+    <li>
+        <a href="javascript:jumpRight('/AdminBase/UpdatePwd','修改密码*')">
+            <i class="tb-icon fa fa-user"></i>
+            修改密码
+        </a>
+    </li>
+    <li class="tb-line"></li>
+    <li>
+        <a href="/AdminBase/Exit">
+            <i class="tb-icon fa fa-power-off"></i>
+            退出
+        </a>
+    </li>
+</ul>

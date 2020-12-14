@@ -1,0 +1,47 @@
+﻿@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<VW_MajorLiFeeSys>
+
+<table class="xx-table">
+    <tr>
+        <th style=" padding-left:25px; ">专业</th>
+        <th>入学年份</th>
+        <th>缴费年度</th>
+        <th>层次</th>
+        <th>学习形式</th>
+        <th>学费</th>
+        <th>教材费</th>
+        <th width="160">操作</th>
+    </tr>
+
+    @foreach (var smallpower in Model)
+    {
+        <tr>
+            <td style="padding-left:25px;">@smallpower.majorlibraryname</td>
+            <td>@smallpower.y_inYear</td>
+            <td>@smallpower.y_feeYear</td>
+            @{
+                if (string.IsNullOrWhiteSpace(smallpower.eduTypeName))
+                {
+                    <td>不限层次</td>
+                }
+                else
+                {
+                    <td>@smallpower.eduTypeName</td>
+                }
+                if (string.IsNullOrWhiteSpace(smallpower.stuTypeName))
+                {
+                    <td>不限形式</td>
+                }
+                else
+                {
+                    <td>@smallpower.stuTypeName</td>
+                }
+            } 
+            <td>@smallpower.y_StuFee</td>
+            <td>@smallpower.y_bookFee</td>
+            <td><a class="bfont2" href="javascript:delpower(@smallpower.id)">删除</a></td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,65 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>南昌师范学院后台</title>
+    <script src="~/Content/IYun/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/echarts-2.2.6/build/dist/echarts.js"></script>
+    <script>
+        // 路径配置
+        require.config({
+            paths: {
+                echarts: '../../Content/echarts-2.2.6/build/dist'
+            }
+        });
+        // 使用
+        require(
+            [
+                'echarts',
+                'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
+            ],
+            function (ec) {
+                // 基于准备好的dom，初始化echarts图表
+                var myChart = ec.init(document.getElementById('mainContent'));
+                var option = {
+                    tooltip: {
+                        show: true
+                    },
+                    legend: {
+                        data: ['商城订单量']
+                    },
+                    xAxis: [
+                        {
+                            type: 'category',
+                            data: ["1月份", "2月份", "3月份", "4月份", "5月份", "6月份", "7月份", "8月份", "9月份", "10月份", "11月份", "12月份"]
+                        }
+                    ],
+                    yAxis: [
+                        {
+                            type: 'value'
+                        }
+                    ],
+                    series: [
+                        {
+                            "name": "商城订单量",
+                            "type": "bar",
+                            "data": [52, 203, 405, 109, 210, 280, 52, 0, 0, 0, 0, 0]
+                        }
+                    ]
+                };
+                // 为echarts对象加载数据
+                myChart.setOption(option);
+            }
+        );
+    </script>
+</head>
+<body class="no-skin">
+    <div id="mainContent" style="height: 400px">
+
+
+    </div>
+</body>
+</html>

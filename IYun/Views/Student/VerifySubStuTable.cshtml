@@ -1,0 +1,71 @@
+﻿@using IYun.Common
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YD_Sts_SubStuTemp>
+@{
+    foreach (var ydEduScoreTemp in Model)
+    {
+        <div class="xx-js">
+            @{
+                if (ydEduScoreTemp.y_name == "")
+                {
+                    <div class="x-js1">&nbsp;&nbsp;</div>
+                }
+                else
+                {
+                    <div class="x-js1">@ydEduScoreTemp.y_name</div>
+                }
+            }
+            <input type="hidden" class="id" value="@ydEduScoreTemp.id" />
+            <div class="td-drop jj2">
+                @{
+                    @*if (ydEduScoreTemp.y_name == "")
+                    {
+                        <span style="padding-left: 30px;">
+                            <b>姓名：</b>
+                            <input class="cx-inp name" style="border: solid 1px red; width: 100px" value="@ydEduScoreTemp.y_name" type="text" >
+                        </span>
+                    }
+                    else
+                    {*@
+                        <span style="padding-left: 30px;">
+                            <b>姓名：</b>
+                            <input class="cx-inp name" style="width: 100px" value="@ydEduScoreTemp.y_name" type="text" >
+                        </span>
+                    @*}*@
+                    @*if (ydEduScoreTemp.y_examNum == "")
+                    {
+                        <span style="padding-left: 30px;">
+                            <b>考生号：</b>
+                            <input class="cx-inp examNum" style="border: solid 1px red; width: 100px" value="@ydEduScoreTemp.y_examNum" type="text" >
+                            &nbsp;<font color="green">导入中已存在该考生号或者是数据库里已存在该考生号&nbsp;（<font color="blue">考生号必须唯一</font>）</font>
+                         </span>
+                    }
+                    else
+                    {*@
+                        <span style="padding-left: 30px;">
+                            <b>考生号：</b>
+                            <input class="cx-inp examNum" style="width: 100px" value="@ydEduScoreTemp.y_examNum" type="text" >
+                        </span>
+                    @*}*@
+                    if (ydEduScoreTemp.y_cardIdTemp == "-1")
+                    {
+                        <span style="padding-left: 30px;">
+                        <b>身份证：</b>
+                        <input class="cx-inp cardId" style="border: solid 1px red; width: 100px" value="@ydEduScoreTemp.y_cardId" type="text" >
+                            &nbsp;<font color="green">导入中已存在该身份证号或者是数据库里已存在该身份证号&nbsp;（<font color="blue">身份证号必须唯一</font>）</font> 
+                        </span>
+                    }
+                    else
+                    {
+                        <span style="padding-left: 30px;">
+                            <b>身份证：</b>
+                            <input class="cx-inp cardId" style="width: 100px" value="@ydEduScoreTemp.y_cardId" type="text" >
+                        </span>
+                    }
+                }
+            </div>
+            <a class="gr_edit" onclick="StudentInfoGetEdit(this);">展开</a>
+        </div>
+          }
+}

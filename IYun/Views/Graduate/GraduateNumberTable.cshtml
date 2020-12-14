@@ -1,0 +1,180 @@
+﻿@using System.Configuration
+@using IYun.Common
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YD_Sts_StuInfo>
+@{
+    var adminrole = ViewBag.adminrole;
+}
+<table class="xx-table">
+    <tr>
+        <label><input id="allstu" type="checkbox" onclick="checkboxAll(this)">全部选中</label>
+        <label><input id="allstuno" type="checkbox" onclick="checkboxAllNO(this)">全部取消</label>
+        <th style="padding-left: 25px;"><label>@*<input id="all" class="rad cktb zz8" type="checkbox">*@学号</label></th>
+        <th>考生号</th>
+        <th>毕业证号</th>
+        <th>姓名</th>
+        <th>学习中心</th>
+        <th>专业</th>
+        <th>入学年份</th>
+        <th>状态</th>
+
+    </tr>
+    @foreach (var student in Model)
+    {
+        <tr>
+            <td style="padding-left: 25px;">
+                <input data-id="@student.id"  type="checkbox" name="check" class="mycb" onclick="checkboxOnclick(this)"
+                       @if (student.Y_generateWhether == true) { Write("checked='checked'"); } />
+                @student.y_stuNum
+            </td>
+            <td>@student.y_examNum</td>
+            <td>@student.y_graduateNumber</td>
+            <td>@student.y_name</td>
+            <td>@student.YD_Sys_SubSchool.y_name</td>
+            <td>@student.YD_Edu_Major.y_name</td>
+            <td>@student.y_inYear</td>
+            <td>@student.YD_Edu_StuState.y_name</td>
+        </tr>
+    }
+</table>
+<script>
+    //全部选中本站点所有学生
+    function checkboxAll(checkbox) {
+        var inYear = $("#EnrollYear").val();
+        if (inYear == 0) {
+            alert("请选择年份");
+            return;
+        }
+        var SubSchool = $("#SubSchool").val();
+        var edutype = $("#EduType").val();
+        var majorLibrary = $("#MajorLibrary").val();
+        var namenumcard = $("input[name='namenumcard']").val();
+        if (checkbox.checked == true) {
+            $('#ajaxtable').fadeOut('10');
+            $('#loadingDiv').show();
+            $.ajax({
+                type: "POST",
+                url: "/Graduate/AllGradNumCheck",
+                data: {
+                    inYear: inYear,
+                    SubSchool: SubSchool,
+                    edutype: edutype,
+                    majorLibrary: majorLibrary,
+                    namenumcard: namenumcard
+                },
+                success: function (data) {
+                    if (data == "ok") {
+                        alert("设置成功");
+                        $("#searchForm").submit();
+                    } else {
+                        alert(data);
+                    }
+                    $('#ajaxtable').fadeIn('10');
+                    $('#loadingDiv').hide();
+                },
+                error: function () {
+                    $('#ajaxtable').fadeIn('10');
+                    $('#loadingDiv').hide();
+                    alert("未知错误！==");
+                }
+            });
+        }
+    }
+    //全部取消选中的本站点所有学生
+    function checkboxAllNO(checkbox) {
+        var inYear = $("#EnrollYear").val();
+        if (inYear == 0) {
+            alert("请选择年份");
+            return;
+        }
+        if (checkbox.checked == true) {
+            $('#ajaxtable').fadeOut('10');
+            $('#loadingDiv').show();
+            $.ajax({
+                type: "POST",
+                url: "/Graduate/AllGradNumCheckNo",
+                data: { inYear: inYear },
+                success: function (data) {
+                    if (data == "ok") {
+                        alert("取消成功");
+                        $("#searchForm").submit();
+                    } else {
+                        alert(data);
+                    }
+                    $('#ajaxtable').fadeIn('10');
+                    $('#loadingDiv').hide();
+                },
+                error: function () {
+                    $('#ajaxtable').fadeIn('10');
+                    $('#loadingDiv').hide();
+                    alert("未知错误！==");
+                }
+            });
+        }
+    }
+    //勾选学生或者取消学生
+    function checkboxOnclick(checkbox) {
+        var cbs = $(".mycb");
+        if (checkbox.checked == true) {
+            if (cbs.length <= 0) {
+                alert("请先选择学生");
+                return;
+            }
+            var ids = "";
+            for (var i = 0; i < cbs.length; i++) {
+                if (cbs[i].checked) {
+                    ids += $(cbs[i]).attr("data-id");
+                    if (i + 1 < cbs.length) {
+                        ids += ",";
+                    }
+                }
+            }
+            $.ajax({
+                type: "post",
+                url: "/Graduate/GradNumCheckOk",
+                data: {
+                    ids: ids
+                },
+                success: function (data) {
+                    if (data == "ok") {
+                    } else {
+                        alert(data);
+                    }
+                },
+                error: function () {
+                    alert("未知错误");
+                }
+            });
+        }
+        else {
+            if (cbs.length <= 0) {
+                alert("请先选择学生");
+                return;
+            }
+            var ids = "";
+            for (var i = 0; i < cbs.length; i++) {
+                ids += $(cbs[i]).attr("data-id");
+                if (i + 1 < cbs.length) {
+                    ids += ",";
+                }
+            }
+            $.ajax({
+                type: "post",
+                url: "/Graduate/GradNumCheckOkNo",
+                data: {
+                    ids: ids
+                },
+                success: function (data) {
+                    if (data == "ok") {
+                    } else {
+                        alert(data);
+                    }
+                },
+                error: function () {
+                    alert("未知错误");
+                }
+            });
+        }
+    }
+</script>

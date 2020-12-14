@@ -1,0 +1,36 @@
+﻿@using IYun.Common;
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YD_Graduate_EnglishScoreTemp>
+
+@{
+    foreach (var teachPlantemp in Model)
+    {
+        <div class="xx-js">
+            @{
+                if (teachPlantemp.y_stuname == "")
+                {
+                    <div class="x-js1">&nbsp;&nbsp;</div>
+                }
+                else
+                {
+                    <div class="x-js1">@teachPlantemp.y_stuname</div>
+                }
+            }
+
+            <div class="td-drop">
+                <span style="padding-left: 30px;"><b>考试时间：</b>@teachPlantemp.y_examtime</span>
+                <span style="padding-left: 30px;"><b>准考证号：</b>@teachPlantemp.y_admissionNum</span>
+                <span style="padding-left: 30px;"><b>姓名：</b>@teachPlantemp.y_stuname</span>
+                <span style="padding-left: 30px;"><b>专业：</b>@teachPlantemp.y_majorLibName</span>
+                <span style="padding-left: 30px;"><b>入学年度：</b>@teachPlantemp.y_inYear</span>
+                <span style="padding-left: 30px;"><b>身份证：</b>@teachPlantemp.y_cardId</span>
+                <span style="padding-left: 30px;"><b>主观分：</b>@teachPlantemp.y_subjectivitysore</span>
+                <span style="padding-left: 30px;"><b>总分：</b>@teachPlantemp.y_sumsore</span>
+                <span style="padding-left: 30px;"><b>结论：</b>@teachPlantemp.y_verdictname</span>
+            </div>
+            <a class="gr_edit" @*href="javascript:;"*@ onclick="StudentInfoGetEdit(this);">展开</a>
+
+        </div>
+                }
+}

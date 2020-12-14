@@ -1,0 +1,27 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YD_Sts_StuInfo>
+
+@{ Html.RenderPartial("StuRegistraTable",ViewData); }
+<div class="">
+    <span class="spanfysm">共 @Model.TotalPageCount 页 @Model.TotalItemCount 条记录，当前为第 @Model.CurrentPageIndex 页 共 @Model.PageSize 条记录</span>
+    <span class="spanfysm" style="margin-left: 70px;">
+        <select style="width: 90px;" id="select" onchange="change(this.options[this.options.selectedIndex].value)">
+            <option value="15" selected="selected">不选择</option>
+             <option value="1">1</option>
+            <option value="10">10</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="1000">1000</option>
+        </select>
+      </span>
+    @Ajax.Pager(Model, new PagerOptions {NumericPagerItemCount = 7, PageIndexParameterName = "id", PrevPageText = "上页", NextPageText = "下页", FirstPageText = "首页", LastPageText = "尾页", ContainerTagName = "ul", CssClass = "pagination", CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>", DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>", PagerItemTemplate = "<li>{0}</li>"}, new MvcAjaxOptions {UpdateTargetId = "ajaxtable", HttpMethod = "Post", DataFormId = "searchForm", LoadingElementId = "loadingDiv", OnBegin = "$('#ajaxtable').fadeOut('10')", OnComplete = "$('#ajaxtable').fadeIn('10')"}).AjaxOptions(a => a.SetUpdateTargetId("ajaxtable"))
+</div>
+@*data: $("#searchForm").serialize(),*@
+<script type="text/javascript">
+    function change(obj) {       
+        $.post("/Student/StuRegistra", {  num: obj }, function (data) {
+            $("#ajaxtable").html(data);
+        });
+    }
+</script>

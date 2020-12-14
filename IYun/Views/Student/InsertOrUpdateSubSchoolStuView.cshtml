@@ -1,0 +1,121 @@
+﻿@model IYun.Models.YD_Sts_SubSchoolStuInfo
+@using IYun.Object
+@using IYun.Common
+@using IYun.Models
+@{
+  Layout = null;
+  var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+  modulePowers = modulePowers ?? new List<ModulePower>();
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <title>考生管理</title>
+  <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+  <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+  <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+  <!--[ifltIE9]>
+      <script type="text/javascript" src="~/Views/SysAdmin/js/html5shiv.js"></script>
+  <![endif]-->
+  <!-- 使得ie678支持HTML5标签 -->
+  <!--[ifltIE10]> 
+      <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+  <![endif]-->
+  <!-- 使得ie6789支持CSS3样式 -->
+  <script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+  <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+  <script type="text/javascript">
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });
+
+  </script>
+</head>
+<body>
+  @Html.Action("Top", "AdminBase")
+  <div class="main center">
+    @Html.Partial("../AdminBase/PartialModuleView", "/student/SubSchoolStuInfo")
+    <div id="main-tr">
+      <div class="tjia"><span>编辑考生</span><a class="fhui" href="javascript:;" onclick="history.go(-1)">返回</a></div>
+      <form>
+        <table class="cx-table">
+          <tr>
+            <td class="td1">姓名</td>
+            <td><input class="cx-inp" name="y_name" value="@(Model.y_name??"")" id="name" /></td>
+            <td><input hidden="hidden" value="@(Model==null?0:Model.id)" id="id" /></td>
+          </tr>
+          <tr>
+            <td class="td1">年份</td>
+            <td>
+              @Html.Action("EnrollYear", "Helper", new HelperParameterM { name = "y_inYear", index = Model.y_year, className = "cx-inp", id = "year" })
+            </td>
+          </tr>
+          <tr>
+            <td class="td1">函授站</td>
+            <td>
+              @Html.Action("SubSchool", "Helper", new HelperParameterM { name = "y_subSchoolId", index = Model.y_subSchoolId, className = "cx-inp", id = "subSchool" })
+            </td>
+          </tr>
+          <tr>
+            <td class="td1">考生号</td>
+            <td><input class="cx-inp" name="y_examNum" value="@(Model.y_examNum??"")" id="examNum" /></td>
+          </tr>
+          <tr>
+            <td class="td1">身份证号</td>
+            <td><input class="cx-inp" name="y_cardId" value="@(Model.y_cardId??"")" id="cardId" /></td>
+          </tr>
+          <tr>
+            <td class="td1">&nbsp;</td>
+            <td><input class="cx-sub" type="button" onclick="save()" value="保存" /></td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
+  @Html.Action("Foot", "AdminBase")
+  <script>
+        function save() {
+            var id = $('#id').val();
+            var y_name = $('#name').val();
+            var y_year = $('#year').val();
+            var y_subSchoolId = $('#subSchool').val();
+            var y_examNum = $('#examNum').val();
+            var y_cardId = $('#cardId').val();
+            $.ajax({
+                type: "post",
+                url: "/Student/InsertOrUpdateSubSchoolStu",
+                data: {
+                    id: id,
+                    y_name: y_name,
+                    y_year: y_year,
+                    y_subSchoolId: y_subSchoolId,
+                    y_examNum: y_examNum,
+                    y_cardId: y_cardId,
+                    y_isdel: 1,
+                    y_hide: 1
+                },
+                success: function (data) {
+                    if (data.status == "ok") {
+                        alert("成功");
+                        window.location.href = '/Student/SubSchoolStuInfo';
+                    } else {
+                        alert(data.msg);
+                    }
+                },
+                error: function (msg) {
+                    alert("未知错误");
+                }
+            });
+        }
+  </script>
+</body>
+</html>

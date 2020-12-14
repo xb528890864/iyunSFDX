@@ -1,0 +1,39 @@
+﻿@using IYun.Models;
+@using IYun.Object
+@{
+    Layout = null;
+    var data = ViewData["data"] as List<YD_Sts_Politics>;
+    data = data ?? new List<YD_Sts_Politics>();
+    var para = ViewData["para"] as HelperParameterM;
+    para = para ?? new HelperParameterM();
+    if (string.IsNullOrWhiteSpace(para.className))
+    {
+        para.className = "dl-sel";                       //默认样式CLASS
+    }
+    if (string.IsNullOrWhiteSpace(para.id))
+    {
+        para.id = "Politics";                            //默认ID
+    }
+    if (string.IsNullOrWhiteSpace(para.name))
+    {
+        para.name = "Politics";                          //默认name
+    }
+    if (!para.index.HasValue)
+    {
+        para.index = 0;                                 //默认选中
+    }
+}
+<select class="@para.className" id="@para.id" name="@para.name" style="@para.style">
+    <option value="0">全部</option>
+    @foreach (var politics in data)
+    {
+        if (politics.id == para.index)
+        {
+            <option value='@politics.id' selected="selected">@politics.y_name</option>
+        }
+        else
+        {
+            <option value='@politics.id'>@politics.y_name</option>
+        }
+    }
+</select>

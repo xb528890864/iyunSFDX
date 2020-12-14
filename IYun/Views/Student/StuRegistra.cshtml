@@ -1,0 +1,413 @@
+﻿@using System.Configuration
+@using IYun.Models
+@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@model PagedList<YD_Sts_StuInfo>
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+     var ydadminrold = ViewBag.adminroleid;
+    
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css?v=1" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+        <script type="text/javascript" src="js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+        <script type="text/javascript" src="js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    @*<script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>*@
+    <script src="~/Content/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="~/Scripts/MvcPager.js"></script>
+    <script src="~/Content/manage/ComboboxBind.js?v=1"></script>
+
+    <script src="~/Content/EasyUI/easyloader.js"></script>
+    <link href="~/Content/EasyUI/combo.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/combobox.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/panel.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/textbox.css" rel="stylesheet" />
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });      
+    </script>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        @Html.Partial("../AdminBase/PartialModuleView", "/student/StuRegistra")
+        
+        <div id="main-tr" class="tb-chk">
+            <form id="searchForm" name="searchForm" method="post">
+            <div class="zc-head">
+                <div class="zc-inn">
+                    <span>入学年份</span>
+                    @Html.Action("EnrollYear", "Helper", new HelperParameterM {name = "inYear", style = "width:80px;"})
+                </div>
+                @*<div class="zc-inn">
+                    <span>学习形式</span>
+                    @Html.Action("StuType", "Helper", new HelperParameterM {name = "stuType", style = "width:80px;"})
+                </div>*@
+                @*<div class="zc-inn">
+                    <span>注册状态</span>
+                    <select class="cx-sel" name="registerState" style="width: 80px;">
+                        <option value="0">全部</option>
+                        <option value="1">已注册</option>
+                        <option value="2">未注册</option>
+                        <option value="3">注册待审核</option>
+                    </select>
+                </div>*@
+                <div class="zc-inn">
+                    <span>函授站</span>
+                    @Html.Action("SubSchool", "Helper", new HelperParameterM { name = "subSchool", className = "easyui-combobox" })
+                </div>
+                <div class="zc-inn">
+                    <span>层次</span>
+                    @Html.Action("EduType", "Helper", new HelperParameterM {name = "eduType", style = "width:80px;"})
+                </div>
+                <div class="zc-inn">
+                    <span>专业</span>
+                    @Html.Action("MajorLibrary", "Helper", new HelperParameterM {name = "MajorLibrary", className = "easyui-combobox" })
+                </div>
+                @*<div class="zc-inn">
+                    <span>学年</span>
+                    <select class="cx-sel" name="term" id="term" style="width: 60px;">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>*@
+                @*<div class="zc-inn">
+                    <span>学籍状态</span>
+                    @Html.Action("StuState", "Helper", new HelperParameterM {name = "stuState", id = "stuState", style = "width:100px;"})
+                </div>*@
+                <div class="zc-inn" style="display: none">
+                    <span>学费</span>
+                    <select class="cx-sel" name="money" id="money">
+                        <option value="-1">全部</option>
+                        <option value="0">已缴清费</option>
+                        <option value="1">未缴清费</option>
+                    </select>
+                </div>
+                <div class="zc-inn">
+                    <span>没有函授站</span>
+                    <select class="cx-sel" name="nosub" id="nosub" style="width: 100px;">
+                        <option value="0">不选择</option>
+                        <option value="1">没有函授站</option>
+                    </select>
+                </div>
+                    <div class="zc-inn">
+                        <span>姓名/考生号</span>
+                        <input type="text" name="name" class="cx-inp" style="width: 120px" />
+                    </div>
+                </div>
+                <div class="zc-head">
+                   
+                    @*<input style="margin-top: 10px; height: 32px; line-height: 30px; margin-left: 10px;" class="cx-sub" type="button" onclick="register()" value="全部注册"/>*@
+                    @*<a class="cx-sub" href="javascript:registerSome()" style="margin-top: 10px;  margin-left: 10px; height: 32px; line-height: 30px;">注册</a>
+            @{
+                if (ydadminrold != null && ydadminrold == 3 || ydadminrold == 1 ||ydadminrold==6)
+                {
+                    <a class="cx-sub" href="javascript:noregisterSome()" style="margin-top: 10px;  margin-left: 10px;height: 32px; line-height: 30px;">取消注册</a>
+                }
+            }*@
+                    <a class="cx-sub" href="javascript:DownStuRegistra()" style="margin-top: 10px; float: right; margin-left: 680px; margin-left: 10px; height: 32px; line-height: 30px;">数据导出</a>
+                    <input style="margin-top: 10px; height: 32px; line-height: 30px; float: right; margin-left: 0px;" class="cx-sub" type="button" onclick="guolv()" value="查找" />
+                    <div class="show-bg"></div>
+                </div>
+             </form>
+                   
+            <div id="loadingDiv" style="display:none"><img src="~/Content/images/loading.gif" /></div>
+            <div id="ajaxtable">
+                @Html.Partial("StuRegistraList", Model, ViewData)
+            </div>
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+</body>
+</html>
+<script>
+    function guolv() {
+        $("#searchForm").attr("action", "/Student/StuRegistra");
+        $("#searchForm").submit();
+    }
+    function register() {
+        $.ajax({
+            type: "POST",
+            url: "/Student/Register",
+            data: form2Json("searchForm"),
+            success: function (data) {
+                if (data == "ok") {
+                    alert("注册成功");
+                    location.reload();
+                } else {
+                    alert(data);
+                }
+            },
+            error: function (msg) { alert("未知错误！==" + msg); }
+        });
+
+    }
+    function form2Json(id) {
+        var arr = $("#" + id).serializeArray();
+        var jsonStr = "";
+        jsonStr += '{';
+        for (var i = 0; i < arr.length; i++) {
+            jsonStr += '"' + arr[i].name + '":"' + arr[i].value + '",';
+        }
+        jsonStr = jsonStr.substring(0, (jsonStr.length - 1));
+        jsonStr += '}';
+        var json = JSON.parse(jsonStr);
+        return json;
+    }
+    function registerSome() {
+        var cbs = $(".mycb");
+        if (cbs.length <= 0) {
+            alert("请先选择学生");
+            return;
+        }
+        var term = $("#term").val();
+        if (term == "") {
+            alert("未选择学年");
+            return;
+        }
+        var ids = "";
+        for (var i = 0; i < cbs.length; i++) {
+            if (cbs[i].checked) {
+                ids += $(cbs[i]).attr("data-id");
+                if (i + 1 < cbs.length) {
+                    ids += ",";
+                }
+            }
+        }
+        $.ajax({
+            type: "post",
+            url: "/Student/StuRegisterSome",
+            data: {
+                ids: ids,
+                term: term
+            },
+            success: function (data) {
+                if (data == "ok") {
+                    if (@ydadminrold != null && @ydadminrold == 4) {
+                        alert("注册申请成功");
+                        location.reload(true);
+                    } else {
+                        alert("注册成功");
+                        location.reload(true);
+                    }
+                    
+                    
+                }else {
+                    alert(data);
+                }
+            },
+            error: function () {
+                alert("未知错误");
+            }
+        });
+    }
+    function noregisterSome() {
+        var cbs = $(".mycb");
+        if (cbs.length <= 0) {
+            alert("请先选择学生");
+            return;
+        }
+        var term = $("#term").val();
+        if (term == "") {
+            alert("未选择学年");
+            return;
+        }
+        var ids = "";
+        for (var i = 0; i < cbs.length; i++) {
+            if (cbs[i].checked) {
+                ids += $(cbs[i]).attr("data-id");
+                if (i + 1 < cbs.length) {
+                    ids += ",";
+                }
+            }
+        }
+        $.ajax({
+            type: "post",
+            url: "/Student/StuRegisterSomeNo",
+            data: {
+                ids: ids,
+                term: term
+            },
+            success: function (data) {
+                if (data == "ok") {
+                    alert("取消注册成功");
+                    location.reload(true);
+                } else {
+                    alert(data);
+                }
+            },
+            error: function () {
+                alert("未知错误");
+            }
+        });
+    }
+    function DownStuRegistra() {
+
+        $.ajax({
+            type: "post",
+            url: "/Student/DownloadStuRegistra",
+            data: $("#searchForm").serialize(),
+            success: function (data) {
+                if (data.indexOf("xls") > 0) {
+                    location.href = data;
+                } else {
+                    eval(data);
+                }
+            },
+            error: function () {
+                alert("未知错误");
+            }
+        });
+    }
+
+    function yearchangeComple() {  //年度改变回调
+        SearchSchool();
+    }
+    function eduTypechangeComple() {   //层次改变回调
+        SearchMajorLibrary();
+    }
+    function schoolchangeComple() { //站点改变回调
+        SearchMajorLibrary();
+    }
+    function SearchSchool() {
+        var year = $('#EnrollYear').val();
+        //$('#SubSchool').attr("disabled", true);
+        $('#SubSchool').combobox("disable");
+        $.ajax({
+            url: '@Url.Action("GetSchoolByYear_Stu", "Helper")',
+            data: {
+                year: year
+            },
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                //$('#SubSchool').bindData(data, 'y_subSchoolId', 'schoolName');
+                //$('#SubSchool').attr("disabled", false);
+                LoadCombobox('#SubSchool', data, 'y_subSchoolId', 'schoolName');
+                SearchMajorLibrary();
+            },
+            error: function () {
+                //$('#SubSchool').attr("disabled", false);
+                $('#SubSchool').combobox("enable");
+            }
+        });
+    }
+    function SearchMajorLibrary() {
+        //var schoolId = $('#SubSchool').val();
+        var schoolId = $('#SubSchool').combobox('getValue');
+        var edutypeId = $('#EduType').val();
+        var year = $('#EnrollYear').val();
+        //$('#MajorLibrary').attr("disabled", true);
+        $('#MajorLibrary').combobox("disable");
+        $.ajax({
+            async: false,
+            url: '@Url.Action("GetFeeMajorLibrary_Stu", "Helper")',
+            data: {
+                schoolId: schoolId,
+                edutypeId: edutypeId,
+                year:year
+            },
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                //$('#MajorLibrary').attr("disabled", false);
+                //$('#MajorLibrary').bindData(data, 'y_majorLibId', 'majorLibraryName');
+                LoadCombobox('#MajorLibrary', data, 'y_majorLibId', 'majorLibraryName');
+            },
+            error: function () {
+                //$('#MajorLibrary').attr("disabled", false);
+                $('#MajorLibrary').combobox("enable");
+            }
+        });
+    }
+ 
+
+    //EasyUi
+    $(document).ready(function () {
+        //设置面板长度
+        $('select.easyui-combobox').attr("panelHeight", "400");
+        //设置面板宽度
+        $('select.easyui-combobox').css("width", "250px");
+
+        easyloader.css = false;
+
+        easyloader.load('combobox', function () { // 加载指定模块
+            $('select.easyui-combobox').combobox({
+                onHidePanel: function () {
+                    if (isNaN($(this).combobox('getValue'))) {
+                        var $this = $(this);
+
+                        var valueField = $this.combobox('options').valueField;
+                        var textField = $this.combobox('options').textField;
+
+                        var text = $this.combobox('getValue');
+                        var data = $this.combobox('getData');
+
+                        $.each(data, function (i, n) {
+                            if (eval('n.' + textField).indexOf(text) >= 0) {
+                                $this.combobox('setValue', eval('n.' + valueField));
+                                return false;
+                            }
+                        });
+
+                        if (isNaN($(this).combobox('getValue'))) {
+                            $this.combobox('setValue', 0);
+                        }
+
+                    }
+                }
+            });
+
+            $(".combo").click(function() {
+                if ($(this).prev().combobox("panel").is(":visible")) {
+                    //$(this).prev().combobox("hidePanel");
+                } else {
+                    $(this).prev().combobox("showPanel");
+                }
+            });
+
+           
+        });
+
+        easyloader.onLoad = function (name){
+            if (name.length == 1 &&name[0] == "combobox") {
+                    
+                //赋初始值 (赋值时会触发onchange事件)
+                @*$('#SubSchool').combobox('setValue', @school);
+                $('#Major').combobox('setValue', @major);*@
+                }
+        }
+    });
+</script>

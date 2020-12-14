@@ -1,0 +1,72 @@
+﻿@using System.Configuration
+@using IYun.Object
+@model List<IYun.Models.YD_Fee_StuFeeTb>
+@{
+    Layout = null;
+    var xinshen = ConfigurationManager.AppSettings["xinsheng"];
+    int edutypeid = ViewBag.edutypeid;
+    int majorliyid = ViewBag.majorliyid;
+    int stutypeid = ViewBag.stutypeid;
+}
+<table>
+    <thead>
+        <tr>
+            <th colspan="9">
+                <h1 style="font-weight: bold; text-align:center">@ConfigurationManager.AppSettings["SchoolTitle"]成人高等学历教育已注册学生名册</h1>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <h4>年级:@xinshen</h4>
+            </th>
+            <th colspan="2">
+                <h5>
+                    层次:
+                    @Html.Action("EduType", "Helper", new HelperParameterM { style = "width:80px;", index = edutypeid })
+                </h5>
+            </th>
+            <th colspan="2">
+                <h5>
+                    专业:
+                    @Html.Action("MajorLibrary", "Helper", new HelperParameterM { style = "width:80px;", index = majorliyid })
+                </h5>
+            </th>
+            <th colspan="2">
+                <h5>
+                    学习形式:
+                    @Html.Action("StuType", "Helper", new HelperParameterM { style = "width:80px;", index = stutypeid })
+                </h5>
+            </th>
+            <th colspan="2">
+                <h4>注册人数:@ViewBag.count </h4>
+            </th>
+        </tr>
+        <tr>
+            <td style="width: 15%">考生号</td>
+            <td style="width: 15%">学号</td>
+            <td style="width: 12%">姓名</td>
+            <td style="width: 10%">性别</td>
+            <td style="width: 10%">身份证</td>
+            <td style="width: 10%">联系电话</td>
+            <td style="width: 10%">联系地址</td>
+            <td style="width: 10%">所属函授站</td>
+            <td style="width: 10%">备注</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.y_examNum</td>
+                <td>@item.y_stuNum</td>
+                <td>@item.y_name</td>
+                <td>@Html.Raw(item.y_sex == 1 ? "女" : "男")</td>
+                <td>@item.y_cardId</td>
+                <td>@item.y_tel</td>
+                <td>@item.y_address</td>
+                <td>@item.schoolName</td>
+                <td>&nbsp;</td>
+            </tr>
+        }
+    </tbody>
+</table>

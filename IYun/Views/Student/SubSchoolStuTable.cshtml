@@ -1,0 +1,47 @@
+﻿@using System.Configuration
+@using IYun.Common
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<VW_SubSchoolStuInfo>
+@{
+    var schoolname = ConfigurationManager.AppSettings["SchoolName"];
+    var adminrole = ViewBag.adminrole;
+}
+
+<table class="xx-table">
+    <tr>
+        <th style="padding-left:25px; ">姓名</th>
+        <th>年份</th>
+        <th>函授站</th>
+        <th>考生号</th>
+        <th>身份证号</th>
+       
+        <th width="160">操作</th>
+    </tr>
+
+    @foreach (VW_SubSchoolStuInfo student in Model)
+    {
+        <tr>
+            <td style="padding-left:25px;">@student.y_name</td>
+            <td>@student.y_year</td>
+            @if (schoolname == ComEnum.SchoolName.JXLG.ToString())
+            {
+                <td>@student.y_nameabbreviation</td>
+            }
+            else
+            {
+                <td>@student.schoolName</td>
+            }
+            <td>@student.y_examNum</td>
+            <td>@student.y_cardId</td>
+            
+            <td>
+                @if (adminrole != 4)
+                {
+                    <a class="bfont2" href="/student/InsertOrUpdateSubSchoolStuView/@student.id">修改</a>
+                }
+                <a class="bfont2" href="javascript:delstu(@student.id)">删除</a>
+            </td>
+        </tr>
+    }
+</table>

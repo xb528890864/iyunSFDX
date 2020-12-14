@@ -1,0 +1,41 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@using IYun.Object
+@model PagedList<YD_TeaPlan_TempletCourseDes>
+
+@{
+
+
+}
+<table class="xx-table ydong-tab">
+    <tr>
+        <th>课程类别</th>
+        <th>课程名称</th>
+        <th>学期</th>
+        <th>自学</th>
+        <th>面授</th>
+        <th>作业</th>
+        <th>是否主干课程</th>
+        <th>操作</th>
+    </tr>
+    @{
+        if (Model!=null) { 
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@CourseType2.CourseTypeName(item.y_courseType) </td>
+                <td>@item.YD_Edu_Course.y_name</td>
+                <td>@item.y_team</td>
+                <td>@item.y_selfPeriod</td>
+                <td>@item.y_teaPeriod</td>
+                <td>@item.y_taskPeriod</td>
+                <td>@(item.y_isMain == false ? "否" : "是") </td>
+                <td><a class="bfont2" href="/TeaPlan/TeaPlanTempletDesEditPage/?id=@item.id">修改</a> <a class="bfont2" href="javascript:deleteSubSchool(@item.id)">删除</a></td>
+
+            </tr>
+        }
+        }
+
+
+    }
+</table>

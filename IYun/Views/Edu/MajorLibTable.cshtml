@@ -1,0 +1,41 @@
+﻿@using System.Configuration
+@using IYun.Common
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@using NPOI.OpenXml4Net.OPC
+@model PagedList<VW_Major>
+
+<table class="xx-table ydong-tab">
+    <tr>
+        <th>专业</th>
+        @if (ComEnum.SchoolName.DHLGDX.ToString() == ConfigurationManager.AppSettings["SchoolName"].ToString())
+        {
+            <th>专业代码</th>
+        }
+        <th>层次</th>
+        <th>学习形式</th>
+        <th>学制</th>
+        <th>缴费金额</th>
+        @*<th>操作</th>*@
+    </tr>
+    @{
+        foreach (var ydSysAdmin in Model)
+        {
+    <tr>
+        <td>@ydSysAdmin.majorLibraryName</td>
+        @if (ComEnum.SchoolName.DHLGDX.ToString() == ConfigurationManager.AppSettings["SchoolName"].ToString())
+        {
+            <td>@ydSysAdmin.y_StandardCode</td>
+        }
+        <td>@ydSysAdmin.eduTypeName</td>
+        <td>@ydSysAdmin.stuTypeName</td>
+        <td>@ydSysAdmin.y_stuYear</td>
+        <td>@ydSysAdmin.y_needFee</td>
+        @*<td><a class="bfont2" href="/Edu/majorlibEditPage/@ydSysAdmin.id">修改</a>
+        <a class="bfont2" href="javascript:deletemajorlib(@ydSysAdmin.id)">删除</a></td>*@
+    </tr>
+        }
+    }
+
+</table>
+

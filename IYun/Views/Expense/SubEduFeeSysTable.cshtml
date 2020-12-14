@@ -1,0 +1,45 @@
+﻿@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@using System.Configuration
+@using IYun.Common
+@model PagedList<YD_Fee_SubFeeSys>
+@{
+    var schoolname = ConfigurationManager.AppSettings["SchoolName"];
+}
+
+<table class="xx-table">
+    <tr>
+        <th style="padding-left:25px;">函授站</th>
+        <th>层次</th>
+        <th>专业</th>
+        <th>学费</th>
+        <th width="160">操作</th>
+    </tr>
+
+    @foreach (var smallpower in Model)
+    {
+        <tr>
+            @if (schoolname == ComEnum.SchoolName.JXLG.ToString())
+            {
+                <td style="padding-left:25px;">@smallpower.YD_Sys_SubSchool.y_nameabbreviation</td>
+            }
+            else
+            {
+                <td style="padding-left:25px;">@smallpower.YD_Sys_SubSchool.y_name</td>
+            }
+         
+            <td>@smallpower.YD_Edu_EduType.y_name</td>
+            @if (smallpower.y_majorid == null)
+            {
+                <td>不限专业</td>
+            }
+            else
+            {
+                <td>@smallpower.YD_Edu_Major.YD_Edu_MajorLibrary.y_name</td>
+            }
+            <td>@smallpower.y_StuFee</td>
+            <td><a class="bfont2" href="javascript:delpower(@smallpower.id)">删除</a></td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,38 @@
+﻿@using IYun.Controllers
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YD_Edu_Major>
+@{
+    int adminId = Convert.ToInt32(ViewData["adminId"]);
+}
+<table class="xx-table ydong-tab">
+    <tr>
+        <th>分配</th>
+        <th>专业</th>
+        <th>学习形式</th>
+        <th>培养层次</th>
+    </tr>
+    @{
+        foreach (var ydSysAdmin in Model)
+        {
+            <tr class="major">
+                <td>
+                    @{
+                        if (AdminBaseController.IsAdminMajorLink(adminId, ydSysAdmin.id))
+                        {
+                            <input class="cb" checked="checked" type="checkbox"/>
+                        }
+                        else
+                        {
+                            <input class="cb" type="checkbox"/>
+                        }
+                    }
+                    <input class="id" type="hidden" value="@ydSysAdmin.id"/>
+                </td>
+                <td>@ydSysAdmin.YD_Edu_MajorLibrary.y_name</td>
+                <td>@ydSysAdmin.YD_Edu_StuType.y_name</td>
+                <td>@ydSysAdmin.YD_Edu_EduType.y_name</td>
+            </tr>
+        }
+    }
+</table>

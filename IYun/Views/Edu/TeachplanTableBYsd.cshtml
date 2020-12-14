@@ -1,0 +1,60 @@
+﻿@using System.Configuration
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<VW_MajorTeachPlanDes>
+
+<table class="xx-table ydong-tab">
+    <tr>
+        <th style="padding-left:30px; width:250px;">课程名称</th>
+        <th>选修/必修</th>
+        <th>学期</th>
+        <th>学时</th>
+        <th>及格分数</th>
+        <th>操作</th>
+    </tr>
+    @{
+        foreach (var ydSysAdmin in Model)
+        {
+            <tr>
+                <td style="padding-left:30px;">
+                    @ydSysAdmin.y_coursename
+                </td>
+                <td>
+                    @ydSysAdmin.y_coursetypename
+                </td>
+                <td>
+                    @ydSysAdmin.y_term
+                </td>
+                <td>@ydSysAdmin.y_stuTime</td>
+                <td>
+                    @ydSysAdmin.y_score
+                </td>
+                <td><a class="bfont2" href="/Edu/TeachPlanDesEditPage/@ydSysAdmin.y_teachPlanId">修改</a><a class="bfont2" href="javascript:teachPlanDesDelete(@ydSysAdmin.y_teachPlanId)">删除</a></td>
+            </tr>
+        }
+    }
+</table>
+<script>
+    function teachPlanDesDelete(id) {
+        if (confirm("确认删除此信息？")) {
+            $.ajax({
+                type: "post",
+                url: "/Edu/teachPlanDesDelete",
+                data: {
+                    id: id
+                },
+                success: function (data) {
+                    if (data == "ok") {
+                        location.reload();
+                    } else {
+                        alert(data);
+                    }
+                },
+                error: function (msg) {
+                    alert("未知错误");
+                }
+            });
+        }
+    }
+
+</script>

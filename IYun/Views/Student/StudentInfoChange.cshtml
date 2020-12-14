@@ -1,0 +1,257 @@
+﻿@using System.Configuration
+@using IYun.Common
+@using IYun.Models
+@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@model PagedList<VW_Strange>
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+     var man = (int)SexEnum.Man;
+    var woman = (int)SexEnum.WoMan;
+}
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <scripttype="text/javascript" src="js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    @*<script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>*@
+    <script src="~/Content/IYun/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="~/Scripts/MvcPager.js"></script>
+    <script type="text/javascript">
+        EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });
+
+    </script>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        <div id="main-tl">
+            <div class="left-t">学籍管理</div>
+            <div class="left-c">
+                @{
+                    foreach (var modulePower in modulePowers)
+                    {
+                        if (modulePower.y_url.ToLower() == "/Student/StudentInfoChange".ToLower())
+                        {
+                            <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                        else
+                        {
+                            <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div id="main-tr">
+            <div class="ydong-t">
+                <a href="/Student/StudentInfoChangeAll">批量待处理</a>
+                <a class="on" href="#">待处理</a>
+                <a href="/Student/StudentInfoChangeB">已通过</a>
+                <a href="/Student/StudentInfoChangeC">已拒绝</a>
+                <div class="nava1">
+                    <a class="nava2" href="javascript:;" style="height: 32px; line-height: 30px; float: right; margin: 10px 12px 0 0; behavior: url(../../Content/manage/style/js/pie.htc); position: relative; z-index: 2; cursor: pointer; background: #1ec679; color: #fff; padding: 0 15px; height: 30px;">查询</a>
+                    <div class="show-bg"></div>
+                    <div class="show-c">
+                        <form action="/Student/StudentInfoChange" id="searchForm" method="post" name="form1">
+                            <div class="tbt">查询学生</div>
+                            <a class="close close8" href="javascript:;"></a>
+                            <table class="cx-table">
+                                <tr>
+                                    <td class="td1">姓名</td>
+                                    <td><input type="text" name="name" class="cx-inp" /></td>
+                                </tr>
+                                <tr>
+                                    <td class="td1">性别</td>
+                                    <td>
+                                        <select name="sex" class="cx-sel">
+                                            <option value="">不限</option>
+                                            <option value="@man">男</option>
+                                            <option value="@woman">女</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td1">学籍状态</td>
+                                    <td>
+                                        @Html.Action("StuState", "Helper")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td1">身份证</td>
+                                    <td><input name="card" type="text" class="cx-inp" /></td>
+                                </tr>
+                                <tr>
+                                    <td class="td1">出生日期</td>
+                                    <td><input name="birthday" type="text" class="cx-inp" /></td>
+                                </tr>
+                                <tr>
+                                    <td class="td1">入学学期</td>
+                                    <td>
+                                        @Html.Action("EnrollYear", "Helper")
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="td1">学习中心</td>
+                                    <td>
+                                        @Html.Action("SubSchool", "Helper")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td1">专业</td>
+                                    <td>
+                                        @Html.Action("MajorLibrary", "Helper")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td1">专业层次</td>
+                                    <td>
+                                        @Html.Action("EduType", "Helper")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td1">学习形式</td>
+                                    <td>
+                                        @Html.Action("StuType", "Helper")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td1">电话</td>
+                                    <td><input name="tel" type="text" class="cx-inp"  onkeydown="butOnClick();"/></td>
+                                </tr>
+                                <tr>
+                                    <td class="td1">&nbsp;</td>
+                                    <td><a class="cx-set close" style="height: 40px; width: 60px;" href="javascript:;">取消</a><input class="cx-sub close" type="submit" value="确定" id="bsubmit"/></td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+                <div class="nava1">
+                    <a class="nava2" href="javascript:;" style="height: 32px; line-height: 30px; float: right; margin: 10px 12px 0 0; behavior: url(../../Content/manage/style/js/pie.htc); position: relative; z-index: 2; cursor: pointer; background: #1ec679; color: #fff; padding: 0 15px; height: 30px;">数据导出</a>
+                    <div class="show-bg"></div>
+                    <div class="show-c">
+                        <form action="/Student/DownloadStudentInfoChange/" id="loadForm" method="post">
+                            <div class="tbt">导出条件</div>
+                            <a class="close close8" href="javascript:;"></a>
+                            <table class="cx-table">
+                                <tr>
+                                    <td class="td1">姓名</td>
+                                    <td><input type="text" name="name" class="cx-inp" /></td>
+                                </tr>
+                                <tr>
+                                    <td class="td1">性别</td>
+                                    <td>
+                                        <select name="sex" class="cx-sel">
+                                            <option value="">不限</option>
+                                            <option value="@man">男</option>
+                                            <option value="@woman">女</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td1">学号</td>
+                                    <td>
+                                        <select name="stuNum" class="cx-sel">
+                                            <option value="">不限</option>
+                                            <option value="@man">男</option>
+                                            <option value="@woman">女</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td1">学籍状态</td>
+                                    <td>
+                                        @Html.Action("StuState", "Helper")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td1">身份证</td>
+                                    <td><input name="card" type="text" class="cx-inp" /></td>
+                                </tr>
+                                <tr>
+                                    <td class="td1">入学学期</td>
+                                    <td>
+                                        @Html.Action("EnrollYear", "Helper")
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="td1">学习中心</td>
+                                    <td>
+                                        @Html.Action("SubSchool2", "Helper")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td1">专业</td>
+                                    <td>
+                                        @Html.Action("MajorLibrary2", "Helper")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td1">学习形式</td>
+                                    <td>
+                                        @Html.Action("StuType", "Helper")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td1">异动形式</td>
+                                    <td>
+                                        @Html.Action("StrangeType", "Helper")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td1">电话</td>
+                                    <td><input name="tel" type="text" class="cx-inp" /></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="td1">&nbsp;</td>
+                                    <td><a class="cx-set close" href="javascript:;">取消</a><input class="cx-sub close" type="submit" value="导出"/></td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="loadingDiv" style="display:none"><img src="~/Content/images/loading.gif" /></div>
+            <div id="ajaxtable">
+                @Html.Partial("StrangeList", Model)
+            </div>
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+</body>
+</html>

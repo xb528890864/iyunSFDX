@@ -1,0 +1,383 @@
+﻿@using System.Configuration
+@using IYun.Common
+@using IYun.Models
+@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@model PagedList<VW_Strange>
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+    var adminroled = ViewBag.admin;
+}
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css?v=1" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <scripttype="text/javascript" src="js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    @*<script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>*@
+    <script src="~/Content/IYun/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="~/Scripts/MvcPager.js"></script>
+    <script src="~/Content/manage/ComboboxBind.js?v=1"></script>  
+    <script src="~/Content/EasyUI/easyloader.js"></script>
+    <link href="~/Content/EasyUI/combo.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/combobox.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/panel.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/textbox.css" rel="stylesheet" />
+    <script type="text/javascript">
+  
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });    
+    </script>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        @Html.Partial("../AdminBase/PartialModuleView", "/student/StudentInfoChangeAll")
+
+        <div id="main-tr">
+            <div class="ydong-t">
+                <a class="on" href="#">待处理</a>
+                @*<a href="/Student/StudentInfoChange">待处理</a>*@
+                <a href="/Student/StudentInfoChangeB">已通过</a>
+                <a href="/Student/StudentInfoChangeC">已拒绝</a>
+            </div>
+
+            <form id="searchForm" action="/Student/StudentInfoChangeAll" name="searchForm" method="post">
+                <div class="zc-head">
+                    <div class="zc-inn">
+                        <span>入学年份</span>
+                        @Html.Action("EnrollYear", "Helper", new HelperParameterM {style = "width:100px;font-size: 18px"})
+                    </div>
+                    @if (adminroled != 4)
+                    {
+                        <div class="zc-inn">
+                            <span>函授站</span>
+                            @Html.Action("SubSchool", "Helper", new HelperParameterM { className = "easyui-combobox" })
+                        </div>
+                    }
+                    <div class="zc-inn">
+                        <span>层次</span>
+                        @Html.Action("EduType", "Helper", new HelperParameterM { style = "width:100px;font-size: 18px" })
+                    </div>
+                    <div class="zc-inn">
+                        <span>专业</span>
+                        @Html.Action("MajorLibrary", "Helper", new HelperParameterM { className = "easyui-combobox" })
+                    </div>
+
+                    <div class="zc-inn">
+                        <span>异动形式</span>
+                        @Html.Action("StrangeType", "Helper", new HelperParameterM {style = "width:100px;font-size: 18px"})
+                    </div>
+                    <div class="zc-inn">
+                        <span>姓名/学号/考生号/身份证</span>
+                        <input type="text" name="namenumcard" class="cx-inp" style="width: 150px" />
+                    </div>
+                    <br />
+                </div>
+                <div class="zc-head">
+                    @if (adminroled != 4)
+                    {
+                        <a class="zc-sub2" style="height: 32px; line-height: 30px; float: right; margin: 10px 12px 0 0; behavior: url(../../Content/manage/style/js/pie.htc); position: relative; z-index: 2; cursor: pointer; background: #1ec679; color: #fff; padding: 0 15px; height: 30px;" href="javascript:pildelete()">批量删除</a>
+                        <a class="zc-sub2" style="height: 32px; line-height: 30px; float: right; margin: 10px 12px 0 0; behavior: url(../../Content/manage/style/js/pie.htc); position: relative; z-index: 2; cursor: pointer; background: #1ec679; color: #fff; padding: 0 15px; height: 30px;" href="javascript:nosubminb()">驳回</a>
+                        <a class="zc-sub2" style="height: 32px; line-height: 30px; float: right; margin: 10px 12px 0 0; behavior: url(../../Content/manage/style/js/pie.htc); position: relative; z-index: 2; cursor: pointer; background: #1ec679; color: #fff; padding: 0 15px; height: 30px;" href="javascript:subminb()">通过</a>
+                    }
+                    <a class="cx-sub" href="javascript:ExcelDown()" style="margin-top: 10px; height: 32px; line-height: 30px; float: right">数据导出</a>
+                    <input style="margin-top: 10px; height: 32px; line-height: 30px; float: right" class="cx-sub" type="button" onclick="gnov()" value="查找" />
+                </div>
+                <div class="show-bg"></div>
+            </form>
+            <div id="loadingDiv" style="display: none; height: 500px; text-align: center;">
+                <img src="~/Content/images/loading(1).gif" style="margin-top:30px;width: 600px;" />
+            </div>
+            <div id="ajaxtable">
+                @Html.Partial("AllStrangeList", Model)
+            </div>
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+</body>
+
+</html>
+
+<script>
+    function gnov() {
+        $('#searchForm').submit();
+    }
+    function ExcelDown() {
+        $.ajax({
+            type: "post",
+            url: "/Student/DownloadStudentInfoChange",
+            data: $("#searchForm").serialize(),
+            success: function (data) {
+                if (data.indexOf("xls") > 0) {
+                    location.href = data;
+                } else {
+                    alert(data);
+                }
+            },
+            error: function () {
+                alert("未知错误");
+            }
+        });
+    }
+    function pildelete() {
+        if (!confirm('确认批量删除异动记录?')) {
+            return;
+        }
+        $('#ajaxtable').fadeOut('10');
+        $('#loadingDiv').show();
+        var cbs = $(".mycb");
+        if (cbs.length <= 0) {
+            alert("请先选择学生");
+            return;
+        }
+        var ids = "";
+        for (var i = 0; i < cbs.length; i++) {
+            if (cbs[i].checked) {
+                ids += $(cbs[i]).attr("data-id");
+                if (i + 1 < cbs.length) {
+                    ids += ",";
+                }
+            }
+        }
+        $.ajax({
+            url: '/Student/BatchDeleteChange',
+            type: 'post',
+            data: {
+                ids: ids
+            },
+            dataType: 'json',
+            success: function (datab) {
+                $('#ajaxtable').fadeIn('10');
+                $('#loadingDiv').hide();
+                alert(datab.msg);
+                if (datab.isok) {
+                    $('#searchForm').submit();
+                }
+            }
+        });
+    }
+    function subminb() {
+        if (!confirm('确认提交审批结果?')) {
+            return;
+        }
+        $('#ajaxtable').fadeOut('10');
+        $('#loadingDiv').show();
+        var cbs = $(".mycb");
+        if (cbs.length <= 0) {
+            alert("请先选择学生");
+            return;
+        }
+        var ids = "";
+        for (var i = 0; i < cbs.length; i++) {
+            if (cbs[i].checked) {
+                ids += $(cbs[i]).attr("data-id");
+                if (i + 1 < cbs.length) {
+                    ids += ",";
+                }
+            }
+        }
+        $.ajax({
+            url: '/Student/StuStrangeApprovaAll',
+            type: 'post',
+            data: {
+                ids: ids
+            },
+            dataType: 'json',
+            success: function (datab) {
+                $('#ajaxtable').fadeIn('10');
+                $('#loadingDiv').hide();
+                alert(datab.msg);
+                if (datab.isok) {
+                    $('#searchForm').submit();
+                }
+            }
+        });
+    }
+    function nosubminb() {
+        if (!confirm('确认驳回审批结果?')) {
+            return;
+        }
+        $('#ajaxtable').fadeOut('10');
+        $('#loadingDiv').show();
+        var cbs = $(".mycb");
+        if (cbs.length <= 0) {
+            alert("请先选择学生");
+            return;
+        }
+        var ids = "";
+        for (var i = 0; i < cbs.length; i++) {
+            if (cbs[i].checked) {
+                ids += $(cbs[i]).attr("data-id");
+                if (i + 1 < cbs.length) {
+                    ids += ",";
+                }
+            }
+        }
+        $.ajax({
+            url: '/Student/NoStuStrangeApprovaAll',
+            type: 'post',
+            data: {
+                ids: ids
+            },
+            dataType: 'json',
+            success: function (datab) {
+                $('#ajaxtable').fadeIn('10');
+                $('#loadingDiv').hide();
+                alert(datab.msg);
+                if (datab.isok) {
+                    $('#searchForm').submit();
+                }
+            }
+        });
+    }
+
+
+    function yearchangeComple() {  //年度改变回调
+        SearchSchool();
+    }
+    function eduTypechangeComple() {   //层次改变回调
+        SearchMajorLibrary();
+    }
+    function schoolchangeComple() { //站点改变回调
+        SearchMajorLibrary();
+    }
+    function SearchSchool() {
+        var year = $('#EnrollYear').val();
+        //$('#SubSchool').attr("disabled", true);
+        $('#SubSchool').combobox("disable");
+        $.ajax({
+            url: '@Url.Action("GetSchoolByYear_Stu", "Helper")',
+            data: {
+                year: year
+            },
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                //$('#SubSchool').bindData(data, 'y_subSchoolId', 'schoolName');
+                //$('#SubSchool').attr("disabled", false);
+                LoadCombobox('#SubSchool', data, 'y_subSchoolId', 'schoolName');
+                SearchMajorLibrary();
+            },
+            error: function () {
+                //$('#SubSchool').attr("disabled", false);
+                $('#SubSchool').combobox("enable");
+            }
+        });
+    }
+    function SearchMajorLibrary() {
+        //var schoolId = $('#SubSchool').val();
+        var schoolId = $('#SubSchool').combobox('getValue');
+        if (@adminroled== 4)
+        {
+            schoolId = 0;
+        }
+        var edutypeId = $('#EduType').val();
+        var year = $('#EnrollYear').val();
+        //$('#MajorLibrary').attr("disabled", true);
+        $('#MajorLibrary').combobox("disable");
+        $.ajax({
+            async: false,
+            url: '@Url.Action("GetStuMajorLibrary_Stu", "Helper")',
+            data: {
+                schoolId: schoolId,
+                edutypeId: edutypeId,
+                year:year
+            },
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                //$('#MajorLibrary').attr("disabled", false);
+                //$('#MajorLibrary').bindData(data, 'y_majorLibId', 'majorLibraryName');
+                LoadCombobox('#MajorLibrary', data, 'y_majorLibId', 'majorLibraryName');
+            },
+            error: function () {
+                //$('#MajorLibrary').attr("disabled", false);
+                $('#MajorLibrary').combobox("enable");
+            }
+        });
+    }
+
+    //EasyUi
+    $(document).ready(function () {
+        //设置面板长度
+        $('select.easyui-combobox').attr("panelHeight", "400");
+        //设置面板宽度
+        $('select.easyui-combobox').css("width", "250px");
+
+        easyloader.css = false;
+
+        easyloader.load('combobox', function () { // 加载指定模块
+            $('select.easyui-combobox').combobox({
+                onHidePanel: function () {
+                    if (isNaN($(this).combobox('getValue'))) {
+                        var $this = $(this);
+
+                        var valueField = $this.combobox('options').valueField;
+                        var textField = $this.combobox('options').textField;
+
+                        var text = $this.combobox('getValue');
+                        var data = $this.combobox('getData');
+
+                        $.each(data, function (i, n) {
+                            if (eval('n.' + textField).indexOf(text) >= 0) {
+                                $this.combobox('setValue', eval('n.' + valueField));
+                                return false;
+                            }
+                        });
+
+                        if (isNaN($(this).combobox('getValue'))) {
+                            $this.combobox('setValue', 0);
+                        }
+
+                    }
+                }
+            });
+
+            $(".combo").click(function() {
+                if ($(this).prev().combobox("panel").is(":visible")) {
+                    //$(this).prev().combobox("hidePanel");
+                } else {
+                    $(this).prev().combobox("showPanel");
+                }
+            });
+
+          
+        });
+
+        easyloader.onLoad = function (name){
+            if (name.length == 1 &&name[0] == "combobox") {
+                    
+                //赋初始值 (赋值时会触发onchange事件)
+                @*$('#SubSchool').combobox('setValue', @school);
+                $('#Major').combobox('setValue', @major);*@
+            }
+        }
+    });
+</script>

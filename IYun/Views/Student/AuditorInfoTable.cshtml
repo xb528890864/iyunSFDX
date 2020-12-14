@@ -1,0 +1,48 @@
+﻿@using System.Configuration
+@using IYun.Common
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<VW_StuInfo>
+@{
+    var admin = ViewBag.admin;
+    var schoolname = ConfigurationManager.AppSettings["SchoolName"].ToString();
+}
+<table class="xx-table">
+    <tr>
+        <th style="padding-left:25px; ">学号</th>
+        <th>姓名</th>
+        <th>学习中心</th>
+        <th>专业</th>
+        <th>入学年份</th>
+        <th>状态</th>
+        <th width="160">操作</th>
+    </tr>
+
+    @foreach (VW_StuInfo student in Model)
+    {
+        <tr>
+            <td style="padding-left:25px;">@student.y_stuNum</td>
+            <td>@student.y_name</td>
+            @if (ComEnum.SchoolName.JXLG.ToString() == schoolname)
+            {
+                <td>@student.y_nameabbreviation</td>
+            }
+            else
+            {
+                <td>@student.schoolName</td>
+            }
+            <td>@student.majorName</td>
+            <td>@student.y_inYear</td>
+            <td>@student.stuStateName</td>
+            <td>
+               
+                <a class="bfont2" href="/Student/StudentDes/@student.id">查看</a>
+                <a class="bfont2" href="/Student/EditAuditor/@student.id">编辑</a>
+                @if (admin == 1)
+                {
+                    <a class="bfont2" href="javascript:delstu(@student.id)">删除</a>
+                }
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,579 @@
+﻿
+@using System.Configuration
+@using IYun.Common
+@using IYun.Models
+@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@model PagedList<YD_Sts_StuInfo>
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+    var man = (int)SexEnum.Man;
+    var woman = (int)SexEnum.WoMan;
+    var adminrole = ViewBag.admin;
+    var ste = ViewBag.ste ?? 0;
+    var school = ViewBag.schoolname;
+
+    var year = ViewBag.inyear ?? 0;
+    var stuStateint = ViewBag.stuStateint ?? 0;
+    var edutype = ViewBag.edutype ?? 0;
+    var majorliid = ViewBag.majorliid ?? 0;
+    var subschoolid = ViewBag.subschoolid ?? 0;
+    var namenumcard = ViewBag.namenumcard;
+
+   
+
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css?v=1" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <script type="text/javascript" src="~/Content/manage/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    @*<script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>*@
+    
+
+
+    <script src="~/Content/IYun/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="~/Scripts/MvcPager.js"></script>
+    <link href="~/Content/kindeditor-4.1.10/themes/default/default.css" rel="stylesheet" />
+    <script src="~/Content/kindeditor-4.1.10/kindeditor-min.js"></script>
+    <script src="~/Content/kindeditor-4.1.10/lang/zh_CN.js"></script>
+    <script src="~/Content/manage/ComboboxBind.js?v=1"></script>
+     
+
+    <script src="~/Content/EasyUI/easyloader.js"></script>
+
+    <link href="~/Content/EasyUI/combo.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/combobox.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/panel.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/textbox.css" rel="stylesheet" />
+    <script type="text/javascript">
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });
+        KindEditor.ready(function (K) {
+            var editor = K.editor({
+                allowFileManager: true,
+                uploadJson: '../../Content/kindeditor-4.1.10/asp.net/excelUpload.ashx',//文件处理程序
+                fileManagerJson: '../../Content/kindeditor-4.1.10/asp.net/file_manager_json.ashx',
+                imageSizeLimit: '10MB',
+                imageUploadLimit: 10
+            });
+            K('#insertfile').click(function () {
+                editor.loadPlugin('insertfile', function () {
+                    editor.plugin.fileDialog({
+                        fileUrl: K('#url').val(),
+                        clickFn: function (url, title) {
+                            K('#url').val(url);
+                            editor.hideDialog();
+                        }
+                    });
+                });
+            });
+            //$("#searchForm").keydown(function() {
+            //    if (event.keyCode == "13") {
+            //        $("#bsubmit").trigger("click");
+            //    }
+            //});
+        });
+    </script>
+</head>
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        @Html.Partial("../AdminBase/PartialModuleView", "/student/PhotoManager")
+        <div id="main-tr" class="tb-chk">
+            <div class="right-nav">
+                <form id="searchForm" action="/Student/StudentInfo" name="searchForm" method="post">
+                    <div class="zc-head">
+                        <div class="zc-inn">
+                            <span>入学年份</span>
+                            @Html.Action("EnrollYear", "Helper", new HelperParameterM { style = "width:100px;font-size: 18px" })
+                        </div>
+                        @if (adminrole != 4)
+                        {
+                            <div class="zc-inn">
+                                <span>函授站</span>
+                                @Html.Action("SubSchool", "Helper", new HelperParameterM { className = "easyui-combobox" })
+                            </div>
+                        }
+                        <div class="zc-inn">
+                            <span>层次</span>
+                            @Html.Action("EduType", "Helper", new HelperParameterM { style = "width:100px;font-size: 18px" })
+                        </div>
+                        <div class="zc-inn">
+                            <span>专业</span>
+                            @Html.Action("MajorLibrary", "Helper", new HelperParameterM { className = "easyui-combobox" })
+                        </div>
+
+                        <div class="zc-inn">
+                            <span>学籍状态</span>
+                            @Html.Action("StuState", "Helper", new HelperParameterM
+                           {
+                               name = "stuState",
+                               id = "stuState",
+                               style = "width:100px;",
+                               index = ste,
+                               whereSql = "select * from YD_Edu_StuState  where y_name != '未注册' and  y_name != '注册待审核'"
+                           })
+                        </div>
+                        @if (school == ComEnum.SchoolName.GNSFDX.ToString())
+                        {
+                            <div class="zc-inn">
+                                <span>是否及格</span>
+                                <select class="cx-sel" id="isJige" name="isJige" style="width: 80px;">
+                                    <option value="0">全部</option>
+                                    <option value="1">及格</option>
+                                    <option value="2">不及格</option>
+                                </select>
+                            </div>
+                        }
+                        <div class="zc-inn">
+                            <span>姓名/学号/考生号/身份证</span>
+                            <input type="text" id="cardandname" name="namenumcard" class="cx-inp" style="width: 150px" />
+                        </div>
+                        <br />
+                    </div>
+                    <div class="zc-head">
+                        @*<a class="cx-sub" href="/Student/CardIdCheckUp" style="margin-top: 10px; height: 32px; line-height: 30px; width: 110px; float: right">重身份证检查</a>
+                <a class="cx-sub" href="/Student/StuNumCheckUp" style="margin-top: 10px; height: 32px; line-height: 30px; width: 110px; float: right">重学号检查</a>*@
+                        @if (adminrole != 4)
+                        {
+                            <a class="cx-sub" href="javascript:shenhequanYes()" style="margin-top: 10px; height: 32px; line-height: 30px; float: right">全部通过</a>
+
+                            <a class="cx-sub" href="javascript:shenhequanNo()" style="margin-top: 10px; height: 32px; line-height: 30px; float: right">全部不通过</a>
+
+                        }
+                        <input style="margin-top: 10px; height: 32px; line-height: 30px; float: right" class="cx-sub" type="button" onclick="tj()" value="查找" />
+                    </div>
+                    <div class="show-bg"></div>
+                </form>
+                <input type="hidden" id="adminrole" name="adminrole" value="@adminrole" />
+                <!--批量打印-->
+                <form style="display: none" id="searForm" target="_blank" method="post">
+                    <input type="hidden" id="subschoolid1" name="subschoolid" value="@subschoolid" />
+                    <input type="hidden" id="majorliid1" name="majorliid" value="@majorliid" />
+                    <input type="hidden" id="year1" name="year" value="@year" />
+                    <input type="hidden" id="state1" name="state" value="@ste" />
+                    <input type="hidden" id="edutype1" name="edutype" value="@edutype" />
+                    <input type="hidden" id="namenumcard1" name="namenumcard" value="@namenumcard" />
+                    <input type="hidden" id="stuidl" name="stuid" />
+                </form>
+                <div id="loadingDiv" style="display: none"><img src="~/Content/images/loading.gif" /></div>
+                <form  id="searForm2" target="_blank" method="post">
+                    <div id="ajaxtable">
+                        @Html.Partial("PhotoList", Model)
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+</body>
+</html>
+<script>
+
+    //科技师范打印
+    function pilprint() {
+        var oneches = document.getElementsByName("check");
+        for (var i = 0; i < oneches.length; i++) {
+            if (oneches[i].checked == true) {
+                //避免重复累计id （不含该id时进行累加）
+                if (checkedIds.indexOf(oneches[i].value) == -1) {
+                    checkedIds += oneches[i].value + ",";
+                }
+
+            }
+            if (oneches[i].checked == false) {
+                //取消复选框时 含有该id时将id从全局变量中去除
+                if (checkedIds.indexOf(oneches[i].value) != -1) {
+
+                    checkedIds = checkedIds.replace((oneches[i].value + ","), "");
+                }
+            }
+        }
+
+            if ($('#adminrole').val()==4) {
+                $('#subschoolid1').val(@subschoolid);
+                $('#namenumcard1').val($('#cardandname').val());
+                $('#majorliid1').val($('#MajorLibrary').combobox('getValue'));
+                $('#year1').val($('#EnrollYear').val());
+                $('#state1').val($('#StuState').val());
+                $('#edutype1').val($('#EduType').val());
+                $('#stuidl').val(checkedIds);
+
+                $("#searForm").attr({ target: "_blank", action: "/Student/StuStatusScore2" });
+                $("#searForm").submit();
+            }
+            else {
+                $('#namenumcard1').val($('#cardandname').val());
+                $('#subschoolid1').val($('#SubSchool').combobox('getValue'));
+                $('#majorliid1').val($('#MajorLibrary').combobox('getValue'));
+                $('#year1').val($('#EnrollYear').val());
+                $('#state1').val($('#StuState').val());
+                $('#edutype1').val($('#EduType').val());
+                $('#stuidl').val(checkedIds);
+
+                $("#searForm").attr({ target: "_blank", action: "/Student/StuStatusScore2" });
+                $("#searForm").submit();
+            }
+
+     }
+
+    //赣南师范打印
+     function pilprint2() {
+         var oneches = document.getElementsByName("check");
+         for (var i = 0; i < oneches.length; i++) {
+             if (oneches[i].checked == true) {
+                 //避免重复累计id （不含该id时进行累加）
+                 if (checkedIds.indexOf(oneches[i].value) == -1) {
+                     checkedIds += oneches[i].value + ",";
+                 }
+
+             }
+             if (oneches[i].checked == false) {
+                 //取消复选框时 含有该id时将id从全局变量中去除
+                 if (checkedIds.indexOf(oneches[i].value) != -1) {
+
+                     checkedIds = checkedIds.replace((oneches[i].value + ","), "");
+                 }
+             }
+         }
+
+            if ($('#adminrole').val()==4) {
+               $('#subschoolid1').val(@subschoolid);
+                $('#namenumcard1').val($('#cardandname').val());
+                $('#majorliid1').val($('#MajorLibrary').combobox('getValue'));
+                $('#year1').val($('#EnrollYear').val());
+                $('#state1').val($('#StuState').val());
+                $('#edutype1').val($('#EduType').val());
+                $('#stuidl').val(checkedIds);
+
+                $("#searForm").attr({ target: "_blank", action: "/Student/GNSFDXStuStatusScore" });
+                $("#searForm").submit();
+            }
+            else {
+                $('#namenumcard1').val($('#cardandname').val());
+                $('#subschoolid1').val($('#SubSchool').combobox('getValue'));
+                $('#majorliid1').val($('#MajorLibrary').combobox('getValue'));
+                $('#year1').val($('#EnrollYear').val());
+                $('#state1').val($('#StuState').val());
+                $('#edutype1').val($('#EduType').val());
+                $('#stuidl').val(checkedIds);
+
+                $("#searForm").attr({ target: "_blank", action: "/Student/GNSFDXStuStatusScore" });
+                $("#searForm").submit();
+            }
+
+        }
+    //和师大模板一样的学校
+     function pilprint3() {
+         var oneches = document.getElementsByName("check");
+         for (var i = 0; i < oneches.length; i++) {
+             if (oneches[i].checked == true) {
+                 //避免重复累计id （不含该id时进行累加）
+                 if (checkedIds.indexOf(oneches[i].value) == -1) {
+                     checkedIds += oneches[i].value + ",";
+                 }
+
+             }
+             if (oneches[i].checked == false) {
+                 //取消复选框时 含有该id时将id从全局变量中去除
+                 if (checkedIds.indexOf(oneches[i].value) != -1) {
+
+                     checkedIds = checkedIds.replace((oneches[i].value + ","), "");
+                 }
+             }
+         }
+
+            if ($('#adminrole').val()==4) {
+               $('#subschoolid1').val(@subschoolid);
+                $('#namenumcard1').val($('#cardandname').val());
+                $('#majorliid1').val($('#MajorLibrary').combobox('getValue'));
+                $('#year1').val($('#EnrollYear').val());
+                $('#state1').val($('#StuState').val());
+                $('#edutype1').val($('#EduType').val());
+                $('#stuidl').val(checkedIds);
+
+                $("#searForm").attr({ target: "_blank", action: "/Student/PrintStuStatusScores" });
+                $("#searForm").submit();
+            }
+            else {
+                $('#namenumcard1').val($('#cardandname').val());
+                $('#subschoolid1').val($('#SubSchool').combobox('getValue'));
+                $('#majorliid1').val($('#MajorLibrary').combobox('getValue'));
+                $('#year1').val($('#EnrollYear').val());
+                $('#state1').val($('#StuState').val());
+                $('#edutype1').val($('#EduType').val());
+                $('#stuidl').val(checkedIds);
+
+                $("#searForm").attr({ target: "_blank", action: "/Student/PrintStuStatusScores" });
+                $("#searForm").submit();
+            }
+
+        }
+
+    //全通过审核
+    function shenhequanYes() {
+   
+        if (confirm("确认全部审核吗？")) {
+            $.ajax({
+                url: '/Student/shenhequanYes',
+                type: 'post',
+                data: $("#searForm2").serialize(),
+                dataType: 'json',
+                success: function (data) {        
+                    if (data.Isok) {
+                        alert(data.msg);
+                        window.location.reload();
+                    }
+                    else {
+                        alert(data.msg);
+                    }
+                }, error: function(msg){
+                    alert("未知错误！");
+                }
+            });
+        }
+
+    }
+
+   //全部不通过审核
+    function shenhequanNo() {
+       
+        if (confirm("确认全部审核吗？")) {
+            $.ajax({
+                url: '/Student/shenhequanNo',
+                type: 'post',
+                data: $("#searForm2").serialize(),
+                dataType: 'json',
+                success: function (data) {
+                    if (data.Isok) {
+                        alert(data.msg);
+                        window.location.reload();
+                    }
+                    else {
+                        alert(data.msg);
+                    }
+                }, error: function (msg) {
+                    alert("未知错误！");
+                }
+            });
+        }
+
+    }
+
+    function delstu(id) {
+        if (confirm("确认删除此学生信息？")) {
+            $.ajax({
+                url: '/Student/DeleStudentById/' + id,
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    alert(data.msg);
+                    if (data.isok) {
+                        window.location = "/Student/StudentInfo";
+                    }
+                }
+            });
+        }
+    }
+    function butOnClick() {
+        if (event.keyCode == "13") {
+            document.form1.submint();
+        }
+    }
+    function ExcelDown() {
+
+        $.ajax({
+                  type: "post",
+            url: "/Student/DownloadStudent",
+            data: $("#searchForm").serialize(),
+            success: function (data) {
+                      if (data.indexOf("xls") > 0) {
+                          location.href = data;
+                      } else {
+                          alert(data);
+                      }
+                  },
+            error: function () {
+                      alert("未知错误");
+                  }
+              });
+          }
+    function tj() {
+        $('#searchForm').submit();
+    }
+    function yearchangeComple() {  //年度改变回调
+        SearchSchool();
+    }
+    function eduTypechangeComple() {   //层次改变回调
+        SearchMajorLibrary();
+    }
+    function schoolchangeComple() { //站点改变回调
+        SearchMajorLibrary();
+    }
+    function SearchSchool() {
+        var year = $('#EnrollYear').val();
+        //$('#SubSchool').attr("disabled", true);
+        $('#SubSchool').combobox("disable");
+        $.ajax({
+            url: '@Url.Action("GetSchoolByYear_Stu", "Helper")',
+            data: {
+                year: year
+            },
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                //$('#SubSchool').bindData(data, 'y_subSchoolId', 'schoolName');
+                //$('#SubSchool').attr("disabled", false);
+                LoadCombobox('#SubSchool', data, 'y_subSchoolId', 'schoolName');
+                SearchMajorLibrary();
+            },
+            error: function () {
+                //$('#SubSchool').attr("disabled", false);
+                $('#SubSchool').combobox("enable");
+            }
+        });
+    }
+    function SearchMajorLibrary() {
+        //var schoolId = $('#SubSchool').val();
+        var schoolId = $('#SubSchool').combobox('getValue');
+        if (@adminrole== 4)
+        {
+            schoolId = 0;
+        }
+        var edutypeId = $('#EduType').val();
+        var year = $('#EnrollYear').val();
+        //$('#MajorLibrary').attr("disabled", true);
+        $('#MajorLibrary').combobox("disable");
+        $.ajax({
+            async: false,
+            url: '@Url.Action("GetStuMajorLibrary_Stu", "Helper")',
+            data: {
+                schoolId: schoolId,
+                edutypeId: edutypeId,
+                year:year
+            },
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                //$('#MajorLibrary').attr("disabled", false);
+                //$('#MajorLibrary').bindData(data, 'y_majorLibId', 'majorLibraryName');
+                LoadCombobox('#MajorLibrary', data, 'y_majorLibId', 'majorLibraryName');
+            },
+            error: function () {
+                //$('#MajorLibrary').attr("disabled", false);
+                $('#MajorLibrary').combobox("enable");
+            }
+        });
+    }
+    //EasyUi
+    $(document).ready(function () {
+        //设置面板长度
+        $('select.easyui-combobox').attr("panelHeight", "400");
+        //设置面板宽度
+        $('select.easyui-combobox').css("width", "250px");
+
+        easyloader.css = false;
+
+        easyloader.load('combobox', function () { // 加载指定模块
+            $('select.easyui-combobox').combobox({
+                onHidePanel: function () {
+                    if (isNaN($(this).combobox('getValue'))) {
+                        var $this = $(this);
+
+                        var valueField = $this.combobox('options').valueField;
+                        var textField = $this.combobox('options').textField;
+
+                        var text = $this.combobox('getValue');
+                        var data = $this.combobox('getData');
+
+                        $.each(data, function (i, n) {
+                            if (eval('n.' + textField).indexOf(text) >= 0) {
+                                $this.combobox('setValue', eval('n.' + valueField));
+                                return false;
+                            }
+                        });
+
+                        if (isNaN($(this).combobox('getValue'))) {
+                            $this.combobox('setValue', 0);
+                        }
+
+                    }
+                }
+            });
+
+            $(".combo").click(function() {
+                if ($(this).prev().combobox("panel").is(":visible")) {
+                    //$(this).prev().combobox("hidePanel");
+                } else {
+                    $(this).prev().combobox("showPanel");
+                }
+            });
+
+
+        });
+                easyloader.onLoad = function (name){
+                if (name.length == 1 &&name[0] == "combobox") {
+
+                    //赋初始值 (赋值时会触发onchange事件)
+                    $('#SubSchool').combobox('setValue', @subschoolid);
+                    $('#MajorLibrary').combobox('setValue', @majorliid);
+                }
+            }
+    });
+
+    var checkedIds = "";
+    function getChecked() {
+        var oneches = document.getElementsByName("check");
+        for (var i = 0; i < oneches.length; i++) {
+            if (oneches[i].checked == true) {
+                //避免重复累计id （不含该id时进行累加）
+                if (checkedIds.indexOf(oneches[i].value) == -1) {
+                    checkedIds += oneches[i].value + ",";
+                }
+            }
+            if (oneches[i].checked == false) {
+                //取消复选框时 含有该id时将id从全局变量中去除
+                if (checkedIds.indexOf(oneches[i].value) != -1) {
+
+                    checkedIds = checkedIds.replace((oneches[i].value + ","), "");
+                }
+            }
+        }
+    }
+    function checked() {
+        var oneches = document.getElementsByName("check");
+        for (var i = 0; i < oneches.length; i++) {
+            // 含有id，则该复选框选中
+            if (checkedIds.indexOf(oneches[i].value) != -1) {
+                oneches[i].checked = true;
+            }
+        }
+    }
+</script>

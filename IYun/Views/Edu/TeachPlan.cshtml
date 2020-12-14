@@ -1,0 +1,14 @@
+﻿@using System.Configuration
+@using IYun.Common
+@{
+    Layout = null;
+}
+
+@if (ConfigurationManager.AppSettings["SchoolName"].ToString() == ComEnum.SchoolName.JXSFDX.ToString() || ConfigurationManager.AppSettings["SchoolName"].ToString() == ComEnum.SchoolName.JXLG.ToString())
+{
+    @Html.Action("TeachPlanBYsd")
+}
+else
+{
+    @Html.Action("TeachPlanA")
+}

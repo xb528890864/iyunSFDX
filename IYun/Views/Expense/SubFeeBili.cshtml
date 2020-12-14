@@ -1,0 +1,290 @@
+﻿@using System.Configuration
+@using IYun.Controllers
+@using IYun.Models
+@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+    var yes = (int)YesOrNo.Yes;
+    var no = (int)YesOrNo.No;
+    var subschoolId = ViewBag.subschoolId ?? 0;
+   var sublist = ViewBag.sublist as List<ExpenseController.StuSubFeeBili>;
+    sublist = sublist ?? new List<ExpenseController.StuSubFeeBili>();
+    var edutypelist = ViewBag.edutypelist as List<YD_Edu_EduType>;
+    edutypelist = edutypelist ?? new List<YD_Edu_EduType>();
+    var allbililist = ViewBag.allbililist ?? new List<YD_Fee_SubFeeBili>();
+    var educount = edutypelist.Count();
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css?v=1" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <script type="text/javascript" src="~/Content/manage/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    @*<script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>*@
+    <script src="~/Content/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="~/Scripts/MvcPager.js"></script>
+    <script src="~/Content/EasyUI/easyloader.js"></script>
+    <link href="~/Content/EasyUI/combo.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/combobox.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/panel.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/textbox.css" rel="stylesheet" />
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });
+       
+    </script>
+</head>
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        <div id="main-tl">
+                <div class="left-t">经费管理</div>
+                <div class="left-c">
+                    @{
+                        foreach (var modulePower in modulePowers)
+                        {
+                            if (modulePower.y_url.ToLower() =="/Expense/EduFeeSyBiliArt".ToLower())
+                            {
+                                <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                            }
+                            else
+                            {
+                                <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        <div id="main-tr" @*class="inmain2"*@>
+            <div class="right-nav">
+                <a class="fhui" onclick="history.go(-1)">返回</a>
+                <form id="searchForm" action="/Expense/SubFeeBili" name="searchForm" method="post">
+                    <div class="zc-head">
+                        <div class="zc-inn">
+                            <span>函授站</span>
+                            @Html.Action("SubSchool", "Helper", new HelperParameterM { className = "easyui-combobox" })
+                        </div>
+                    </div>
+                    <div class="zc-head">
+                        <a class="cx-sub" href="javascript:Save()" style="margin-top: 10px; height: 32px; line-height: 30px; float: right">保存</a>
+                        <a class="cx-sub" href="javascript:ExcelDown()" style="margin-top: 10px; height: 32px; line-height: 30px; float: right">数据导出</a>
+                        <input style="margin-top: 10px; height: 32px; line-height: 30px; float: right" class="cx-sub" type="submit"  value="查找"/>
+                    </div>
+                    <div class="show-bg"></div>
+                </form>
+                @*<div class="nava1"><a class="nava2" href="/Expense/AddFeeBili">添加比例</a></div>*@
+
+
+                <div id="loadingDiv" style="display: none;text-align: center;">
+                    <img src="~/Content/images/loading(1).gif" style="margin-top: 30px; width: 600px;"/>
+                </div>
+                <div id="ajaxtable">
+                    @*@Html.Partial("SubFeeBiliList", Model)*@
+                    <table class="xx-table">
+                        <tr>
+                            <th style="padding-left:25px;">函授站</th>
+                            @foreach (var item in edutypelist)
+                            {
+                                <th>
+                                    @item.y_name
+                                </th>
+                            }
+                        </tr>
+                        @for (int i = 0; i < sublist.Count; i++)
+                        {
+                            <tr class="bili">
+                                <td style="padding-left: 25px;">@sublist[i].schoolName</td>
+                                <input type="hidden" class="sub" value="@sublist[i].schoolId"/>
+
+                                @for (int j = 0; j < educount; j++)
+                                {
+                                    if (sublist[i + j].y_bili == null && allbililist[j].y_bili!= null)
+                                    {
+                                        <td><input type="text" class="tallthis" data-sub="@sublist[i].schoolId" data-id="@allbililist[j].id" value="@allbililist[j].y_bili"/></td>
+                                    }
+                                    else
+                                    {
+                                        <td><input type="text" class="tallthis" data-sub="@sublist[i].schoolId" data-id="@allbililist[j].id"  value="@sublist[i + j].y_bili" /></td>
+                                    }
+                                }
+                            </tr>
+                            i = i + educount - 1;
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+    <script>
+        //function delpower(id) {
+        //    if (confirm("确认删除此费用信息？")) {
+        //        $.ajax({
+        //            url: '/Expense/DeleFeeBiliById/' + id,
+        //            type: 'post',
+        //            dataType: 'json',
+        //            success: function (data) {
+        //                alert(data.msg);
+        //                if (data.isok) {
+        //                    window.location = "/Expense/SubFeeBili";
+        //                }
+        //            }
+        //        });
+        //    }
+        //}
+        //生成各个字段集合，其中用“<>”隔开
+        function Save() {
+            if (confirm("确认保存此缴费比例？")) {
+                $('#ajaxtable').fadeOut('10');
+                $('#loadingDiv').show();
+            var scoreList = $(".bili");
+            var tallthis = "";
+            var expertthis = "";
+            var experttall = "";
+            var subId = "";
+            if (scoreList.length == 0) {
+                alert("无比例");
+                return;
+            }
+            var j = 0;
+            for (var i = 0; i < scoreList.length; i++) {
+                var nowObj = $(scoreList[i]);
+                tallthis += $($(".bili").eq(i).find("input").eq(1), nowObj).val();
+                expertthis += $($(".bili").eq(i).find("input").eq(2), nowObj).val();
+                experttall += $($(".bili").eq(i).find("input").eq(3), nowObj).val();
+                subId += $(".sub", nowObj).val();
+                if (i + 1 < scoreList.length) {
+                    tallthis += "<>";
+                    expertthis += "<>";
+                    experttall += "<>";
+                    subId += "<>";
+                }
+            }
+            $.ajax({
+                type: "post",
+                url: "/Expense/UpdateStuSubFeeBili",
+                data: {
+                    subId: subId,
+                    tallthis: tallthis,
+                    expertthis: expertthis,
+                    experttall: experttall
+                },
+                success: function (data) {
+                    $('#ajaxtable').fadeIn('10');
+                    $('#loadingDiv').hide();
+                    if (data == "ok") {
+                        alert("保存成功");
+                    } else {
+                        alert(data);
+                    }
+                },
+                error: function () {
+                    $('#ajaxtable').fadeIn('10');
+                    $('#loadingDiv').hide();
+                    alert("未知错误");
+                }
+            });
+        }
+}
+        function ExcelDown() {
+            $.ajax({
+                type: "post",
+                url: "/Expense/DownloadSubStuBili",
+                data: $("#searchForm").serialize(),
+                success: function (data) {
+                    if (data.indexOf("xls") > 0) {
+                        location.href = data;
+                    } else {
+                        eval(data);
+                    }
+                },
+                error: function () {
+                    alert("未知错误");
+                }
+            });
+        }
+        //EasyUi
+        $(document).ready(function () {
+            //设置面板长度
+            $('select.easyui-combobox').attr("panelHeight", "400");
+            //设置面板宽度
+            $('select.easyui-combobox').css("width", "250px");
+
+            easyloader.css = false;
+
+            easyloader.load('combobox', function () { // 加载指定模块
+                $('select.easyui-combobox').combobox({
+                    onHidePanel: function () {
+                        if (isNaN($(this).combobox('getValue'))) {
+                            var $this = $(this);
+
+                            var valueField = $this.combobox('options').valueField;
+                            var textField = $this.combobox('options').textField;
+
+                            var text = $this.combobox('getValue');
+                            var data = $this.combobox('getData');
+
+                            $.each(data, function (i, n) {
+                                if (eval('n.' + textField).indexOf(text) >= 0) {
+                                    $this.combobox('setValue', eval('n.' + valueField));
+                                    return false;
+                                }
+                            });
+
+                            if (isNaN($(this).combobox('getValue'))) {
+                                $this.combobox('setValue', 0);
+                            }
+
+                        }
+                    }
+                });
+
+                $(".combo").click(function() {
+                    if ($(this).prev().combobox("panel").is(":visible")) {
+                        //$(this).prev().combobox("hidePanel");
+                    } else {
+                        $(this).prev().combobox("showPanel");
+                    }
+                });
+
+
+            });
+
+            easyloader.onLoad = function (name){
+                if (name.length == 1 &&name[0] == "combobox") {
+
+                    //赋初始值 (赋值时会触发onchange事件)
+                    $('#SubSchool').combobox('setValue', @subschoolId);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

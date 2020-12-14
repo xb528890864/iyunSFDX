@@ -1,0 +1,153 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@using System.Configuration
+@using IYun.Common
+@model PagedList<VW_Strange>
+@{
+    var adminroled = ViewBag.admin;
+    var schoolname = ConfigurationManager.AppSettings["SchoolName"].ToString();
+}
+
+<table class="xx-table ydong-tab">
+    <tr>
+        <th width="10%">申请人</th>
+        <th>学号</th>
+        <th>申请类型</th>
+        <th>转入</th>
+        <th>转出</th>
+        <th>申请时间</th>
+        <th>审核时间</th>
+        <th width="20%">详情</th>
+    </tr>
+    @foreach (VW_Strange strange in Model)
+    {
+        var changetag = "";
+        if (strange.y_strangeType == 1)
+        {
+            var majorid = Convert.ToInt32(strange.y_contentA);
+            var ydEduMajor = new IYunEntities().YD_Edu_Major.Find(majorid);
+            if (ydEduMajor != null)
+            {
+                changetag = ydEduMajor.y_name;
+            }
+        }
+        if (strange.y_strangeType == 2)
+        {
+            var schoolid = Convert.ToInt32(strange.y_contentA);
+            var ydSysSubSchool = new IYunEntities().YD_Sys_SubSchool.Find(schoolid);
+            if (ydSysSubSchool != null)
+            {
+                changetag = ydSysSubSchool.y_name;
+            }
+        }
+        var changetagB = "";
+        if (strange.y_strangeType == 1)
+        {
+            var majorid = Convert.ToInt32(strange.y_contentB);
+            var ydEduMajor = new IYunEntities().YD_Edu_Major.Find(majorid);
+            if (ydEduMajor != null)
+            {
+                changetagB = ydEduMajor.y_name;
+            }
+        }
+        if (strange.y_strangeType == 2)
+        {
+            var schoolid = Convert.ToInt32(strange.y_contentB);
+            var ydSysSubSchool = new IYunEntities().YD_Sys_SubSchool.Find(schoolid);
+            if (ydSysSubSchool != null)
+            {
+                changetagB = ydSysSubSchool.y_name;
+            }
+        }
+        <tr>
+            <td>@strange.studentName</td>
+            <td>@strange.y_stuNum</td>
+            <td>@strange.strangeTypeName</td>
+            @{
+                if (strange.y_strangeType == 1)
+                {
+                    <td>@changetag</td>
+                    <td>@changetagB</td>
+
+                }
+                else if (strange.y_strangeType == 2)
+                {
+                    <td>@changetag</td>
+                    <td>@changetagB</td>
+                }
+                else
+                {
+                    <td></td>
+                    <td></td>
+                }
+            }
+            <td>@strange.y_applyTime</td>
+            <td>@strange.y_approvalTime.ToString()</td>
+            <td>
+                <a class="bfont" target="_blank" href="/Student/StuInfoChangeDetail/@strange.id">查看</a>&nbsp;&nbsp;
+                @if (adminroled != 4)
+                {
+                    <a class="bfont" href="javascript:deleteChange(@strange.id)">删除</a><text>&nbsp; &nbsp; </text>
+                    <a class="bfont" href="javascript:turnChange(@strange.id)">驳回</a><text>&nbsp; &nbsp; </text>
+                }
+                @if (schoolname == ComEnum.SchoolName.JXSFDX.ToString())
+                {
+                if (strange.y_strangeType == 6)
+                {
+                    <a class="bfont" target="_blank" href="/Student/PrintStuStrange/@strange.id">申请表</a>
+                }
+                if (strange.y_strangeType == 5 || strange.y_strangeType == 3)
+                {
+                    <a class="bfont" target="_blank" href="/Student/PrintStrangeStop/@strange.id">申请表</a>
+                }
+                if (strange.y_strangeType == 1 || strange.y_strangeType == 2)
+                {
+                    <a class="bfont" target="_blank" href="/Student/PrintStrangeMajororSub/@strange.id">申请表</a>
+                }
+                }
+            </td>
+        </tr>
+                }
+</table>
+<script>
+    function deleteChange(id) {
+        if (confirm("确认删除此信息？")) {
+            $.ajax({
+                type: "post",
+                url: "/Student/DeleteChange",
+                data: {
+                    ids: id
+                },
+                success: function (data) {
+                    if (data == "ok") {
+                        $('#searchForm').submit();
+                    }
+                },
+                error: function () {
+                    alert("未知错误");
+                }
+            });
+        }
+    }
+    function turnChange(id) {
+        if (confirm("确认驳回此信息？")) {
+            $.ajax({
+                url: '/Student/TurnChange',
+                type: 'post',
+                data: {
+                    ids: id
+                },
+                dataType: 'json',
+                success: function (datab) {
+                    alert(datab.msg);
+                    if (datab.isok) {
+                        $('#searchForm').submit();
+                    }
+                },
+                error: function () {
+                    alert("未知错误");
+                }
+            });
+        }
+    }
+</script>

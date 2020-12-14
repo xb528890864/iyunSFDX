@@ -1,0 +1,28 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<VW_StuInfo>
+
+<table class="xx-table">
+    <tr>
+        <th style="padding-left:25px; width:180px;">学号</th>
+        <th>姓名</th>
+        <th>函授站</th>
+        <th>专业</th>
+        <th>入学年份</th>
+        <th>状态</th>
+        <th width="60px;">操作</th>
+    </tr>
+
+    @foreach (VW_StuInfo student in Model)
+    {
+        <tr>
+            <td style="padding-left:25px;">@student.y_stuNum</td>
+            <td>@student.y_name</td>
+            <td>@student.schoolName</td>
+            <td>@student.majorName</td>
+            <td>@student.y_inYear</td>
+            <td>@student.stuStateName</td>
+            <td><a class="bfont2" target="_blank" href="/Score/StudentScore/@student.id">录分</a></td>
+        </tr>
+    }
+</table>

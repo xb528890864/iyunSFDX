@@ -1,0 +1,39 @@
+﻿@using IYun.Controllers
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YD_Sys_SubSchool>
+@{
+    int adminId = Convert.ToInt32(ViewData["adminId"]);
+
+    var ids = ViewData["ids"] as List<int>;
+}
+
+<table class="xx-table ydong-tab">
+    <tr>
+        <th>分配</th>
+        <th>函授站</th>
+    </tr>
+    @{
+        foreach (var ydSysAdmin in Model)
+        {
+            <tr class="sub">
+                <td>
+                    @{
+
+            if (ids.Contains(ydSysAdmin.id))
+            {
+                <input class="cb" checked="checked" type="checkbox" />
+            }
+            else
+            {
+                <input class="cb" type="checkbox" />
+            }
+                    }
+                    <input class="id" type="hidden" value="@ydSysAdmin.id" />
+                </td>
+                <td>@ydSysAdmin.y_name</td>
+            </tr>
+        }
+    }
+</table>
+

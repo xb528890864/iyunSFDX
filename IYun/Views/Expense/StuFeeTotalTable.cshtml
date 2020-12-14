@@ -1,0 +1,94 @@
+﻿@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YD_Fee_StuFeeTb>
+@{
+    const int yes = (int)YesOrNo.Yes;
+    const int no = (int)YesOrNo.No;
+}
+
+<table class="xx-table ydong-tab">
+    <tr>
+        <th style="padding-left:25px; width:100px; text-align:left;">学号</th>
+        <th>姓名</th>
+        <th>入学时间</th>
+        <th>需缴费用</th>
+        <th>已缴费用</th>
+        <th>差额</th>
+        <th>缴费学年</th>
+        <th>缴费状态</th>
+        <th>审核状态</th>
+    </tr>
+
+    @{
+        foreach (var stu in Model)
+        {
+            <tr>
+                <td style="padding-left:25px; text-align:left;">
+                    @{
+
+                        @stu.y_stuNum
+
+                    }
+                </td>
+                <td>@stu.y_name</td>
+                <td>@stu.y_inYear</td>
+                <td>@stu.y_needFee</td>
+                <td>@stu.y_upFee</td>
+                @{
+            var chae = stu.y_needFee - stu.y_upFee;
+            if (chae > 0)
+            {
+                <td><font color="red">@chae</font></td>
+            }
+            else
+            {
+                <td>@chae</td>
+            }
+                }
+                <td>第 @stu.y_feeYear 学年</td>
+
+                @{
+            var feeid = "fee" + stu.id;
+            var checkedid = "checked" + stu.id;
+            if (stu.y_isUp == yes)
+            {
+                <td>
+                    已缴费
+                </td>
+            }
+            else
+            {
+                <td>
+                     未缴费
+                </td>
+            }
+            if (stu.y_isCheckFee == yes)
+            {
+                <td>
+                  已审核
+                </td>
+            }
+            else
+            {
+                <td>
+                   未审核
+                </td>
+            }
+                }
+
+            </tr>
+        }
+    }
+    <tr>
+        <td colspan="3"></td>
+        <td>总计人数：@ViewBag.totalStuCount</td>
+        <td>已缴人数：@ViewBag.totalUpStuCount</td>
+        <td>未缴人数：@ViewBag.totalNoUpStuCount</td>
+        <td>总计费用：@ViewBag.totalFee</td>
+        <td>已上缴费用：@ViewBag.totalUpFee</td>
+    </tr>
+
+
+</table>
+

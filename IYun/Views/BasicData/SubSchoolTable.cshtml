@@ -1,0 +1,28 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using System.Configuration
+@using IYun.Models;
+@using IYun.Common
+@model PagedList<YT_Mechanism>
+@{
+    int adminid = ViewBag.adminid;
+    var schoolname = ConfigurationManager.AppSettings["SchoolName"];
+}
+<table class="xx-table ydong-tab">
+    <tr>
+        <th>机构名</th>    
+        @*<th>机构代码</th>
+        <th>创建时间</th>*@
+        <th>操作</th>
+    </tr>
+    @{
+        foreach (var ydSysAdmin in Model)
+        {
+            <tr>
+                <td>@ydSysAdmin.y_name</td>           
+                @*<td>@ydSysAdmin.y_code</td>
+                <td>@(ydSysAdmin.y_Createtime == null ? "" : Convert.ToDateTime(ydSysAdmin.y_Createtime).ToString("yyyy-MM-dd") )</td>*@
+                <td><a class="bfont2" href="/basicdata/SubSchoolEditPage/@ydSysAdmin.id">修改</a><a class="bfont2" href="javascript:deleteSubSchool(@ydSysAdmin.id)">删除</a></td>
+            </tr>
+        }
+    }
+</table>

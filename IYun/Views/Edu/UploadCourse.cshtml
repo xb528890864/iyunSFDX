@@ -1,0 +1,231 @@
+﻿@using System.Configuration
+@using IYun.Models
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+    var entityList = (List<YD_Edu_FormTemp>)ViewBag.entityList;
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+        <script type="text/javascript" src="~/Views/Score/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+        <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    <script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+
+
+            //全选功能
+            $("#allbtn").click(function (e) {
+                $("input.curriculum").attr("checked", $(this)[0].checked);
+            });
+            //取消全选功能
+            $("input.specialty").live("click", function () {
+                var bl = $("input.curriculum ").length == $("input.curriculum:checked").length;
+                $("#allbtn").attr("checked", bl);
+            });
+            //绑定需要导入按钮事件
+            $("#Need").click(function () {
+                //循环遍历所选的值
+                var ids = "";
+                $("div.xx-js input[type=checkbox]:checked").each(function (id) {
+                    ids += $(this).val() + ",";
+                });
+                ids = ids.substr(0, ids.length - 1);
+                $.ajax({
+                    type: "post",
+                    url: "/Edu/NeedUploadcourse",
+                    data: {
+                        id: ids
+                    },
+                    success: function (data) {
+                        if (data == "ok") {
+                            var arr = ids.split(",");
+                            for (var i = 0; i < arr.length; i++) {
+                                $("#" + arr[i]).hide();
+                            }
+                        } else {
+                            alert(data);
+                        }
+                    },
+                    error: function (msg) {
+                        alert("未知错误");
+                    }
+                });
+
+            });
+            //绑定无需导入按钮事件
+            $("#NoNeed").click(function () {
+                var ids = "";
+                $("div.xx-js input[type=checkbox]:checked").each(function (id) {
+                    ids += $(this).val() + ",";
+                });
+                ids = ids.substr(0, ids.length - 1);
+                $.ajax({
+                    type: "post",
+                    url: "/Edu/NotUploadcourse",
+                    data: {
+                        id: ids
+                    },
+                    success: function (data) {
+                        if (data == "ok") {
+                            var arr = ids.split(",");
+                            for (var i = 0; i < arr.length; i++) {
+                                $("#" + arr[i]).hide();
+                            }
+                        } else {
+                            alert(data);
+                        }
+                    },
+                    error: function (msg) {
+                        alert("未知错误");
+                    }
+                });
+            });
+
+        });
+
+    </script>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        <div id="main-tl">
+            <div class="left-t">教务管理</div>
+            <div class="left-c">
+                @{
+                    foreach (var modulePower in modulePowers)
+                    {
+                        if (modulePower.y_url.ToLower() == "/edu/course".ToLower())
+                        {
+                            <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                        else
+                        {
+                            <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div id="main-tr">
+            <div id="btn">
+                <a class="zc-sub2 mt30" id="Need">需要导入</a>
+                <a class="zc-sub2 mt30" id="NoNeed">不需要导入</a>
+            </div>
+            @{
+                if (entityList.Count > 0)
+                {
+                    <a class="zc-sub2 mt30" href="/Edu/VerifyCourse">校检</a>
+                }
+                else
+                {
+                    <a class="zc-sub2 mt30" href="/Edu/UploadTrueCourse">开始导入</a>
+                }
+            }
+            <table class="xx-table">
+                <tr>
+                    <th style="width: 44px;"><input type="checkbox" id="allbtn" style="margin-left:20px;width: 20px; height: 20px;" /></th>
+                    <th style="padding-left: 30px; width: 90px;">课程名</th>
+                    <th>基本信息 </th>
+                    <th width="70">操作</th>
+                </tr>
+            </table>
+            @{
+                foreach (var teachPlantemp in entityList)
+                {
+                    <div class="xx-js" id="@teachPlantemp.id" style="background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial;">
+                        @{
+                            if (teachPlantemp.y_name == "")
+                            {
+                                <div class="x-js1"><input type="checkbox" name="curriculum " value="" class="name" style="width: 20px; height: 20px; margin-right: 10px; " />&nbsp;&nbsp;</div>
+                            }
+                            else
+                            {
+                                <div class="x-js1"><input type="checkbox" name="curriculum " value="@teachPlantemp.id" class="name1" style="width: 20px; height: 20px; " />@teachPlantemp.y_name</div>
+                            }
+                        }
+
+                        <div class="td-drop">
+                            <span style="padding-left: 30px;"><b>课程代码：</b>@teachPlantemp.y_code</span>
+                            <span style="padding-left: 30px;"><b>相似课程：</b>@teachPlantemp.y_nameMatch</span>
+                        </div>
+                        <a style="width:70px; float:right; color:#337ab7;" href="javascript:notUpload(@teachPlantemp.id);">无需导入</a>
+                        <a style="width:70px; float:right; color:#337ab7;" href="javascript:needUpload(@teachPlantemp.id);">需要导入</a>
+
+                        <a class="gr_edit" @*href="javascript:;"*@ onclick="StudentInfoGetEdit(this);">展开</a>
+                    </div>
+                            }
+                           
+            }
+
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+</body>
+</html>
+<script>
+    function notUpload(id) {
+        $.ajax({
+            type: "post",
+            url: "/Edu/NotUploadcourse",
+            data: {
+                id: id
+            },
+            success: function (data) {
+                if (data == "ok") {
+                    $("#" + id).hide();
+                } else {
+                    alert(data);
+                }
+            },
+            error: function (msg) {
+                alert("未知错误");
+            }
+        });
+    }
+    function needUpload(id) {
+        $.ajax({
+            type: "post",
+            url: "/Edu/NeedUploadcourse",
+            data: {
+                id: id
+            },
+            success: function (data) {
+                if (data == "ok") {
+                    $("#" + id).hide();
+                } else {
+                    alert(data);
+                }
+            },
+            error: function (msg) {
+                alert("未知错误");
+            }
+        });
+    }
+</script>
+

@@ -1,0 +1,32 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@using IYun.Controllers.ControllerObject
+@model PagedList<ExamPlanDto>
+
+<table class="xx-table ydong-tab">
+    <tr>
+        <th>专业名称</th>
+        <th>层次</th>
+        <th>学习形式</th>
+        <th>课程名称</th>
+        <th>考试时间</th>
+        <th>操作</th>
+    </tr>
+    @{
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.majorName.Split(' ')[0]</td>
+                <td>@item.majorName.Split(' ')[1]</td>
+                <td>@item.majorName.Split(' ')[2]</td>
+                @*<td>@item.y_courseName</td>
+                <td>@item.y_time</td>*@
+                @*<td>
+                    <a class="bfont2" href="/TeaPlan/ExamPlanEidtPage/?id=@item.id">修改</a>
+                    <a class="bfont2" href="javascript:deleteSubSchool(@item.id)">删除</a>
+                </td>*@
+
+            </tr>
+        }
+    }
+</table>

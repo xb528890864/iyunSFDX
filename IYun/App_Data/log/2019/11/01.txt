@@ -1,0 +1,46 @@
+
+ 
+记录时间：2019-11-01 15:56:41,920 
+线程ID:[15] 
+日志级别：  FATAL 
+出错类：IYun.AppHandleErrorAttribute property: [(null)] - 
+错误描述：未将对象引用设置到对象的实例。
+ 
+
+ 
+记录时间：2019-11-01 15:56:42,033 
+线程ID:[15] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求URL:  /Student/StudentInfo/1
+ 
+
+ 
+记录时间：2019-11-01 15:56:42,033 
+线程ID:[15] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：请求数据:  
+ 
+
+ 
+记录时间：2019-11-01 15:56:42,033 
+线程ID:[15] 
+日志级别：  ERROR 
+出错类：Error property: [(null)] - 
+错误描述：发生异常
+ 
+System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ASP._Page_Views_Student_StudentTable_cshtml.Execute() 位置 g:\江西师范大学\trunk\IYun\Views\Student\StudentTable.cshtml:行号 38
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   在 System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   在 System.Web.Mvc.Html.RenderPartialExtensions.RenderPartial(HtmlHelper htmlHelper, String partialViewName)
+   在 ASP._Page_Views_Student_StudentList_cshtml.Execute() 位置 g:\江西师范大学\trunk\IYun\Views\Student\StudentList.cshtml:行号 5
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   在 System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   在 System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   在 System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   在 System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
+   在 System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
+   在 System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)

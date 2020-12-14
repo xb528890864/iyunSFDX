@@ -1,0 +1,658 @@
+﻿@using System.Configuration
+@using IYun.Common
+@using IYun.Models
+@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@model List<YD_Sts_StuInfoTemp>
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+    var teachPlanList = (List<YD_Sts_StuInfoTemp>)ViewBag.teachPlanList;
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+        <script type="text/javascript" src="~/Views/Score/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+        <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    @*<script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>*@
+    <script src="~/Content/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="~/Scripts/MvcPager.js"></script>
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });
+
+    </script>
+</head>
+
+<body>
+    @Html.Action("Top", "AdminBase")
+    <div class="main center">
+        <div id="main-tl">
+            <div class="left-t">学籍管理</div>
+            <div class="left-c">
+                @{
+                    foreach (var modulePower in modulePowers)
+                    {
+                        if (modulePower.y_url.ToLower() == "/student/studentinfo".ToLower())
+                        {
+                            <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                        else
+                        {
+                            <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div id="main-tr">
+            @{   if (teachPlanList.Count > 0)
+                {
+                    <a class="zc-sub2 mt30" href="javascript:verify()">校检</a>
+                }
+                else
+                {
+                    <a class="zc-sub2 mt30" href="/Student/UploadTrueStudent">开始导入</a>
+                }
+            }
+            <table class="xx-table">
+                <tr>
+                    <th style="padding-left: 30px; width: 90px;">用户名</th>
+                    <th>基本信息 </th>
+                    <th width="70">操作</th>
+                </tr>
+            </table>
+            <div id="loadingDiv" style="display: none"><img src="~/Content/images/loading.gif"/>
+            </div>
+            <div id="ajaxtable">
+                @{
+                    foreach (var ydEduScoreTemp in Model)
+                    {
+                        <div class="xx-js">
+                            @{
+                                if (ydEduScoreTemp.y_name == "")
+                                {
+                                    <div class="x-js1">&nbsp;&nbsp;</div>
+                                }
+                                else
+                                {
+                                    <div class="x-js1">@ydEduScoreTemp.y_name</div>
+                                }
+                            }
+                            <input type="hidden" class="id" value="@ydEduScoreTemp.id" />
+                            <div class="td-drop jj2">
+                                @{
+                                    if (ydEduScoreTemp.y_name == "")
+                                    {
+                                        <span style="padding-left: 30px;">
+                                            <b>姓名：</b>
+                                            <input class="cx-inp name" style="border:solid 1px red;width: 100px" value="@ydEduScoreTemp.y_name" type="text"  />
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span style="padding-left: 30px;">
+                                            <b>姓名：</b>
+                                            <input class="cx-inp name" style="width: 100px" value="@ydEduScoreTemp.y_name" type="text"  />
+                                        </span>
+                                    }
+                                    <span style="padding-left: 30px;">
+                                        <b>学号：</b>
+                                        <input class="cx-inp stuNum" style="width: 100px" value="@ydEduScoreTemp.y_stuNum" type="text"  />
+                                    </span>
+                                    if (ydEduScoreTemp.y_examNum == "")
+                                    {
+                                        <span style="padding-left: 30px;">
+                                            <b>考生号：</b>
+                                            <input class="cx-inp examNum" style="border:solid 1px red;width: 100px" value="@ydEduScoreTemp.y_examNum" type="text"  />
+                                            &nbsp;<font color="green">导入中已存在该考生号或者是数据库里已存在该考生号&nbsp;（<font color="blue">考生号必须唯一</font>）</font>
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span style="padding-left: 30px;">
+                                            <b>考生号：</b>
+                                            <input class="cx-inp examNum" style="width: 100px" value="@ydEduScoreTemp.y_examNum" type="text"  />
+                                        </span>
+                                    }
+                                    @*if (ydEduScoreTemp.y_registrationNum == "")
+                                    {
+                                        <span style="padding-left: 30px;">
+                                            <b>准考证号：</b>
+                                            <input class="cx-inp registrationNum" style="border:solid 1px red;width: 100px" value="@ydEduScoreTemp.y_registrationNum" type="text"  />       
+                                        </span>
+                                    }
+                                    else
+                                    {*@
+                                        <span style="padding-left: 30px;">
+                                            <b>准考证号：</b>
+                                            <input class="cx-inp registrationNum" style="width: 100px" value="@ydEduScoreTemp.y_registrationNum" type="text"  />
+                                        </span>
+                                    @*}*@
+                                    if (ydEduScoreTemp.y_sex == -1)
+                                    {
+                                        <span style="padding-left: 30px;">
+                                            <b>性别：</b>
+                                            <input class="cx-inp sex" style="border:solid 1px red;width: 100px" value="@ydEduScoreTemp.y_sexName" type="text"  />
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span style="padding-left: 30px;">
+                                            <b>性别：</b>
+                                            <input class="cx-inp sex" style="width: 100px" value="@ydEduScoreTemp.y_sexName" type="text"  />
+                                        </span>
+                                    }
+
+                                    @*if (ydEduScoreTemp.y_foreignLanguageId == -1)
+                                    {
+                                        <span style="padding-left: 30px;">
+                                            <b>外语语种：</b>
+                                            <input class="cx-inp foreignLanguageName" style="border: solid 1px red; width: 100px" value="@ydEduScoreTemp.y_foreignLanguageName" type="text"  />
+                                        </span>
+                                    }
+                                        else
+                                        {*@
+                                        <span style="padding-left: 30px;">
+                                            <b>外语语种：</b>
+                                            <input class="cx-inp foreignLanguageName" style="width: 100px" value="@ydEduScoreTemp.y_foreignLanguageName" type="text"  />
+                                        </span>
+                                    @*}*@
+                                    @*if (ydEduScoreTemp.y_recruitTypeId == -1)
+                                    {
+                                        <span style="padding-left: 30px;">
+                                            <b>招生类别：</b>
+                                            <input class="cx-inp recruitTypeName" style="border: solid 1px red; width: 100px" value="@ydEduScoreTemp.y_recruitTypeName" type="text"  />
+                                        </span>
+                                    }
+                                    else
+                                    {*@
+                                        <span style="padding-left: 30px;">
+                                            <b>招生类别：</b>
+                                            <input class="cx-inp recruitTypeName" style="width: 100px" value="@ydEduScoreTemp.y_recruitTypeName" type="text"  />
+                                        </span>
+                                    @*}*@
+                                    @*if (ydEduScoreTemp.y_professionTypeId == -1)
+                                    {
+                                        <span style="padding-left: 30px;">
+                                            <b>职业类别：</b>
+                                            <input class="cx-inp professionTypeName" style="border: solid 1px red; width: 100px" value="@ydEduScoreTemp.y_professionTypeName" type="text"  />
+                                        </span>
+                                    }
+                                    else
+                                    {*@
+                                        <span style="padding-left: 30px;">
+                                            <b>职业类别：</b>
+                                            <input class="cx-inp professionTypeName" style="width: 100px" value="@ydEduScoreTemp.y_professionTypeName" type="text"  />
+                                        </span>
+                                    @*}*@
+                                    @*if (ydEduScoreTemp.y_cultureExtentId == -1)
+                                    {
+                                        <span style="padding-left: 30px;">
+                                            <b>文化程度：</b>
+                                            <input class="cx-inp cultureExtentName" style="border: solid 1px red; width: 100px" value="@ydEduScoreTemp.y_cultureExtentName" type="text"  />
+                                        </span>
+                                    }
+                                    else
+                                    {*@
+                                        <span style="padding-left: 30px;">
+                                            <b>文化程度：</b>
+                                            <input class="cx-inp cultureExtentName" style="width: 100px" value="@ydEduScoreTemp.y_cultureExtentName" type="text"  />
+                                        </span>
+                                    @*}*@
+                                    @*if (ydEduScoreTemp.y_examFeatureId == -1)
+                                    {
+                                        <span style="padding-left: 30px;">
+                                            <b>考生特征：</b>
+                                            <input class="cx-inp examFeatureName" style="border: solid 1px red; width: 100px" value="@ydEduScoreTemp.y_examFeatureName" type="text"  />
+                                        </span>
+                                    }
+                                    else
+                                    {*@
+                                        <span style="padding-left: 30px;">
+                                            <b>考生特征：</b>
+                                            <input class="cx-inp examFeatureName" style="width: 100px" value="@ydEduScoreTemp.y_examFeatureName" type="text"  />
+                                        </span>
+                                    @*}*@
+                                    if (ydEduScoreTemp.y_majorLibId == -1)
+                                    {
+                                        string[] majorNames = ydEduScoreTemp.y_majorNameMatch.Split(new char[] { ',' });
+                                    var id =ydEduScoreTemp.id;
+                                        <span style="padding-left: 30px;">
+                                            <b>专业名：</b>
+                                            <input class="cx-inp majorLib" style="border:solid 1px red;width: 100px" value="@ydEduScoreTemp.y_majorLibName" id="@id" type="text"  />
+                                            &nbsp;匹配专业：@{
+                                                foreach (var majorName in majorNames)
+                                                {
+                                                    <a href="javascript:matchMajor('@majorName','@id')"><font color="green">@majorName  &nbsp;</font></a>
+                                                }
+                                            }
+                                            <a href="javascript:addMajor('@ydEduScoreTemp.y_majorLibName')"><font color="blue">添加至库中</font></a>
+                                        </span>
+                                                }
+                                                else
+                                                {
+                                                    <span style="padding-left: 30px;">
+                                                        <b>专业名：</b>
+                                                        <input class="cx-inp majorLib" style="width: 100px" value="@ydEduScoreTemp.y_majorLibName" type="text"  />
+                                                    </span>
+                                                }
+                                                if (ydEduScoreTemp.y_stuTypeId == -1)
+                                                {
+                                                    <span style="padding-left: 30px;">
+                                                        <b>学习形式：</b>
+                                                        <input class="cx-inp stuTypeName" style="border: solid 1px red; width: 100px" value="@ydEduScoreTemp.y_stuTypeName" type="text"  />
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span style="padding-left: 30px;">
+                                                        <b>学习形式：</b>
+                                                        <input class="cx-inp stuTypeName" style="width: 100px" value="@ydEduScoreTemp.y_stuTypeName" type="text"  />
+                                                    </span>
+                                                }
+                                                if (ydEduScoreTemp.y_eduTypeId == -1)
+                                                {
+                                                    <span style="padding-left: 30px;">
+                                                        <b>层次：</b>
+                                                        <input class="cx-inp eduTypeName" style="border: solid 1px red; width: 100px" value="@ydEduScoreTemp.y_eduTypeName" type="text"  />
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span style="padding-left: 30px;">
+                                                        <b>层次：</b>
+                                                        <input class="cx-inp eduTypeName" style="width: 100px" value="@ydEduScoreTemp.y_eduTypeName" type="text"  />
+                                                    </span>
+                                                }
+                                                if (KeyValue.NationAndPolitics.Contains(ViewData["SchoolName"].ToString()))
+                                                {
+                                                    if (ydEduScoreTemp.y_nationId == -1)
+                                                    {
+                                                        <span style="padding-left: 30px;">
+                                                            <b>民族：</b>
+                                                            <input class="cx-inp nationName" style="border: solid 1px red; width: 100px" value="@ydEduScoreTemp.y_nationName" type="text"  />
+                                                        </span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span style="padding-left: 30px;">
+                                                            <b>民族：</b>
+                                                            <input class="cx-inp nationName" style="width: 100px" value="@ydEduScoreTemp.y_nationName" type="text"  />
+                                                        </span>
+                                                    }
+
+                                                    if (ydEduScoreTemp.y_politicsId == -1)
+                                                    {
+                                                        <span style="padding-left: 30px;">
+                                                            <b>政治面貌：</b>
+                                                            <input class="cx-inp politicsName" style="border: solid 1px red; width: 100px" value="@ydEduScoreTemp.y_politicsName" type="text"  />
+                                                        </span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span style="padding-left: 30px;">
+                                                            <b>政治面貌：</b>
+                                                            <input class="cx-inp politicsName" style="width: 100px" value="@ydEduScoreTemp.y_politicsName" type="text"  />
+                                                        </span>
+                                                    }
+                                                }
+                                                if (ydEduScoreTemp.y_inYear == -1)
+                                                {
+                                                    <span style="padding-left: 30px;">
+                                                        <b>入学年份：</b>
+                                                        <input class="cx-inp year" style="border: solid 1px red; width: 100px" value="@ydEduScoreTemp.y_inYear" type="text"  />
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span style="padding-left: 30px;">
+                                                        <b>入学年份：</b>
+                                                        <input class="cx-inp year" style="width: 100px" value="@ydEduScoreTemp.y_inYear" type="text"  />
+                                                    </span>
+                                                }
+                                                if (ydEduScoreTemp.y_birthday == DateTime.MaxValue || ydEduScoreTemp.y_cardId == "")
+                                                {
+                                                    <span style="padding-left: 30px;">
+                                                        <b>身份证：</b>
+                                                        <input class="cx-inp cardId" style="border: solid 1px red; width: 100px" value="@ydEduScoreTemp.y_cardId" type="text"  />
+                                                        &nbsp;<font color="green">导入中已存在该身份证号或者是数据库里已存在该身份证号&nbsp;（<font color="blue">身份证必须唯一</font>）</font>
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span style="padding-left: 30px;">
+                                                        <b>身份证：</b>
+                                                        <input class="cx-inp cardId" style="width: 100px" value="@ydEduScoreTemp.y_cardId" type="text"  />
+                                                    </span>
+                                                }
+                                    if (ydEduScoreTemp.y_graduationdata != null)
+                                    {
+                                        <span style="padding-left: 30px;">
+                                                        <b>毕业日期：</b>
+                                                        <input class="cx-inp graduationdata" style="width: 150px" value="@Convert.ToDateTime(ydEduScoreTemp.y_graduationdata).ToShortDateString()" type="text"  />
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span style="padding-left: 30px;">
+                                                        <b>毕业日期：</b>
+                                                        <input class="cx-inp graduationdata" style="width: 150px" value="@ydEduScoreTemp.y_graduationdata" type="text"  />
+                                                    </span>
+                                                }
+                                                <span style="padding-left: 30px;">
+                                                    <b>毕业学校：</b>
+                                                    <input class="cx-inp graduationschool" style="width: 100px" value="@ydEduScoreTemp.y_graduationschool" type="text"  />
+                                                </span>
+                                                if (Convert.ToDateTime(ydEduScoreTemp.y_birthday).ToShortDateString() == DateTime.MaxValue.ToShortDateString())
+                                                {
+                                                    <span style="padding-left: 30px;">
+                                                        <b>生日：</b>
+                                                        <input class="birthday" style="border: solid 1px red; width: 150px" value="" type="date"  /><font color="red">*</font>
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span style="padding-left: 30px;">
+                                                        <b>生日：</b>
+                                                        <input class="cx-inp birthday" style="width: 150px" value="@Convert.ToDateTime(ydEduScoreTemp.y_birthday).ToShortDateString()" type="text"  />
+                                                    </span>
+                                                }
+                                                if (!KeyValue.SubschoolAndSchool.Contains(ConfigurationManager.AppSettings["SchoolName"].ToString()))
+                                                {
+                                                    if (ydEduScoreTemp.y_subSchoolId == -1)
+                                                    {
+                                                        string[] majorNames = ydEduScoreTemp.y_subNameMatch.Split(new char[] { ',' });
+                                                        var id =ydEduScoreTemp.id;
+                                                        <span style="padding-left: 30px;">
+                                                            <b>函授站：</b>
+                                                            <input class="cx-inp subSchool" style="border: solid 1px red; width: 100px" value="@ydEduScoreTemp.y_subSchoolName" id="@id" type="text"  />
+                                                            &nbsp;匹配函授站：@{
+                                                                foreach (var majorName in majorNames)
+                                                                {
+                                                                    <a href="javascript:matchSub('@majorName','@id')"><font color="green">@majorName  &nbsp;</font></a>
+                                                                }
+                                                            }
+                                                            <a href="javascript:addSub('@ydEduScoreTemp.y_subSchoolName')"><font color="blue">添加至库中</font></a>
+                                                        </span>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <span style="padding-left: 30px;">
+                                                                        <b>函授站：</b>
+                                                                        <input class="cx-inp subSchool" style="width: 100px" value="@ydEduScoreTemp.y_subSchoolName" type="text"  />
+                                                                    </span>
+                                                                    }
+                                                                }
+                                                                if (ydEduScoreTemp.y_stuStateId == -1)
+                                                                {
+                                                                    <span style="padding-left: 30px;">
+                                                                        <b>学籍状态：</b>
+                                                                        <input class="cx-inp stuState" style="border: solid 1px red; width: 100px" value="@ydEduScoreTemp.y_stuStateName" type="text"  />
+                                                                    </span>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <span style="padding-left: 30px;">
+                                                                        <b>学籍状态：</b>
+                                                                        <input class="cx-inp stuState" style="width: 100px" value="@ydEduScoreTemp.y_stuStateName" type="text"  />
+                                                                    </span>
+                                                                }
+                                                                <span style="padding-left: 30px;">
+                                                                    <b>邮政编码：</b>
+                                                                    <input class="cx-inp postalcode" style="width: 100px" value="@ydEduScoreTemp.y_postalcode" type="text"  />
+                                                                </span>
+                                                                <span style="padding-left: 30px;">
+                                                                    <b>电话：</b>
+                                                                    <input class="cx-inp tel" style="width: 100px" value="@ydEduScoreTemp.y_tel" type="text"  />
+                                                                </span>
+                                                                <span style="padding-left: 30px;">
+                                                                    <b>地址：</b>
+                                                                    <input class="cx-inp address" style="width: 100px" value="@ydEduScoreTemp.y_address" type="text"  />
+                                                                </span>
+                                }
+                            </div>
+                            <a class="gr_edit" @*href="javascript:;"*@ onclick="StudentInfoGetEdit(this);">展开</a>
+                        </div>
+                     }
+                }
+                @*@Html.Partial("VerifyStudentList", Model)*@
+            </div>
+
+        </div>
+    </div>
+    @Html.Action("Foot", "AdminBase")
+</body>
+</html>
+<script>
+    //生成各个字段集合，其中用“<>”隔开
+    function verify() {
+        $('#ajaxtable').fadeOut('10');
+        $('#loadingDiv').show();
+        var scoreList = $(".xx-js");
+        var name = "";
+        var stuNum = "";
+        var examNum = "";
+        var sex = "";
+        var majorLib = "";
+        var stuTypeName = "";
+        var eduTypeName = "";
+        var year = "";
+        var cardId = "";
+        var birthday = "";
+        var subSchool = "";
+        var tel = "";
+        var address = "";
+        var stuState = "";
+        var id = "";
+        var nationName = "";
+        var politicsName = "";
+        //科技师范新添加的字段
+        var graduationdata = "";
+        var graduationschool = "";
+        var registrationNum = "";
+        var postalcode = "";
+        var foreignLanguageName = "";
+        var recruitTypeName = "";
+        var professionTypeName = "";
+        var cultureExtentName = "";
+        var examFeatureName = "";
+        if (scoreList.length == 0) {
+            alert("数据已经无误");
+            return;
+        }
+        for (var i = 0; i < scoreList.length; i++) {
+            var nowObj = $(scoreList[i]);
+            name += $(".name", nowObj).val();
+            stuNum += $(".stuNum", nowObj).val();
+            examNum += $(".examNum", nowObj).val();
+            sex += $(".sex", nowObj).val();
+            majorLib += $(".majorLib", nowObj).val();
+            stuTypeName += $(".stuTypeName", nowObj).val();
+            eduTypeName += $(".eduTypeName", nowObj).val();
+            year += $(".year", nowObj).val();
+            cardId += $(".cardId", nowObj).val();
+            birthday += $(".birthday", nowObj).val();
+            subSchool += $(".subSchool", nowObj).val();
+            tel += $(".tel", nowObj).val();
+            address += $(".address", nowObj).val();
+            stuState += $(".stuState", nowObj).val();
+            id += $(".id", nowObj).val();
+            graduationdata += $(".graduationdata", nowObj).val();
+            graduationschool += $(".graduationschool", nowObj).val();
+            registrationNum += $(".registrationNum", nowObj).val();
+            postalcode += $(".postalcode", nowObj).val();
+            foreignLanguageName += $(".foreignLanguageName", nowObj).val();
+            recruitTypeName += $(".recruitTypeName", nowObj).val();
+            professionTypeName += $(".professionTypeName", nowObj).val();
+            cultureExtentName += $(".cultureExtentName", nowObj).val();
+            examFeatureName += $(".examFeatureName", nowObj).val();
+            if (i + 1 < scoreList.length) {
+                name += "<>";
+                stuNum += "<>";
+                examNum += "<>";
+                sex += "<>";
+                majorLib += "<>";
+                stuTypeName += "<>";
+                eduTypeName += "<>";
+                year += "<>";
+                cardId += "<>";
+                birthday += "<>";
+                subSchool += "<>";
+                tel += "<>";
+                address += "<>";
+                stuState += "<>";
+                id += "<>";
+                graduationdata += "<>";
+                graduationschool += "<>";
+                registrationNum += "<>";
+                postalcode += "<>";
+                foreignLanguageName += "<>";
+                recruitTypeName += "<>";
+                professionTypeName += "<>";
+                cultureExtentName += "<>";
+                examFeatureName += "<>";
+            }
+            @if (KeyValue.NationAndPolitics.Contains(ViewData["SchoolName"].ToString()))
+            {
+                <text>
+                nationName += $(".nationName", nowObj).val();
+                politicsName += $(".politicsName", nowObj).val();        
+                    if (i + 1 < scoreList.length)
+                    {
+                        nationName += "<>";
+                        politicsName += "<>";
+                    }
+                    </text>
+                }
+    }
+    $.ajax({
+        type: "post",
+        url: "/Student/UpdateVerify",
+        data: {
+            name: name,
+            stuNum: stuNum,
+            examNum: examNum,
+            sex: sex,
+            majorLib: majorLib,
+            stuTypeName: stuTypeName,
+            eduTypeName: eduTypeName,
+            year: year,
+            cardId: cardId,
+            birthday: birthday,
+            subSchool: subSchool,
+            tel: tel,
+            address: address,
+            stuState: stuState,
+            id: id,
+            graduationdata: graduationdata,
+            graduationschool: graduationschool,
+            registrationNum: registrationNum,
+            postalcode: postalcode,
+            foreignLanguageName: foreignLanguageName,
+            recruitTypeName: recruitTypeName,
+            professionTypeName: professionTypeName,
+            cultureExtentName: cultureExtentName,
+            examFeatureName: examFeatureName
+            @if (KeyValue.NationAndPolitics.Contains(ViewData["SchoolName"].ToString()))
+                {
+                    <text>,
+            nationName: nationName,
+            politicsName: politicsName
+            </text>
+                }
+        },
+        success: function (data) {
+            $('#ajaxtable').fadeIn('10');
+            $('#loadingDiv').hide();
+            if (data == "ok") {
+                location.reload();
+            } else {
+                alert(data);
+            }
+        },
+        error: function(data) {
+            alert("未知错误");
+        }
+    });
+    }
+    function matchMajor(majorName, id) {
+        $("#" + id).val(majorName);
+    }
+
+    function addMajor(majorName) {
+        if (confirm("确认要将该专业添加至专业库中吗？")) {
+            $.ajax({
+                type: "post",
+                url: "/Edu/majorlibAddT",
+                data: {
+                    y_name: majorName,
+                    y_code: "111"
+                },
+                success: function(data) {
+                    if (data == "ok") {
+                        alert("添加专业成功");
+                    } else {
+                        alert(data);
+                    }
+                },
+                error: function(data) {
+                    alert("未知错误");
+                }
+            });
+        }
+    }
+
+    function matchSub(majorName, id) {
+        $("#" + id).val(majorName);
+    }
+
+    function addSub(majorName) {
+        if (confirm("确认要将该函授站添加至函授站库中吗？")) {
+            $.ajax({
+                type: "post",
+                url: "/SysAdmin/SubSchoolAddT",
+                data: {
+                    y_name: majorName,
+                    y_code: "111"
+                },
+                success: function(data) {
+                    if (data == "ok") {
+                        alert("添加函授站成功");
+                    } else {
+                        alert(data);
+                    }
+                },
+                error: function(data) {
+                    alert("未知错误");
+                }
+            });
+        }
+    }
+</script>

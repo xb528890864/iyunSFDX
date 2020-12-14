@@ -1,0 +1,316 @@
+﻿@using System.Configuration
+@using IYun.Models
+@using IYun.Object
+@using Webdiyer.WebControls.Mvc
+@model PagedList<YD_TeaPlan_TempletCourseDes>
+@{
+    Layout = null;
+    var modulePowers = ViewBag.modulePowers as List<ModulePower>;
+    modulePowers = modulePowers ?? new List<ModulePower>();
+    int YdAdminRoleId = ViewBag.YdAdminRoleId;
+
+
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ConfigurationManager.AppSettings["SchoolTitle"]</title>
+    <link rel="stylesheet" href="~/Content/manage/style/css.css?v=1" type="text/css" /><!-- 全部样式 -->
+    <link rel="stylesheet" href="~/Content/manage/style/reset.css" type="text/css" /><!-- 重置样式 -->
+    <link href="~/Content/manage/style/pic.css" rel="stylesheet" type="text/css" /><!-- 相册样式 -->
+    <!--[ifltIE9]>
+    <script type="text/javascript" src="js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- 使得ie678支持HTML5标签 -->
+    <!--[ifltIE10]> 
+    <script type="text/javascript" src="~/Content/manage/js/PIE.js"></script>
+    <![endif]-->
+    <!-- 使得ie6789支持CSS3样式 -->
+    @*<script src="~/Content/manage/js/jquery-1.7.1.min.js" type="text/javascript"></script>*@
+    <script src="~/Content/js/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/manage/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="~/Scripts/MvcPager.js"></script>
+    <link href="~/Content/kindeditor-4.1.10/themes/default/default.css" rel="stylesheet" />
+    <script src="~/Content/kindeditor-4.1.10/kindeditor-min.js"></script>
+    <script src="~/Content/kindeditor-4.1.10/lang/zh_CN.js"></script>
+
+    <script src="~/Content/EasyUI/easyloader.js"></script>
+    <link href="~/Content/EasyUI/combo.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/combobox.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/panel.css" rel="stylesheet" />
+    <link href="~/Content/EasyUI/textbox.css" rel="stylesheet" />
+    <script type="text/javascript">
+        //EvPNG.fix('div, ul, img, li, input');
+
+        $(function () {
+            if (window.PIE) {
+                $('.rounded').each(function () {
+                    PIE.attach(this);
+                });
+            }
+            //使得ie6789支持CSS3样式
+
+        });
+
+    </script>
+</head>
+
+<body>
+@Html.Action("Top", "AdminBase")
+<div class="main center">
+    <div id="main-tl">
+        <div class="left-t">教务管理</div>
+        <div class="left-c">
+            @{
+                foreach (var modulePower in modulePowers)
+                {
+                    if (modulePower.y_url.ToLower() == "/TeaPlan/TeaPlanTempalet".ToLower())
+                    {
+                        <a class="on" href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                    }
+                    else
+                    {
+                        <a href="@modulePower.y_url">@modulePower.y_moudleName</a>
+                    }
+                }
+            }
+        </div>
+    </div>
+    <div id="main-tr">
+        <form action="/teaplan/TeaPlanDes" id="searchForm" method="post">
+            <div class="cli">
+                <div class="zc-inn">
+                    <span style="margin-left: 20px;">学期</span>                
+                    <select class="dl-sel" id="term" name="term" style="width:100px;font-size: 18px;">
+                        <option value="0">全部</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+
+                    <span style="font-size:16px;float:right">&nbsp;&nbsp;   @ViewBag.MajorLibraryName @ViewBag.edutype @ViewBag.stutype 详细教学计划</span>
+                </div>
+
+                <div class="zc-head">
+                    <div class="nava1" style="float: right">
+                        <a class="cx-sub upload" style="margin-top: 10px; height: 32px; line-height: 30px; float: right" href="javascript:deleteCourse()">全部清空</a>
+                        @if (YdAdminRoleId == 1 || YdAdminRoleId == 3 || YdAdminRoleId == 6)
+                        {
+
+                            <a class="cx-sub upload" style="margin-top: 10px; height: 32px; line-height: 30px; float: right" id="uploadsub">批量导入</a>
+                        }
+
+                        <div class="show-bg"></div>
+                        <div class="show-c">
+                            <div class="tbt">批量添加本专的教学计划</div>
+                            <a class="close close8" href="javascript:;"></a>
+                            <div class="dr-c">
+                                <input type="text" id="url" value="" /> <input type="button" id="insertfile" value="选择文件" />
+                                <p>导入格式说明：</p>
+                                <p>文件类型：xls或者xlsx</p>
+                                <p>
+                                    <a href="~/File/mould/XX专业课程模板.xlsx"><font color="green">XX专业课程导入模板.xlsx</font></a>
+                                </p>
+                            </div>
+                            <div class="cx-bom">
+                                <a class="cx-sub" href="javascript:uploadExcel()">开始导入</a><a class="cx-set close" href="javascript:;">取消</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input style="margin-top: 10px; height: 32px; line-height: 30px; float: right" class="cx-sub" type="submit" value="过滤" />
+                    <a class="cx-sub upload" style="margin-top: 10px; height: 32px; line-height: 30px; float: right" href="/teaplan/TeaPlanTempletDesAddPage/?id=@ViewBag.id">添加</a>                                         
+                </div>
+            </div>
+        </form>
+
+        <div id="loadingDiv" style="display: none"><img src="~/Content/images/loading.gif"/>
+        </div>
+        <div id="ajaxtable">
+            @Html.Partial("TeaPlanDesList", Model)
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $("#uploadsub").click(function() {
+            $(".show-c").css('display', 'none');
+            $(".upload").click(function() {
+                $(this).parents(".nava1").find(".show-bg").stop().fadeTo(500, 1);
+                $(this).parents(".nava1").find(".show-c").css("display", "block");
+            });
+            $(".close").click(function() {
+                $(this).parents(".nava1").find(".show-bg").css('display', 'none');
+                $(this).parents(".nava1").find(".show-c").css("display", "none");
+            });
+        });
+
+        KindEditor.ready(function(K) {
+            var editor = K.editor({
+                allowFileManager: true,
+                uploadJson: '../../Content/kindeditor-4.1.10/asp.net/excelUpload.ashx', //文件处理程序
+                fileManagerJson: '../../Content/kindeditor-4.1.10/asp.net/file_manager_json.ashx',
+                imageSizeLimit: '10MB',
+                imageUploadLimit: 10
+            });
+            K('#insertfile').click(function() {
+                editor.loadPlugin('insertfile', function() {
+                    editor.plugin.fileDialog({
+                        fileUrl: K('#url').val(),
+                        clickFn: function(url, title) {
+                            K('#url').val(url);
+                            editor.hideDialog();
+                        }
+                    });
+                });
+            });
+
+        });
+    });
+    function deleteCourse(){
+
+        if (confirm("确认要清空此专业的所有数据吗？")) {
+            $.ajax({
+                type: "post",
+                url: "/teaplan/DeleteCourse",
+                data: {
+                    id: '@ViewBag.id'       //专业教学计划主表id
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if (data.msg == "ok") {
+                        alert("删除成功！");
+                        window.location.reload();
+                    } else {
+                        alert(data.msg);
+                    }
+                },
+                error: function (msg) {
+                    alert("未知错误");
+                }
+            });
+        }
+
+    }
+
+
+
+    function deleteSubSchool(id) {
+        if (confirm("确认删除此专业教学计划吗？")) {
+            $.ajax({
+                type: "post",
+                url: "/teaplan/TeaplanDesDelete",
+                data: {
+                    id: id
+                },
+                success: function (data) {
+                    if (data.msg == "ok") {
+                        alert("删除成功！");
+                        window.location.reload();
+                    } else {
+                        alert(data.msg);
+                    }
+                },
+                error: function (msg) {
+                    alert("未知错误");
+                }
+            });
+        }
+    }
+
+
+
+
+    function uploadExcel() {
+        var fileName = $("#url").val();
+
+        $.ajax({
+            url: '@Url.Action("CourseTeaPlanExcelInsert", "TeaPlan")',
+            data: {
+                fileName: fileName,
+                y_templetId:'@ViewBag.id'
+            },
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                if (data.IsOk) {
+                    alert('Excel验证失败，点击确认获取Excel错误提示！');
+                    window.open(data.Message);
+                }else{
+                    alert(data.Message);
+                   window.location.reload();               
+                }
+            }
+
+        });
+    }
+    //EasyUi
+    $(document).ready(function () {
+        //设置面板长度
+        $('select.easyui-combobox').attr("panelHeight", "400");
+        //设置面板宽度
+        $('select.easyui-combobox').css("width", "250px");
+
+        easyloader.css = false;
+
+        easyloader.load('combobox', function () { // 加载指定模块
+            $('select.easyui-combobox').combobox({
+                onHidePanel: function () {
+                    if (isNaN($(this).combobox('getValue'))) {
+                        var $this = $(this);
+
+                        var valueField = $this.combobox('options').valueField;
+                        var textField = $this.combobox('options').textField;
+
+                        var text = $this.combobox('getValue');
+                        var data = $this.combobox('getData');
+
+                        $.each(data, function (i, n) {
+                            if (eval('n.' + textField).indexOf(text) >= 0) {
+                                $this.combobox('setValue', eval('n.' + valueField));
+                                return false;
+                            }
+                        });
+
+                        if (isNaN($(this).combobox('getValue'))) {
+                            $this.combobox('setValue', 0);
+                        }
+
+                    }
+                }
+            });
+
+            $(".combo").click(function() {
+                if ($(this).prev().combobox("panel").is(":visible")) {
+                    //$(this).prev().combobox("hidePanel");
+                } else {
+                    $(this).prev().combobox("showPanel");
+                }
+            });
+
+          
+        });
+
+        easyloader.onLoad = function (name){
+            if (name.length == 1 &&name[0] == "combobox") {
+                    
+                //赋初始值 (赋值时会触发onchange事件)
+                @*$('#SubSchool').combobox('setValue', @school);*@
+            }
+        }
+    });
+</script>
+@Html.Action("Foot", "AdminBase")
+</body>
+</html>

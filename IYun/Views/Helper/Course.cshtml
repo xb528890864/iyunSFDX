@@ -1,0 +1,49 @@
+﻿@using IYun.Models;
+@using IYun.Object
+@{
+    Layout = null;
+    var data = ViewData["data"] as List<YD_Edu_Course>;
+    data = data ?? new List<YD_Edu_Course>();
+    var para = ViewData["para"] as HelperParameterM;
+    para = para ?? new HelperParameterM();
+    if (string.IsNullOrWhiteSpace(para.className))
+    {
+        para.className = "dl-sel";                       //默认样式CLASS
+    }
+    if (string.IsNullOrWhiteSpace(para.id))
+    {
+        para.id = "course";                            //默认ID
+    }
+    if (string.IsNullOrWhiteSpace(para.name))
+    {
+        para.name = "course";                          //默认name
+    }
+    if (!para.index.HasValue)
+    {
+        para.index = 0;                                 //默认选中
+    }
+}
+<select class="@para.className" id="@para.id" name="@para.name" style="@para.style">
+    <option value="0">全部</option>
+    @foreach (var eduType in data)
+    {
+        if (eduType.id == para.index)
+        {
+            <option value='@eduType.id' selected="selected">@eduType.y_name</option>
+        }
+        else
+        {
+            <option value='@eduType.id'>@eduType.y_name</option>
+        }
+    }
+</select>
+<input type="hidden" id="coursehidden" name="coursehidden" />
+<script type="text/javascript">
+    @*$('#@para.id').editableSelect({
+        effects: 'slide',
+        onSelect: function (item) {
+            //当改变select下拉选项值的时候调用
+            $('#coursehidden').val(item.val());
+        }
+    });*@
+</script>

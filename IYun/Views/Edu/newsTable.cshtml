@@ -1,0 +1,80 @@
+﻿@using System.Configuration
+@using IYun.Common
+@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@using NPOI.OpenXml4Net.OPC
+@model PagedList<VW_Sts_News>
+@{
+    var adminroled = ViewBag.admin;
+}
+<table class="xx-table ydong-tab">
+    <tr>
+        <th>类别</th>
+        <th>标题</th>
+        <th>发布人</th>
+        <th>发布时间</th>
+        <th>点击量</th>
+        <th>可用</th>
+        <th>函授站</th>
+        <th>操作</th>
+    </tr>
+    @{
+        foreach (var ydSysAdmin in Model)
+        {
+            <tr>
+            
+               @{
+                   if (ydSysAdmin.y_type == 1)
+                   {
+                    <td>教学</td>
+                   }
+                   if (ydSysAdmin.y_type ==2)
+                   {
+                    <td>学籍</td>
+                   }
+                   if (ydSysAdmin.y_type == 3)
+                   {
+                    <td>提醒</td>
+                   }
+                   if (ydSysAdmin.y_type == 4)
+                   {
+                    <td>其他</td>
+                   }
+            }
+                <td>@ydSysAdmin.y_title</td>
+                <td>@ydSysAdmin.y_appyname</td>
+                <td>@ydSysAdmin.y_appytime</td>
+                <td>@ydSysAdmin.y_hits</td>
+                <td>@Html.Raw(ydSysAdmin.y_usable == 1 ? "可用" : "不可用")</td>
+                @{
+                    if (ydSysAdmin.y_subSchoolId == 0)
+                    {
+                        <td>全部</td>
+                    }
+                    else
+                    {
+                        <td>@ydSysAdmin.y_subschoolname</td>
+                    }
+                }
+               
+                @{
+                if (adminroled != 4)
+                {
+                    <td>
+                        <a class="bfont2" href="/Edu/NewDes/@ydSysAdmin.id">查看内容</a>
+                        <a class="bfont2" href="/Edu/NewEditPage/@ydSysAdmin.id">修改</a>
+                        <a class="bfont2" href="javascript:deletenews(@ydSysAdmin.id)">删除</a>
+                    </td>
+                }
+                else
+                {
+                    <td><a class="bfont2" href="/Edu/NewDes/@ydSysAdmin.id">查看内容</a></td>
+
+                }
+            }
+                 
+            </tr>
+        }
+    }
+
+</table>

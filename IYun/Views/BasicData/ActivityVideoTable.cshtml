@@ -1,0 +1,28 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using IYun.Models;
+@model PagedList<YT_ActivityVideo>
+
+<table class="xx-table ydong-tab">
+    <tr>
+        <th>活动名称</th>
+        <th>活动开始时间</th>
+        <th>活动结束时间</th>
+        <th>基本操作</th>
+    </tr>
+    @{
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.y_name</td>
+                <td>@item.y_starttime</td>
+                <td>@item.y_endtime</td>
+                <td>
+                    <a class="bfont2" href="/basicdata/ActivityVideoEditPage/@item.id">修改</a>
+                    <a class="bfont2" href="javascript:deleteActivityVideo(@item.id)">删除</a>
+                    <a class="bfont2" href="/basicdata/LiveVideo/@item.id">观看直播</a>
+                </td>
+            </tr>
+        }
+    }
+</table>
+
